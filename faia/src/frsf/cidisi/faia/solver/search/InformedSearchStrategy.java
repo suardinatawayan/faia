@@ -22,6 +22,11 @@ public abstract class InformedSearchStrategy extends Strategy {
 		this.h = DummyEstimatedCostFunction.getInstance();
 	}
 	
+	public InformedSearchStrategy(IEstimatedCostFunction h) {
+		this.g = DummyStepCostFunction.getInstance();
+		this.h = h;
+	}
+	
 	@Override
 	public void addNodesToExpand(Vector<NTree> nodes){
 		//Add the nodes at the top of the list of nodes to expand
