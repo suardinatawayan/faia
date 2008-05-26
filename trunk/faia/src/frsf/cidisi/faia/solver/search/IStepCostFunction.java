@@ -12,6 +12,6 @@ public interface IStepCostFunction {
 	 * 
 	 * @param agentState
 	 */
-	public double calculateCost(AgentState agentState);
+	public double calculateCost(NTree node);
 
 }

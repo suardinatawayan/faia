@@ -8,7 +8,7 @@ import frsf.cidisi.faia.state.AgentState;
  * @version 1.0
  * @created 08-Mar-2007 13:16:04
  */
-public class NTree implements Cloneable {
+public class NTree implements Cloneable, Comparable<NTree> {
 
 	protected int deep;
 	protected double cost;
@@ -241,6 +241,13 @@ public class NTree implements Cloneable {
 		return agentState.equals(((NTree)obj).getAgentState());
 	}
 
-	
-
+	@Override
+	public int compareTo(NTree o) {
+		if (this.cost == o.cost)
+			return 0;
+		else if (this.cost < o.cost)
+			return -1;
+		else
+			return 1;
+	}
 }

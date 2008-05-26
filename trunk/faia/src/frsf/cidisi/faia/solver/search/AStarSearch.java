@@ -7,24 +7,8 @@ import java.util.Vector;
  */
 public class AStarSearch extends InformedSearchStrategy {
 
-	private IEstimatedCostFunction h;
-
-	public AStarSearch(){
-
-	}
-
-	public void addNodesToExpand(Vector<NTree> nodes){
-		//Add the nodes at the top of the list of nodes to expand
-		nodesToExpand.addAll(0, nodes);
-	}
-
-	public void addNodeToExpand(NTree node){
-		//Add the node at the top of the list of nodes to expand
-		nodesToExpand.addElement(node);
-	}
-
-	public IEstimatedCostFunction getEstimatedCostFunction(){
-		return null;
+	public AStarSearch(IStepCostFunction g, IEstimatedCostFunction h){
+		super(g, h);
 	}
 
 	@Override

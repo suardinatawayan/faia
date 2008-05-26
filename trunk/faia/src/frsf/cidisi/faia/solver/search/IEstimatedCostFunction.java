@@ -11,6 +11,6 @@ public interface IEstimatedCostFunction {
 	 * 
 	 * @param agentState
 	 */
-	public abstract double getEstimatedCost(AgentState agentState);
+	public abstract double getEstimatedCost(NTree node);
 
 }

@@ -15,36 +15,17 @@ public class UniformCostSearch extends Strategy {
 	}
 
 	public void addNodesToExpand(Vector<NTree> nodes){
+		//Add the nodes at the bottom of the list of nodes to expand
+		for (NTree nt : nodes)
+			nt.setCost(nt.getParent().getCost() + stepCostFunction.calculateCost(nt));
 		
-		// Add each node in nodes to the list of nodes to expand.- 
-		for (NTree node : nodes)
-			addNodeToExpand(node);
-		
+		nodesToExpand.addAll(nodes);
 	}
 
 	public void addNodeToExpand(NTree node){
-
-		// If the list of nodes to expand was empty at the beginning.-  
-		if (nodesToExpand.size()==0){
-			nodesToExpand.addElement(node);	// Just add the node to the empty list.-
-			return;	// Exit from the method.- 
-		}
-		else{	// If the list of nodes to expand was not empty, 
-				// is necessary to find the right place to add the new node.-
-		
-			// Calculate the cost of the new node.-
-			double nodeValue = stepCostFunction.calculateCost(node.getAgentState());
-	
-			// Iterate through the list of nodes to expand and find the position to insert the new node on the list.-
-			for (int i=0;i<nodesToExpand.size();i++){
-				double iValue = stepCostFunction.calculateCost(nodesToExpand.elementAt(i).getAgentState());
-				//TODO: ACA HAY QUE TENER EN CUENTA QUE ES POSIBLE QUE EL ORDEN DE COSTO SEA AL REV�S
-				//ES DECIR, VA UN > EN LUGAR DE UN < EN LA PREGUNTA DEL IF.-
-				if (nodeValue >= iValue)
-					nodesToExpand.add(i, node);
-			}
-		}
-
+		//Add the node at the top of the list of nodes to expand
+		node.setCost(node.getParent().getCost() + stepCostFunction.calculateCost(node));
+		nodesToExpand.add(node);
 	}
 
 	public IStepCostFunction getStepCostFunction(){

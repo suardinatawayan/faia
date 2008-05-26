@@ -1,4 +1,5 @@
 package frsf.cidisi.faia.solver.search;
+import java.util.PriorityQueue;
 import java.util.Vector;
 /**
  * @author Jorge M. Roa
@@ -11,7 +12,7 @@ import java.util.Vector;
  */
 public abstract class Strategy {
 
-	protected Vector<NTree> nodesToExpand;
+	protected PriorityQueue<NTree> nodesToExpand;
 	/** It is used to determine if the list of nodes to expand is
 	 *  initialized (true) or not (false).-
 	 */ 
@@ -19,7 +20,7 @@ public abstract class Strategy {
 	
 
 	public Strategy(){
-		nodesToExpand = new Vector<NTree>();
+		nodesToExpand = new PriorityQueue<NTree>();
 		//nodesToExpand.addElement(tree);
 		isInitialized = false;
 	}
@@ -34,7 +35,7 @@ public abstract class Strategy {
 	 */
 	public NTree getNode(){
 		if (nodesToExpand.size() > 0)
-			return nodesToExpand.remove(0);
+			return nodesToExpand.remove();
 		
 		return null;
 	}
@@ -46,7 +47,7 @@ public abstract class Strategy {
 	 */
 	public void initNodesToExpandList(NTree node){
 		if (!isInitialized){
-			nodesToExpand.addElement(node);
+			nodesToExpand.add(node);
 			isInitialized = true;
 		}
 	}

@@ -15,12 +15,16 @@ public class BreathFirstSearch extends Strategy {
 
 	public void addNodesToExpand(Vector<NTree> nodes){
 		//Add the nodes at the bottom of the list of nodes to expand
+		for (NTree nt : nodes)
+			nt.setCost(nt.getParent().getCost() + 1);
+		
 		nodesToExpand.addAll(nodes);
 	}
 
 	public void addNodeToExpand(NTree node){
 		//Add the node at the top of the list of nodes to expand
-		nodesToExpand.addElement(node);
+		node.setCost(node.getParent().getCost() + 1);
+		nodesToExpand.add(node);
 	}
 
 	@Override

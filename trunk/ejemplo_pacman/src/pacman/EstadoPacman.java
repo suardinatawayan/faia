@@ -163,6 +163,17 @@ public class EstadoPacman extends AgentState{
 		return true;
 	}
 	
+	public int getCeldasDesconocidas() {
+		int resultado = 0;
+		
+		for (int fila=0; fila<mundo.length;fila++)
+			for (int columna=0;columna<mundo.length;columna++)
+				if (mundo[fila][columna] == PercepcionPacman.PERCEPCION_DESCONOCIDO)
+					resultado++;
+		
+		return resultado;
+	}
+	
 	public boolean noHayMasComida(){
 		for (int fil=0;fil<mundo.length;fil++)
 			for (int col=0;col<mundo.length;col++)
