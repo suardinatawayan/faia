@@ -6,8 +6,8 @@ package frsf.cidisi.faia.solver.search;
  */
 public class GreedySearch extends InformedSearchStrategy {
 
-	public GreedySearch(IStepCostFunction g){
-		super(g);
+	public GreedySearch(IEstimatedCostFunction h){
+		super(h);
 	}
 
 	@Override

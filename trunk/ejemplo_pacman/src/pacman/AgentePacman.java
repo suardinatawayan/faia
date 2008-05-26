@@ -34,9 +34,8 @@ public class AgentePacman extends GoalBasedAgent {
 	public Action selectAction(){
 		
 		// Instanciaci�n la estrategia de b�squeda primero en profundidad.-
-		IStepCostFunction costo = new FuncionCosto();
 		IEstimatedCostFunction heuristica = new Heuristica();
-		AStarSearch estrategiaBusqueda = new AStarSearch(costo, heuristica);
+		GreedySearch estrategiaBusqueda = new GreedySearch(heuristica);
 		
 /**
  * Ejemplos de instanciaci�n de otras estrategias de b�squeda.-
@@ -50,6 +49,15 @@ public class AgentePacman extends GoalBasedAgent {
  * // Instanciaci�n de la estrategia de costo uniforme.-
  * IStepCostFunction costo = new FuncionCosto();
  * UniformCostSearch estrategiaBusqueda = new UniformCostSearch(costo);
+ * 
+ * A Estrella:
+ * IStepCostFunction costo = new FuncionCosto();
+ * IEstimatedCostFunction heuristica = new Heuristica();
+ * AStarSearch estrategiaBusqueda = new AStarSearch(costo, heuristica);
+ * 
+ * Avara:
+ * IEstimatedCostFunction heuristica = new Heuristica();
+ * GreedySearch estrategiaBusqueda = new GreedySearch(heuristica);
  */		
 		
 		// Instancia un proceso de b�squeda indicando como par�metro la estrategia a utilizar.-
