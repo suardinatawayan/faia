@@ -9,7 +9,9 @@ import frsf.cidisi.faia.simulator.SimulatorEventHandler;
 import frsf.cidisi.faia.solver.search.NTree;
 
 public class LatexOutput implements SimulatorEventHandler {
+	private final String faiaPdflatexDir = "../faia/pdflatex/";
 	private final String pdflatexDir = "pdflatex/";
+	
 	private int fileIdx = 0;
 	private static LatexOutput instance;
 	
@@ -24,6 +26,19 @@ public class LatexOutput implements SimulatorEventHandler {
 	}
 	
 	public void compileLatexFiles(boolean removeTexFiles) {
+		// Copio los archivos necesarios para poder compilar con pdflatex
+		// FIXME: Estoy suponiendo acá que FAIA se encuentra en la carpeta "..faia"
+		try {
+			FileOperations.CopyFile("../faia/pdflatex/a0poster.cls", pdflatexDir + "a0poster.cls");
+			FileOperations.CopyFile("../faia/pdflatex/a0size.sty", pdflatexDir + "a0size.sty");
+			FileOperations.CopyFile("../faia/pdflatex/nodo.sty", pdflatexDir + "nodo.sty");
+			FileOperations.CopyFile("../faia/pdflatex/qtree.sty", pdflatexDir + "qtree.sty");
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		
 		Process p;
 		String[] comando;
 		
@@ -135,6 +150,11 @@ public class LatexOutput implements SimulatorEventHandler {
 		
 		// Ahora creo el archivo
 		try {
+			// Si la carpeta que necesito no existe, la creo.
+			File f = new File(pdflatexDir);
+			if (!f.exists())
+				f.mkdir();
+			
 			PrintOut print = new PrintOut(pdflatexDir + fileIdx + ".tex", false);
 			print.write(str.toString());
 			print.close();
