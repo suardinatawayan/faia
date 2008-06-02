@@ -34,8 +34,7 @@ public class AgentePacman extends GoalBasedAgent {
 	public Action selectAction(){
 		
 		// Instanciaci�n la estrategia de b�squeda primero en profundidad.-
-		IEstimatedCostFunction heuristica = new Heuristica();
-		GreedySearch estrategiaBusqueda = new GreedySearch(heuristica);
+		DepthFirstSearch estrategiaBusqueda = new DepthFirstSearch();
 		
 /**
  * Ejemplos de instanciaci�n de otras estrategias de b�squeda.-

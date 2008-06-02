@@ -15,8 +15,5 @@ public class Pacman {
 		GoalBasedAgentSimulator simu = new GoalBasedAgentSimulator(ambiente, pacman);
 
 		simu.start();
-		
-
 	}
-
 }

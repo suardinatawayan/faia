@@ -1,18 +1,78 @@
 package frsf.cidisi.faia.util;
 
+import java.io.File;
+import java.io.FilenameFilter;
+import java.io.IOException;
 import java.util.Vector;
 
+import frsf.cidisi.faia.simulator.SimulatorEventHandler;
 import frsf.cidisi.faia.solver.search.NTree;
-import frsf.cidisi.faia.solver.search.Strategy;
 
-public class LatexOutput {
-	private static int fileIdx = 0;
+public class LatexOutput implements SimulatorEventHandler {
+	private final String pdflatexDir = "pdflatex/";
+	private int fileIdx = 0;
+	private static LatexOutput instance;
 	
-	public static void printFile(NTree tree) {
+	LatexOutput() {
+	}
+	
+	public static LatexOutput getInstance() {
+		if (instance == null)
+			instance = new LatexOutput();
+		
+		return instance;
+	}
+	
+	public void compileLatexFiles(boolean removeTexFiles) {
+		Process p;
+		String[] comando;
+		
+		// Creo el objeto que representa la carpeta pdfLatex
+		File carpetaPdflatex = new File(pdflatexDir);
+		
+		System.out.println("Compilando archivos Latex...");
+		
+		// Por cada archivo .tex compilo a PDF
+		for (File archivoTex : carpetaPdflatex.listFiles(new TexFilter())) {
+			
+			System.out.print("  " + archivoTex.getName());
+			comando = new String[] {"pdflatex", "-file-line-error", "-halt-on-error", archivoTex.getName()};
+			
+			try {
+				// Ejecuto el comando para la compilación
+				p = Runtime.getRuntime().exec(comando, null, carpetaPdflatex);
+				
+				// Espero que termine de compilar y muestro el estado de la ejecución (si
+				// fue exitoso o no)
+				p.waitFor();
+				if (p.exitValue() == 0)
+					System.out.print(" -> Ok");
+				else
+					System.out.print(" -> Error");
+					
+					
+			} catch (Exception e) {
+				System.out.print(" -> Error: excepción arrojada");
+				e.printStackTrace();
+			}
+			
+			System.out.println();
+		}
+		
+		// Ahora elimino los archivos temporales que creó pdflatex
+		for (File archivoTemporal : carpetaPdflatex.listFiles(new TempFilesFilter()))
+			archivoTemporal.delete();
+		
+		// Si se ha indicado borrar tmabién los archivos tex, los borro
+		for (File archivoTex : carpetaPdflatex.listFiles(new TexFilter()))
+			archivoTex.delete();
+	}
+	
+	public void printFile(NTree tree) {
 		printFile(tree, "ESTRATEGIA NO SETEADA");
 	}
 	
-	public static void printFile(NTree tree, String strategyName) {
+	public void printFile(NTree tree, String strategyName) {
 		StringBuffer str = new StringBuffer();
 		
 	    // Clase del documento y opciones generales
@@ -75,7 +135,7 @@ public class LatexOutput {
 		
 		// Ahora creo el archivo
 		try {
-			PrintOut print = new PrintOut("src/pdflatex/" + fileIdx + ".tex", false);
+			PrintOut print = new PrintOut(pdflatexDir + fileIdx + ".tex", false);
 			print.write(str.toString());
 			print.close();
 			
@@ -85,4 +145,27 @@ public class LatexOutput {
 			e.printStackTrace();
 		}
 	}
+
+	@Override
+	public void simulationFinished() {
+		this.compileLatexFiles(true);
+	}
+}
+
+class TexFilter implements FilenameFilter {
+
+	@Override
+	public boolean accept(File arg0, String arg1) {
+		return (arg1.endsWith(".tex"));
+	}
+	
+}
+
+class TempFilesFilter implements FilenameFilter {
+
+	@Override
+	public boolean accept(File arg0, String arg1) {
+		return (arg1.endsWith(".aux") || arg1.endsWith(".log"));
+	}
+	
 }
