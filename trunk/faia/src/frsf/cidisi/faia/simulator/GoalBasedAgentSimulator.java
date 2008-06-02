@@ -53,7 +53,7 @@ public class GoalBasedAgentSimulator extends Simulator {
 		Action action;
 		GoalBasedAgent agent;
 		
-		//TODO: Aca hay que tener en cuenta que podría haber más de un agente
+		//TODO: Aca hay que tener en cuenta que podrï¿½a haber mï¿½s de un agente
 		// por ahora el framework solo es monoagente :)
 		agent = (GoalBasedAgent)this.getAgents().firstElement();
 		
@@ -80,6 +80,8 @@ public class GoalBasedAgentSimulator extends Simulator {
 			
 			showSolution();
 		}
+		
+		SimulatorEventNotifier.simulationFinished();
 	}
 
 	/**

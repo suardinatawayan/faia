@@ -3,6 +3,7 @@ import java.util.Vector;
 
 import frsf.cidisi.faia.agent.problem.Action;
 import frsf.cidisi.faia.agent.problem.Problem;
+import frsf.cidisi.faia.simulator.SimulatorEventNotifier;
 import frsf.cidisi.faia.solver.Solve;
 import frsf.cidisi.faia.state.AgentState;
 import frsf.cidisi.faia.agent.problem.GoalTest;
@@ -177,11 +178,10 @@ public class Search extends Solve {
 */
 			break;
 		case Search.PDF_TREE:
-			LatexOutput.printFile(tree, this.searchStrategy.getStrategyName());
+			LatexOutput.getInstance().printFile(tree, this.searchStrategy.getStrategyName());
 			break;
 		case Search.GRAPHICAL_TREE:
 			break;
-			
 		}
 	}
 	
@@ -198,6 +198,12 @@ public class Search extends Solve {
 	}
 
 	public void setVisibleTree(int visibleTree) {
+		// Remove all objects subscribed to simulator events
+		SimulatorEventNotifier.CleanEventHandlers();
+		
+		if (visibleTree == Search.PDF_TREE)
+			SimulatorEventNotifier.SubscribeEventHandler(LatexOutput.getInstance());
+		
 		this.visibleTree = visibleTree;
 	}
 
