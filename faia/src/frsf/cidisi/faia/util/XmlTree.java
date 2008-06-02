@@ -11,7 +11,7 @@ public class XmlTree {
     	PrintOut print = null;
 		
 		try{
-	    	print = new PrintOut("src/searchTrees/"+fileIdx + ".xml");
+	    	print = new PrintOut("searchTrees/"+fileIdx + ".xml");
 			fileIdx = fileIdx + 1;
 		
 			print.write(tree.toXml());
