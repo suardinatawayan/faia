@@ -66,8 +66,11 @@ public class LatexOutput implements SimulatorEventHandler {
 					System.out.print(" -> Error");
 					
 					
-			} catch (Exception e) {
-				System.out.print(" -> Error: excepción arrojada");
+			} catch (IOException e) {
+				System.out.print(" -> Error: Posiblemente no exista el comando 'pdflatex': " + e.getMessage());
+				return;
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
