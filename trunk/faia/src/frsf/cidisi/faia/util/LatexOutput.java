@@ -39,8 +39,6 @@ public class LatexOutput implements SimulatorEventHandler {
 			e1.printStackTrace();
 		}
 		
-		if (true) return;
-		
 		Process p;
 		String[] comando;
 		
@@ -53,7 +51,7 @@ public class LatexOutput implements SimulatorEventHandler {
 		for (File archivoTex : carpetaPdflatex.listFiles(new TexFilter())) {
 			
 			System.out.print("  " + archivoTex.getName());
-			comando = new String[] {"pdflatex", "-file-line-error", "-halt-on-error", archivoTex.getName()};
+			comando = new String[] {"pdflatex", "-quiet", "-halt-on-error", archivoTex.getName()};
 			
 			try {
 				// Ejecuto el comando para la compilaci贸n
@@ -79,6 +77,9 @@ public class LatexOutput implements SimulatorEventHandler {
 			System.out.println();
 		}
 		
+		System.out.println();
+		System.out.println("Compilaci髇 finalizada.");
+		
 		// Ahora elimino los archivos temporales que cre贸 pdflatex
 		for (File archivoTemporal : carpetaPdflatex.listFiles(new TempFilesFilter()))
 			archivoTemporal.delete();
@@ -86,6 +87,8 @@ public class LatexOutput implements SimulatorEventHandler {
 		// Si se ha indicado borrar tmabi茅n los archivos tex, los borro
 		for (File archivoTex : carpetaPdflatex.listFiles(new TexFilter()))
 			archivoTex.delete();
+		
+		System.out.println("Archivos temporales eliminados.");
 	}
 	
 	public void printFile(NTree tree) {
@@ -103,9 +106,9 @@ public class LatexOutput implements SimulatorEventHandler {
 	    str.append("\\usepackage{qtree}" + lineSeparator);
 	    str.append("\\usepackage{nodo}" + lineSeparator);
 	    str.append("\\usepackage[spanish]{babel}" + lineSeparator);
-	    str.append("\\usepackage[utf8]{inputenc}" + lineSeparator);
+	    //str.append("\\usepackage[utf8]{inputenc}" + lineSeparator);
 	   
-	    str.append("\\title{Ejecuci贸n N潞 " + fileIdx + " 脕rbol de ejecuci贸n - Estrategia: " +
+	    str.append("\\title{Ejecuci髇 N潞 " + fileIdx + " 羠bol de ejecuci髇 - Estrategia: " +
 	        strategyName + "}" + lineSeparator);
 	    str.append("\\author{}" + lineSeparator);
 	    str.append("\\begin{document}" + lineSeparator);
