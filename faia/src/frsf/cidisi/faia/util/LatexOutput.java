@@ -9,6 +9,7 @@ import frsf.cidisi.faia.simulator.SimulatorEventHandler;
 import frsf.cidisi.faia.solver.search.NTree;
 
 public class LatexOutput implements SimulatorEventHandler {
+	private static final String lineSeparator = System.getProperty("line.separator");
 	private final String faiaPdflatexDir = "../faia/pdflatex/";
 	private final String pdflatexDir = "pdflatex/";
 	
@@ -38,6 +39,7 @@ public class LatexOutput implements SimulatorEventHandler {
 			e1.printStackTrace();
 		}
 		
+		if (true) return;
 		
 		Process p;
 		String[] comando;
@@ -94,20 +96,20 @@ public class LatexOutput implements SimulatorEventHandler {
 		StringBuffer str = new StringBuffer();
 		
 	    // Clase del documento y opciones generales
-	    str.append("\\documentclass[a0,landscale]{a0poster}\n");
+	    str.append("\\documentclass[a0,landscale]{a0poster}" + lineSeparator);
 	   
 	    // Paquetes utilizados
-	    str.append("\\usepackage{mathptmx}\n");
-	    str.append("\\usepackage{qtree}\n");
-	    str.append("\\usepackage{nodo}\n");
-	    str.append("\\usepackage[spanish]{babel}\n");
-	    str.append("\\usepackage[utf8]{inputenc}\n");
+	    str.append("\\usepackage{mathptmx}" + lineSeparator);
+	    str.append("\\usepackage{qtree}" + lineSeparator);
+	    str.append("\\usepackage{nodo}" + lineSeparator);
+	    str.append("\\usepackage[spanish]{babel}" + lineSeparator);
+	    str.append("\\usepackage[utf8]{inputenc}" + lineSeparator);
 	   
 	    str.append("\\title{Ejecución Nº " + fileIdx + " Árbol de ejecución - Estrategia: " +
-	        strategyName + "}\n");
-	    str.append("\\author{}\n");
-	    str.append("\\begin{document}\n");
-	    str.append("\\maketitle\n");
+	        strategyName + "}" + lineSeparator);
+	    str.append("\\author{}" + lineSeparator);
+	    str.append("\\begin{document}" + lineSeparator);
+	    str.append("\\maketitle" + lineSeparator);
 	    
 	    //StringBuffer sf = new StringBuffer();
 		int cuentaArboles = 0;
@@ -124,15 +126,15 @@ public class LatexOutput implements SimulatorEventHandler {
 				continue;
 			
 			if (cuentaArboles == 0)
-				str.append("\\begin{figure}[!h]\n");
+				str.append("\\begin{figure}[!h]" + lineSeparator);
 			
-			str.append("\\Tree " + nodo.toQtree() + "\n");
+			str.append("\\Tree " + nodo.toQtree() + lineSeparator);
 			//str.append(tree.getSonsTotal().elementAt(i).toQtree() + "\n");
 			cuentaArboles++;
 
 			if (cuentaArboles == 4) {
 				cuentaArboles = 0;
-				str.append("\\end{figure}\n");
+				str.append("\\end{figure}" + lineSeparator);
 			}
 			
 			//nivelesProcesados++;
@@ -142,11 +144,11 @@ public class LatexOutput implements SimulatorEventHandler {
 		}
 		
 		if (cuentaArboles > 0)
-			str.append("\\end{figure}");
+			str.append("\\end{figure}" + lineSeparator);
 		
-		str.append("\n");
+		str.append(lineSeparator);
 		//Busqueda.logLatex.debug(sf.toString());		
-		str.append("\\end{document}");
+		str.append("\\end{document}" + lineSeparator);
 		
 		// Ahora creo el archivo
 		try {
