@@ -98,8 +98,6 @@ public class LatexOutput implements SimulatorEventHandler {
 	   
 	    // Paquetes utilizados
 	    str.append("\\usepackage{mathptmx}\n");
-	    str.append("\\usepackage[scaled=.90]{helvet}\n");
-	    str.append("\\usepackage{courier}\n");
 	    str.append("\\usepackage{qtree}\n");
 	    str.append("\\usepackage{nodo}\n");
 	    str.append("\\usepackage[spanish]{babel}\n");
