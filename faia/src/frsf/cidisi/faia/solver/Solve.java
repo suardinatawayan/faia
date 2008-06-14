@@ -19,8 +19,8 @@ public abstract class Solve {
 	 */
 	public abstract Action solve(Problem problem);
 
-	// Tal vez no es correcto poner este método en esta clase debido a que es probable
-	// que en algunas tecnicas de IA no se pueda mostrar la solución del problema.-
+	// Tal vez no es correcto poner este mï¿½todo en esta clase debido a que es probable
+	// que en algunas tecnicas de IA no se pueda mostrar la soluciï¿½n del problema.-
 	public abstract void showSolution();
 
 }

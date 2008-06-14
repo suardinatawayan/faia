@@ -72,4 +72,10 @@ public class Comer extends Action {
 		return "Comer";
 	}
 
+	@Override
+	public String getLogicName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

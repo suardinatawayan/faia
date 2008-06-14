@@ -214,5 +214,4 @@ public class Search extends Solve {
 	public String getPath(){
 		return this.getBestPath().toString();
 	}
-	
 }
