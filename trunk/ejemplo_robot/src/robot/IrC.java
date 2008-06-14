@@ -10,7 +10,7 @@ public class IrC extends Action {
 
 	/**
 	 * 
-	 * @param s: Es el estado del agente en un determinado nodo del árbol de búsqueda.-
+	 * @param s: Es el estado del agente en un determinado nodo del ï¿½rbol de bï¿½squeda.-
 	 */
 	public AgentState execute(AgentState s){
 		EstadoRobot estR = (EstadoRobot)s;
@@ -50,4 +50,9 @@ public class IrC extends Action {
 		return "IrC";
 	}
 
+	@Override
+	public String getLogicName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

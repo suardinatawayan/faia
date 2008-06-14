@@ -87,4 +87,10 @@ public class GirarIzquierda extends Action {
 		return "Girar_Izquierda";
 	}
 
+	@Override
+	public String getLogicName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

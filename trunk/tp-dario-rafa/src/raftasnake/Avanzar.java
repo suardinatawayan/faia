@@ -106,4 +106,10 @@ public class Avanzar extends Action {
 		return "Avanzar";
 	}
 
+	@Override
+	public String getLogicName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

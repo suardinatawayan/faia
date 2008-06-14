@@ -81,4 +81,10 @@ public class GirarDerecha extends Action {
 		return "Girar_Derecha";
 	}
 
+	@Override
+	public String getLogicName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

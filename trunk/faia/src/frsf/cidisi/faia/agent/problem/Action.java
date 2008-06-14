@@ -36,5 +36,7 @@ public abstract class Action {
 	public abstract Double getCost();
 
 	public abstract String toString();
+	
+	public abstract String getLogicName();
 
 }

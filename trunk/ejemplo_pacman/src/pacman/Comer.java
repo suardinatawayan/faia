@@ -7,9 +7,9 @@ import frsf.cidisi.faia.state.EnvironmentState;
 public class Comer extends Action{
 
 	/**
-	 * Permite actualizar el estado de los nodos un árbol de búsqueda durante la creación del mismo.-
+	 * Permite actualizar el estado de los nodos un ï¿½rbol de bï¿½squeda durante la creaciï¿½n del mismo.-
 	 * 
-	 * @param s: Es el estado del agente en un determinado nodo del árbol de búsqueda.-
+	 * @param s: Es el estado del agente en un determinado nodo del ï¿½rbol de bï¿½squeda.-
 	 */
 	public AgentState execute(AgentState s){
 		EstadoPacman estP = (EstadoPacman)s;
@@ -57,6 +57,12 @@ public class Comer extends Action{
 
 	public String toString() {
 		return "Comer";
+	}
+
+	@Override
+	public String getLogicName() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
