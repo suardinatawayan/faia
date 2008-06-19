@@ -1,14 +1,16 @@
 package frsf.cidisi.faia.solver.calculus;
 
+import java.util.Hashtable;
+
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.agent.problem.Action;
 import jpl.JPL;
+import jpl.PrologException;
 import jpl.Query;
 
 public class KnowledgeBase {
 	
-	private final String KNOWLEDGE_BASE_FILE = "knowledge_file.pl";
-	
+	private String knowledgeBaseFile;
 	private Query prologQuery;
 	
 	/**
@@ -19,9 +21,10 @@ public class KnowledgeBase {
 	//VisionAmbiente visionAmbiente;
 	//private int energia;
 	
-	public KnowledgeBase() throws Exception {
+	public KnowledgeBase(String knowledgeBaseFile) {
 		super();
 		
+		this.knowledgeBaseFile = knowledgeBaseFile;
 		this.situation = 0;
 		//this.visionAmbiente = new VisionAmbiente();
 		
@@ -38,10 +41,17 @@ public class KnowledgeBase {
 		JPL.init();
 		
 		// Cargo la base de conocimiento
-		this.prologQuery = new Query("consult('" + KNOWLEDGE_BASE_FILE + "')");
+		this.prologQuery = new Query("consult('" + this.knowledgeBaseFile + "')");
 		
-		if (!this.prologQuery.hasSolution())
-			throw new Exception("Failure loading knowledge base: " + KNOWLEDGE_BASE_FILE);
+		/* TODO: Aca hay que manejar los errores de otra forma. La excepción tiene
+		 * que arrojarse, pero la PrologException tira un error feo.
+		 */
+		try {
+			this.prologQuery.hasSolution();
+		}
+		catch(PrologException e) {
+			System.out.println("ERROR: Load of knowledge base failed.");
+		}
 	}
 
 	
@@ -79,24 +89,25 @@ public class KnowledgeBase {
 	}
 
 	public String askForBestAction() {
-		Action a = null;
-		
-		this.prologQuery = new Query("bestAction(X," + this.situation + ")");
+//		this.prologQuery = new Query("bestAction(X," + this.situation + ")");
 		//this.log.info("mejorAccion(X," + this.situation + ")"+",assert(accionEjecutada(X," + this.situation + "))");
 		
-		String solution = null;
+//		String solution = null;
+//		
+//		if (this.prologQuery.hasSolution())
+//			solution = this.prologQuery.oneSolution().get("X").toString();
+//		else
+//			return null;
 		
-		if (this.prologQuery.hasSolution())
-			solution = this.prologQuery.oneSolution().get("X").toString();
-		else
-			return null;
-		
-		// TODO: Hay que ver de una forma de armar las acciones independientemente.
-		//return Action.getAccion(solution);
-		
-		return solution;
+		return this.askFor("bestAction(X," + this.situation + ")")[0].get("X").toString();
 	}
-
+	
+	public Hashtable[] askFor(String query) {
+		this.prologQuery = new Query(query);
+		
+		return this.prologQuery.allSolutions();
+	}
+	
 	public boolean goalReached() {
 		String s = "goalReached(" + this.situation + ")";
 		this.prologQuery = new Query(s);
