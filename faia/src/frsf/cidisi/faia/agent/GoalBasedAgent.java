@@ -15,10 +15,7 @@ public abstract class GoalBasedAgent extends Agent {
 	protected Problem problem;
 	protected AgentState state;
 
-	public GoalBasedAgent(){
-
-	}
-
+	public GoalBasedAgent() {}
 	
 	public abstract Action selectAction();
 

@@ -1,20 +1,22 @@
 package frsf.cidisi.faia.agent;
 
 import frsf.cidisi.faia.agent.problem.Action;
+import frsf.cidisi.faia.solver.calculus.CalculusActionFactory;
 import frsf.cidisi.faia.solver.calculus.KnowledgeBase;
 
-public class CalculusAgent extends GoalBasedAgent {
-	KnowledgeBase kb;
+public abstract class CalculusAgent extends GoalBasedAgent {
 	
-	public CalculusAgent() throws Exception {
+	private CalculusActionFactory actionFactory;
+	private KnowledgeBase knowledgeBase;
+	
+	public CalculusAgent(String knowledgeBaseFile) {
 		super();
-		this.kb = new KnowledgeBase();
+		this.actionFactory = actionFactory;
+		this.knowledgeBase = new KnowledgeBase(knowledgeBaseFile);
 	}
-	
-	@Override
-	public Action selectAction() {
-		// TODO Auto-generated method stub
-		return null;
+
+	public KnowledgeBase getKnowledgeBase() {
+		return this.knowledgeBase;
 	}
 
 }
