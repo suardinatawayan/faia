@@ -1,7 +1,7 @@
 :- dynamic percepcion/2,accionEjecutada/2,composicionDelAgente/2,vacia/3,comida/3,pared/2,existenParedes/1.
 
 %% INICIO FUNCIONES AUXILIARES %%
-% Inicio funciones genÃ©ricas
+% Inicio funciones genéricas
 % Inicio funciones que no dependen de otras funciones
 primerElem([X|_Y],X).
 
@@ -62,7 +62,7 @@ crearParedesEste(N,Cuenta):-Cuenta2 is Cuenta-1,crearParedesEste(N,Cuenta2).
 crearParedesSur(N,0):-!.
 crearParedesSur(N,Cuenta):-not(pared(N,Cuenta)),asserta(pared(N,Cuenta)),Cuenta2 is Cuenta-1,crearParedesSur(N,Cuenta2).
 crearParedesSur(N,Cuenta):-Cuenta2 is Cuenta-1,crearParedesSur(N,Cuenta2).
-% Fin funciones genÃ©ricas
+% Fin funciones genéricas
 
 % Inicio funciones propias del problema
 sumarPosicion(P,O,P1):-O=:=(-1),P1 is P-1,!.
@@ -109,7 +109,7 @@ nuevaCola(X,Y,sur,X1,Y):-sumarPosicion(X,-1,X1).
 nuevaCola(X,Y,oeste,X,Y1):-sumarPosicion(Y,1,Y1).
 nuevaCola(X,Y,este,X,Y1):-sumarPosicion(Y,-1,Y1).
 
-% dxo= direcciÃ³n por orientaciÃ³n o viceversa.
+% dxo= dirección por orientación o viceversa.
 dxo(arriba,norte).
 dxo(abajo,sur).
 dxo(izquierda,oeste).
@@ -188,22 +188,22 @@ mundoTieneLimites(_):-limiteDelMundo(N),N>0,!.
 %% FIN REGLAS CAUSALES %%
 
 %% INICIO AXIOMAS DE ESTADO SUCESOR %%
-% si giro a la izquierda, como se modifica la comp. del agente? se cambia la orientaciÃ³n de la cabeza hacia la izquierda en 90 grados.
+% si giro a la izquierda, como se modifica la comp. del agente? se cambia la orientación de la cabeza hacia la izquierda en 90 grados.
 est(S1):- S1 > 1,S is S1-1,accionEjecutada(girarIzquierda,S),composicionDelAgente([(X,Y,O)|R],S),
 	girarCabeza(O,O1,izquierda),agregarCabeza(R,(X,Y,O1),C),
 	asserta(composicionDelAgente(C,S1)).
 
-% si giro a la derecha, como se modifica la comp. del agente? se cambia la orientaciÃ³n de la cabeza hacia la derecha en 90 grados.
+% si giro a la derecha, como se modifica la comp. del agente? se cambia la orientación de la cabeza hacia la derecha en 90 grados.
 est(S1):- S1 > 1,S is S1-1,accionEjecutada(girarDerecha,S),composicionDelAgente([(X,Y,O)|R],S),
 	girarCabeza(O,O1,derecha),agregarCabeza(R,(X,Y,O1),C),
 	asserta(composicionDelAgente(C,S1)).
 
-% si avanzo, cómo se modifica la comp. del agente? se quita la cola y se inserta la nueva cabeza
+% si avanzo, cómo se modifica la comp. del agente? se quita la cola y se inserta la nueva cabeza.
 est(S1):- S1 > 1,S is S1-1,accionEjecutada(avanzar,S),composicionDelAgente(C,S),
 	primerElem(C,(X,Y,O)),quitarCola(C,C1),avanzarCabeza(X,Y,O,X1,Y1),agregarCabeza(C1,(X1,Y1,O),C2),
 	asserta(composicionDelAgente(C2,S1)).
 
-% si como, cÃ³mo se modifica la comp. del agente? se agrega la nueva cola.
+% si como, cómo se modifica la comp. del agente? se agrega la nueva cola.
 est(S1):- S1 > 1,S is S1-1,accionEjecutada(comer,S),comida(X,Y,S),composicionDelAgente(C,S),primerElem(C,(X,Y,_)),
 	ultimoElem(C,(X1,Y1,O)),nuevaCola(X1,Y1,O,X2,Y2),agregarCola(C,(X2,Y2,O),C1),
 	asserta(composicionDelAgente(C1,S1)).
@@ -211,16 +211,16 @@ est(S1):- S1 > 1,S is S1-1,accionEjecutada(comer,S),comida(X,Y,S),composicionDel
 % si una celda estaba vacia? continua vacia.
 est(S1):- S1 > 1,S is S1-1,vacia(X,Y,S),not(vacia(X,Y,S1)),asserta(vacia(X,Y,S1)).
 
-% si una celda tenÃ­a comida y la comi? se vacÃ­a.
+% si una celda tenía comida y la comi? se vacía.
 est(S1):- S1 > 1,S is S1-1,accionEjecutada(comer,S),composicionDelAgente([(X,Y,_)|_],S),asserta(vacia(X,Y,S1)).
 
-% si avance en una celda que tenÃ­a comida y no la comi? continua con comida.
+% si avance en una celda que tenía comida y no la comi? continua con comida.
 est(S1):- S1 > 1,S is S1-1,accionEjecutada(avanzar,S),composicionDelAgente([(X,Y,_)|_],S),comida(X,Y,S),asserta(comida(X,Y,S1)).
 
-% si gire a la izquierda en una celda que tenÃ­a comida y no la comi? continua con comida.
+% si gire a la izquierda en una celda que tenía comida y no la comi? continua con comida.
 est(S1):- S1 > 1,S is S1-1,accionEjecutada(girarIzquierda,S),composicionDelAgente([(X,Y,_)|_],S),comida(X,Y,S),asserta(comida(X,Y,S1)).
 
-% si gire a la derecha en una celda que tenÃ­a comida y no la comi? continua con comida.
+% si gire a la derecha en una celda que tenía comida y no la comi? continua con comida.
 est(S1):- S1 > 1,S is S1-1,accionEjecutada(girarDerecha,S),composicionDelAgente([(X,Y,_)|_],S),comida(X,Y,S),asserta(comida(X,Y,S1)).
 
 % si avanzo, la celda queda vacia si no hay comida, obvio.
@@ -242,27 +242,25 @@ muy_bueno(avanzar,S):-not(parteDelAgenteEnFrente(S)),not(paredEnFrente(S)),compo
 muy_bueno(girarDerecha,S):-composicionDelAgente([(_,_,O)|_],S),girarCabeza(O,O1,derecha),caminoADescubrir(O1,S).
 
 bueno(avanzar,S):-not(parteDelAgenteEnFrente(S)),not(paredEnFrente(S)).
-% hago esa distincion para que sea mÃ¡s aleatorio el comportamiento.
+% hago esa distincion para que sea más aleatorio el comportamiento.
 bueno(girarIzquierda,S):-parteDelAgenteEnFrente(S).
 bueno(girarDerecha,S):-paredEnFrente(S).
 
-% acÃ¡ ya el agente muere..
+% acá ya el agente muere..
 malo(comer,S):-composicionDelAgente(C,S),primerElem(C,(X,Y,_)),comida(X,Y,S),ultimoElem(C,(X1,Y1,O)),seMuereSiCome(X1,Y1,O).
 
 muy_malo(avanzar,S):-parteDelAgenteEnFrente(S),!.
 muy_malo(avanzar,S):-paredEnFrente(S),!.
 
-bestAction(X,S):-excelente(X,S),!.
-bestAction(X,S):-muy_bueno(X,S),!.
-bestAction(X,S):-bueno(X,S),!.
-bestAction(X,S):-malo(X,S),!.
-bestAction(X,S):-muy_malo(X,S),!,fail.
+mejorAccion(X,S):-excelente(X,S),!.
+mejorAccion(X,S):-muy_bueno(X,S),!.
+mejorAccion(X,S):-bueno(X,S),!.
+mejorAccion(X,S):-malo(X,S),!.
+mejorAccion(X,S):-muy_malo(X,S),!,fail.
 %% FIN VALORACION DE LAS ACCIONES %%
 
 %% INICIO OBJETIVO %%
 
-goalReached(S):-mundoTieneLimites(S),tableroVacio(S).
+cumplioObjetivo(S):-mundoTieneLimites(S),tableroVacio(S).
 
 %% FIN OBJETIVO %%
-
-

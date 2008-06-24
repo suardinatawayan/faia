@@ -1,10 +1,13 @@
-package raftasnake;
+package raftasnake.calculus;
 
 import java.util.Vector;
+
+import raftasnake.EstadoSnake;
 
 import calculador.Calculador;
 import frsf.cidisi.faia.agent.CalculusAgent;
 import frsf.cidisi.faia.agent.GoalBasedAgent;
+import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.agent.problem.Action;
 import frsf.cidisi.faia.agent.problem.Problem;
 import frsf.cidisi.faia.solver.calculus.Calculus;
@@ -13,10 +16,14 @@ import frsf.cidisi.faia.solver.search.Search;
 
 public class AgenteCalculus extends CalculusAgent {
 	private Calculador calculador;
-
-	@Override
-	public Action selectAction() {
-		//DepthFirstSearch estrategiaBusqueda = new DepthFirstSearch();
+	
+	public AgenteCalculus(Calculador calculador) {
+		super("base_conocimiento.pl");
+		
+		// Instancia el estado inicial del Snake.-
+		EstadoSnake estado = new EstadoSnake();
+		
+		this.setAgentState(estado);
 		
 		// Instancia un proceso de búsqueda indicando como parámetro la estrategia a utilizar.-
 		Calculus calculo = new Calculus(this.getKnowledgeBase(), CalculusAccion.getInstance());
@@ -28,8 +35,15 @@ public class AgenteCalculus extends CalculusAgent {
 		// Esta vez utilizamos cálculo. 
 		this.setSolver(calculo);
 		
+		this.calculador = calculador;
+	}
+
+	@Override
+	public Action selectAction() {
 		// Se ejecuta el proceso de selección de la acción más adecuada.-
 		Action accionSeleccionada = this.getSolver().solve(this.getProblem());
+		
+		this.knowledgeBase.tell(accionSeleccionada);
 		
 		// TODO: Esto lo tendría que hacer el simulador.
 		if (accionSeleccionada.toString() == "Avanzar")
@@ -43,28 +57,8 @@ public class AgenteCalculus extends CalculusAgent {
 		return accionSeleccionada;
 	}
 
-	public AgenteCalculus(Calculador calculador) {
-		super("base_conocimiento.pl");
-		
-		// Instancia la meta del Snake.-
-		MetaSnake meta = new MetaSnake();
-		// Instancia el estado inicial del Snake.-
-		EstadoSnake estado = new EstadoSnake();
-		
-		this.setAgentState(estado);
-		
-		// Se generan las instancias de los operadores del Snake.-
-		Vector<Action> operadores = new Vector<Action>();
-		operadores.addElement(new Comer());
-		operadores.addElement(new Avanzar());
-		operadores.addElement(new GirarIzquierda());
-		operadores.addElement(new GirarDerecha());
-
-		// Se inicializa y asigna el problema inicial que debe resolver el Snake.-
-		EstadoSnake estSnake = (EstadoSnake)this.getAgentState();
-		Problem problema = new Problem(meta, estSnake, operadores);
-		this.setProblem(problema);
-		
-		this.calculador = calculador;
+	@Override
+	public void see(Perception perception) {
+		this.knowledgeBase.tell(perception);
 	}
 }

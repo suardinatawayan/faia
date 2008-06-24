@@ -1,5 +1,6 @@
 package raftasnake;
 
+import raftasnake.calculus.AgenteCalculus;
 import calculador.Calculador;
 import frsf.cidisi.faia.simulator.GoalBasedAgentSimulator;
 
