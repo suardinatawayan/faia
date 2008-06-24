@@ -1,5 +1,9 @@
-package raftasnake;
+package raftasnake.calculus;
 
+import raftasnake.Avanzar;
+import raftasnake.Comer;
+import raftasnake.GirarDerecha;
+import raftasnake.GirarIzquierda;
 import frsf.cidisi.faia.agent.problem.Action;
 import frsf.cidisi.faia.solver.calculus.CalculusActionFactory;
 

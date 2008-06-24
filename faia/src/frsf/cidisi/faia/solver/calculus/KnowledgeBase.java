@@ -4,11 +4,12 @@ import java.util.Hashtable;
 
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.agent.problem.Action;
+import frsf.cidisi.faia.state.AgentState;
 import jpl.JPL;
 import jpl.PrologException;
 import jpl.Query;
 
-public class KnowledgeBase {
+public class KnowledgeBase extends AgentState {
 	
 	private String knowledgeBaseFile;
 	private Query prologQuery;
@@ -113,5 +114,39 @@ public class KnowledgeBase {
 		this.prologQuery = new Query(s);
 		
 		return this.prologQuery.hasSolution();
+	}
+
+
+	@Override
+	public void updateState(Perception p) {
+		this.tell(p);
+	}
+
+
+	@Override
+	public Object clone() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	@Override
+	public void initState() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
