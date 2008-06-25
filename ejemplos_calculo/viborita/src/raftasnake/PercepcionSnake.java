@@ -65,5 +65,10 @@ public class PercepcionSnake extends Perception {
 		this.sensorOeste = sensorIzquierda;
 	}
 
+    @Override
+    public String toPrologString() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
 	
 }
