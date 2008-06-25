@@ -1,5 +1,4 @@
 package frsf.cidisi.faia.solver.search;
-import java.util.Vector;
 /**
  * @author Jorge M. Roa
  * @version 1.0

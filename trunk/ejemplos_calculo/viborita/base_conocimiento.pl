@@ -1,4 +1,4 @@
-:- dynamic percepcion/2,accionEjecutada/2,composicionDelAgente/2,vacia/3,comida/3,pared/2,existenParedes/1.
+:- dynamic percepcion/2,executedAction/2,composicionDelAgente/2,vacia/3,comida/3,pared/2,existenParedes/1.
 
 %% INICIO FUNCIONES AUXILIARES %%
 % Inicio funciones genéricas
@@ -261,6 +261,6 @@ mejorAccion(X,S):-muy_malo(X,S),!,fail.
 
 %% INICIO OBJETIVO %%
 
-cumplioObjetivo(S):-mundoTieneLimites(S),tableroVacio(S).
+goalReached(S):-mundoTieneLimites(S),tableroVacio(S).
 
 %% FIN OBJETIVO %%
