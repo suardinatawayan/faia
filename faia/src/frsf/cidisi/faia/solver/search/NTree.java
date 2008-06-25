@@ -193,7 +193,7 @@ public class NTree implements Cloneable, Comparable<NTree> {
 //	    str.append("\\usepackage[spanish]{babel}\n");
 //	    str.append("\\usepackage[utf8]{inputenc}\n");
 //	   
-//	    str.append("\\title{Árbol de ejecución - Estrategia: " +
+//	    str.append("\\title{Arbol de ejecucion - Estrategia: " +
 //	        "NO SETEADA" + "}\n");
 //	    str.append("\\author{}\n");
 //	    str.append("\\begin{document}\n");

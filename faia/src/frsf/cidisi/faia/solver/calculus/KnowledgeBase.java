@@ -32,7 +32,7 @@ public class KnowledgeBase extends AgentState {
 		/* Aumento la memoria disponible para el stack local, el global y el de
 		 * restro. */
 		JPL.setDefaultInitArgs(new String[] {
-				"pl",
+				"swipl",
 				"-G128m",
 				"-L128m",
 				"-T128m",
