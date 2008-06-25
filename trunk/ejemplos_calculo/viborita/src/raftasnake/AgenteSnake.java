@@ -8,7 +8,6 @@ import frsf.cidisi.faia.agent.GoalBasedAgent;
 import frsf.cidisi.faia.agent.problem.Action;
 import frsf.cidisi.faia.agent.problem.Problem;
 import frsf.cidisi.faia.solver.search.*;
-import frsf.cidisi.faia.state.AgentState;
 
 public class AgenteSnake extends GoalBasedAgent {
 
@@ -46,9 +45,9 @@ public class AgenteSnake extends GoalBasedAgent {
 		// Se ejecuta el proceso de selección de la acción más adecuada.-
 		Action accionSeleccionada = this.getSolver().solve(this.getProblem());
 		
-		if (accionSeleccionada.toString() == "Avanzar")
+		if (accionSeleccionada.toString().equals("Avanzar"))
 			this.calculador.reportarAccion(Calculador.AVANZAR);
-		else if (accionSeleccionada.toString() == "Comer")
+		else if (accionSeleccionada.toString().equals("Comer"))
 			this.calculador.reportarAccion(Calculador.COMER);
 		else
 			this.calculador.reportarAccion(Calculador.GIRAR);
