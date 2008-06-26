@@ -37,6 +37,8 @@ public abstract class Action {
 
 	public abstract String toString();
 	
-	public abstract String getLogicName();
+	public String getLogicName() {
+            return this.toString().toLowerCase();
+        }
 
 }

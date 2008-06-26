@@ -71,10 +71,4 @@ public class IrArriba extends Action {
 		return "Arriba";
 	}
 
-	@Override
-	public String getLogicName() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }
