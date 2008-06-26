@@ -72,10 +72,4 @@ public class IrAbajo extends Action {
 		return "Abajo";
 	}
 
-	@Override
-	public String getLogicName() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }

@@ -67,4 +67,9 @@ public class PercepcionPacman extends Perception {
 	public void setEnergia(int energia) {
 		this.energia = energia;
 	}
+
+    @Override
+    public String toString() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }

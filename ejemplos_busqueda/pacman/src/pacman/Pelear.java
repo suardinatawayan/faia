@@ -60,10 +60,4 @@ public class Pelear extends Action {
 		return "Pelear";
 	}
 
-	@Override
-	public String getLogicName() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }

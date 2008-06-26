@@ -18,5 +18,5 @@ public abstract class Perception {
 	}
 	
 	public abstract void initPerception(Agent agent, Environment environment);
-
+        public abstract String toString();
 }
