@@ -27,11 +27,11 @@
 	<!ATTLIST Irresolvable 
 		   id CDATA #IMPLIED >
 ]--><TypeManagement projectID="DCE.312C2CCA-7FFA-7775-24A4-6C87B07A66FF">
-	<Locations nextID="0">
-	</Locations>
+	<Locations nextID="1">
+	<Location locID="T.0" href="./faia-model.etup"/></Locations>
 
    <Types>
-   </Types>
+   <Type id="DCE.3CD4548B-061E-ACBA-8005-D6B669C99196" location="T.0" name="Unnamed"/></Types>
 
 	<IrresolvableTypes>
 	</IrresolvableTypes>
