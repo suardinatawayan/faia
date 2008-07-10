@@ -1,4 +1,5 @@
 package frsf.cidisi.faia.simulator;
+
 import java.util.Vector;
 
 import frsf.cidisi.faia.agent.GoalBasedAgent;
@@ -9,6 +10,7 @@ import frsf.cidisi.faia.agent.problem.Problem;
 import frsf.cidisi.faia.environment.Environment;
 import frsf.cidisi.faia.agent.problem.GoalTest;
 import frsf.cidisi.faia.state.AgentState;
+
 /**
  * @author Jorge M. Roa
  * @version 1.0
@@ -16,86 +18,85 @@ import frsf.cidisi.faia.state.AgentState;
  */
 public class GoalBasedAgentSimulator extends Simulator {
 
-	/**
-	 * 
-	 * @param environment
-	 */
-	public GoalBasedAgentSimulator(Environment environment, Vector<Agent> agents){
-		super(environment,agents);
-	}
+    /**
+     * 
+     * @param environment
+     */
+    public GoalBasedAgentSimulator(Environment environment, Vector<Agent> agents) {
+        super(environment, agents);
+    }
 
-	public GoalBasedAgentSimulator(Environment environment, Agent agent){
-		Vector<Agent> ags = new Vector<Agent>();
-		ags.add(agent);
+    public GoalBasedAgentSimulator(Environment environment, Agent agent) {
+        Vector<Agent> ags = new Vector<Agent>();
+        ags.add(agent);
 
-		this.environment = environment;
-		this.agents = ags;
-	}
+        this.environment = environment;
+        this.agents = ags;
+    }
 
-	public boolean isComplete(){
-		//TODO: 
-		// ACA HAY QUE HACER UN BUCLE PARA CUANDO HAY MAS DE UN AGENTE DEFINIDO
-		// POR AHORA EL FRAMEWORK ES MONOAGENTE :)
-		GoalBasedAgent gba = (GoalBasedAgent)getAgents().firstElement();
-		Problem p = gba.getProblem();
-		GoalTest gt = p.getGoalState();
-		AgentState aSt = p.getAgentState();
-				
-		return gt.isGoalState(aSt);
-	}
+    public boolean isComplete() {
+        //TODO: 
+        // ACA HAY QUE HACER UN BUCLE PARA CUANDO HAY MAS DE UN AGENTE DEFINIDO
+        // POR AHORA EL FRAMEWORK ES MONOAGENTE :)
+        GoalBasedAgent gba = (GoalBasedAgent) getAgents().firstElement();
+        Problem p = gba.getProblem();
+        GoalTest gt = p.getGoalState();
+        AgentState aSt = p.getAgentState();
 
-	public void start(){
-		//TODO:
-		// ANTES DE EMPEZAR CON LA SIMULACION HAY QUE TESTEAR QUE EL AMBIENTE ESTE
-		// INICIALIZADO, ETC.
-		
-		Perception perception;
-		Action action;
-		GoalBasedAgent agent;
-		
-		//TODO: Aca hay que tener en cuenta que podr�a haber m�s de un agente
-		// por ahora el framework solo es monoagente :)
-		agent = (GoalBasedAgent)this.getAgents().firstElement();
-		
-		while (!isComplete()){
-			System.out.println("-----------------------------------");
-			System.out.println("-----------------------------------");
-			perception = this.getPercept(agent);
-			agent.see(perception);
+        return gt.isGoalState(aSt);
+    }
 
-			System.out.println("Agent State: " + agent.getAgentState());
-			System.out.println("Environment: " + environment);
-			System.out.println("-----------------------------------");
-			System.out.println("-----------------------------------");
+    public void start() {
+        //TODO:
+        // ANTES DE EMPEZAR CON LA SIMULACION HAY QUE TESTEAR QUE EL AMBIENTE ESTE
+        // INICIALIZADO, ETC.
 
-			
-			action = agent.selectAction();
-			System.out.println("Action: " + action);
-			if (action!=null)
-				this.updateState(action);
-			else{
-				System.out.println("ERROR: There is not solution for this problem. You should check the operators.");
-				break;
-			}
-			
-			showSolution();
-		}
-		
-		SimulatorEventNotifier.simulationFinished();
-	}
+        Perception perception;
+        Action action;
+        GoalBasedAgent agent;
 
-	/**
-	 * 
-	 * @param action    action
-	 */
-	protected void updateState(Action action){
-		this.getEnvironment().updateState(((GoalBasedAgent)agents.elementAt(0)).getAgentState(), action);
-	}
-	
-	public void showSolution(){
-		GoalBasedAgent agent = (GoalBasedAgent)this.getAgents().firstElement();
-		
-		agent.getSolver().showSolution();
-	}
+        //TODO: Aca hay que tener en cuenta que podr�a haber m�s de un agente
+        // por ahora el framework solo es monoagente :)
+        agent = (GoalBasedAgent) this.getAgents().firstElement();
 
+        while (!isComplete()) {
+            System.out.println("-----------------------------------");
+            System.out.println("-----------------------------------");
+            perception = this.getPercept(agent);
+            agent.see(perception);
+
+            System.out.println("Agent State: " + agent.getAgentState());
+            System.out.println("Environment: " + environment);
+            System.out.println("-----------------------------------");
+            System.out.println("-----------------------------------");
+
+
+            action = agent.selectAction();
+            System.out.println("Action: " + action);
+            if (action != null) {
+                this.updateState(action);
+            } else {
+                System.out.println("ERROR: There is not solution for this problem. You should check the operators.");
+                break;
+            }
+
+            showSolution();
+        }
+
+        SimulatorEventNotifier.simulationFinished();
+    }
+
+    /**
+     * 
+     * @param action    action
+     */
+    protected void updateState(Action action) {
+        this.getEnvironment().updateState(((GoalBasedAgent) agents.elementAt(0)).getAgentState(), action);
+    }
+
+    public void showSolution() {
+        GoalBasedAgent agent = (GoalBasedAgent) this.getAgents().firstElement();
+
+        agent.getSolver().showSolution();
+    }
 }
