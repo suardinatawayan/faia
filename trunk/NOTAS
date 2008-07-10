@@ -1,10 +1,26 @@
-- Las estrategias de búsqueda Amplitud y Costo Uniforme no funcionan.
+- Esta bien que CalculusAgent especialice GoalBasedAgent? El problema es que
+van a aparecer los métodos para setear y obtener el Problem.
 
-- ¿Hay algún plugin para Eclipse para hacer las cosas gráficamente? El año
-pasado nos enviaron la encuesta que tenía screenshots en los que se podía
-setear de modo gráfico las acciones por ejemplo, y el código se generaba
-automáticamente.
+- GoalBasedAgent hace que no se tenga que sobreescribir el método 'see'. Para
+el agente lógico, quizá sea interesante que los alumnos tengan que
+sobreescribirlo.
 
-- En la clase EstadoPacman (del ejemplo), ¿por qué hay un mundo y un
-  mundoConocido?
+- En la clase Solve ahora hay un método 'solve(AgentState)' (sin Problem) para
+  el agente lógico. El problema es que todos tienen que sobreescribir todos los
+  métodos, incluso los que no les interesan.
+
+- Ver el método solve(AgentState). El problema que se presenta es que el solver
+  debe saber muchas cosas para obtener la mejor accion: el nombre del predicado
+  'mejorAccion' que cada uno puede definir como quiere, y la clase para
+  transformar las acciones string en objetos Action. Sería más directo y
+  fácil que lo haga el método 'selectAction' del agente que definan los
+  alumnos. VER SOLUCION PROPUESTA EN EL CODIGO.
+
+- Debería estar visible u oculto el método 'updateState' en EstadoPacman? El
+  método es de AgentState, y en la parte de búsqueda se lo oculta dentro de
+  FAIA. Quizá no esté mal mostrarlo para que los alumnos vean que se está
+  haciendo un 'tell' con la percepción a la base de conocimientos.
+
+- Mostrar lo que estoy haciendo con el simulador especializado para Calculo,
+  cómo sobreescribo los métodos y qué reutilizo de GoalBasedAgentSimulator.
 
