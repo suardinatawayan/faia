@@ -8,15 +8,12 @@ import frsf.cidisi.faia.agent.problem.Action;
  * @version 1.0
  */
 public abstract class Agent {
-	
-	public Agent(){
 
-	}
+    public Agent() {
+    }
 
-	/**
-	 * 
-	 */
-
-	public abstract Action selectAction();
-
+    /**
+     * 
+     */
+    public abstract Action selectAction();
 }

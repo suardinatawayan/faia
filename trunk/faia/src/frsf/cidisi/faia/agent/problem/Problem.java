@@ -1,4 +1,5 @@
 package frsf.cidisi.faia.agent.problem;
+
 import java.util.Vector;
 
 import frsf.cidisi.faia.state.AgentState;
@@ -10,44 +11,43 @@ import frsf.cidisi.faia.state.AgentState;
  */
 public class Problem {
 
-	protected GoalTest goalTest;
-	protected AgentState agentState;
-	protected Vector<Action> actions;
+    protected GoalTest goalTest;
+    protected AgentState agentState;
+    protected Vector<Action> actions;
 
-	/**
-	 * 
-	 * @param goalTest
-	 * @param initState
-	 * @param action
-	 */
-	public Problem(GoalTest goalTest, AgentState initState, Vector<Action> actions){
-		this.goalTest = goalTest; 
-		this.agentState = initState;
-		this.actions = actions;
-	}
+    /**
+     * 
+     * @param goalTest
+     * @param initState
+     * @param action
+     */
+    public Problem(GoalTest goalTest, AgentState initState, Vector<Action> actions) {
+        this.goalTest = goalTest;
+        this.agentState = initState;
+        this.actions = actions;
+    }
 
-	public Vector<Action> getActions(){
-		return actions;
-	}
+    public Vector<Action> getActions() {
+        return actions;
+    }
 
-	public GoalTest getGoalState(){
-		return goalTest;
-	}
+    public GoalTest getGoalState() {
+        return goalTest;
+    }
 
-	public AgentState getAgentState(){
-		return agentState;
-	}
+    public AgentState getAgentState() {
+        return agentState;
+    }
 
-	public void setActions(Vector<Action> actions){
-		this.actions = actions; 
-	}
+    public void setActions(Vector<Action> actions) {
+        this.actions = actions;
+    }
 
-	public void setGoalState(GoalTest goalTest){
-		this.goalTest = goalTest;
-	}
+    public void setGoalState(GoalTest goalTest) {
+        this.goalTest = goalTest;
+    }
 
-	public void setAgentState(AgentState agentState){
-		this.agentState = agentState;
-	}
-	
+    public void setAgentState(AgentState agentState) {
+        this.agentState = agentState;
+    }
 }

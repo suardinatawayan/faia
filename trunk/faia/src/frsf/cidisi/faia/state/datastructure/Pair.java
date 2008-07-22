@@ -7,12 +7,10 @@ package frsf.cidisi.faia.state.datastructure;
  */
 public class Pair extends DataStructure {
 
-	public Pair(){
+    public Pair() {
+    }
 
-	}
-
-	public void finalize() throws Throwable {
-		super.finalize();
-	}
-
+    public void finalize() throws Throwable {
+        super.finalize();
+    }
 }

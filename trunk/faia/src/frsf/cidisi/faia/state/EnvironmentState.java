@@ -7,10 +7,8 @@ package frsf.cidisi.faia.state;
  */
 public abstract class EnvironmentState extends State {
 
-	protected EnvironmentState environmentState;
+    protected EnvironmentState environmentState;
 
-	public EnvironmentState(){
-
-	}
-
+    public EnvironmentState() {
+    }
 }

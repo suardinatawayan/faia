@@ -1,4 +1,5 @@
 package frsf.cidisi.faia.solver.search;
+
 import frsf.cidisi.faia.state.AgentState;
 
 /**
@@ -8,10 +9,9 @@ import frsf.cidisi.faia.state.AgentState;
  */
 public interface IStepCostFunction {
 
-	/**
-	 * 
-	 * @param agentState
-	 */
-	public double calculateCost(NTree node);
-
+    /**
+     * 
+     * @param agentState
+     */
+    public double calculateCost(NTree node);
 }
