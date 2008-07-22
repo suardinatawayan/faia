@@ -9,48 +9,45 @@ import java.util.Vector;
  */
 public abstract class InformedSearchStrategy extends Strategy {
 
-	private IStepCostFunction g;
-	private IEstimatedCostFunction h;
+    private IStepCostFunction g;
+    private IEstimatedCostFunction h;
 
-	public InformedSearchStrategy(IStepCostFunction g, IEstimatedCostFunction h){
-		this.g = g;
-		this.h = h;
-	}
-	
-	public InformedSearchStrategy(IStepCostFunction g) {
-		this.g = g;
-		this.h = DummyEstimatedCostFunction.getInstance();
-	}
-	
-	public InformedSearchStrategy(IEstimatedCostFunction h) {
-		this.g = DummyStepCostFunction.getInstance();
-		this.h = h;
-	}
-	
-	@Override
-	public void addNodesToExpand(Vector<NTree> nodes){
-		//Add the nodes at the top of the list of nodes to expand
-		for (NTree nt : nodes)
-			nt.setCost(nt.getParent().getCost() + g.calculateCost(nt)
-					+ h.getEstimatedCost(nt));
-		
-		nodesToExpand.addAll(nodes);
-	}
+    public InformedSearchStrategy(IStepCostFunction g, IEstimatedCostFunction h) {
+        this.g = g;
+        this.h = h;
+    }
 
-	@Override
-	public void addNodeToExpand(NTree node){
-		//Add the node at the top of the list of nodes to expand
-		node.setCost(node.getParent().getCost() + g.calculateCost(node)
-				+ h.getEstimatedCost(node));
-		nodesToExpand.add(node);
-	}
+    public InformedSearchStrategy(IStepCostFunction g) {
+        this.g = g;
+        this.h = DummyEstimatedCostFunction.getInstance();
+    }
 
-	public IStepCostFunction getStepCostFunction(){
-		return g;
-	}
-	
-	public IEstimatedCostFunction getEstimatedCostFunction() {
-		return h;
-	}
+    public InformedSearchStrategy(IEstimatedCostFunction h) {
+        this.g = DummyStepCostFunction.getInstance();
+        this.h = h;
+    }
 
+    @Override
+    public void addNodesToExpand(Vector<NTree> nodes) {
+        //Add the nodes at the top of the list of nodes to expand
+        for (NTree nt : nodes) {
+            nt.setCost(nt.getParent().getCost() + g.calculateCost(nt) + h.getEstimatedCost(nt));
+        }
+        nodesToExpand.addAll(nodes);
+    }
+
+    @Override
+    public void addNodeToExpand(NTree node) {
+        //Add the node at the top of the list of nodes to expand
+        node.setCost(node.getParent().getCost() + g.calculateCost(node) + h.getEstimatedCost(node));
+        nodesToExpand.add(node);
+    }
+
+    public IStepCostFunction getStepCostFunction() {
+        return g;
+    }
+
+    public IEstimatedCostFunction getEstimatedCostFunction() {
+        return h;
+    }
 }

@@ -1,4 +1,5 @@
 package frsf.cidisi.faia.simulator;
+
 import java.util.Vector;
 
 import frsf.cidisi.faia.agent.Agent;
@@ -12,59 +13,58 @@ import frsf.cidisi.faia.environment.Environment;
  */
 public abstract class Simulator {
 
-	protected Vector<Agent> agents;
-	protected Environment environment;
+    protected Vector<Agent> agents;
+    protected Environment environment;
 
-	public Simulator(){
+    public Simulator() {
+    }
 
-	}
+    /**
+     * 
+     * @param environment
+     * @param agents    agents
+     */
+    public Simulator(Environment environment, Vector<Agent> agents) {
+        this.environment = environment;
+        this.agents = agents;
+    }
 
-	/**
-	 * 
-	 * @param environment
-	 * @param agents    agents
-	 */
-	public Simulator(Environment environment, Vector<Agent> agents){
-		this.environment = environment;
-		this.agents = agents;
-	}
+    /**
+     * 
+     * @param agent    agent
+     */
+    public void addAgent(Agent agent) {
+        this.getAgents().addElement(agent);
+    }
 
-	/**
-	 * 
-	 * @param agent    agent
-	 */
-	public void addAgent(Agent agent){
-		this.getAgents().addElement(agent);
-	}
+    public Vector<Agent> getAgents() {
+        return agents;
+    }
 
-	public Vector<Agent> getAgents(){
-		return agents;
-	}
+    public Environment getEnvironment() {
+        return this.environment;
+    }
 
-	public Environment getEnvironment(){
-		return this.environment;
-	}
+    public Perception getPercept(Agent agent) {
+        return this.getEnvironment().getPercept(agent);
+    }
 
-	public Perception getPercept(Agent agent){
-		return this.getEnvironment().getPercept(agent);
-	}
-	public abstract boolean isComplete();
-	/**
-	 * 
-	 * @param evm    evm
-	 */
-	public void setEnvironment(Environment evm){
+    public abstract boolean isComplete();
 
-	}
+    /**
+     * 
+     * @param evm    evm
+     */
+    public void setEnvironment(Environment evm) {
+    }
 
-	public abstract void start();
-
-	/**
-	 * 
-	 * @param action    action
-	 */
-/*	protected void updateState(Action action){
-		this.getEnviroment().updateState(agents.elementAt(0), action);
-	}
-*/
+    public abstract void start();
+    /**
+     * 
+     * @param action    action
+     */
+    /*	protected void updateState(Action action){
+    this.getEnviroment().updateState(agents.elementAt(0), action);
+    }
+     */
 }

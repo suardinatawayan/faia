@@ -9,10 +9,8 @@ import frsf.cidisi.faia.state.AgentState;
  */
 public abstract class GoalTest {
 
-	public GoalTest(){
+    public GoalTest() {
+    }
 
-	}
-	
-	public abstract boolean isGoalState(AgentState agentState); 
-
+    public abstract boolean isGoalState(AgentState agentState);
 }

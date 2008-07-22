@@ -7,12 +7,10 @@ package frsf.cidisi.faia.state.datastructure;
  */
 public class Matrix extends DataStructure {
 
-	public Matrix(){
+    public Matrix() {
+    }
 
-	}
-
-	public void finalize() throws Throwable {
-		super.finalize();
-	}
-
+    public void finalize() throws Throwable {
+        super.finalize();
+    }
 }

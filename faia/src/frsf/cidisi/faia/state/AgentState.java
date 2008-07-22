@@ -1,6 +1,7 @@
 package frsf.cidisi.faia.state;
 
 import frsf.cidisi.faia.agent.Perception;
+
 /**
  * @author Jorge M. Roa
  * @version 1.0
@@ -8,10 +9,8 @@ import frsf.cidisi.faia.agent.Perception;
  */
 public abstract class AgentState extends State {
 
-	public AgentState(){
+    public AgentState() {
+    }
 
-	}
-
-	public abstract void updateState(Perception p);
-
+    public abstract void updateState(Perception p);
 }

@@ -7,8 +7,6 @@ package frsf.cidisi.faia.state.datastructure;
  */
 public abstract class DataStructure {
 
-	public DataStructure(){
-
-	}
-
+    public DataStructure() {
+    }
 }

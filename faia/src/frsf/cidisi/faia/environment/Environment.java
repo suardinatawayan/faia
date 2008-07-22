@@ -13,20 +13,20 @@ import frsf.cidisi.faia.state.AgentState;
  */
 public abstract class Environment {
 
-	protected EnvironmentState environmentState;
+    protected EnvironmentState environmentState;
 
-	public void updateState(AgentState ast, Action action) {
-		//State state = (State)environmentState;
-		environmentState = (EnvironmentState)action.execute(ast, environmentState);
-	}
-	
-	public void setEnvironmentState(EnvironmentState state) {
-		environmentState = state;
-	}
-	
-	public EnvironmentState getEnvironmentState() {
-		return environmentState;
-	}
-	
-	public abstract Perception getPercept(Agent agent);
+    public void updateState(AgentState ast, Action action) {
+        //State state = (State)environmentState;
+        environmentState = (EnvironmentState) action.execute(ast, environmentState);
+    }
+
+    public void setEnvironmentState(EnvironmentState state) {
+        environmentState = state;
+    }
+
+    public EnvironmentState getEnvironmentState() {
+        return environmentState;
+    }
+
+    public abstract Perception getPercept(Agent agent);
 }

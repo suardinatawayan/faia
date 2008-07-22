@@ -7,12 +7,10 @@ package frsf.cidisi.faia.state.datastructure;
  */
 public class Graph extends DataStructure {
 
-	public Graph(){
+    public Graph() {
+    }
 
-	}
-
-	public void finalize() throws Throwable {
-		super.finalize();
-	}
-
+    public void finalize() throws Throwable {
+        super.finalize();
+    }
 }

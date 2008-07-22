@@ -1,5 +1,7 @@
 package frsf.cidisi.faia.solver.search;
+
 import frsf.cidisi.faia.state.AgentState;
+
 /**
  * @author Jorge M. Roa
  * @version 1.0
@@ -7,10 +9,9 @@ import frsf.cidisi.faia.state.AgentState;
  */
 public interface IEstimatedCostFunction {
 
-	/**
-	 * 
-	 * @param agentState
-	 */
-	public abstract double getEstimatedCost(NTree node);
-
+    /**
+     * 
+     * @param agentState
+     */
+    public abstract double getEstimatedCost(NTree node);
 }

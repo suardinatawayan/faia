@@ -6,18 +6,19 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class FileOperations {
-	public static void CopyFile(String source, String dest) throws IOException {
-		File inputFile = new File(source);
-	    File outputFile = new File(dest);
 
-	    FileReader in = new FileReader(inputFile);
-	    FileWriter out = new FileWriter(outputFile);
-	    int c;
+    public static void CopyFile(String source, String dest) throws IOException {
+        File inputFile = new File(source);
+        File outputFile = new File(dest);
 
-	    while ((c = in.read()) != -1)
-	      out.write(c);
+        FileReader in = new FileReader(inputFile);
+        FileWriter out = new FileWriter(outputFile);
+        int c;
 
-	    in.close();
-	    out.close();
-	}
+        while ((c = in.read()) != -1) {
+            out.write(c);
+        }
+        in.close();
+        out.close();
+    }
 }

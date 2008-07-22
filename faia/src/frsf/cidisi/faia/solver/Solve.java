@@ -1,4 +1,5 @@
 package frsf.cidisi.faia.solver;
+
 import frsf.cidisi.faia.agent.problem.Action;
 import frsf.cidisi.faia.agent.problem.Problem;
 import frsf.cidisi.faia.exceptions.CalculusException;
@@ -12,20 +13,18 @@ import frsf.cidisi.faia.state.AgentState;
  */
 public abstract class Solve {
 
-	public Solve(){
+    public Solve() {
+    }
 
-	}
+    /**
+     * 
+     * @param problem
+     */
+    public abstract Action solve(Problem problem);
 
-	/**
-	 * 
-	 * @param problem
-	 */
-	public abstract Action solve(Problem problem);
-        
-        public abstract Action solve(KnowledgeBase knowledgeBase) throws CalculusException;
+    public abstract Action solve(KnowledgeBase knowledgeBase) throws CalculusException;
 
-	// Tal vez no es correcto poner este m�todo en esta clase debido a que es probable
-	// que en algunas tecnicas de IA no se pueda mostrar la soluci�n del problema.-
-	public abstract void showSolution();
-
+    // Tal vez no es correcto poner este m�todo en esta clase debido a que es probable
+    // que en algunas tecnicas de IA no se pueda mostrar la soluci�n del problema.-
+    public abstract void showSolution();
 }

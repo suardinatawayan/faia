@@ -1,4 +1,5 @@
 package frsf.cidisi.faia.solver.search;
+
 import frsf.cidisi.faia.state.AgentState;
 
 /**
@@ -8,10 +9,9 @@ import frsf.cidisi.faia.state.AgentState;
  */
 public interface IInitialCostFunction {
 
-	/**
-	 * 
-	 * @param agentState
-	 */
-	public abstract double getInitialCost(AgentState agentState);
-
+    /**
+     * 
+     * @param agentState
+     */
+    public abstract double getInitialCost(AgentState agentState);
 }

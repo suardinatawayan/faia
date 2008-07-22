@@ -62,12 +62,12 @@ public abstract class KnowledgeBase extends AgentState {
 //        this.prologQuery = new Query("assert(" + perception.toString() + ")");
 //        //this.log.info("assert(" + p.toString() + ")");
 //        this.prologQuery.hasSolution();
-        
+
         this.addKnowledge(perception.toString());
     //this.energia = p.getEnergia();
     //this.visionAmbiente.actualizar(p);
     }
-    
+
     public void executeSuccessorStateAxioms() {
         this.prologQuery = new Query("findall(X,est(" + this.getSituation() + "),L)");
         //this.log.info("findall(X,est("+this.tiempo+"),L)");
@@ -78,10 +78,10 @@ public abstract class KnowledgeBase extends AgentState {
         if (action == null) {
             return;
         }
-        
+
         this.addKnowledge(this.getExecutedActionPredicate() +
                 "(" + action + "," + this.getSituation() + ")");
-        
+
 //		try {
 //			a.ejecutar(this.visionAmbiente);
 //		} catch (Exception e) {
@@ -89,7 +89,6 @@ public abstract class KnowledgeBase extends AgentState {
 //			e.printStackTrace();
 //		}
     }
-    
 //    @Override
 //    public void updateState(Perception perception) {
 //        this.tell(perception);
@@ -117,12 +116,11 @@ public abstract class KnowledgeBase extends AgentState {
         this.prologQuery = new Query(query);
         return this.prologQuery.hasSolution();
     }
-    
+
     public void addKnowledge(String predicate) {
         this.prologQuery = new Query("asserta(" + predicate + ")");
         this.prologQuery.hasSolution();
     }
-    
 //	public boolean goalReached() {
 //		String s = "goalReached(" + this.situation + ")";
 //		this.prologQuery = new Query(s);
@@ -133,7 +131,6 @@ public abstract class KnowledgeBase extends AgentState {
 //    public void updateState(Perception p) {
 //        this.tell(p);
 //    }
-    
     @Override
     public Object clone() {
         // TODO Auto-generated method stub
@@ -162,18 +159,18 @@ public abstract class KnowledgeBase extends AgentState {
 //        return Integer.parseInt(resultado[0].get("S").toString());
         return this.situation;
     }
-    
+
     public void nextSituation() {
         this.situation++;
     }
-    
+
     public abstract CalculusActionFactory getActionFactory();
-    
+
     public abstract String getBestActionPredicate();
-    
+
     public abstract String getGoalReachedPredicate();
-    
+
     public abstract String getExecutedActionPredicate();
-    
+
     public abstract String getCurrentSituationPredicate();
 }

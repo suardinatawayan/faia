@@ -7,12 +7,10 @@ package frsf.cidisi.faia.state.datastructure;
  */
 public class List extends DataStructure {
 
-	public List(){
+    public List() {
+    }
 
-	}
-
-	public void finalize() throws Throwable {
-		super.finalize();
-	}
-
+    public void finalize() throws Throwable {
+        super.finalize();
+    }
 }

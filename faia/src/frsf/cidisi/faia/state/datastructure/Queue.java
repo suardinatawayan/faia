@@ -7,12 +7,10 @@ package frsf.cidisi.faia.state.datastructure;
  */
 public class Queue extends DataStructure {
 
-	public Queue(){
+    public Queue() {
+    }
 
-	}
-
-	public void finalize() throws Throwable {
-		super.finalize();
-	}
-
+    public void finalize() throws Throwable {
+        super.finalize();
+    }
 }

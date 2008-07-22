@@ -7,12 +7,10 @@ package frsf.cidisi.faia.state.datastructure;
  */
 public class Simple extends DataStructure {
 
-	public Simple(){
+    public Simple() {
+    }
 
-	}
-
-	public void finalize() throws Throwable {
-		super.finalize();
-	}
-
+    public void finalize() throws Throwable {
+        super.finalize();
+    }
 }

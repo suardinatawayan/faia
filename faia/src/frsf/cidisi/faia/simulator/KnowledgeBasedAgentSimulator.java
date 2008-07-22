@@ -30,16 +30,16 @@ public class KnowledgeBasedAgentSimulator extends GoalBasedAgentSimulator {
     @Override
     public boolean isComplete() {
         CalculusAgent calculusAgent = (CalculusAgent) this.getAgents().firstElement();
-        KnowledgeBase kb = (KnowledgeBase)calculusAgent.getAgentState();
+        KnowledgeBase kb = (KnowledgeBase) calculusAgent.getAgentState();
 
         String s = kb.getGoalReachedPredicate() + "(" + kb.getSituation() + ")";
-	
-	return kb.queryHasSolution(s);
+
+        return kb.queryHasSolution(s);
     }
-    
+
     @Override
     public void start() {
-        
+
         Perception perception;
         Action action;
         CalculusAgent agent;
@@ -49,10 +49,10 @@ public class KnowledgeBasedAgentSimulator extends GoalBasedAgentSimulator {
         agent = (CalculusAgent) this.getAgents().firstElement();
 
         while (!isComplete()) {
-            
+
             System.out.println("-----------------------------------");
             System.out.println("-----------------------------------");
-            
+
             // Se crea la percepcion y se la envia al agente
             perception = this.getPercept(agent);
             agent.see(perception);
@@ -64,9 +64,9 @@ public class KnowledgeBasedAgentSimulator extends GoalBasedAgentSimulator {
 
             // Pregunto al agente la accion a ejecutar
             action = agent.selectAction();
-            
+
             System.out.println("Action: " + action);
-            
+
             if (action != null) {
                 /* Si la accion no es nula, entonces actualizo el mundo real en
                  * el simulador, y luego aviso al agente sobre la accion
@@ -75,7 +75,7 @@ public class KnowledgeBasedAgentSimulator extends GoalBasedAgentSimulator {
                 agent.tell(action);
                 agent.nextSituation();
                 agent.executeSuccessorStateAxioms();
-                
+
             } else {
                 System.out.println("ERROR: There is not solution for this problem. You should check the operators.");
                 break;

@@ -1,4 +1,5 @@
 package frsf.cidisi.faia.solver.search;
+
 /**
  * @author Jorge M. Roa
  * @version 1.0
@@ -6,13 +7,12 @@ package frsf.cidisi.faia.solver.search;
  */
 public class AStarSearch extends InformedSearchStrategy {
 
-	public AStarSearch(IStepCostFunction g, IEstimatedCostFunction h){
-		super(g, h);
-	}
+    public AStarSearch(IStepCostFunction g, IEstimatedCostFunction h) {
+        super(g, h);
+    }
 
-	@Override
-	public String getStrategyName() {
-		return "A Star (A Estrella)";
-	}
-
+    @Override
+    public String getStrategyName() {
+        return "A Star (A Estrella)";
+    }
 }
