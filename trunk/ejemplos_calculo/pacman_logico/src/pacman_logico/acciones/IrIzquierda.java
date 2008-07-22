@@ -8,12 +8,12 @@ import pacman_logico.EstadoPacman;
 
 public class IrIzquierda extends Action {
 
-	/**
-	 * Permite actualizar el estado de los nodos un �rbol de b�squeda durante la creaci�n del mismo.-
-	 * 
-	 * @param s: Es el estado del agente en un determinado nodo del �rbol de b�squeda.-
-	 */
-	public AgentState execute(AgentState s){
+    /**
+     * Permite actualizar el estado de los nodos un �rbol de b�squeda durante la creaci�n del mismo.-
+     * 
+     * @param s: Es el estado del agente en un determinado nodo del �rbol de b�squeda.-
+     */
+    public AgentState execute(AgentState s) {
 //		EstadoPacman estP = ((EstadoPacman)s.clone());
 //		EstadoPacman estP = (EstadoPacman)s;
 //
@@ -33,18 +33,18 @@ public class IrIzquierda extends Action {
 //			estP.setMundoConocido(fil, col, 1);
 //			return estP;
 //		}
-		//System.out.println(" Izquierda@Pac - ");
+        //System.out.println(" Izquierda@Pac - ");
 
-		return null;
-	}
+        return null;
+    }
 
-	/**
-	 * Permite actualizar el estado real del agente y del ambiente.-
-	 * 
-	 * @param ast: Es el estado del agente a ser actualizado.-
-	 * @param est: Es el estado del ambiente a ser actualizado.-
-	 */
-	public EnvironmentState execute(AgentState ast, EnvironmentState est){
+    /**
+     * Permite actualizar el estado real del agente y del ambiente.-
+     * 
+     * @param ast: Es el estado del agente a ser actualizado.-
+     * @param est: Es el estado del ambiente a ser actualizado.-
+     */
+    public EnvironmentState execute(AgentState ast, EnvironmentState est) {
 //		EstadoPacman estP = ((EstadoPacman)s.clone());
 //		EstadoAmbiente estA = (EstadoAmbiente)est;
 //		EstadoPacman estP = ((EstadoPacman)ast);
@@ -62,17 +62,16 @@ public class IrIzquierda extends Action {
 //		estP.setColumna(col);
 //		estP.setMundoConocido(fil, col, 1);
 
-		//estP.setMundo(fil, col, PercepcionPacman.PERCEPCION_VACIO);
-		//System.out.println(" Izquierda@Amb - ");
-		return est;
-	}
+        //estP.setMundo(fil, col, PercepcionPacman.PERCEPCION_VACIO);
+        //System.out.println(" Izquierda@Amb - ");
+        return est;
+    }
 
-	public Double getCost(){
-		return new Double(0);
-	}
+    public Double getCost() {
+        return new Double(0);
+    }
 
-	public String toString() {
-		return "Izquierda";
-	}
-
+    public String toString() {
+        return "Izquierda";
+    }
 }

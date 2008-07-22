@@ -20,7 +20,7 @@ public class AmbientePacman extends Environment {
         AgenteLogico pacman = (AgenteLogico) agent;
 
         // Obtiene la posición actual del pacman para saber que percepciones brindarle.-
-        
+
         p.setFila(((EstadoPacman) pacman.getAgentState()).getFila());
         p.setColumna(((EstadoPacman) pacman.getAgentState()).getColumna());
 
@@ -31,7 +31,7 @@ public class AmbientePacman extends Environment {
         p.setSensorAbajo(this.getAbajo(p.getFila(), p.getColumna()));
 
         KnowledgeBase kb = (KnowledgeBase) pacman.getAgentState();
-        
+
         p.setTiempo(kb.getSituation());
 
         // Retorna la nueva percepción creada.-

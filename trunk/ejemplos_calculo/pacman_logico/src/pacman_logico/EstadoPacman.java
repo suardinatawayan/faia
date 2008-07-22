@@ -240,12 +240,12 @@ public class EstadoPacman extends KnowledgeBase {
         for (int fil = 0; fil < this.getMundoLength(); fil++) {
             str = str + "[ ";
             for (int col = 0; col < this.getMundoLength(); col++) {
-                
+
                 if (this.getFila() == fil && this.getColumna() == col) {
-                        str = str + "P" + " ";
-                        continue;
+                    str = str + "P" + " ";
+                    continue;
                 }
-                
+
                 if (this.getEstadoPosicion(fil, col) == PercepcionPacman.PERCEPCION_DESCONOCIDO) {
                     str = str + "* ";
                 } else {

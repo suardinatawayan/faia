@@ -10,16 +10,13 @@ public class PercepcionPacman extends Perception {
     public static final int PERCEPCION_VACIO = 0;
     public static final int PERCEPCION_ENEMIGO = 1;
     public static final int PERCEPCION_COMIDA = 2;
-    
     private int sensorIzquierda;
     private int sensorArriba;
     private int sensorDerecha;
     private int sensorAbajo;
     private int energia;
-    
     private int fila;
     private int columna;
-    
     private int tiempo;
 
     public PercepcionPacman() {
@@ -82,10 +79,10 @@ public class PercepcionPacman extends Perception {
     public void setEnergia(int energia) {
         this.energia = energia;
     }
-    
+
     private String convertirEstadoCelda(int estadoCelda) {
         String resultado = null;
-        
+
         switch (estadoCelda) {
             case PercepcionPacman.PERCEPCION_COMIDA:
                 resultado = "comida";
@@ -97,7 +94,7 @@ public class PercepcionPacman extends Perception {
                 resultado = "vacia";
                 break;
         }
-        
+
         return resultado;
     }
 
