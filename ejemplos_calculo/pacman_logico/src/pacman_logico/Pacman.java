@@ -6,16 +6,16 @@ import frsf.cidisi.faia.simulator.KnowledgeBasedAgentSimulator;
 
 public class Pacman {
 
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) throws KnowledgeBaseException {
-		AgenteLogico pacman = new AgenteLogico();
+    /**
+     * @param args
+     */
+    public static void main(String[] args) throws KnowledgeBaseException {
+        AgenteLogico pacman = new AgenteLogico();
 
-		AmbientePacman ambiente = new AmbientePacman();
-		
-		KnowledgeBasedAgentSimulator simu = new KnowledgeBasedAgentSimulator(ambiente, pacman);
+        AmbientePacman ambiente = new AmbientePacman();
 
-		simu.start();
-	}
+        KnowledgeBasedAgentSimulator simu = new KnowledgeBasedAgentSimulator(ambiente, pacman);
+
+        simu.start();
+    }
 }
