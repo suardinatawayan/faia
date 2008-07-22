@@ -1,5 +1,3 @@
 #summary Cosas por ver y hacer
 
-* GoalBasedAgent hace que no se tenga que sobreescribir el método 'see'. Para
-el agente lógico, quizá sea interesante que los alumnos tengan que
-sobreescribirlo.
+ * !GoalBasedAgent hace que no se tenga que sobreescribir el método 'see'. Para el agente lógico, quizá sea interesante que los alumnos tengan que sobreescribirlo.
