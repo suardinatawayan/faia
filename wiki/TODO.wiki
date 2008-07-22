@@ -2,7 +2,7 @@
 
  * !GoalBasedAgent hace que no se tenga que sobreescribir el método 'see'. Para el agente lógico, quizá sea interesante que los alumnos tengan que sobreescribirlo.
 
- * Recrear la jerarquía de agentes. Podría ir un agente SearchAgent y un CalculusAgent. Quitar de las clases más abstractas cosas de búsqueda.
+ * Recrear la jerarquía de agentes. Podría ir un agente !SearchAgent y un !CalculusAgent. Quitar de las clases más abstractas cosas de búsqueda.
 
  * Ver cómo resolver lo del método 'solve' de la clase Solve. El problema son los parámetros que se reciben.
 
