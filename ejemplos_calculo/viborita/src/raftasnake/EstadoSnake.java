@@ -9,949 +9,969 @@ import frsf.cidisi.faia.state.AgentState;
 
 public class EstadoSnake extends AgentState {
 
-	private Vector<Point> composicionDelAgente;
-	/*
-	 * Orientación
-	 * 
-	 * 0 Norte
-	 * 1 Sur
-	 * 2 Este
-	 * 3 Oeste
-	 */
-	private int orientacionDeLaCabeza;
-	
-	public static int NORTE = 0;
-	public static int SUR = 1;
-	public static int ESTE = 2;
-	public static int OESTE = 3;
-	
-	/*
-	 * Mundo Conocido
-	 * 
-	 * 0 No hay nada
-	 * 1 Límite del mundo
-	 * 2 Comida
-	 * 3 Parte del Agente
-	 * -1 Desconocido
-	 */
-	
-	/*
-	 * El mundoConocido es un vector que tiene las filas que adentro tiene un vector que indica las columnas.
-	 */
-	private Vector<Vector<Integer>> mundoConocido;
-	private int longitud;
-	private boolean estaVivo;
-	
-	private Vector<Point> celdasVisitadas;
-	
-	private double costo;
-	private boolean encontreElLimiteAlNorte;
-	private boolean encontreElLimiteAlSur;
-	private boolean encontreElLimiteAlEste;
-	private boolean encontreElLimiteAlOeste;
-	private int vecesQueSeGiro;
-	private int vecesQueSeGiroDerecha;
-	
-	public static int NO_HAY_NADA = 0;
-	public static int LIMITE_DEL_MUNDO = 1;
-	public static int COMIDA = 2;
-	public static int PARTE_DEL_AGENTE = 3;
-	public static int DESCONOCIDO = -1;
-	
-	public EstadoSnake() {
-		this.initState();
-	}
-	
-	public void updateState(Perception p) {
-		// Actualizar las percepciones
-		Point cabeza = this.composicionDelAgente.firstElement();
+    private Vector<Point> composicionDelAgente;
+    /*
+     * Orientación
+     * 
+     * 0 Norte
+     * 1 Sur
+     * 2 Este
+     * 3 Oeste
+     */
+    private int orientacionDeLaCabeza;
+    public static int NORTE = 0;
+    public static int SUR = 1;
+    public static int ESTE = 2;
+    public static int OESTE = 3;
+    /*
+     * Mundo Conocido
+     * 
+     * 0 No hay nada
+     * 1 Límite del mundo
+     * 2 Comida
+     * 3 Parte del Agente
+     * -1 Desconocido
+     */
+    /*
+     * El mundoConocido es un vector que tiene las filas que adentro tiene un vector que indica las columnas.
+     */
+    private Vector<Vector<Integer>> mundoConocido;
+    private int longitud;
+    private boolean estaVivo;
+    private Vector<Point> celdasVisitadas;
+    private double costo;
+    private boolean encontreElLimiteAlNorte;
+    private boolean encontreElLimiteAlSur;
+    private boolean encontreElLimiteAlEste;
+    private boolean encontreElLimiteAlOeste;
+    private int vecesQueSeGiro;
+    private int vecesQueSeGiroDerecha;
+    public static int NO_HAY_NADA = 0;
+    public static int LIMITE_DEL_MUNDO = 1;
+    public static int COMIDA = 2;
+    public static int PARTE_DEL_AGENTE = 3;
+    public static int DESCONOCIDO = -1;
 
-		// Al Norte de la cabeza
-		if (((PercepcionSnake) p).getSensorNorte() == PercepcionSnake.LIMITE_DEL_MUNDO) {
-			this.encontreElLimiteAlNorte = true;
+    public EstadoSnake() {
+        this.initState();
+    }
 
-			// Vemos si hay fila de desconocidos al norte
-			boolean hayFilaDeDesconocidos = false;
+    public void updateState(Perception p) {
+        // Actualizar las percepciones
+        Point cabeza = this.composicionDelAgente.firstElement();
 
-			for (int col=0; col < this.mundoConocido.size(); col++) {
-				hayFilaDeDesconocidos = (this.mundoConocido.firstElement().get(col) == PercepcionSnake.DESCONOCIDO);
+        // Al Norte de la cabeza
+        if (((PercepcionSnake) p).getSensorNorte() == PercepcionSnake.LIMITE_DEL_MUNDO) {
+            this.encontreElLimiteAlNorte = true;
 
-				if (hayFilaDeDesconocidos == false)
-					break;
-			}
+            // Vemos si hay fila de desconocidos al norte
+            boolean hayFilaDeDesconocidos = false;
 
-			if (this.mundoConocido.size() == 10) {
+            for (int col = 0; col < this.mundoConocido.size(); col++) {
+                hayFilaDeDesconocidos = (this.mundoConocido.firstElement().get(col) == PercepcionSnake.DESCONOCIDO);
+
+                if (hayFilaDeDesconocidos == false) {
+                    break;
+                }
+            }
+
+            if (this.mundoConocido.size() == 10) {
 //				if (!hayFilaDeDesconocidos) {
 //					return;
 //				}
 //				else {
-				if (hayFilaDeDesconocidos) {
-					boolean columnaDeDesconocidosAlOeste = false;
-					for (int fil=0; fil < this.mundoConocido.size(); fil++) {
-						columnaDeDesconocidosAlOeste = (this.mundoConocido.get(fil).firstElement() == PercepcionSnake.DESCONOCIDO);
+                if (hayFilaDeDesconocidos) {
+                    boolean columnaDeDesconocidosAlOeste = false;
+                    for (int fil = 0; fil < this.mundoConocido.size(); fil++) {
+                        columnaDeDesconocidosAlOeste = (this.mundoConocido.get(fil).firstElement() == PercepcionSnake.DESCONOCIDO);
 
-						if (!columnaDeDesconocidosAlOeste)
-							break;
-					}
+                        if (!columnaDeDesconocidosAlOeste) {
+                            break;
+                        }
+                    }
 
-					boolean columnaDeDesconocidosAlEste = false;
-					for (int fil=0; fil < this.mundoConocido.size(); fil++) {
-						columnaDeDesconocidosAlEste = (this.mundoConocido.get(fil).lastElement() == PercepcionSnake.DESCONOCIDO);
+                    boolean columnaDeDesconocidosAlEste = false;
+                    for (int fil = 0; fil < this.mundoConocido.size(); fil++) {
+                        columnaDeDesconocidosAlEste = (this.mundoConocido.get(fil).lastElement() == PercepcionSnake.DESCONOCIDO);
 
-						if (!columnaDeDesconocidosAlEste)
-							break;
-					}
+                        if (!columnaDeDesconocidosAlEste) {
+                            break;
+                        }
+                    }
 
-					this.mundoConocido.removeElementAt(0);
-					while (hayFilaDeDesconocidos) {
-						
-						if (columnaDeDesconocidosAlOeste) {
-							for (int fil=0; fil < this.mundoConocido.size(); fil++)
-								this.mundoConocido.get(fil).removeElementAt(0);
-							//						Actualizo la posición del agente
-							Iterator<Point> it =  this.composicionDelAgente.iterator();
-							while (it.hasNext()) {
-								Point par = it.next();
-								par.setLocation(par.getX(), par.getY() - 1);
-							}
-							
-							// Actualizo la posición de las celdas visitadas
-							it =  this.celdasVisitadas.iterator();
-							while (it.hasNext()) {
-								Point par = it.next();
-								par.setLocation(par.getX(), par.getY() - 1);
-							}
-	
-							for (int fil=0; fil < this.mundoConocido.size(); fil++) {
-								columnaDeDesconocidosAlOeste = (this.mundoConocido.get(fil).firstElement() == PercepcionSnake.DESCONOCIDO);
+                    this.mundoConocido.removeElementAt(0);
+                    while (hayFilaDeDesconocidos) {
 
-								if (!columnaDeDesconocidosAlOeste)
-									break;
-							}
-						}
-						if (columnaDeDesconocidosAlEste) {
-							for (int fil=0; fil < this.mundoConocido.size(); fil++)
-								this.mundoConocido.get(fil).removeElementAt(this.mundoConocido.size() - 1);
-	
-							for (int fil=0; fil < this.mundoConocido.size(); fil++) {
-								columnaDeDesconocidosAlEste = (this.mundoConocido.get(fil).lastElement() == PercepcionSnake.DESCONOCIDO);
+                        if (columnaDeDesconocidosAlOeste) {
+                            for (int fil = 0; fil < this.mundoConocido.size(); fil++) {
+                                this.mundoConocido.get(fil).removeElementAt(0);
+                            //						Actualizo la posición del agente
+                            }
+                            Iterator<Point> it = this.composicionDelAgente.iterator();
+                            while (it.hasNext()) {
+                                Point par = it.next();
+                                par.setLocation(par.getX(), par.getY() - 1);
+                            }
 
-								if (!columnaDeDesconocidosAlEste)
-									break;
-							}
-						}
-						
-						Vector<Integer> filaDeDesconocidos = new Vector<Integer>();
+                            // Actualizo la posición de las celdas visitadas
+                            it = this.celdasVisitadas.iterator();
+                            while (it.hasNext()) {
+                                Point par = it.next();
+                                par.setLocation(par.getX(), par.getY() - 1);
+                            }
 
-						for (int col=0; col < this.mundoConocido.size(); col++)
-							filaDeDesconocidos.add(new Integer(PercepcionSnake.DESCONOCIDO));
+                            for (int fil = 0; fil < this.mundoConocido.size(); fil++) {
+                                columnaDeDesconocidosAlOeste = (this.mundoConocido.get(fil).firstElement() == PercepcionSnake.DESCONOCIDO);
 
-						this.mundoConocido.removeElementAt(0);
-						this.mundoConocido.add(filaDeDesconocidos);
+                                if (!columnaDeDesconocidosAlOeste) {
+                                    break;
+                                }
+                            }
+                        }
+                        if (columnaDeDesconocidosAlEste) {
+                            for (int fil = 0; fil < this.mundoConocido.size(); fil++) {
+                                this.mundoConocido.get(fil).removeElementAt(this.mundoConocido.size() - 1);
+                            }
+                            for (int fil = 0; fil < this.mundoConocido.size(); fil++) {
+                                columnaDeDesconocidosAlEste = (this.mundoConocido.get(fil).lastElement() == PercepcionSnake.DESCONOCIDO);
 
-						// Actualizo la posición del agente
-						Iterator<Point> it =  this.composicionDelAgente.iterator();
-						while (it.hasNext()) {
-							Point par = it.next();
-							par.setLocation(par.getX() - 1, par.getY());
-						}
+                                if (!columnaDeDesconocidosAlEste) {
+                                    break;
+                                }
+                            }
+                        }
 
-						// Actualizo la posición de las celdas visitadas
-						it =  this.celdasVisitadas.iterator();
-						while (it.hasNext()) {
-							Point par = it.next();
-							par.setLocation(par.getX() - 1, par.getY());
-						}
+                        Vector<Integer> filaDeDesconocidos = new Vector<Integer>();
 
-						for (int col=0; col < this.mundoConocido.size(); col++) {
-							hayFilaDeDesconocidos = (this.mundoConocido.firstElement().get(col) == PercepcionSnake.DESCONOCIDO);
+                        for (int col = 0; col < this.mundoConocido.size(); col++) {
+                            filaDeDesconocidos.add(new Integer(PercepcionSnake.DESCONOCIDO));
+                        }
+                        this.mundoConocido.removeElementAt(0);
+                        this.mundoConocido.add(filaDeDesconocidos);
 
-							if (hayFilaDeDesconocidos == false)
-								break;
-						}
-					}
-				}
-			}
+                        // Actualizo la posición del agente
+                        Iterator<Point> it = this.composicionDelAgente.iterator();
+                        while (it.hasNext()) {
+                            Point par = it.next();
+                            par.setLocation(par.getX() - 1, par.getY());
+                        }
 
-			if (!this.encontreElLimiteAlSur) {
-				while (hayFilaDeDesconocidos) {
-					Vector<Integer> filaDeDesconocidos = new Vector<Integer>();
+                        // Actualizo la posición de las celdas visitadas
+                        it = this.celdasVisitadas.iterator();
+                        while (it.hasNext()) {
+                            Point par = it.next();
+                            par.setLocation(par.getX() - 1, par.getY());
+                        }
 
-					for (int col=0; col < this.mundoConocido.size(); col++)
-						filaDeDesconocidos.add(new Integer(PercepcionSnake.DESCONOCIDO));
+                        for (int col = 0; col < this.mundoConocido.size(); col++) {
+                            hayFilaDeDesconocidos = (this.mundoConocido.firstElement().get(col) == PercepcionSnake.DESCONOCIDO);
 
-					this.mundoConocido.removeElementAt(0);
-					this.mundoConocido.add(filaDeDesconocidos);
+                            if (hayFilaDeDesconocidos == false) {
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
 
-					// Actualizo la posición del agente
-					Iterator<Point> it =  this.composicionDelAgente.iterator();
-					while (it.hasNext()) {
-						Point par = it.next();
-						par.setLocation(par.getX() - 1, par.getY());
-					}
+            if (!this.encontreElLimiteAlSur) {
+                while (hayFilaDeDesconocidos) {
+                    Vector<Integer> filaDeDesconocidos = new Vector<Integer>();
 
-					// Actualizo la posición de las celdas visitadas
-					it =  this.celdasVisitadas.iterator();
-					while (it.hasNext()) {
-						Point par = it.next();
-						par.setLocation(par.getX() - 1, par.getY());
-					}
+                    for (int col = 0; col < this.mundoConocido.size(); col++) {
+                        filaDeDesconocidos.add(new Integer(PercepcionSnake.DESCONOCIDO));
+                    }
+                    this.mundoConocido.removeElementAt(0);
+                    this.mundoConocido.add(filaDeDesconocidos);
 
-					for (int col=0; col < this.mundoConocido.size(); col++) {
-						hayFilaDeDesconocidos = (this.mundoConocido.firstElement().get(col) == PercepcionSnake.DESCONOCIDO);
+                    // Actualizo la posición del agente
+                    Iterator<Point> it = this.composicionDelAgente.iterator();
+                    while (it.hasNext()) {
+                        Point par = it.next();
+                        par.setLocation(par.getX() - 1, par.getY());
+                    }
 
-						if (hayFilaDeDesconocidos == false)
-							break;
-					}
-				}
-			} else if (hayFilaDeDesconocidos && encontreElLimiteAlSur) {
-				boolean columnaDeDesconocidosAlOeste = false;
-				for (int fil=0; fil < this.mundoConocido.size(); fil++) {
-					columnaDeDesconocidosAlOeste = (this.mundoConocido.get(fil).firstElement() == PercepcionSnake.DESCONOCIDO);
+                    // Actualizo la posición de las celdas visitadas
+                    it = this.celdasVisitadas.iterator();
+                    while (it.hasNext()) {
+                        Point par = it.next();
+                        par.setLocation(par.getX() - 1, par.getY());
+                    }
 
-					if (!columnaDeDesconocidosAlOeste)
-						break;
-				}
+                    for (int col = 0; col < this.mundoConocido.size(); col++) {
+                        hayFilaDeDesconocidos = (this.mundoConocido.firstElement().get(col) == PercepcionSnake.DESCONOCIDO);
 
-				boolean columnaDeDesconocidosAlEste = false;
-				for (int fil=0; fil < this.mundoConocido.size(); fil++) {
-					columnaDeDesconocidosAlEste = (this.mundoConocido.get(fil).lastElement() == PercepcionSnake.DESCONOCIDO);
+                        if (hayFilaDeDesconocidos == false) {
+                            break;
+                        }
+                    }
+                }
+            } else if (hayFilaDeDesconocidos && encontreElLimiteAlSur) {
+                boolean columnaDeDesconocidosAlOeste = false;
+                for (int fil = 0; fil < this.mundoConocido.size(); fil++) {
+                    columnaDeDesconocidosAlOeste = (this.mundoConocido.get(fil).firstElement() == PercepcionSnake.DESCONOCIDO);
 
-					if (!columnaDeDesconocidosAlEste)
-						break;
-				}
+                    if (!columnaDeDesconocidosAlOeste) {
+                        break;
+                    }
+                }
 
-				this.mundoConocido.removeElementAt(0);
+                boolean columnaDeDesconocidosAlEste = false;
+                for (int fil = 0; fil < this.mundoConocido.size(); fil++) {
+                    columnaDeDesconocidosAlEste = (this.mundoConocido.get(fil).lastElement() == PercepcionSnake.DESCONOCIDO);
 
-				if (columnaDeDesconocidosAlOeste) {
-					for (int fil=0; fil < this.mundoConocido.size(); fil++)
-						this.mundoConocido.get(fil).removeElementAt(0);
+                    if (!columnaDeDesconocidosAlEste) {
+                        break;
+                    }
+                }
+
+                this.mundoConocido.removeElementAt(0);
+
+                if (columnaDeDesconocidosAlOeste) {
+                    for (int fil = 0; fil < this.mundoConocido.size(); fil++) {
+                        this.mundoConocido.get(fil).removeElementAt(0);
 //					Actualizo la posición del agente
-					Iterator<Point> it =  this.composicionDelAgente.iterator();
-					while (it.hasNext()) {
-						Point par = it.next();
-						par.setLocation(par.getX(), par.getY() - 1);
-					}
+                    }
+                    Iterator<Point> it = this.composicionDelAgente.iterator();
+                    while (it.hasNext()) {
+                        Point par = it.next();
+                        par.setLocation(par.getX(), par.getY() - 1);
+                    }
 
-					// Actualizo la posición de las celdas visitadas
-					it =  this.celdasVisitadas.iterator();
-					while (it.hasNext()) {
-						Point par = it.next();
-						par.setLocation(par.getX(), par.getY() - 1);
-					}
-				} else if (columnaDeDesconocidosAlEste) {
-					for (int fil=0; fil < this.mundoConocido.size(); fil++)
-						this.mundoConocido.get(fil).removeElementAt(this.mundoConocido.size() - 1);
+                    // Actualizo la posición de las celdas visitadas
+                    it = this.celdasVisitadas.iterator();
+                    while (it.hasNext()) {
+                        Point par = it.next();
+                        par.setLocation(par.getX(), par.getY() - 1);
+                    }
+                } else if (columnaDeDesconocidosAlEste) {
+                    for (int fil = 0; fil < this.mundoConocido.size(); fil++) {
+                        this.mundoConocido.get(fil).removeElementAt(this.mundoConocido.size() - 1);//					Actualizo la posición del agente
+                    }
+                    Iterator<Point> it = this.composicionDelAgente.iterator();
+                    while (it.hasNext()) {
+                        Point par = it.next();
+                        par.setLocation(par.getX() - 1, par.getY());
+                    }
+
+                    // Actualizo la posición de las celdas visitadas
+                    it = this.celdasVisitadas.iterator();
+                    while (it.hasNext()) {
+                        Point par = it.next();
+                        par.setLocation(par.getX() - 1, par.getY());
+                    }
+                } else {
+//					Actualizo la posición del agente
+                    Iterator<Point> it = this.composicionDelAgente.iterator();
+                    while (it.hasNext()) {
+                        Point par = it.next();
+                        par.setLocation(par.getX() - 1, par.getY());
+                    }
+
+                    // Actualizo la posición de las celdas visitadas
+                    it = this.celdasVisitadas.iterator();
+                    while (it.hasNext()) {
+                        Point par = it.next();
+                        par.setLocation(par.getX() - 1, par.getY());
+                    }
+                }
+            }
+        } else {
+            if ((int) cabeza.getX() == 0) {
+                if (this.mundoConocido.size() == 10 &&
+                        !this.encontreElLimiteAlSur &&
+                        !this.encontreElLimiteAlNorte) {
+                    /*
+                     * Si estoy en el límite máximo del mundo, la idea es que seguro habrá algo desconocido en el extremo opuesto,
+                     * por lo tanto, determino que esa fila desconocida, estará al norte ahora.
+                     * 
+                     */
+                    Vector<Integer> filaNueva = new Vector<Integer>();
+
+                    for (int fil = 0; fil < this.mundoConocido.size(); fil++) {
+                        filaNueva.add(new Integer(PercepcionSnake.DESCONOCIDO));
+                    }
+                    this.mundoConocido.removeElementAt(this.mundoConocido.size() - 1);
+
+                    this.mundoConocido.insertElementAt(filaNueva, 0);
 
 //					Actualizo la posición del agente
-					Iterator<Point> it =  this.composicionDelAgente.iterator();
-					while (it.hasNext()) {
-						Point par = it.next();
-						par.setLocation(par.getX() - 1, par.getY());
-					}
+                    Iterator<Point> it = this.composicionDelAgente.iterator();
+                    while (it.hasNext()) {
+                        Point par = it.next();
+                        par.setLocation(par.getX() + 1, par.getY());
+                    }
 
-					// Actualizo la posición de las celdas visitadas
-					it =  this.celdasVisitadas.iterator();
-					while (it.hasNext()) {
-						Point par = it.next();
-						par.setLocation(par.getX() - 1, par.getY());
-					}
-				} else {
-//					Actualizo la posición del agente
-					Iterator<Point> it =  this.composicionDelAgente.iterator();
-					while (it.hasNext()) {
-						Point par = it.next();
-						par.setLocation(par.getX() - 1, par.getY());
-					}
+                    // Actualizo la posición de las celdas visitadas
+                    it = this.celdasVisitadas.iterator();
+                    while (it.hasNext()) {
+                        Point par = it.next();
+                        par.setLocation(par.getX() + 1, par.getY());
+                    }
+                } else {
+                    // Agrando el mundo conocido
+                    // Creo la fila nueva
+                    Vector<Integer> filaNueva = new Vector<Integer>();
+                    for (int fil = 0; fil < this.mundoConocido.size(); fil++) {
+                        filaNueva.add(new Integer(PercepcionSnake.DESCONOCIDO));                    // Agrego la fila nueva a la matriz del mundo conocido al norte
+                    }
+                    this.mundoConocido.insertElementAt(filaNueva, 0);
 
-					// Actualizo la posición de las celdas visitadas
-					it =  this.celdasVisitadas.iterator();
-					while (it.hasNext()) {
-						Point par = it.next();
-						par.setLocation(par.getX() - 1, par.getY());
-					}
-				}
-			}
-		}
-		else {
-			if ((int) cabeza.getX() == 0) { 
-				if (this.mundoConocido.size() == 10 &&
-						!this.encontreElLimiteAlSur &&
-						!this.encontreElLimiteAlNorte) {
-					/*
-					 * Si estoy en el límite máximo del mundo, la idea es que seguro habrá algo desconocido en el extremo opuesto,
-					 * por lo tanto, determino que esa fila desconocida, estará al norte ahora.
-					 * 
-					 */
-					Vector<Integer> filaNueva = new Vector<Integer>();
+                    // Por defecto, para que la matriz quede cuadrada, agregamos una columna al este.
+                    // Si no se puede xq ya se encontró el límite, se agrega al oeste.
+                    if (!this.encontreElLimiteAlEste) {
+                        for (int fil = 0; fil < this.mundoConocido.size(); fil++) {
+                            this.mundoConocido.get(fil).add(new Integer(EstadoSnake.DESCONOCIDO));                        // Actualizo la posición del agente
+                        }
+                        Iterator<Point> it = this.composicionDelAgente.iterator();
+                        while (it.hasNext()) {
+                            Point par = it.next();
+                            par.setLocation(par.getX() + 1, par.getY());
+                        }
 
-					for (int fil=0; fil < this.mundoConocido.size(); fil++)
-						filaNueva.add(new Integer(PercepcionSnake.DESCONOCIDO));
+                        // Actualizo la posición de las celdas visitadas
+                        it = this.celdasVisitadas.iterator();
+                        while (it.hasNext()) {
+                            Point par = it.next();
+                            par.setLocation(par.getX() + 1, par.getY());
+                        }
+                    } else {
+                        for (int fil = 0; fil < this.mundoConocido.size(); fil++) {
+                            this.mundoConocido.get(fil).insertElementAt(new Integer(EstadoSnake.DESCONOCIDO), 0);                        // Actualizo la posición del agente
+                        }
+                        Iterator<Point> it = this.composicionDelAgente.iterator();
+                        while (it.hasNext()) {
+                            Point par = it.next();
+                            par.setLocation(par.getX() + 1, par.getY() + 1);
+                        }
 
-					this.mundoConocido.removeElementAt(this.mundoConocido.size() - 1);
+                        // Actualizo la posición de las celdas visitadas
+                        it = this.celdasVisitadas.iterator();
+                        while (it.hasNext()) {
+                            Point par = it.next();
+                            par.setLocation(par.getX() + 1, par.getY() + 1);
+                        }
+                    }
+                }
+            }
+            cabeza = this.composicionDelAgente.firstElement();
+            // Agrego la percepción
+            this.mundoConocido.get((int) cabeza.getX() - 1).setElementAt(
+                    new Integer(((PercepcionSnake) p).getSensorNorte()), (int) cabeza.getY());
+        }
+        // Al Sur de la cabeza
+        if (((PercepcionSnake) p).getSensorSur() == PercepcionSnake.LIMITE_DEL_MUNDO) {
+            this.encontreElLimiteAlSur = true;
 
-					this.mundoConocido.insertElementAt(filaNueva, 0);
+            // Vemos si hay fila de desconocidos al sur
+            boolean hayFilaDeDesconocidos = false;
 
-//					Actualizo la posición del agente
-					Iterator<Point> it =  this.composicionDelAgente.iterator();
-					while (it.hasNext()) {
-						Point par = it.next();
-						par.setLocation(par.getX() + 1, par.getY());
-					}
+            for (int col = 0; col < this.mundoConocido.size(); col++) {
+                hayFilaDeDesconocidos = (this.mundoConocido.lastElement().get(col) == PercepcionSnake.DESCONOCIDO);
 
-					// Actualizo la posición de las celdas visitadas
-					it =  this.celdasVisitadas.iterator();
-					while (it.hasNext()) {
-						Point par = it.next();
-						par.setLocation(par.getX() + 1, par.getY());
-					}
-				} else {
-					// Agrando el mundo conocido
-					// Creo la fila nueva
-					Vector<Integer> filaNueva = new Vector<Integer>();
-					for (int fil=0; fil < this.mundoConocido.size(); fil++)
-						filaNueva.add(new Integer(PercepcionSnake.DESCONOCIDO));
+                if (hayFilaDeDesconocidos == false) {
+                    break;
+                }
+            }
 
-					// Agrego la fila nueva a la matriz del mundo conocido al norte
-					this.mundoConocido.insertElementAt(filaNueva, 0);
-
-					// Por defecto, para que la matriz quede cuadrada, agregamos una columna al este.
-					// Si no se puede xq ya se encontró el límite, se agrega al oeste.
-					if (!this.encontreElLimiteAlEste) {
-						for (int fil=0; fil < this.mundoConocido.size(); fil++)
-							this.mundoConocido.get(fil).add(new Integer(EstadoSnake.DESCONOCIDO));
-
-						// Actualizo la posición del agente
-						Iterator<Point> it =  this.composicionDelAgente.iterator();
-						while (it.hasNext()) {
-							Point par = it.next();
-							par.setLocation(par.getX() + 1, par.getY());
-						}
-
-						// Actualizo la posición de las celdas visitadas
-						it =  this.celdasVisitadas.iterator();
-						while (it.hasNext()) {
-							Point par = it.next();
-							par.setLocation(par.getX() + 1, par.getY());
-						}
-					} else {
-						for (int fil=0; fil < this.mundoConocido.size(); fil++)
-							this.mundoConocido.get(fil).insertElementAt(new Integer(EstadoSnake.DESCONOCIDO), 0);
-
-						// Actualizo la posición del agente
-						Iterator<Point> it =  this.composicionDelAgente.iterator();
-						while (it.hasNext()) {
-							Point par = it.next();
-							par.setLocation(par.getX() + 1, par.getY() + 1);
-						}
-
-						// Actualizo la posición de las celdas visitadas
-						it =  this.celdasVisitadas.iterator();
-						while (it.hasNext()) {
-							Point par = it.next();
-							par.setLocation(par.getX() + 1, par.getY() + 1);
-						}
-					}
-				}
-			}
-			cabeza = this.composicionDelAgente.firstElement();
-			// Agrego la percepción
-			this.mundoConocido.get((int) cabeza.getX() - 1).setElementAt(
-					new Integer(((PercepcionSnake) p).getSensorNorte()), (int) cabeza.getY());
-		}
-		// Al Sur de la cabeza
-		if (((PercepcionSnake) p).getSensorSur() == PercepcionSnake.LIMITE_DEL_MUNDO) {
-			this.encontreElLimiteAlSur = true;
-
-			// Vemos si hay fila de desconocidos al sur
-			boolean hayFilaDeDesconocidos = false;
-
-			for (int col=0; col < this.mundoConocido.size(); col++) {
-				hayFilaDeDesconocidos = (this.mundoConocido.lastElement().get(col) == PercepcionSnake.DESCONOCIDO);
-
-				if (hayFilaDeDesconocidos == false)
-					break;
-			}
-
-			if (this.mundoConocido.size() == 10) {
+            if (this.mundoConocido.size() == 10) {
 //				if (!hayFilaDeDesconocidos) {
 //					return;
 //				}
 //				else {
-				if (hayFilaDeDesconocidos) {
-					boolean columnaDeDesconocidosAlOeste = false;
-					for (int fil=0; fil < this.mundoConocido.size(); fil++) {
-						columnaDeDesconocidosAlOeste = (this.mundoConocido.get(fil).firstElement() == PercepcionSnake.DESCONOCIDO);
+                if (hayFilaDeDesconocidos) {
+                    boolean columnaDeDesconocidosAlOeste = false;
+                    for (int fil = 0; fil < this.mundoConocido.size(); fil++) {
+                        columnaDeDesconocidosAlOeste = (this.mundoConocido.get(fil).firstElement() == PercepcionSnake.DESCONOCIDO);
 
-						if (!columnaDeDesconocidosAlOeste)
-							break;
-					}
+                        if (!columnaDeDesconocidosAlOeste) {
+                            break;
+                        }
+                    }
 
-					boolean columnaDeDesconocidosAlEste = false;
-					for (int fil=0; fil < this.mundoConocido.size(); fil++) {
-						columnaDeDesconocidosAlEste = (this.mundoConocido.get(fil).lastElement() == PercepcionSnake.DESCONOCIDO);
+                    boolean columnaDeDesconocidosAlEste = false;
+                    for (int fil = 0; fil < this.mundoConocido.size(); fil++) {
+                        columnaDeDesconocidosAlEste = (this.mundoConocido.get(fil).lastElement() == PercepcionSnake.DESCONOCIDO);
 
-						if (!columnaDeDesconocidosAlEste)
-							break;
-					}
+                        if (!columnaDeDesconocidosAlEste) {
+                            break;
+                        }
+                    }
 
-					this.mundoConocido.removeElementAt(this.mundoConocido.size() - 1);
+                    this.mundoConocido.removeElementAt(this.mundoConocido.size() - 1);
 
-					while (hayFilaDeDesconocidos) {
-						if (columnaDeDesconocidosAlOeste && hayFilaDeDesconocidos) {
-							for (int fil=0; fil < this.mundoConocido.size(); fil++)
-								this.mundoConocido.get(fil).removeElementAt(0);
-							//						Actualizo la posición del agente
-							Iterator<Point> it =  this.composicionDelAgente.iterator();
-							while (it.hasNext()) {
-								Point par = it.next();
-								par.setLocation(par.getX(), par.getY() - 1);
-							}
-							
-							// Actualizo la posición de las celdas visitadas
-							it =  this.celdasVisitadas.iterator();
-							while (it.hasNext()) {
-								Point par = it.next();
-								par.setLocation(par.getX(), par.getY() - 1);
-							}
-						}
-						if (columnaDeDesconocidosAlEste && hayFilaDeDesconocidos) {
-							for (int fil=0; fil < this.mundoConocido.size(); fil++)
-								this.mundoConocido.get(fil).removeElementAt(this.mundoConocido.size() - 1);
-							
-							for (int fil=0; fil < this.mundoConocido.size(); fil++) {
-								columnaDeDesconocidosAlEste = (this.mundoConocido.get(fil).lastElement() == PercepcionSnake.DESCONOCIDO);
-	
-								if (!columnaDeDesconocidosAlEste)
-									break;
-							}
-						}
-					
-					
-						Vector<Integer> filaDeDesconocidos = new Vector<Integer>();
+                    while (hayFilaDeDesconocidos) {
+                        if (columnaDeDesconocidosAlOeste && hayFilaDeDesconocidos) {
+                            for (int fil = 0; fil < this.mundoConocido.size(); fil++) {
+                                this.mundoConocido.get(fil).removeElementAt(0);
+                            //						Actualizo la posición del agente
+                            }
+                            Iterator<Point> it = this.composicionDelAgente.iterator();
+                            while (it.hasNext()) {
+                                Point par = it.next();
+                                par.setLocation(par.getX(), par.getY() - 1);
+                            }
 
-						for (int col=0; col < this.mundoConocido.size(); col++)
-							filaDeDesconocidos.add(new Integer(PercepcionSnake.DESCONOCIDO));
+                            // Actualizo la posición de las celdas visitadas
+                            it = this.celdasVisitadas.iterator();
+                            while (it.hasNext()) {
+                                Point par = it.next();
+                                par.setLocation(par.getX(), par.getY() - 1);
+                            }
+                        }
+                        if (columnaDeDesconocidosAlEste && hayFilaDeDesconocidos) {
+                            for (int fil = 0; fil < this.mundoConocido.size(); fil++) {
+                                this.mundoConocido.get(fil).removeElementAt(this.mundoConocido.size() - 1);
+                            }
+                            for (int fil = 0; fil < this.mundoConocido.size(); fil++) {
+                                columnaDeDesconocidosAlEste = (this.mundoConocido.get(fil).lastElement() == PercepcionSnake.DESCONOCIDO);
 
-						this.mundoConocido.removeElementAt(this.mundoConocido.size() - 1);
-						this.mundoConocido.insertElementAt(filaDeDesconocidos, 0);
+                                if (!columnaDeDesconocidosAlEste) {
+                                    break;
+                                }
+                            }
+                        }
 
-						// Actualizo la posición del agente
-						Iterator<Point> it =  this.composicionDelAgente.iterator();
-						while (it.hasNext()) {
-							Point par = it.next();
-							par.setLocation(par.getX() + 1, par.getY());
-						}
 
-						// Actualizo la posición de las celdas visitadas
-						it =  this.celdasVisitadas.iterator();
-						while (it.hasNext()) {
-							Point par = it.next();
-							par.setLocation(par.getX() + 1, par.getY());
-						}
+                        Vector<Integer> filaDeDesconocidos = new Vector<Integer>();
 
-						for (int col=0; col < this.mundoConocido.size(); col++) {
-							hayFilaDeDesconocidos = (this.mundoConocido.lastElement().get(col) == PercepcionSnake.DESCONOCIDO);
+                        for (int col = 0; col < this.mundoConocido.size(); col++) {
+                            filaDeDesconocidos.add(new Integer(PercepcionSnake.DESCONOCIDO));
+                        }
+                        this.mundoConocido.removeElementAt(this.mundoConocido.size() - 1);
+                        this.mundoConocido.insertElementAt(filaDeDesconocidos, 0);
 
-							if (hayFilaDeDesconocidos == false)
-								break;
-						}
-					}
-				}
-			}
+                        // Actualizo la posición del agente
+                        Iterator<Point> it = this.composicionDelAgente.iterator();
+                        while (it.hasNext()) {
+                            Point par = it.next();
+                            par.setLocation(par.getX() + 1, par.getY());
+                        }
 
-			if (!this.encontreElLimiteAlNorte) {
-				while (hayFilaDeDesconocidos) {
-					Vector<Integer> filaDeDesconocidos = new Vector<Integer>();
+                        // Actualizo la posición de las celdas visitadas
+                        it = this.celdasVisitadas.iterator();
+                        while (it.hasNext()) {
+                            Point par = it.next();
+                            par.setLocation(par.getX() + 1, par.getY());
+                        }
 
-					for (int col=0; col < this.mundoConocido.size(); col++)
-						filaDeDesconocidos.add(new Integer(PercepcionSnake.DESCONOCIDO));
+                        for (int col = 0; col < this.mundoConocido.size(); col++) {
+                            hayFilaDeDesconocidos = (this.mundoConocido.lastElement().get(col) == PercepcionSnake.DESCONOCIDO);
 
-					this.mundoConocido.removeElementAt(this.mundoConocido.size() - 1);
-					this.mundoConocido.insertElementAt(filaDeDesconocidos, 0);
+                            if (hayFilaDeDesconocidos == false) {
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
 
-					// Actualizo la posición del agente
-					Iterator<Point> it =  this.composicionDelAgente.iterator();
-					while (it.hasNext()) {
-						Point par = it.next();
-						par.setLocation(par.getX() + 1, par.getY());
-					}
+            if (!this.encontreElLimiteAlNorte) {
+                while (hayFilaDeDesconocidos) {
+                    Vector<Integer> filaDeDesconocidos = new Vector<Integer>();
 
-					// Actualizo la posición de las celdas visitadas
-					it =  this.celdasVisitadas.iterator();
-					while (it.hasNext()) {
-						Point par = it.next();
-						par.setLocation(par.getX() + 1, par.getY());
-					}
+                    for (int col = 0; col < this.mundoConocido.size(); col++) {
+                        filaDeDesconocidos.add(new Integer(PercepcionSnake.DESCONOCIDO));
+                    }
+                    this.mundoConocido.removeElementAt(this.mundoConocido.size() - 1);
+                    this.mundoConocido.insertElementAt(filaDeDesconocidos, 0);
 
-					for (int col=0; col < this.mundoConocido.size(); col++) {
-						hayFilaDeDesconocidos = (this.mundoConocido.lastElement().get(col) == PercepcionSnake.DESCONOCIDO);
+                    // Actualizo la posición del agente
+                    Iterator<Point> it = this.composicionDelAgente.iterator();
+                    while (it.hasNext()) {
+                        Point par = it.next();
+                        par.setLocation(par.getX() + 1, par.getY());
+                    }
 
-						if (hayFilaDeDesconocidos == false)
-							break;
-					}
-				}
-			} else if (hayFilaDeDesconocidos && encontreElLimiteAlNorte) {
-				boolean columnaDeDesconocidosAlOeste = false;
-				for (int fil=0; fil < this.mundoConocido.size(); fil++) {
-					columnaDeDesconocidosAlOeste = (this.mundoConocido.get(fil).firstElement() == PercepcionSnake.DESCONOCIDO);
+                    // Actualizo la posición de las celdas visitadas
+                    it = this.celdasVisitadas.iterator();
+                    while (it.hasNext()) {
+                        Point par = it.next();
+                        par.setLocation(par.getX() + 1, par.getY());
+                    }
 
-					if (!columnaDeDesconocidosAlOeste)
-						break;
-				}
+                    for (int col = 0; col < this.mundoConocido.size(); col++) {
+                        hayFilaDeDesconocidos = (this.mundoConocido.lastElement().get(col) == PercepcionSnake.DESCONOCIDO);
 
-				boolean columnaDeDesconocidosAlEste = false;
-				for (int fil=0; fil < this.mundoConocido.size(); fil++) {
-					columnaDeDesconocidosAlEste = (this.mundoConocido.get(fil).lastElement() == PercepcionSnake.DESCONOCIDO);
+                        if (hayFilaDeDesconocidos == false) {
+                            break;
+                        }
+                    }
+                }
+            } else if (hayFilaDeDesconocidos && encontreElLimiteAlNorte) {
+                boolean columnaDeDesconocidosAlOeste = false;
+                for (int fil = 0; fil < this.mundoConocido.size(); fil++) {
+                    columnaDeDesconocidosAlOeste = (this.mundoConocido.get(fil).firstElement() == PercepcionSnake.DESCONOCIDO);
 
-					if (!columnaDeDesconocidosAlEste)
-						break;
-				}
+                    if (!columnaDeDesconocidosAlOeste) {
+                        break;
+                    }
+                }
 
-				this.mundoConocido.removeElementAt(this.mundoConocido.size() - 1);
+                boolean columnaDeDesconocidosAlEste = false;
+                for (int fil = 0; fil < this.mundoConocido.size(); fil++) {
+                    columnaDeDesconocidosAlEste = (this.mundoConocido.get(fil).lastElement() == PercepcionSnake.DESCONOCIDO);
 
-				if (columnaDeDesconocidosAlOeste) {
-					for (int fil=0; fil < this.mundoConocido.size(); fil++)
-						this.mundoConocido.get(fil).removeElementAt(0);
+                    if (!columnaDeDesconocidosAlEste) {
+                        break;
+                    }
+                }
+
+                this.mundoConocido.removeElementAt(this.mundoConocido.size() - 1);
+
+                if (columnaDeDesconocidosAlOeste) {
+                    for (int fil = 0; fil < this.mundoConocido.size(); fil++) {
+                        this.mundoConocido.get(fil).removeElementAt(0);
 //					Actualizo la posición del agente
-					Iterator<Point> it =  this.composicionDelAgente.iterator();
-					while (it.hasNext()) {
-						Point par = it.next();
-						par.setLocation(par.getX(), par.getY() - 1);
-					}
+                    }
+                    Iterator<Point> it = this.composicionDelAgente.iterator();
+                    while (it.hasNext()) {
+                        Point par = it.next();
+                        par.setLocation(par.getX(), par.getY() - 1);
+                    }
 
-					// Actualizo la posición de las celdas visitadas
-					it =  this.celdasVisitadas.iterator();
-					while (it.hasNext()) {
-						Point par = it.next();
-						par.setLocation(par.getX(), par.getY() - 1);
-					}
-				} else if (columnaDeDesconocidosAlEste) {
-					for (int fil=0; fil < this.mundoConocido.size(); fil++)
-						this.mundoConocido.get(fil).removeElementAt(this.mundoConocido.size() - 1);
-				}
-			}
-		}
-		else {
-			if ((int) cabeza.getX() == this.mundoConocido.size() - 1) {
-				if (this.mundoConocido.size() == 10 &&
-						!this.encontreElLimiteAlNorte &&
-						!this.encontreElLimiteAlSur) {
-					/*
-					 * Si estoy en el límite máximo del mundo, la idea es que seguro habrá algo desconocido en el extremo opuesto,
-					 * por lo tanto, determino que esa fila desconocida, estará al sur ahora.
-					 * 
-					 */
-					Vector<Integer> filaNueva = new Vector<Integer>();
+                    // Actualizo la posición de las celdas visitadas
+                    it = this.celdasVisitadas.iterator();
+                    while (it.hasNext()) {
+                        Point par = it.next();
+                        par.setLocation(par.getX(), par.getY() - 1);
+                    }
+                } else if (columnaDeDesconocidosAlEste) {
+                    for (int fil = 0; fil < this.mundoConocido.size(); fil++) {
+                        this.mundoConocido.get(fil).removeElementAt(this.mundoConocido.size() - 1);
+                    }
+                }
+            }
+        } else {
+            if ((int) cabeza.getX() == this.mundoConocido.size() - 1) {
+                if (this.mundoConocido.size() == 10 &&
+                        !this.encontreElLimiteAlNorte &&
+                        !this.encontreElLimiteAlSur) {
+                    /*
+                     * Si estoy en el límite máximo del mundo, la idea es que seguro habrá algo desconocido en el extremo opuesto,
+                     * por lo tanto, determino que esa fila desconocida, estará al sur ahora.
+                     * 
+                     */
+                    Vector<Integer> filaNueva = new Vector<Integer>();
 
-					for (int fil=0; fil < this.mundoConocido.size(); fil++)
-						filaNueva.add(new Integer(PercepcionSnake.DESCONOCIDO));
+                    for (int fil = 0; fil < this.mundoConocido.size(); fil++) {
+                        filaNueva.add(new Integer(PercepcionSnake.DESCONOCIDO));
+                    }
+                    this.mundoConocido.removeElementAt(0);
 
-					this.mundoConocido.removeElementAt(0);
-
-					this.mundoConocido.add(filaNueva);
+                    this.mundoConocido.add(filaNueva);
 
 //					Actualizo la posición del agente
-					Iterator<Point> it =  this.composicionDelAgente.iterator();
-					while (it.hasNext()) {
-						Point par = it.next();
-						par.setLocation(par.getX() - 1, par.getY());
-					}
+                    Iterator<Point> it = this.composicionDelAgente.iterator();
+                    while (it.hasNext()) {
+                        Point par = it.next();
+                        par.setLocation(par.getX() - 1, par.getY());
+                    }
 
-					// Actualizo la posición de las celdas visitadas
-					it =  this.celdasVisitadas.iterator();
-					while (it.hasNext()) {
-						Point par = it.next();
-						par.setLocation(par.getX() - 1, par.getY());
-					}
-				} else {
-					// Agrando el mundo conocido
-					// Creo la fila nueva
-					Vector<Integer> filaNueva = new Vector<Integer>();
-					for (int fil=0; fil < this.mundoConocido.size(); fil++)
-						filaNueva.add(new Integer(PercepcionSnake.DESCONOCIDO));
+                    // Actualizo la posición de las celdas visitadas
+                    it = this.celdasVisitadas.iterator();
+                    while (it.hasNext()) {
+                        Point par = it.next();
+                        par.setLocation(par.getX() - 1, par.getY());
+                    }
+                } else {
+                    // Agrando el mundo conocido
+                    // Creo la fila nueva
+                    Vector<Integer> filaNueva = new Vector<Integer>();
+                    for (int fil = 0; fil < this.mundoConocido.size(); fil++) {
+                        filaNueva.add(new Integer(PercepcionSnake.DESCONOCIDO));                    // Agrego la fila nueva a la matriz del mundo conocido al sur
+                    }
+                    this.mundoConocido.add(filaNueva);
 
-					// Agrego la fila nueva a la matriz del mundo conocido al sur
-					this.mundoConocido.add(filaNueva);
+                    // Por defecto, para que la matriz quede cuadrada, agregamos una columna al este.
+                    // Si no se puede xq ya se encontró el límite, se agrega al oeste.
+                    if (!this.encontreElLimiteAlEste) {
+                        for (int fil = 0; fil < this.mundoConocido.size(); fil++) {
+                            this.mundoConocido.get(fil).add(new Integer(EstadoSnake.DESCONOCIDO));                        // No tengo que actualizar la posición del agente ni las celdas visitadas.
+                        }
+                    } else {
+                        for (int fil = 0; fil < this.mundoConocido.size(); fil++) {
+                            this.mundoConocido.get(fil).insertElementAt(new Integer(EstadoSnake.DESCONOCIDO), 0);                        // Actualizo la posición del agente
+                        }
+                        Iterator<Point> it = this.composicionDelAgente.iterator();
+                        while (it.hasNext()) {
+                            Point par = it.next();
+                            par.setLocation(par.getX(), par.getY() + 1);
+                        }
 
-					// Por defecto, para que la matriz quede cuadrada, agregamos una columna al este.
-					// Si no se puede xq ya se encontró el límite, se agrega al oeste.
-					if (!this.encontreElLimiteAlEste) {
-						for (int fil=0; fil < this.mundoConocido.size(); fil++)
-							this.mundoConocido.get(fil).add(new Integer(EstadoSnake.DESCONOCIDO));
+                        // Actualizo la posición de las celdas visitadas
+                        it = this.celdasVisitadas.iterator();
+                        while (it.hasNext()) {
+                            Point par = it.next();
+                            par.setLocation(par.getX(), par.getY() + 1);
+                        }
+                    }
+                }
+            }
+            cabeza = this.composicionDelAgente.firstElement();
+            this.mundoConocido.get((int) cabeza.getX() + 1).setElementAt(
+                    new Integer(((PercepcionSnake) p).getSensorSur()), (int) cabeza.getY());
+        }
+        // Al Este de la cabeza
+        if (((PercepcionSnake) p).getSensorEste() == PercepcionSnake.LIMITE_DEL_MUNDO) {
+            this.encontreElLimiteAlEste = true;
 
-						// No tengo que actualizar la posición del agente ni las celdas visitadas.
-					} else {
-						for (int fil=0; fil < this.mundoConocido.size(); fil++)
-							this.mundoConocido.get(fil).insertElementAt(new Integer(EstadoSnake.DESCONOCIDO), 0);
+            // Vemos si hay columna de desconocidos al este
+            boolean hayColumnaDeDesconocidos = false;
 
-						// Actualizo la posición del agente
-						Iterator<Point> it =  this.composicionDelAgente.iterator();
-						while (it.hasNext()) {
-							Point par = it.next();
-							par.setLocation(par.getX(), par.getY() + 1);
-						}
+            for (int fil = 0; fil < this.mundoConocido.size(); fil++) {
+                hayColumnaDeDesconocidos = (this.mundoConocido.get(fil).lastElement() == PercepcionSnake.DESCONOCIDO);
 
-						// Actualizo la posición de las celdas visitadas
-						it =  this.celdasVisitadas.iterator();
-						while (it.hasNext()) {
-							Point par = it.next();
-							par.setLocation(par.getX(), par.getY() + 1);
-						}
-					}
-				}
-			}
-			cabeza = this.composicionDelAgente.firstElement();
-			this.mundoConocido.get((int) cabeza.getX() + 1).setElementAt(
-					new Integer(((PercepcionSnake) p).getSensorSur()), (int) cabeza.getY());
-		}
-		// Al Este de la cabeza
-		if (((PercepcionSnake) p).getSensorEste() == PercepcionSnake.LIMITE_DEL_MUNDO) {
-			this.encontreElLimiteAlEste = true;
+                if (hayColumnaDeDesconocidos == false) {
+                    break;
+                }
+            }
 
-			// Vemos si hay columna de desconocidos al este
-			boolean hayColumnaDeDesconocidos = false;
-
-			for (int fil=0; fil < this.mundoConocido.size(); fil++) {
-				hayColumnaDeDesconocidos = (this.mundoConocido.get(fil).lastElement() == PercepcionSnake.DESCONOCIDO);
-
-				if (hayColumnaDeDesconocidos == false)
-					break;
-			}
-
-			if (this.mundoConocido.size() == 10) {
+            if (this.mundoConocido.size() == 10) {
 //				if (!hayColumnaDeDesconocidos) 
 //					return;
 //				else {
-				if (hayColumnaDeDesconocidos) {
-					boolean filaDeDesconocidosAlNorte = false;
-					for (int col=0; col < this.mundoConocido.size(); col++) {
-						filaDeDesconocidosAlNorte = (this.mundoConocido.firstElement().get(col) == PercepcionSnake.DESCONOCIDO);
+                if (hayColumnaDeDesconocidos) {
+                    boolean filaDeDesconocidosAlNorte = false;
+                    for (int col = 0; col < this.mundoConocido.size(); col++) {
+                        filaDeDesconocidosAlNorte = (this.mundoConocido.firstElement().get(col) == PercepcionSnake.DESCONOCIDO);
 
-						if (!filaDeDesconocidosAlNorte)
-							break;
-					}
+                        if (!filaDeDesconocidosAlNorte) {
+                            break;
+                        }
+                    }
 
-					boolean filaDeDesconocidosAlSur = false;
-					for (int col=0; col < this.mundoConocido.size(); col++) {
-						filaDeDesconocidosAlSur = (this.mundoConocido.lastElement().get(col) == PercepcionSnake.DESCONOCIDO);
+                    boolean filaDeDesconocidosAlSur = false;
+                    for (int col = 0; col < this.mundoConocido.size(); col++) {
+                        filaDeDesconocidosAlSur = (this.mundoConocido.lastElement().get(col) == PercepcionSnake.DESCONOCIDO);
 
-						if (!filaDeDesconocidosAlSur)
-							break;
-					}
+                        if (!filaDeDesconocidosAlSur) {
+                            break;
+                        }
+                    }
 
-					for (int fil=0; fil < this.mundoConocido.size(); fil++)
-						this.mundoConocido.get(fil).removeElementAt(this.mundoConocido.size() - 1);
+                    for (int fil = 0; fil < this.mundoConocido.size(); fil++) {
+                        this.mundoConocido.get(fil).removeElementAt(this.mundoConocido.size() - 1);
+                    }
+                    while (hayColumnaDeDesconocidos) {
+                        if (filaDeDesconocidosAlNorte && hayColumnaDeDesconocidos) {
+                            this.mundoConocido.removeElementAt(0);
+                            //						Actualizo la posición del agente
+                            Iterator<Point> it = this.composicionDelAgente.iterator();
+                            while (it.hasNext()) {
+                                Point par = it.next();
+                                par.setLocation(par.getX() - 1, par.getY());
+                            }
 
-					while (hayColumnaDeDesconocidos) {
-						if (filaDeDesconocidosAlNorte && hayColumnaDeDesconocidos) {
-							this.mundoConocido.removeElementAt(0);
-							//						Actualizo la posición del agente
-							Iterator<Point> it =  this.composicionDelAgente.iterator();
-							while (it.hasNext()) {
-								Point par = it.next();
-								par.setLocation(par.getX() - 1, par.getY());
-							}
-							
-							// Actualizo la posición de las celdas visitadas
-							it =  this.celdasVisitadas.iterator();
-							while (it.hasNext()) {
-								Point par = it.next();
-								par.setLocation(par.getX() - 1, par.getY());
-							}
-							
-							for (int col=0; col < this.mundoConocido.size(); col++) {
-								filaDeDesconocidosAlNorte = (this.mundoConocido.firstElement().get(col) == PercepcionSnake.DESCONOCIDO);
-	
-								if (!filaDeDesconocidosAlNorte)
-									break;
-							}
-						}
-						if (filaDeDesconocidosAlSur && hayColumnaDeDesconocidos) {
-							this.mundoConocido.removeElementAt(this.mundoConocido.size() - 1);
-							
-							for (int col=0; col < this.mundoConocido.size(); col++) {
-								filaDeDesconocidosAlSur = (this.mundoConocido.lastElement().get(col) == PercepcionSnake.DESCONOCIDO);
-	
-								if (!filaDeDesconocidosAlSur)
-									break;
-							}
-						}
-					
-					
-						for (int fil=0; fil < this.mundoConocido.size(); fil++) {
-							this.mundoConocido.get(fil).removeElementAt(this.mundoConocido.size() - 1);
-							this.mundoConocido.get(fil).insertElementAt(new Integer(PercepcionSnake.DESCONOCIDO), 0);
-						}
+                            // Actualizo la posición de las celdas visitadas
+                            it = this.celdasVisitadas.iterator();
+                            while (it.hasNext()) {
+                                Point par = it.next();
+                                par.setLocation(par.getX() - 1, par.getY());
+                            }
 
-						// Actualizo la posición del agente
-						Iterator<Point> it =  this.composicionDelAgente.iterator();
-						while (it.hasNext()) {
-							Point par = it.next();
-							par.setLocation(par.getX(), par.getY() + 1);
-						}
+                            for (int col = 0; col < this.mundoConocido.size(); col++) {
+                                filaDeDesconocidosAlNorte = (this.mundoConocido.firstElement().get(col) == PercepcionSnake.DESCONOCIDO);
 
-						// Actualizo la posición de las celdas visitadas
-						it =  this.celdasVisitadas.iterator();
-						while (it.hasNext()) {
-							Point par = it.next();
-							par.setLocation(par.getX(), par.getY() + 1);
-						}
+                                if (!filaDeDesconocidosAlNorte) {
+                                    break;
+                                }
+                            }
+                        }
+                        if (filaDeDesconocidosAlSur && hayColumnaDeDesconocidos) {
+                            this.mundoConocido.removeElementAt(this.mundoConocido.size() - 1);
 
-						for (int fil=0; fil < this.mundoConocido.size(); fil++) {
-							hayColumnaDeDesconocidos = (this.mundoConocido.get(fil).lastElement() == PercepcionSnake.DESCONOCIDO);
+                            for (int col = 0; col < this.mundoConocido.size(); col++) {
+                                filaDeDesconocidosAlSur = (this.mundoConocido.lastElement().get(col) == PercepcionSnake.DESCONOCIDO);
 
-							if (hayColumnaDeDesconocidos == false)
-								break;
-						}
-					}
-				}
-			}
+                                if (!filaDeDesconocidosAlSur) {
+                                    break;
+                                }
+                            }
+                        }
 
-			if (!this.encontreElLimiteAlOeste) {
-				while (hayColumnaDeDesconocidos) {
-					for (int fil=0; fil < this.mundoConocido.size(); fil++) {
-						this.mundoConocido.get(fil).removeElementAt(this.mundoConocido.size() - 1);
-						this.mundoConocido.get(fil).insertElementAt(new Integer(PercepcionSnake.DESCONOCIDO), 0);
-					}
 
-					// Actualizo la posición del agente
-					Iterator<Point> it =  this.composicionDelAgente.iterator();
-					while (it.hasNext()) {
-						Point par = it.next();
-						par.setLocation(par.getX(), par.getY() + 1);
-					}
+                        for (int fil = 0; fil < this.mundoConocido.size(); fil++) {
+                            this.mundoConocido.get(fil).removeElementAt(this.mundoConocido.size() - 1);
+                            this.mundoConocido.get(fil).insertElementAt(new Integer(PercepcionSnake.DESCONOCIDO), 0);
+                        }
 
-					// Actualizo la posición de las celdas visitadas
-					it =  this.celdasVisitadas.iterator();
-					while (it.hasNext()) {
-						Point par = it.next();
-						par.setLocation(par.getX(), par.getY() + 1);
-					}
+                        // Actualizo la posición del agente
+                        Iterator<Point> it = this.composicionDelAgente.iterator();
+                        while (it.hasNext()) {
+                            Point par = it.next();
+                            par.setLocation(par.getX(), par.getY() + 1);
+                        }
 
-					for (int fil=0; fil < this.mundoConocido.size(); fil++) {
-						hayColumnaDeDesconocidos = (this.mundoConocido.get(fil).lastElement() == PercepcionSnake.DESCONOCIDO);
+                        // Actualizo la posición de las celdas visitadas
+                        it = this.celdasVisitadas.iterator();
+                        while (it.hasNext()) {
+                            Point par = it.next();
+                            par.setLocation(par.getX(), par.getY() + 1);
+                        }
 
-						if (hayColumnaDeDesconocidos == false)
-							break;
-					}
-				}
-			} else if (hayColumnaDeDesconocidos && encontreElLimiteAlOeste) {
-				boolean filaDeDesconocidosAlNorte = false;
-				for (int col=0; col < this.mundoConocido.size(); col++) {
-					filaDeDesconocidosAlNorte = (this.mundoConocido.firstElement().get(col) == PercepcionSnake.DESCONOCIDO);
+                        for (int fil = 0; fil < this.mundoConocido.size(); fil++) {
+                            hayColumnaDeDesconocidos = (this.mundoConocido.get(fil).lastElement() == PercepcionSnake.DESCONOCIDO);
 
-					if (!filaDeDesconocidosAlNorte)
-						break;
-				}
+                            if (hayColumnaDeDesconocidos == false) {
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
 
-				boolean filaDeDesconocidosAlSur = false;
-				for (int col=0; col < this.mundoConocido.size(); col++) {
-					filaDeDesconocidosAlSur = (this.mundoConocido.lastElement().get(col) == PercepcionSnake.DESCONOCIDO);
+            if (!this.encontreElLimiteAlOeste) {
+                while (hayColumnaDeDesconocidos) {
+                    for (int fil = 0; fil < this.mundoConocido.size(); fil++) {
+                        this.mundoConocido.get(fil).removeElementAt(this.mundoConocido.size() - 1);
+                        this.mundoConocido.get(fil).insertElementAt(new Integer(PercepcionSnake.DESCONOCIDO), 0);
+                    }
 
-					if (!filaDeDesconocidosAlSur)
-						break;
-				}
+                    // Actualizo la posición del agente
+                    Iterator<Point> it = this.composicionDelAgente.iterator();
+                    while (it.hasNext()) {
+                        Point par = it.next();
+                        par.setLocation(par.getX(), par.getY() + 1);
+                    }
 
-				for (int fil=0; fil < this.mundoConocido.size(); fil++)
-					this.mundoConocido.get(fil).removeElementAt(this.mundoConocido.size() - 1);
+                    // Actualizo la posición de las celdas visitadas
+                    it = this.celdasVisitadas.iterator();
+                    while (it.hasNext()) {
+                        Point par = it.next();
+                        par.setLocation(par.getX(), par.getY() + 1);
+                    }
 
-				if (filaDeDesconocidosAlNorte) {
-					this.mundoConocido.removeElementAt(0);
+                    for (int fil = 0; fil < this.mundoConocido.size(); fil++) {
+                        hayColumnaDeDesconocidos = (this.mundoConocido.get(fil).lastElement() == PercepcionSnake.DESCONOCIDO);
+
+                        if (hayColumnaDeDesconocidos == false) {
+                            break;
+                        }
+                    }
+                }
+            } else if (hayColumnaDeDesconocidos && encontreElLimiteAlOeste) {
+                boolean filaDeDesconocidosAlNorte = false;
+                for (int col = 0; col < this.mundoConocido.size(); col++) {
+                    filaDeDesconocidosAlNorte = (this.mundoConocido.firstElement().get(col) == PercepcionSnake.DESCONOCIDO);
+
+                    if (!filaDeDesconocidosAlNorte) {
+                        break;
+                    }
+                }
+
+                boolean filaDeDesconocidosAlSur = false;
+                for (int col = 0; col < this.mundoConocido.size(); col++) {
+                    filaDeDesconocidosAlSur = (this.mundoConocido.lastElement().get(col) == PercepcionSnake.DESCONOCIDO);
+
+                    if (!filaDeDesconocidosAlSur) {
+                        break;
+                    }
+                }
+
+                for (int fil = 0; fil < this.mundoConocido.size(); fil++) {
+                    this.mundoConocido.get(fil).removeElementAt(this.mundoConocido.size() - 1);
+                }
+                if (filaDeDesconocidosAlNorte) {
+                    this.mundoConocido.removeElementAt(0);
 //					Actualizo la posición del agente
-					Iterator<Point> it =  this.composicionDelAgente.iterator();
-					while (it.hasNext()) {
-						Point par = it.next();
-						par.setLocation(par.getX() - 1, par.getY());
-					}
+                    Iterator<Point> it = this.composicionDelAgente.iterator();
+                    while (it.hasNext()) {
+                        Point par = it.next();
+                        par.setLocation(par.getX() - 1, par.getY());
+                    }
 
-					// Actualizo la posición de las celdas visitadas
-					it =  this.celdasVisitadas.iterator();
-					while (it.hasNext()) {
-						Point par = it.next();
-						par.setLocation(par.getX() - 1, par.getY());
-					}
-				} else if (filaDeDesconocidosAlSur) {
-					this.mundoConocido.removeElementAt(this.mundoConocido.size() - 1);
-				}
+                    // Actualizo la posición de las celdas visitadas
+                    it = this.celdasVisitadas.iterator();
+                    while (it.hasNext()) {
+                        Point par = it.next();
+                        par.setLocation(par.getX() - 1, par.getY());
+                    }
+                } else if (filaDeDesconocidosAlSur) {
+                    this.mundoConocido.removeElementAt(this.mundoConocido.size() - 1);
+                }
 
-			}
-		}
-		else {
-			if ((int) cabeza.getY() == this.mundoConocido.size() - 1) {
-				if (this.mundoConocido.size() == 10 &&
-						!this.encontreElLimiteAlOeste &&
-						!this.encontreElLimiteAlEste) {
-					/*
-					 * Si estoy en el límite máximo del mundo, la idea es que seguro habrá algo desconocido en el extremo opuesto,
-					 * por lo tanto, determino que esa columna desconocida, estará al este ahora.
-					 * 
-					 */
+            }
+        } else {
+            if ((int) cabeza.getY() == this.mundoConocido.size() - 1) {
+                if (this.mundoConocido.size() == 10 &&
+                        !this.encontreElLimiteAlOeste &&
+                        !this.encontreElLimiteAlEste) {
+                    /*
+                     * Si estoy en el límite máximo del mundo, la idea es que seguro habrá algo desconocido en el extremo opuesto,
+                     * por lo tanto, determino que esa columna desconocida, estará al este ahora.
+                     * 
+                     */
 
-					for (int fil=0; fil < this.mundoConocido.size(); fil++) {
-						this.mundoConocido.get(fil).removeElementAt(0);
-						this.mundoConocido.get(fil).add(new Integer(PercepcionSnake.DESCONOCIDO));
-					}
+                    for (int fil = 0; fil < this.mundoConocido.size(); fil++) {
+                        this.mundoConocido.get(fil).removeElementAt(0);
+                        this.mundoConocido.get(fil).add(new Integer(PercepcionSnake.DESCONOCIDO));
+                    }
 
 //					Actualizo la posición del agente
-					Iterator<Point> it =  this.composicionDelAgente.iterator();
-					while (it.hasNext()) {
-						Point par = it.next();
-						par.setLocation(par.getX(), par.getY() - 1);
-					}
+                    Iterator<Point> it = this.composicionDelAgente.iterator();
+                    while (it.hasNext()) {
+                        Point par = it.next();
+                        par.setLocation(par.getX(), par.getY() - 1);
+                    }
 
-					// Actualizo la posición de las celdas visitadas
-					it =  this.celdasVisitadas.iterator();
-					while (it.hasNext()) {
-						Point par = it.next();
-						par.setLocation(par.getX(), par.getY() - 1);
-					}
-				} else {
-					// Agrando el mundo conocido
-					// Creo la fila nueva
-					Vector<Integer> filaNueva = new Vector<Integer>();
-					for (int fil=0; fil < this.mundoConocido.size(); fil++)
-						filaNueva.add(new Integer(PercepcionSnake.DESCONOCIDO));
+                    // Actualizo la posición de las celdas visitadas
+                    it = this.celdasVisitadas.iterator();
+                    while (it.hasNext()) {
+                        Point par = it.next();
+                        par.setLocation(par.getX(), par.getY() - 1);
+                    }
+                } else {
+                    // Agrando el mundo conocido
+                    // Creo la fila nueva
+                    Vector<Integer> filaNueva = new Vector<Integer>();
+                    for (int fil = 0; fil < this.mundoConocido.size(); fil++) {
+                        filaNueva.add(new Integer(PercepcionSnake.DESCONOCIDO));                    // Por defecto, para que la matriz quede cuadrada, agregamos una fila al sur.
+                    // Si no se puede xq ya se encontró el límite, se agrega al norte.
+                    // Agrego la fila nueva a la matriz del mundo conocido al sur
+                    }
+                    if (!this.encontreElLimiteAlSur) {
+                        this.mundoConocido.add(filaNueva);
 
-					// Por defecto, para que la matriz quede cuadrada, agregamos una fila al sur.
-					// Si no se puede xq ya se encontró el límite, se agrega al norte.
-					// Agrego la fila nueva a la matriz del mundo conocido al sur
-					if (!this.encontreElLimiteAlSur) {
-						this.mundoConocido.add(filaNueva);
+                        // Agregamos las columnas
+                        for (int fil = 0; fil < this.mundoConocido.size(); fil++) {
+                            this.mundoConocido.get(fil).add(new Integer(EstadoSnake.DESCONOCIDO));
+                        }
+                    } else {
+                        this.mundoConocido.insertElementAt(filaNueva, 0);
 
-						// Agregamos las columnas
-						for (int fil=0; fil < this.mundoConocido.size(); fil++)
-							this.mundoConocido.get(fil).add(new Integer(EstadoSnake.DESCONOCIDO));
-					} else {
-						this.mundoConocido.insertElementAt(filaNueva, 0);
+                        // Agregamos las columnas
+                        for (int fil = 0; fil < this.mundoConocido.size(); fil++) {
+                            this.mundoConocido.get(fil).add(new Integer(EstadoSnake.DESCONOCIDO));                        // Actualizo la posición del agente
+                        }
+                        Iterator<Point> it = this.composicionDelAgente.iterator();
+                        while (it.hasNext()) {
+                            Point par = it.next();
+                            par.setLocation(par.getX() + 1, par.getY());
+                        }
 
-						// Agregamos las columnas
-						for (int fil=0; fil < this.mundoConocido.size(); fil++)
-							this.mundoConocido.get(fil).add(new Integer(EstadoSnake.DESCONOCIDO));
+                        // Actualizo la posición de las celdas visitadas
+                        it = this.celdasVisitadas.iterator();
+                        while (it.hasNext()) {
+                            Point par = it.next();
+                            par.setLocation(par.getX() + 1, par.getY());
+                        }
+                    }
+                }
+            }
 
-						// Actualizo la posición del agente
-						Iterator<Point> it =  this.composicionDelAgente.iterator();
-						while (it.hasNext()) {
-							Point par = it.next();
-							par.setLocation(par.getX() + 1, par.getY());
-						}
+            cabeza = this.composicionDelAgente.firstElement();
+            this.mundoConocido.get((int) cabeza.getX()).setElementAt(
+                    new Integer(((PercepcionSnake) p).getSensorEste()), (int) cabeza.getY() + 1);
+        }
+        // Al Oeste de la cabeza
+        if (((PercepcionSnake) p).getSensorOeste() == PercepcionSnake.LIMITE_DEL_MUNDO) {
+            this.encontreElLimiteAlOeste = true;
 
-						// Actualizo la posición de las celdas visitadas
-						it =  this.celdasVisitadas.iterator();
-						while (it.hasNext()) {
-							Point par = it.next();
-							par.setLocation(par.getX() + 1, par.getY());
-						}
-					}
-				}
-			}
+            // Vemos si hay columna de desconocidos al oeste
+            boolean hayColumnaDeDesconocidos = false;
 
-			cabeza = this.composicionDelAgente.firstElement();
-			this.mundoConocido.get((int) cabeza.getX()).setElementAt(
-					new Integer(((PercepcionSnake) p).getSensorEste()), (int) cabeza.getY() + 1);
-		}
-		// Al Oeste de la cabeza
-		if (((PercepcionSnake) p).getSensorOeste() == PercepcionSnake.LIMITE_DEL_MUNDO) {
-			this.encontreElLimiteAlOeste = true;
+            for (int fil = 0; fil < this.mundoConocido.size(); fil++) {
+                hayColumnaDeDesconocidos = (this.mundoConocido.get(fil).firstElement() == PercepcionSnake.DESCONOCIDO);
 
-			// Vemos si hay columna de desconocidos al oeste
-			boolean hayColumnaDeDesconocidos = false;
+                if (hayColumnaDeDesconocidos == false) {
+                    break;
+                }
+            }
 
-			for (int fil=0; fil < this.mundoConocido.size(); fil++) {
-				hayColumnaDeDesconocidos = (this.mundoConocido.get(fil).firstElement() == PercepcionSnake.DESCONOCIDO);
-
-				if (hayColumnaDeDesconocidos == false)
-					break;
-			}
-
-			if (this.mundoConocido.size() == 10) {
+            if (this.mundoConocido.size() == 10) {
 //				if (!hayColumnaDeDesconocidos)
 //					return;
 //				else {
-				if (hayColumnaDeDesconocidos) {
-					boolean filaDeDesconocidosAlNorte = false;
-					for (int col=0; col < this.mundoConocido.size(); col++) {
-						filaDeDesconocidosAlNorte = (this.mundoConocido.firstElement().get(col) == PercepcionSnake.DESCONOCIDO);
+                if (hayColumnaDeDesconocidos) {
+                    boolean filaDeDesconocidosAlNorte = false;
+                    for (int col = 0; col < this.mundoConocido.size(); col++) {
+                        filaDeDesconocidosAlNorte = (this.mundoConocido.firstElement().get(col) == PercepcionSnake.DESCONOCIDO);
 
-						if (!filaDeDesconocidosAlNorte)
-							break;
-					}
+                        if (!filaDeDesconocidosAlNorte) {
+                            break;
+                        }
+                    }
 
-					boolean filaDeDesconocidosAlSur = false;
-					for (int col=0; col < this.mundoConocido.size(); col++) {
-						filaDeDesconocidosAlSur = (this.mundoConocido.lastElement().get(col) == PercepcionSnake.DESCONOCIDO);
+                    boolean filaDeDesconocidosAlSur = false;
+                    for (int col = 0; col < this.mundoConocido.size(); col++) {
+                        filaDeDesconocidosAlSur = (this.mundoConocido.lastElement().get(col) == PercepcionSnake.DESCONOCIDO);
 
-						if (!filaDeDesconocidosAlSur)
-							break;
-					}
+                        if (!filaDeDesconocidosAlSur) {
+                            break;
+                        }
+                    }
 
-					for (int fil=0; fil < this.mundoConocido.size(); fil++)
-						this.mundoConocido.get(fil).removeElementAt(0);
+                    for (int fil = 0; fil < this.mundoConocido.size(); fil++) {
+                        this.mundoConocido.get(fil).removeElementAt(0);
+                    }
+                    while (hayColumnaDeDesconocidos) {
+                        if (filaDeDesconocidosAlNorte && hayColumnaDeDesconocidos) {
+                            this.mundoConocido.removeElementAt(0);
+                            //						Actualizo la posición del agente
+                            Iterator<Point> it = this.composicionDelAgente.iterator();
+                            while (it.hasNext()) {
+                                Point par = it.next();
+                                par.setLocation(par.getX() - 1, par.getY());
+                            }
 
-					while (hayColumnaDeDesconocidos) {
-						if (filaDeDesconocidosAlNorte && hayColumnaDeDesconocidos) {
-							this.mundoConocido.removeElementAt(0);
-							//						Actualizo la posición del agente
-							Iterator<Point> it =  this.composicionDelAgente.iterator();
-							while (it.hasNext()) {
-								Point par = it.next();
-								par.setLocation(par.getX() - 1, par.getY());
-							}
-							
-							// Actualizo la posición de las celdas visitadas
-							it =  this.celdasVisitadas.iterator();
-							while (it.hasNext()) {
-								Point par = it.next();
-								par.setLocation(par.getX() - 1, par.getY());
-							}
-							
-							for (int col=0; col < this.mundoConocido.size(); col++) {
-								filaDeDesconocidosAlNorte = (this.mundoConocido.firstElement().get(col) == PercepcionSnake.DESCONOCIDO);
-	
-								if (!filaDeDesconocidosAlNorte)
-									break;
-							}
-							
-						}
-						if (filaDeDesconocidosAlSur && hayColumnaDeDesconocidos) {
-							this.mundoConocido.removeElementAt(this.mundoConocido.size() - 1);
-	
-							for (int col=0; col < this.mundoConocido.size(); col++) {
-								filaDeDesconocidosAlSur = (this.mundoConocido.lastElement().get(col) == PercepcionSnake.DESCONOCIDO);
-	
-								if (!filaDeDesconocidosAlSur)
-									break;
-							}
-						}
-					
-					
-						for (int fil=0; fil < this.mundoConocido.size(); fil++) {
-							this.mundoConocido.get(fil).removeElementAt(0);
-							this.mundoConocido.get(fil).add(new Integer(PercepcionSnake.DESCONOCIDO));
-						}
+                            // Actualizo la posición de las celdas visitadas
+                            it = this.celdasVisitadas.iterator();
+                            while (it.hasNext()) {
+                                Point par = it.next();
+                                par.setLocation(par.getX() - 1, par.getY());
+                            }
 
-						// Actualizo la posición del agente
-						Iterator<Point> it =  this.composicionDelAgente.iterator();
-						while (it.hasNext()) {
-							Point par = it.next();
-							par.setLocation(par.getX(), par.getY() - 1);
-						}
+                            for (int col = 0; col < this.mundoConocido.size(); col++) {
+                                filaDeDesconocidosAlNorte = (this.mundoConocido.firstElement().get(col) == PercepcionSnake.DESCONOCIDO);
 
-						// Actualizo la posición de las celdas visitadas
-						it =  this.celdasVisitadas.iterator();
-						while (it.hasNext()) {
-							Point par = it.next();
-							par.setLocation(par.getX(), par.getY() - 1);
-						}
+                                if (!filaDeDesconocidosAlNorte) {
+                                    break;
+                                }
+                            }
 
-						for (int fil=0; fil < this.mundoConocido.size(); fil++) {
-							hayColumnaDeDesconocidos = (this.mundoConocido.get(fil).firstElement() == PercepcionSnake.DESCONOCIDO);
+                        }
+                        if (filaDeDesconocidosAlSur && hayColumnaDeDesconocidos) {
+                            this.mundoConocido.removeElementAt(this.mundoConocido.size() - 1);
 
-							if (hayColumnaDeDesconocidos == false)
-								break;
-						}
-					}
-					
+                            for (int col = 0; col < this.mundoConocido.size(); col++) {
+                                filaDeDesconocidosAlSur = (this.mundoConocido.lastElement().get(col) == PercepcionSnake.DESCONOCIDO);
+
+                                if (!filaDeDesconocidosAlSur) {
+                                    break;
+                                }
+                            }
+                        }
+
+
+                        for (int fil = 0; fil < this.mundoConocido.size(); fil++) {
+                            this.mundoConocido.get(fil).removeElementAt(0);
+                            this.mundoConocido.get(fil).add(new Integer(PercepcionSnake.DESCONOCIDO));
+                        }
+
+                        // Actualizo la posición del agente
+                        Iterator<Point> it = this.composicionDelAgente.iterator();
+                        while (it.hasNext()) {
+                            Point par = it.next();
+                            par.setLocation(par.getX(), par.getY() - 1);
+                        }
+
+                        // Actualizo la posición de las celdas visitadas
+                        it = this.celdasVisitadas.iterator();
+                        while (it.hasNext()) {
+                            Point par = it.next();
+                            par.setLocation(par.getX(), par.getY() - 1);
+                        }
+
+                        for (int fil = 0; fil < this.mundoConocido.size(); fil++) {
+                            hayColumnaDeDesconocidos = (this.mundoConocido.get(fil).firstElement() == PercepcionSnake.DESCONOCIDO);
+
+                            if (hayColumnaDeDesconocidos == false) {
+                                break;
+                            }
+                        }
+                    }
+
 //					// Actualizo la posición del agente
 //					Iterator<Point> it =  this.composicionDelAgente.iterator();
 //					while (it.hasNext()) {
@@ -966,741 +986,755 @@ public class EstadoSnake extends AgentState {
 //						par.setLocation(par.getX(), par.getY() - 1);
 //					}
 
-				}
-			}
+                }
+            }
 
-			if (!this.encontreElLimiteAlEste) {
-				while (hayColumnaDeDesconocidos) {
-					for (int fil=0; fil < this.mundoConocido.size(); fil++) {
-						this.mundoConocido.get(fil).removeElementAt(0);
-						this.mundoConocido.get(fil).add(new Integer(PercepcionSnake.DESCONOCIDO));
-					}
+            if (!this.encontreElLimiteAlEste) {
+                while (hayColumnaDeDesconocidos) {
+                    for (int fil = 0; fil < this.mundoConocido.size(); fil++) {
+                        this.mundoConocido.get(fil).removeElementAt(0);
+                        this.mundoConocido.get(fil).add(new Integer(PercepcionSnake.DESCONOCIDO));
+                    }
 
-					// Actualizo la posición del agente
-					Iterator<Point> it =  this.composicionDelAgente.iterator();
-					while (it.hasNext()) {
-						Point par = it.next();
-						par.setLocation(par.getX(), par.getY() - 1);
-					}
+                    // Actualizo la posición del agente
+                    Iterator<Point> it = this.composicionDelAgente.iterator();
+                    while (it.hasNext()) {
+                        Point par = it.next();
+                        par.setLocation(par.getX(), par.getY() - 1);
+                    }
 
-					// Actualizo la posición de las celdas visitadas
-					it =  this.celdasVisitadas.iterator();
-					while (it.hasNext()) {
-						Point par = it.next();
-						par.setLocation(par.getX(), par.getY() - 1);
-					}
+                    // Actualizo la posición de las celdas visitadas
+                    it = this.celdasVisitadas.iterator();
+                    while (it.hasNext()) {
+                        Point par = it.next();
+                        par.setLocation(par.getX(), par.getY() - 1);
+                    }
 
-					for (int fil=0; fil < this.mundoConocido.size(); fil++) {
-						hayColumnaDeDesconocidos = (this.mundoConocido.get(fil).firstElement() == PercepcionSnake.DESCONOCIDO);
+                    for (int fil = 0; fil < this.mundoConocido.size(); fil++) {
+                        hayColumnaDeDesconocidos = (this.mundoConocido.get(fil).firstElement() == PercepcionSnake.DESCONOCIDO);
 
-						if (hayColumnaDeDesconocidos == false)
-							break;
-					}
-				}
-			} else if (hayColumnaDeDesconocidos && encontreElLimiteAlEste) {
-				boolean filaDeDesconocidosAlNorte = false;
-				for (int col=0; col < this.mundoConocido.size(); col++) {
-					filaDeDesconocidosAlNorte = (this.mundoConocido.firstElement().get(col) == PercepcionSnake.DESCONOCIDO);
+                        if (hayColumnaDeDesconocidos == false) {
+                            break;
+                        }
+                    }
+                }
+            } else if (hayColumnaDeDesconocidos && encontreElLimiteAlEste) {
+                boolean filaDeDesconocidosAlNorte = false;
+                for (int col = 0; col < this.mundoConocido.size(); col++) {
+                    filaDeDesconocidosAlNorte = (this.mundoConocido.firstElement().get(col) == PercepcionSnake.DESCONOCIDO);
 
-					if (!filaDeDesconocidosAlNorte)
-						break;
-				}
+                    if (!filaDeDesconocidosAlNorte) {
+                        break;
+                    }
+                }
 
-				boolean filaDeDesconocidosAlSur = false;
-				for (int col=0; col < this.mundoConocido.size(); col++) {
-					filaDeDesconocidosAlSur = (this.mundoConocido.lastElement().get(col) == PercepcionSnake.DESCONOCIDO);
+                boolean filaDeDesconocidosAlSur = false;
+                for (int col = 0; col < this.mundoConocido.size(); col++) {
+                    filaDeDesconocidosAlSur = (this.mundoConocido.lastElement().get(col) == PercepcionSnake.DESCONOCIDO);
 
-					if (!filaDeDesconocidosAlSur)
-						break;
-				}
+                    if (!filaDeDesconocidosAlSur) {
+                        break;
+                    }
+                }
 
-				for (int fil=0; fil < this.mundoConocido.size(); fil++)
-					this.mundoConocido.get(fil).removeElementAt(0);
-
-				if (filaDeDesconocidosAlNorte) {
-					this.mundoConocido.removeElementAt(0);
+                for (int fil = 0; fil < this.mundoConocido.size(); fil++) {
+                    this.mundoConocido.get(fil).removeElementAt(0);
+                }
+                if (filaDeDesconocidosAlNorte) {
+                    this.mundoConocido.removeElementAt(0);
 //					Actualizo la posición del agente
-					Iterator<Point> it =  this.composicionDelAgente.iterator();
-					while (it.hasNext()) {
-						Point par = it.next();
-						par.setLocation(par.getX() - 1, par.getY() - 1);
-					}
+                    Iterator<Point> it = this.composicionDelAgente.iterator();
+                    while (it.hasNext()) {
+                        Point par = it.next();
+                        par.setLocation(par.getX() - 1, par.getY() - 1);
+                    }
 
-					// Actualizo la posición de las celdas visitadas
-					it =  this.celdasVisitadas.iterator();
-					while (it.hasNext()) {
-						Point par = it.next();
-						par.setLocation(par.getX() - 1, par.getY() - 1);
-					}
-				} else if (filaDeDesconocidosAlSur) {
-					this.mundoConocido.removeElementAt(this.mundoConocido.size() - 1);
+                    // Actualizo la posición de las celdas visitadas
+                    it = this.celdasVisitadas.iterator();
+                    while (it.hasNext()) {
+                        Point par = it.next();
+                        par.setLocation(par.getX() - 1, par.getY() - 1);
+                    }
+                } else if (filaDeDesconocidosAlSur) {
+                    this.mundoConocido.removeElementAt(this.mundoConocido.size() - 1);
 
-					// Actualizo la posición del agente
-					Iterator<Point> it =  this.composicionDelAgente.iterator();
-					while (it.hasNext()) {
-						Point par = it.next();
-						par.setLocation(par.getX(), par.getY() - 1);
-					}
+                    // Actualizo la posición del agente
+                    Iterator<Point> it = this.composicionDelAgente.iterator();
+                    while (it.hasNext()) {
+                        Point par = it.next();
+                        par.setLocation(par.getX(), par.getY() - 1);
+                    }
 
-					// Actualizo la posición de las celdas visitadas
-					it =  this.celdasVisitadas.iterator();
-					while (it.hasNext()) {
-						Point par = it.next();
-						par.setLocation(par.getX(), par.getY() - 1);
-					}
-				} else {
+                    // Actualizo la posición de las celdas visitadas
+                    it = this.celdasVisitadas.iterator();
+                    while (it.hasNext()) {
+                        Point par = it.next();
+                        par.setLocation(par.getX(), par.getY() - 1);
+                    }
+                } else {
 //					Actualizo la posición del agente
-					Iterator<Point> it =  this.composicionDelAgente.iterator();
-					while (it.hasNext()) {
-						Point par = it.next();
-						par.setLocation(par.getX(), par.getY() - 1);
-					}
+                    Iterator<Point> it = this.composicionDelAgente.iterator();
+                    while (it.hasNext()) {
+                        Point par = it.next();
+                        par.setLocation(par.getX(), par.getY() - 1);
+                    }
 
-					// Actualizo la posición de las celdas visitadas
-					it =  this.celdasVisitadas.iterator();
-					while (it.hasNext()) {
-						Point par = it.next();
-						par.setLocation(par.getX(), par.getY() - 1);
-					}
-				}
-			}
-		}
-		else {
-			if ((int) cabeza.getY() == 0) {
-				if (this.mundoConocido.size() == 10 &&
-						!this.encontreElLimiteAlEste &&
-						!this.encontreElLimiteAlOeste) {
-					/*
-					 * Si estoy en el límite máximo del mundo, la idea es que seguro habrá algo desconocido en el extremo opuesto,
-					 * por lo tanto, determino que esa columna desconocida, estará al oeste ahora.
-					 * 
-					 */
+                    // Actualizo la posición de las celdas visitadas
+                    it = this.celdasVisitadas.iterator();
+                    while (it.hasNext()) {
+                        Point par = it.next();
+                        par.setLocation(par.getX(), par.getY() - 1);
+                    }
+                }
+            }
+        } else {
+            if ((int) cabeza.getY() == 0) {
+                if (this.mundoConocido.size() == 10 &&
+                        !this.encontreElLimiteAlEste &&
+                        !this.encontreElLimiteAlOeste) {
+                    /*
+                     * Si estoy en el límite máximo del mundo, la idea es que seguro habrá algo desconocido en el extremo opuesto,
+                     * por lo tanto, determino que esa columna desconocida, estará al oeste ahora.
+                     * 
+                     */
 
-					for (int fil=0; fil < this.mundoConocido.size(); fil++) {
-						this.mundoConocido.get(fil).removeElementAt(this.mundoConocido.size() - 1);
-						this.mundoConocido.get(fil).insertElementAt(new Integer(PercepcionSnake.DESCONOCIDO), 0);
-					}
+                    for (int fil = 0; fil < this.mundoConocido.size(); fil++) {
+                        this.mundoConocido.get(fil).removeElementAt(this.mundoConocido.size() - 1);
+                        this.mundoConocido.get(fil).insertElementAt(new Integer(PercepcionSnake.DESCONOCIDO), 0);
+                    }
 
 //					Actualizo la posición del agente
-					Iterator<Point> it =  this.composicionDelAgente.iterator();
-					while (it.hasNext()) {
-						Point par = it.next();
-						par.setLocation(par.getX(), par.getY() + 1);
-					}
+                    Iterator<Point> it = this.composicionDelAgente.iterator();
+                    while (it.hasNext()) {
+                        Point par = it.next();
+                        par.setLocation(par.getX(), par.getY() + 1);
+                    }
 
-					// Actualizo la posición de las celdas visitadas
-					it =  this.celdasVisitadas.iterator();
-					while (it.hasNext()) {
-						Point par = it.next();
-						par.setLocation(par.getX(), par.getY() + 1);
-					}
-				} else {
-					// Agrando el mundo conocido
+                    // Actualizo la posición de las celdas visitadas
+                    it = this.celdasVisitadas.iterator();
+                    while (it.hasNext()) {
+                        Point par = it.next();
+                        par.setLocation(par.getX(), par.getY() + 1);
+                    }
+                } else {
+                    // Agrando el mundo conocido
 
-					// Creo la fila nueva
-					Vector<Integer> filaNueva = new Vector<Integer>();
-					for (int fil=0; fil < this.mundoConocido.size(); fil++)
-						filaNueva.add(new Integer(PercepcionSnake.DESCONOCIDO));
+                    // Creo la fila nueva
+                    Vector<Integer> filaNueva = new Vector<Integer>();
+                    for (int fil = 0; fil < this.mundoConocido.size(); fil++) {
+                        filaNueva.add(new Integer(PercepcionSnake.DESCONOCIDO));                    // Por defecto, para que la matriz quede cuadrada, agregamos una fila al sur.
+                    // Si no se puede xq ya se encontró el límite, se agrega al norte.
+                    // Agrego la fila nueva a la matriz del mundo conocido al sur
+                    }
+                    if (!this.encontreElLimiteAlSur) {
+                        this.mundoConocido.add(filaNueva);
 
-					// Por defecto, para que la matriz quede cuadrada, agregamos una fila al sur.
-					// Si no se puede xq ya se encontró el límite, se agrega al norte.
-					// Agrego la fila nueva a la matriz del mundo conocido al sur
-					if (!this.encontreElLimiteAlSur) {
-						this.mundoConocido.add(filaNueva);
+                        // Agregamos las columnas
+                        for (int fil = 0; fil < this.mundoConocido.size(); fil++) {
+                            this.mundoConocido.get(fil).insertElementAt(new Integer(EstadoSnake.DESCONOCIDO), 0);                        // Actualizo la posición del agente
+                        }
+                        Iterator<Point> it = this.composicionDelAgente.iterator();
+                        while (it.hasNext()) {
+                            Point par = it.next();
+                            par.setLocation(par.getX(), par.getY() + 1);
+                        }
 
-						// Agregamos las columnas
-						for (int fil=0; fil < this.mundoConocido.size(); fil++)
-							this.mundoConocido.get(fil).insertElementAt(new Integer(EstadoSnake.DESCONOCIDO), 0);
+                        // Actualizo la posición de las celdas visitadas
+                        it = this.celdasVisitadas.iterator();
+                        while (it.hasNext()) {
+                            Point par = it.next();
+                            par.setLocation(par.getX(), par.getY() + 1);
+                        }
+                    } else {
+                        this.mundoConocido.insertElementAt(filaNueva, 0);
 
-						// Actualizo la posición del agente
-						Iterator<Point> it =  this.composicionDelAgente.iterator();
-						while (it.hasNext()) {
-							Point par = it.next();
-							par.setLocation(par.getX(), par.getY() + 1);
-						}
+                        // Agregamos las columnas
+                        for (int fil = 0; fil < this.mundoConocido.size(); fil++) {
+                            this.mundoConocido.get(fil).insertElementAt(new Integer(EstadoSnake.DESCONOCIDO), 0);                        // Actualizo la posición del agente
+                        }
+                        Iterator<Point> it = this.composicionDelAgente.iterator();
+                        while (it.hasNext()) {
+                            Point par = it.next();
+                            par.setLocation(par.getX() + 1, par.getY() + 1);
+                        }
 
-						// Actualizo la posición de las celdas visitadas
-						it =  this.celdasVisitadas.iterator();
-						while (it.hasNext()) {
-							Point par = it.next();
-							par.setLocation(par.getX(), par.getY() + 1);
-						}
-					} else {
-						this.mundoConocido.insertElementAt(filaNueva, 0);
+                        // Actualizo la posición de las celdas visitadas
+                        it = this.celdasVisitadas.iterator();
+                        while (it.hasNext()) {
+                            Point par = it.next();
+                            par.setLocation(par.getX() + 1, par.getY() + 1);
+                        }
+                    }
+                }
+            }
+            cabeza = this.composicionDelAgente.firstElement();
+            this.mundoConocido.get((int) cabeza.getX()).setElementAt(
+                    new Integer(((PercepcionSnake) p).getSensorOeste()), (int) cabeza.getY() - 1);
+        }
+    }
 
-						// Agregamos las columnas
-						for (int fil=0; fil < this.mundoConocido.size(); fil++)
-							this.mundoConocido.get(fil).insertElementAt(new Integer(EstadoSnake.DESCONOCIDO), 0);
+    @Override
+    public Object clone() {
+        EstadoSnake clon = new EstadoSnake();
 
-						// Actualizo la posición del agente
-						Iterator<Point> it =  this.composicionDelAgente.iterator();
-						while (it.hasNext()) {
-							Point par = it.next();
-							par.setLocation(par.getX() + 1, par.getY() + 1);
-						}
+        try {
+            clon.setLongitud(this.longitud);
+        } catch (Exception e) {
+        }
 
-						// Actualizo la posición de las celdas visitadas
-						it =  this.celdasVisitadas.iterator();
-						while (it.hasNext()) {
-							Point par = it.next();
-							par.setLocation(par.getX() + 1, par.getY() + 1);
-						}
-					}
-				}
-			}
-			cabeza = this.composicionDelAgente.firstElement();
-			this.mundoConocido.get((int) cabeza.getX()).setElementAt(
-					new Integer(((PercepcionSnake) p).getSensorOeste()), (int) cabeza.getY() - 1);
-		}
-	}
+        clon.setOrientacionDeLaCabeza(this.orientacionDeLaCabeza);
 
+        Vector<Point> composicionDelAgenteClon = new Vector<Point>();
+        for (int par = 0; par < this.composicionDelAgente.size(); par++) {
+            composicionDelAgenteClon.add(new Point(
+                    this.composicionDelAgente.get(par)));
+        }
 
-	@Override
-	public Object clone() {
-		EstadoSnake clon = new EstadoSnake();
+        clon.setComposicionDelAgente(composicionDelAgenteClon);
 
-		try {
-			clon.setLongitud(this.longitud);
-		}
-		catch (Exception e) {
-			
-		}
-		
-		clon.setOrientacionDeLaCabeza(this.orientacionDeLaCabeza);
-		
-		Vector<Point> composicionDelAgenteClon = new Vector<Point>();
-		for (int par=0; par < this.composicionDelAgente.size(); par++) {
-			composicionDelAgenteClon.add(new Point(
-					this.composicionDelAgente.get(par)));
-		}
-		
-		clon.setComposicionDelAgente(composicionDelAgenteClon);
-		
-		Vector<Point> celdasVisitadasClon = new Vector<Point>();
-		for (int par=0; par < this.celdasVisitadas.size(); par++) {
-			celdasVisitadasClon.add(new Point(
-					this.celdasVisitadas.get(par)));
-		}
-		
-		clon.setCeldasVisitadas(celdasVisitadasClon);
-		
-		Vector<Vector<Integer>> mundoConocidoClon = new Vector<Vector<Integer>>();
-		for (int fil=0; fil < this.mundoConocido.size(); fil++) {
-			mundoConocidoClon.add(new Vector<Integer>());
-			for (int col=0; col < this.mundoConocido.get(fil).size(); col++) {
-				mundoConocidoClon.get(fil).add(new Integer(
-						this.mundoConocido.get(fil).get(col)));
-			}
-		}
+        Vector<Point> celdasVisitadasClon = new Vector<Point>();
+        for (int par = 0; par < this.celdasVisitadas.size(); par++) {
+            celdasVisitadasClon.add(new Point(
+                    this.celdasVisitadas.get(par)));
+        }
 
-		clon.setMundoConocido(mundoConocidoClon);
-		
-		clon.setEstaVivo(this.estaVivo);
-		
-		clon.setEncontreElLimiteAlEste(encontreElLimiteAlEste);
-		clon.setEncontreElLimiteAlNorte(encontreElLimiteAlNorte);
-		clon.setEncontreElLimiteAlOeste(encontreElLimiteAlOeste);
-		clon.setEncontreElLimiteAlSur(encontreElLimiteAlSur);
+        clon.setCeldasVisitadas(celdasVisitadasClon);
 
-		clon.setVecesQueSeGiro(this.vecesQueSeGiro);
-		clon.setVecesQueSeGiroDerecha(this.vecesQueSeGiroDerecha);
-		
-		return clon;
-	}
+        Vector<Vector<Integer>> mundoConocidoClon = new Vector<Vector<Integer>>();
+        for (int fil = 0; fil < this.mundoConocido.size(); fil++) {
+            mundoConocidoClon.add(new Vector<Integer>());
+            for (int col = 0; col < this.mundoConocido.get(fil).size(); col++) {
+                mundoConocidoClon.get(fil).add(new Integer(
+                        this.mundoConocido.get(fil).get(col)));
+            }
+        }
 
-	@Override
-	public boolean equals(Object obj) {
-		EstadoSnake snake = (EstadoSnake) obj;
-		
-		// Comparamos si esta vivo
-		if (this.estaVivo != snake.getVivo())
-			return false;
+        clon.setMundoConocido(mundoConocidoClon);
 
-		// Comparamos los limites encontrados
-		if (this.encontreElLimiteAlEste != snake.isEncontreElLimiteAlEste())
-			return false;
-		if (this.encontreElLimiteAlOeste != snake.isEncontreElLimiteAlOeste())
-			return false;
-		if (this.encontreElLimiteAlNorte != snake.isEncontreElLimiteAlNorte())
-			return false;
-		if (this.encontreElLimiteAlSur != snake.isEncontreElLimiteAlSur())
-			return false;
-		
-		// Comparamos la orientacion
-		if (this.orientacionDeLaCabeza != snake.getOrientacionDeLaCabeza())
-			return false;
-			
-		// Comparamos la longitud
-		if (this.longitud != snake.getLongitud())
-			return false;
-		
-		// Comparamos la composición del agente
-		for (int i=0; i < this.composicionDelAgente.size(); i++)
-			if (this.composicionDelAgente.get(i) != snake.composicionDelAgente.get(i))
-				return false;
-		
-		// Comparamos las celdas visitadas
-		if (this.celdasVisitadas.size() != snake.getCeldasVisitadas().size())
-			return false;
-		
-		for (int i=0; i < this.celdasVisitadas.size(); i++)
-			if (this.celdasVisitadas.get(i) != snake.getCeldasVisitadas().get(i))
-				return false;
-		
-		// Comparamos las mundos conocidos
-		if (this.mundoConocido.size() != snake.getMundoConocido().size())
-			return false;
-		
-		for (int fil=0; fil < this.mundoConocido.size(); fil++) {
-			if (this.mundoConocido.get(fil).size() != snake.getMundoConocido().get(fil).size())
-				return false;
-			
-			for (int col=0; col < this.mundoConocido.size(); col++)
-				if (this.mundoConocido.get(fil).get(col) != snake.getMundoConocido().get(fil).get(col))
-					return false;
-		}
-			
-		return true;
-	}
+        clon.setEstaVivo(this.estaVivo);
 
-	@Override
-	public void initState() {
-		this.mundoConocido = new Vector<Vector<Integer>>();
-		// Inicialmente asumimos que el mundo es de 3x3 y desconocido menos la posición central, en donde está el agente.
-		
-		for (int fil=0; fil < 3; fil++) {
-			this.mundoConocido.add(new Vector<Integer>());
-			for (int col=0; col < 3; col++)
-				this.mundoConocido.get(fil).add(new Integer(PercepcionSnake.DESCONOCIDO));
-		}
-		
-		this.mundoConocido.get(1).setElementAt(new Integer(PercepcionSnake.PARTE_DEL_AGENTE), 1);
-		
-		// Por defecto el agente arranca mirando al Este.
-		this.orientacionDeLaCabeza = EstadoSnake.ESTE;
-		
-		this.composicionDelAgente = new Vector<Point>();
-		this.composicionDelAgente.add(new Point(1,1));
-		
-		this.celdasVisitadas = new Vector<Point>();
-		
-		this.longitud = 1;
-		
-		this.estaVivo = true;
-		
-		this.encontreElLimiteAlNorte = false;
-		this.encontreElLimiteAlSur = false;
-		this.encontreElLimiteAlEste = false;
-		this.encontreElLimiteAlOeste = false;
-		
-		this.vecesQueSeGiro = 0;
-		this.vecesQueSeGiroDerecha = 0;
-	}
+        clon.setEncontreElLimiteAlEste(encontreElLimiteAlEste);
+        clon.setEncontreElLimiteAlNorte(encontreElLimiteAlNorte);
+        clon.setEncontreElLimiteAlOeste(encontreElLimiteAlOeste);
+        clon.setEncontreElLimiteAlSur(encontreElLimiteAlSur);
 
-	@Override
-	public String toString() {
-		String str = "";
+        clon.setVecesQueSeGiro(this.vecesQueSeGiro);
+        clon.setVecesQueSeGiroDerecha(this.vecesQueSeGiroDerecha);
 
-		str = str + " composicion=\"{";
-		for (int i=0;i<this.composicionDelAgente.size();i++){
-			str = str + "(" + (int)this.composicionDelAgente.get(i).getX() + ","
-			+ (int)this.composicionDelAgente.get(i).getY() + ")";
-		}
-		str = str + "}\"\n";
-		str = str + " longitud=\"" + this.longitud + "\"\n";
-		str = str + " orientacion_cabeza=\"" + this.orientacionComoString() + "\"\n";
-		str = str + " esta_vivo=\"" + this.estaVivo + "\"\n";
-		
-		str = str + "mundo_conocido=\"[ \n";
-		for (int fil=0;fil<this.mundoConocido.size();fil++){
-			str = str + "[ ";
-			for (int col=0;col<this.mundoConocido.get(fil).size();col++){
-				if (this.mundoConocido.get(fil).get(col)==-1)
-					str = str + "* ";
-				else
-					str = str + this.mundoConocido.get(fil).get(col)+ " ";
-			}
-			str = str + " ]\n";
-		}
-		str = str + " ]\"";
-		
-		return str;
-	}
+        return clon;
+    }
 
-	private String orientacionComoString() {
-		String str = "";
-		
-		switch (this.orientacionDeLaCabeza) {
-		case 0:
-			str = "Norte";
-			break;
-		case 1:
-			str = "Sur";
-			break;
-		case 2:
-			str = "Este";
-			break;
-		case 3:
-			str = "Oeste";
-			break;
-		default:
-			break;
-		}
-		
-		return str;
-	}
+    @Override
+    public boolean equals(Object obj) {
+        EstadoSnake snake = (EstadoSnake) obj;
 
-	public boolean getVivo() {
-		return this.estaVivo;
-	}
-	
-	public int getLongitud() {
-		return this.longitud;
-	}
-	
-	public void setLongitud(int longitud) throws Exception {
-		if (longitud != this.composicionDelAgente.size())
-			throw new Exception("La longitud no concuerda con el tama;o de la vibora");
-		
-		 this.longitud = longitud;
-	}
+        // Comparamos si esta vivo
+        if (this.estaVivo != snake.getVivo()) {
+            return false;        // Comparamos los limites encontrados
+        }
+        if (this.encontreElLimiteAlEste != snake.isEncontreElLimiteAlEste()) {
+            return false;
+        }
+        if (this.encontreElLimiteAlOeste != snake.isEncontreElLimiteAlOeste()) {
+            return false;
+        }
+        if (this.encontreElLimiteAlNorte != snake.isEncontreElLimiteAlNorte()) {
+            return false;
+        }
+        if (this.encontreElLimiteAlSur != snake.isEncontreElLimiteAlSur()) {
+            return false;        // Comparamos la orientacion
+        }
+        if (this.orientacionDeLaCabeza != snake.getOrientacionDeLaCabeza()) {
+            return false;        // Comparamos la longitud
+        }
+        if (this.longitud != snake.getLongitud()) {
+            return false;        // Comparamos la composición del agente
+        }
+        for (int i = 0; i < this.composicionDelAgente.size(); i++) {
+            if (this.composicionDelAgente.get(i) != snake.composicionDelAgente.get(i)) {
+                return false;            // Comparamos las celdas visitadas
+            }
+        }
+        if (this.celdasVisitadas.size() != snake.getCeldasVisitadas().size()) {
+            return false;
+        }
+        for (int i = 0; i < this.celdasVisitadas.size(); i++) {
+            if (this.celdasVisitadas.get(i) != snake.getCeldasVisitadas().get(i)) {
+                return false;            // Comparamos las mundos conocidos
+            }
+        }
+        if (this.mundoConocido.size() != snake.getMundoConocido().size()) {
+            return false;
+        }
+        for (int fil = 0; fil < this.mundoConocido.size(); fil++) {
+            if (this.mundoConocido.get(fil).size() != snake.getMundoConocido().get(fil).size()) {
+                return false;
+            }
+            for (int col = 0; col < this.mundoConocido.size(); col++) {
+                if (this.mundoConocido.get(fil).get(col) != snake.getMundoConocido().get(fil).get(col)) {
+                    return false;
+                }
+            }
+        }
 
-	public boolean noHayMasComida() {
-		for (int fil = 0; fil < this.mundoConocido.size(); fil++)
-			for (int col = 0; col < this.mundoConocido.get(fil).size(); col++)
-				if (this.mundoConocido.get(fil).get(col) == EstadoSnake.COMIDA)
-					return false;
+        return true;
+    }
 
-		return true;
-	}
+    @Override
+    public void initState() {
+        this.mundoConocido = new Vector<Vector<Integer>>();
+        // Inicialmente asumimos que el mundo es de 3x3 y desconocido menos la posición central, en donde está el agente.
 
-	public boolean todoConocido() {
-		for (int fil = 0; fil < this.mundoConocido.size(); fil++)
-			for (int col = 0; col < this.mundoConocido.get(fil).size(); col++)
-				if (this.mundoConocido.get(fil).get(col) == EstadoSnake.DESCONOCIDO)
-					return false;
-		
-		return true;
-	}
+        for (int fil = 0; fil < 3; fil++) {
+            this.mundoConocido.add(new Vector<Integer>());
+            for (int col = 0; col < 3; col++) {
+                this.mundoConocido.get(fil).add(new Integer(PercepcionSnake.DESCONOCIDO));
+            }
+        }
 
-	public int getOrientacionDeLaCabeza() {
-		return orientacionDeLaCabeza;
-	}
+        this.mundoConocido.get(1).setElementAt(new Integer(PercepcionSnake.PARTE_DEL_AGENTE), 1);
 
-	public void setOrientacionDeLaCabeza(int orientacionDeLaCabeza) {
-		this.orientacionDeLaCabeza = orientacionDeLaCabeza;
-	}
+        // Por defecto el agente arranca mirando al Este.
+        this.orientacionDeLaCabeza = EstadoSnake.ESTE;
 
+        this.composicionDelAgente = new Vector<Point>();
+        this.composicionDelAgente.add(new Point(1, 1));
 
-	public Point getPosicionCabeza() {
-		return this.composicionDelAgente.firstElement();
-	}
+        this.celdasVisitadas = new Vector<Point>();
 
-	private void setComposicionDelAgente(Vector<Point> composicionDelAgente) {
-		this.composicionDelAgente = composicionDelAgente;
-	}
+        this.longitud = 1;
 
-	public void setMundoConocido(Vector<Vector<Integer>> mundoConocido) {
-		this.mundoConocido = mundoConocido;
-	}
-	
-	public Vector<Vector<Integer>> getMundoConocido() {
-		return this.mundoConocido;
-	}
+        this.estaVivo = true;
 
-	public void moverAlNorte() {
-		this.composicionDelAgente.insertElementAt(new Point(
-				(int)this.composicionDelAgente.firstElement().getX() - 1,
-				(int)this.composicionDelAgente.firstElement().getY()), 0);
-		
-		Point puntoABorrar = this.composicionDelAgente.remove(this.composicionDelAgente.size()-1);
-		
-		this.mundoConocido.get((int)this.composicionDelAgente.firstElement().getX()).setElementAt(
-				EstadoSnake.PARTE_DEL_AGENTE, (int)this.composicionDelAgente.firstElement().getY());
-		this.mundoConocido.get((int)puntoABorrar.getX()).setElementAt(
-				EstadoSnake.NO_HAY_NADA, (int)puntoABorrar.getY());
-		
-		this.celdasVisitadas.add(new Point((int)puntoABorrar.getX(), (int)puntoABorrar.getY()));
-	}
-	
-	public void moverAlSur() {
-		this.composicionDelAgente.insertElementAt(new Point(
-				(int)this.composicionDelAgente.firstElement().getX() + 1,
-				(int)this.composicionDelAgente.firstElement().getY()), 0);
-		
-		Point puntoABorrar = this.composicionDelAgente.remove(this.composicionDelAgente.size() - 1);
-		
-		this.mundoConocido.get((int)this.composicionDelAgente.firstElement().getX()).setElementAt(
-				EstadoSnake.PARTE_DEL_AGENTE, (int)this.composicionDelAgente.firstElement().getY());
-		this.mundoConocido.get((int)puntoABorrar.getX()).setElementAt(
-				EstadoSnake.NO_HAY_NADA, (int)puntoABorrar.getY());
-		
-		this.celdasVisitadas.add(new Point((int)puntoABorrar.getX(), (int)puntoABorrar.getY()));
-	}
+        this.encontreElLimiteAlNorte = false;
+        this.encontreElLimiteAlSur = false;
+        this.encontreElLimiteAlEste = false;
+        this.encontreElLimiteAlOeste = false;
 
-	public void moverAlEste() {
-		this.composicionDelAgente.insertElementAt(new Point(
-				(int)this.composicionDelAgente.firstElement().getX(),
-				(int)this.composicionDelAgente.firstElement().getY() + 1), 0);
+        this.vecesQueSeGiro = 0;
+        this.vecesQueSeGiroDerecha = 0;
+    }
 
-		Point puntoABorrar = this.composicionDelAgente.remove(this.composicionDelAgente.size() - 1);
-		this.mundoConocido.get((int)this.composicionDelAgente.firstElement().getX()).setElementAt(
-				EstadoSnake.PARTE_DEL_AGENTE, (int)this.composicionDelAgente.firstElement().getY());
-		this.mundoConocido.get((int)puntoABorrar.getX()).setElementAt(
-				EstadoSnake.NO_HAY_NADA, (int)puntoABorrar.getY());
-		
-		this.celdasVisitadas.add(new Point((int)puntoABorrar.getX(), (int)puntoABorrar.getY()));
-	}
-	
-	public void moverAlOeste() {
-		this.composicionDelAgente.insertElementAt(new Point(
-				(int)this.composicionDelAgente.firstElement().getX(),
-				(int)this.composicionDelAgente.firstElement().getY() - 1), 0);
-		
-		Point puntoABorrar = this.composicionDelAgente.remove(this.composicionDelAgente.size() - 1);
-		
-		this.mundoConocido.get((int)this.composicionDelAgente.firstElement().getX()).setElementAt(
-				EstadoSnake.PARTE_DEL_AGENTE, (int)this.composicionDelAgente.firstElement().getY());
-		this.mundoConocido.get((int)puntoABorrar.getX()).setElementAt(
-				EstadoSnake.NO_HAY_NADA, (int)puntoABorrar.getY());
-		
-		this.celdasVisitadas.add(new Point((int)puntoABorrar.getX(), (int)puntoABorrar.getY()));
-	}
+    @Override
+    public String toString() {
+        String str = "";
 
-	public void inventaLoQueTiene() {
-		// Ahora pongo todo lo desconocido como si fuera que no hay nada ahi.
-		for (int fil=0; fil < this.mundoConocido.size(); fil++)
-			for (int col=0; col < this.mundoConocido.get(fil).size(); col++)
-				if (this.mundoConocido.get(fil).get(col) == EstadoSnake.DESCONOCIDO)
-					this.mundoConocido.get(fil).setElementAt(EstadoSnake.NO_HAY_NADA, col);
-	}
+        str = str + " composicion=\"{";
+        for (int i = 0; i < this.composicionDelAgente.size(); i++) {
+            str = str + "(" + (int) this.composicionDelAgente.get(i).getX() + "," + (int) this.composicionDelAgente.get(i).getY() + ")";
+        }
+        str = str + "}\"\n";
+        str = str + " longitud=\"" + this.longitud + "\"\n";
+        str = str + " orientacion_cabeza=\"" + this.orientacionComoString() + "\"\n";
+        str = str + " esta_vivo=\"" + this.estaVivo + "\"\n";
 
-	public void comerAlNorte() {
-		this.composicionDelAgente.insertElementAt(new Point(
-				(int)this.composicionDelAgente.firstElement().getX() - 1,
-				(int)this.composicionDelAgente.firstElement().getY()), 0);
-		
-		this.mundoConocido.get((int)this.composicionDelAgente.firstElement().getX()).setElementAt(
-				EstadoSnake.PARTE_DEL_AGENTE, (int)this.composicionDelAgente.firstElement().getY());
-		
-		this.longitud = this.composicionDelAgente.size();
-	}
+        str = str + "mundo_conocido=\"[ \n";
+        for (int fil = 0; fil < this.mundoConocido.size(); fil++) {
+            str = str + "[ ";
+            for (int col = 0; col < this.mundoConocido.get(fil).size(); col++) {
+                if (this.mundoConocido.get(fil).get(col) == -1) {
+                    str = str + "* ";
+                } else {
+                    str = str + this.mundoConocido.get(fil).get(col) + " ";
+                }
+            }
+            str = str + " ]\n";
+        }
+        str = str + " ]\"";
 
-	public void comerAlSur() {
-		this.composicionDelAgente.insertElementAt(new Point(
-				(int)this.composicionDelAgente.firstElement().getX() + 1,
-				(int)this.composicionDelAgente.firstElement().getY()), 0);
-		
-		this.mundoConocido.get((int)this.composicionDelAgente.firstElement().getX()).setElementAt(
-				EstadoSnake.PARTE_DEL_AGENTE, (int)this.composicionDelAgente.firstElement().getY());
-		
-		this.longitud = this.composicionDelAgente.size();
-	}
+        return str;
+    }
 
-	public void comerAlEste() {
-		this.composicionDelAgente.insertElementAt(new Point(
-				(int)this.composicionDelAgente.firstElement().getX(),
-				(int)this.composicionDelAgente.firstElement().getY() + 1), 0);
-		
-		this.mundoConocido.get((int)this.composicionDelAgente.firstElement().getX()).setElementAt(
-				EstadoSnake.PARTE_DEL_AGENTE, (int)this.composicionDelAgente.firstElement().getY());
-		
-		this.longitud = this.composicionDelAgente.size();
-	}
+    private String orientacionComoString() {
+        String str = "";
 
-	public void comerAlOeste() {
-		this.composicionDelAgente.insertElementAt(new Point(
-				(int)this.composicionDelAgente.firstElement().getX(),
-				(int)this.composicionDelAgente.firstElement().getY() - 1), 0);
-		
-		this.mundoConocido.get((int)this.composicionDelAgente.firstElement().getX()).setElementAt(
-				EstadoSnake.PARTE_DEL_AGENTE, (int)this.composicionDelAgente.firstElement().getY());
-		
-		this.longitud = this.composicionDelAgente.size();
-	}
-	
-	public boolean hayObstaculo(int donde) {
-		Point posicionCabeza = this.getPosicionCabeza();
-		boolean hayObstaculo = false;
-		
-		switch(donde) {
-		case 0:	// Norte
-			if(posicionCabeza.getX() == 0)
-				hayObstaculo = true;
-			else if ( this.mundoConocido.get((int)posicionCabeza.getX() - 1).
-					get((int)posicionCabeza.getY()) == EstadoSnake.PARTE_DEL_AGENTE )
-				hayObstaculo = true;
-			break;
-		case 1:	// Sur
-			if (posicionCabeza.getX() == this.mundoConocido.size() - 1)
-				hayObstaculo = true;
-			else if (this.mundoConocido.get((int)posicionCabeza.getX() + 1).
-					get((int)posicionCabeza.getY()) == EstadoSnake.PARTE_DEL_AGENTE )
-				hayObstaculo = true;
-			break;
-		case 2:	// Este
-			if (posicionCabeza.getY() == this.mundoConocido.size() - 1)
-				hayObstaculo = true;
-			else if (this.mundoConocido.get((int)posicionCabeza.getX()).
-					get((int)posicionCabeza.getY() + 1) == EstadoSnake.PARTE_DEL_AGENTE )
-				hayObstaculo = true;
-			break;
-		case 3:	// Oeste
-			
-			if (posicionCabeza.getY() == 0)
-				hayObstaculo = true;
-			else if (this.mundoConocido.get((int)posicionCabeza.getX()).
-					get((int)posicionCabeza.getY() - 1) == EstadoSnake.PARTE_DEL_AGENTE )
-				hayObstaculo = true;
-			break;
-		default:
-			break;
-		}
-		
-		return hayObstaculo;
-	}
+        switch (this.orientacionDeLaCabeza) {
+            case 0:
+                str = "Norte";
+                break;
+            case 1:
+                str = "Sur";
+                break;
+            case 2:
+                str = "Este";
+                break;
+            case 3:
+                str = "Oeste";
+                break;
+            default:
+                break;
+        }
 
-	public boolean hayComida(int donde) {
-		Point posicionCabeza = this.getPosicionCabeza();
-		boolean hayComida = false;
-		
-		switch(donde) {
-		case 0:	// Norte
-			if (posicionCabeza.getX() == 0)
-				hayComida = false;
-			else if (this.mundoConocido.get((int)posicionCabeza.getX() - 1).
-					get((int)posicionCabeza.getY()) == EstadoSnake.COMIDA)
-				hayComida = true;
-			break;
-		case 1:	// Sur
-			if (posicionCabeza.getX() == this.mundoConocido.size() - 1)
-				hayComida = false;
-			else if(this.mundoConocido.get((int)posicionCabeza.getX() + 1).
-					get((int)posicionCabeza.getY()) == EstadoSnake.COMIDA)
-				hayComida = true;
-			break;
-		case 2:	// Este
-			if (posicionCabeza.getY() == this.mundoConocido.size() - 1)
-				hayComida = false;
-			else if (this.mundoConocido.get((int)posicionCabeza.getX()).
-					get((int)posicionCabeza.getY() + 1) == EstadoSnake.COMIDA)
-				hayComida = true;
-			break;
-		case 3:	// Oeste
-			if (posicionCabeza.getY() == 0)
-				hayComida = false;
-			else if (this.mundoConocido.get((int)posicionCabeza.getX()).
-					get((int)posicionCabeza.getY() - 1) == EstadoSnake.COMIDA)
-				hayComida = true;
-			break;
-		default:
-			break;
-		}
-		
-		return hayComida;
-	}
+        return str;
+    }
 
-	public boolean isEstaVivo() {
-		return estaVivo;
-	}
+    public boolean getVivo() {
+        return this.estaVivo;
+    }
 
-	public void setEstaVivo(boolean estaVivo) {
-		this.estaVivo = estaVivo;
-	}
+    public int getLongitud() {
+        return this.longitud;
+    }
 
-	public double getCosto() {
-		return this.costo;
-	}
-	
-	public void incrementarCosto(double costo) {
-		this.costo += costo;
-	}
+    public void setLongitud(int longitud) throws Exception {
+        if (longitud != this.composicionDelAgente.size()) {
+            throw new Exception("La longitud no concuerda con el tama;o de la vibora");
+        }
+        this.longitud = longitud;
+    }
 
-	public Vector<Point> getCeldasVisitadas() {
-		return celdasVisitadas;
-	}
-	
-	public boolean pasoNVecesPorEstaCelda(Point celda) {
-		int cantidadDeVeces = 0;
-		
-		for (int i = 0; i < this.celdasVisitadas.size(); i++) {
-			if (this.celdasVisitadas.get(i).getX() == celda.getX() &&
-					this.celdasVisitadas.get(i).getY() == celda.getY())
-				cantidadDeVeces++;
-		}
-		
-		if (cantidadDeVeces > 1)
-			return true;
-		
-		return false;
-	}
-	
-	public void agregarCeldaALasVisitadas(Point celda){
-		if (!this.pasoNVecesPorEstaCelda(celda))
-			this.celdasVisitadas.add(celda);
-	}
+    public boolean noHayMasComida() {
+        for (int fil = 0; fil < this.mundoConocido.size(); fil++) {
+            for (int col = 0; col < this.mundoConocido.get(fil).size(); col++) {
+                if (this.mundoConocido.get(fil).get(col) == EstadoSnake.COMIDA) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 
-	public void setCeldasVisitadas(Vector<Point> celdasVisitadas) {
-		this.celdasVisitadas = celdasVisitadas;
-	}
+    public boolean todoConocido() {
+        for (int fil = 0; fil < this.mundoConocido.size(); fil++) {
+            for (int col = 0; col < this.mundoConocido.get(fil).size(); col++) {
+                if (this.mundoConocido.get(fil).get(col) == EstadoSnake.DESCONOCIDO) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 
-	public boolean isEncontreElLimiteAlEste() {
-		return encontreElLimiteAlEste;
-	}
+    public int getOrientacionDeLaCabeza() {
+        return orientacionDeLaCabeza;
+    }
 
-	public void setEncontreElLimiteAlEste(boolean encontreElLimiteAlEste) {
-		this.encontreElLimiteAlEste = encontreElLimiteAlEste;
-	}
+    public void setOrientacionDeLaCabeza(int orientacionDeLaCabeza) {
+        this.orientacionDeLaCabeza = orientacionDeLaCabeza;
+    }
 
-	public boolean isEncontreElLimiteAlNorte() {
-		return encontreElLimiteAlNorte;
-	}
+    public Point getPosicionCabeza() {
+        return this.composicionDelAgente.firstElement();
+    }
 
-	public void setEncontreElLimiteAlNorte(boolean encontreElLimiteAlNorte) {
-		this.encontreElLimiteAlNorte = encontreElLimiteAlNorte;
-	}
+    private void setComposicionDelAgente(Vector<Point> composicionDelAgente) {
+        this.composicionDelAgente = composicionDelAgente;
+    }
 
-	public boolean isEncontreElLimiteAlOeste() {
-		return encontreElLimiteAlOeste;
-	}
+    public void setMundoConocido(Vector<Vector<Integer>> mundoConocido) {
+        this.mundoConocido = mundoConocido;
+    }
 
-	public void setEncontreElLimiteAlOeste(boolean encontreElLimiteAlOeste) {
-		this.encontreElLimiteAlOeste = encontreElLimiteAlOeste;
-	}
+    public Vector<Vector<Integer>> getMundoConocido() {
+        return this.mundoConocido;
+    }
 
-	public boolean isEncontreElLimiteAlSur() {
-		return encontreElLimiteAlSur;
-	}
+    public void moverAlNorte() {
+        this.composicionDelAgente.insertElementAt(new Point(
+                (int) this.composicionDelAgente.firstElement().getX() - 1,
+                (int) this.composicionDelAgente.firstElement().getY()), 0);
 
-	public void setEncontreElLimiteAlSur(boolean encontreElLimiteAlSur) {
-		this.encontreElLimiteAlSur = encontreElLimiteAlSur;
-	}
+        Point puntoABorrar = this.composicionDelAgente.remove(this.composicionDelAgente.size() - 1);
 
-	public void destrabaAlAgente() {
-		this.celdasVisitadas.clear();
-	}
+        this.mundoConocido.get((int) this.composicionDelAgente.firstElement().getX()).setElementAt(
+                EstadoSnake.PARTE_DEL_AGENTE, (int) this.composicionDelAgente.firstElement().getY());
+        this.mundoConocido.get((int) puntoABorrar.getX()).setElementAt(
+                EstadoSnake.NO_HAY_NADA, (int) puntoABorrar.getY());
 
-	public int getVecesQueSeGiro() {
-		return this.vecesQueSeGiro;
-	}
+        this.celdasVisitadas.add(new Point((int) puntoABorrar.getX(), (int) puntoABorrar.getY()));
+    }
 
-	public void setVecesQueSeGiro(int vecesQueSeGiro) {
-		this.vecesQueSeGiro = vecesQueSeGiro;
-	}
+    public void moverAlSur() {
+        this.composicionDelAgente.insertElementAt(new Point(
+                (int) this.composicionDelAgente.firstElement().getX() + 1,
+                (int) this.composicionDelAgente.firstElement().getY()), 0);
 
-	public void incVecesQueSeGiro() {
-		this.vecesQueSeGiro++;
-	}
+        Point puntoABorrar = this.composicionDelAgente.remove(this.composicionDelAgente.size() - 1);
 
-	public int getVecesQueSeGiroDerecha() {
-		return this.vecesQueSeGiroDerecha;
-	}
-	
-	public void setVecesQueSeGiroDerecha(int vecesQueSeGiroDerecha) {
-		this.vecesQueSeGiroDerecha = vecesQueSeGiroDerecha;
-	}
+        this.mundoConocido.get((int) this.composicionDelAgente.firstElement().getX()).setElementAt(
+                EstadoSnake.PARTE_DEL_AGENTE, (int) this.composicionDelAgente.firstElement().getY());
+        this.mundoConocido.get((int) puntoABorrar.getX()).setElementAt(
+                EstadoSnake.NO_HAY_NADA, (int) puntoABorrar.getY());
 
-	public void incVecesQueSeGiroDerecha() {
-		this.vecesQueSeGiroDerecha++;
-	}
+        this.celdasVisitadas.add(new Point((int) puntoABorrar.getX(), (int) puntoABorrar.getY()));
+    }
+
+    public void moverAlEste() {
+        this.composicionDelAgente.insertElementAt(new Point(
+                (int) this.composicionDelAgente.firstElement().getX(),
+                (int) this.composicionDelAgente.firstElement().getY() + 1), 0);
+
+        Point puntoABorrar = this.composicionDelAgente.remove(this.composicionDelAgente.size() - 1);
+        this.mundoConocido.get((int) this.composicionDelAgente.firstElement().getX()).setElementAt(
+                EstadoSnake.PARTE_DEL_AGENTE, (int) this.composicionDelAgente.firstElement().getY());
+        this.mundoConocido.get((int) puntoABorrar.getX()).setElementAt(
+                EstadoSnake.NO_HAY_NADA, (int) puntoABorrar.getY());
+
+        this.celdasVisitadas.add(new Point((int) puntoABorrar.getX(), (int) puntoABorrar.getY()));
+    }
+
+    public void moverAlOeste() {
+        this.composicionDelAgente.insertElementAt(new Point(
+                (int) this.composicionDelAgente.firstElement().getX(),
+                (int) this.composicionDelAgente.firstElement().getY() - 1), 0);
+
+        Point puntoABorrar = this.composicionDelAgente.remove(this.composicionDelAgente.size() - 1);
+
+        this.mundoConocido.get((int) this.composicionDelAgente.firstElement().getX()).setElementAt(
+                EstadoSnake.PARTE_DEL_AGENTE, (int) this.composicionDelAgente.firstElement().getY());
+        this.mundoConocido.get((int) puntoABorrar.getX()).setElementAt(
+                EstadoSnake.NO_HAY_NADA, (int) puntoABorrar.getY());
+
+        this.celdasVisitadas.add(new Point((int) puntoABorrar.getX(), (int) puntoABorrar.getY()));
+    }
+
+    public void inventaLoQueTiene() {
+        // Ahora pongo todo lo desconocido como si fuera que no hay nada ahi.
+        for (int fil = 0; fil < this.mundoConocido.size(); fil++) {
+            for (int col = 0; col < this.mundoConocido.get(fil).size(); col++) {
+                if (this.mundoConocido.get(fil).get(col) == EstadoSnake.DESCONOCIDO) {
+                    this.mundoConocido.get(fil).setElementAt(EstadoSnake.NO_HAY_NADA, col);
+                }
+            }
+        }
+    }
+
+    public void comerAlNorte() {
+        this.composicionDelAgente.insertElementAt(new Point(
+                (int) this.composicionDelAgente.firstElement().getX() - 1,
+                (int) this.composicionDelAgente.firstElement().getY()), 0);
+
+        this.mundoConocido.get((int) this.composicionDelAgente.firstElement().getX()).setElementAt(
+                EstadoSnake.PARTE_DEL_AGENTE, (int) this.composicionDelAgente.firstElement().getY());
+
+        this.longitud = this.composicionDelAgente.size();
+    }
+
+    public void comerAlSur() {
+        this.composicionDelAgente.insertElementAt(new Point(
+                (int) this.composicionDelAgente.firstElement().getX() + 1,
+                (int) this.composicionDelAgente.firstElement().getY()), 0);
+
+        this.mundoConocido.get((int) this.composicionDelAgente.firstElement().getX()).setElementAt(
+                EstadoSnake.PARTE_DEL_AGENTE, (int) this.composicionDelAgente.firstElement().getY());
+
+        this.longitud = this.composicionDelAgente.size();
+    }
+
+    public void comerAlEste() {
+        this.composicionDelAgente.insertElementAt(new Point(
+                (int) this.composicionDelAgente.firstElement().getX(),
+                (int) this.composicionDelAgente.firstElement().getY() + 1), 0);
+
+        this.mundoConocido.get((int) this.composicionDelAgente.firstElement().getX()).setElementAt(
+                EstadoSnake.PARTE_DEL_AGENTE, (int) this.composicionDelAgente.firstElement().getY());
+
+        this.longitud = this.composicionDelAgente.size();
+    }
+
+    public void comerAlOeste() {
+        this.composicionDelAgente.insertElementAt(new Point(
+                (int) this.composicionDelAgente.firstElement().getX(),
+                (int) this.composicionDelAgente.firstElement().getY() - 1), 0);
+
+        this.mundoConocido.get((int) this.composicionDelAgente.firstElement().getX()).setElementAt(
+                EstadoSnake.PARTE_DEL_AGENTE, (int) this.composicionDelAgente.firstElement().getY());
+
+        this.longitud = this.composicionDelAgente.size();
+    }
+
+    public boolean hayObstaculo(int donde) {
+        Point posicionCabeza = this.getPosicionCabeza();
+        boolean hayObstaculo = false;
+
+        switch (donde) {
+            case 0:	// Norte
+                if (posicionCabeza.getX() == 0) {
+                    hayObstaculo = true;
+                } else if (this.mundoConocido.get((int) posicionCabeza.getX() - 1).
+                        get((int) posicionCabeza.getY()) == EstadoSnake.PARTE_DEL_AGENTE) {
+                    hayObstaculo = true;
+                }
+                break;
+            case 1:	// Sur
+                if (posicionCabeza.getX() == this.mundoConocido.size() - 1) {
+                    hayObstaculo = true;
+                } else if (this.mundoConocido.get((int) posicionCabeza.getX() + 1).
+                        get((int) posicionCabeza.getY()) == EstadoSnake.PARTE_DEL_AGENTE) {
+                    hayObstaculo = true;
+                }
+                break;
+            case 2:	// Este
+                if (posicionCabeza.getY() == this.mundoConocido.size() - 1) {
+                    hayObstaculo = true;
+                } else if (this.mundoConocido.get((int) posicionCabeza.getX()).
+                        get((int) posicionCabeza.getY() + 1) == EstadoSnake.PARTE_DEL_AGENTE) {
+                    hayObstaculo = true;
+                }
+                break;
+            case 3:	// Oeste
+
+                if (posicionCabeza.getY() == 0) {
+                    hayObstaculo = true;
+                } else if (this.mundoConocido.get((int) posicionCabeza.getX()).
+                        get((int) posicionCabeza.getY() - 1) == EstadoSnake.PARTE_DEL_AGENTE) {
+                    hayObstaculo = true;
+                }
+                break;
+            default:
+                break;
+        }
+
+        return hayObstaculo;
+    }
+
+    public boolean hayComida(int donde) {
+        Point posicionCabeza = this.getPosicionCabeza();
+        boolean hayComida = false;
+
+        switch (donde) {
+            case 0:	// Norte
+                if (posicionCabeza.getX() == 0) {
+                    hayComida = false;
+                } else if (this.mundoConocido.get((int) posicionCabeza.getX() - 1).
+                        get((int) posicionCabeza.getY()) == EstadoSnake.COMIDA) {
+                    hayComida = true;
+                }
+                break;
+            case 1:	// Sur
+                if (posicionCabeza.getX() == this.mundoConocido.size() - 1) {
+                    hayComida = false;
+                } else if (this.mundoConocido.get((int) posicionCabeza.getX() + 1).
+                        get((int) posicionCabeza.getY()) == EstadoSnake.COMIDA) {
+                    hayComida = true;
+                }
+                break;
+            case 2:	// Este
+                if (posicionCabeza.getY() == this.mundoConocido.size() - 1) {
+                    hayComida = false;
+                } else if (this.mundoConocido.get((int) posicionCabeza.getX()).
+                        get((int) posicionCabeza.getY() + 1) == EstadoSnake.COMIDA) {
+                    hayComida = true;
+                }
+                break;
+            case 3:	// Oeste
+                if (posicionCabeza.getY() == 0) {
+                    hayComida = false;
+                } else if (this.mundoConocido.get((int) posicionCabeza.getX()).
+                        get((int) posicionCabeza.getY() - 1) == EstadoSnake.COMIDA) {
+                    hayComida = true;
+                }
+                break;
+            default:
+                break;
+        }
+
+        return hayComida;
+    }
+
+    public boolean isEstaVivo() {
+        return estaVivo;
+    }
+
+    public void setEstaVivo(boolean estaVivo) {
+        this.estaVivo = estaVivo;
+    }
+
+    public double getCosto() {
+        return this.costo;
+    }
+
+    public void incrementarCosto(double costo) {
+        this.costo += costo;
+    }
+
+    public Vector<Point> getCeldasVisitadas() {
+        return celdasVisitadas;
+    }
+
+    public boolean pasoNVecesPorEstaCelda(Point celda) {
+        int cantidadDeVeces = 0;
+
+        for (int i = 0; i < this.celdasVisitadas.size(); i++) {
+            if (this.celdasVisitadas.get(i).getX() == celda.getX() &&
+                    this.celdasVisitadas.get(i).getY() == celda.getY()) {
+                cantidadDeVeces++;
+            }
+        }
+
+        if (cantidadDeVeces > 1) {
+            return true;
+        }
+        return false;
+    }
+
+    public void agregarCeldaALasVisitadas(Point celda) {
+        if (!this.pasoNVecesPorEstaCelda(celda)) {
+            this.celdasVisitadas.add(celda);
+        }
+    }
+
+    public void setCeldasVisitadas(Vector<Point> celdasVisitadas) {
+        this.celdasVisitadas = celdasVisitadas;
+    }
+
+    public boolean isEncontreElLimiteAlEste() {
+        return encontreElLimiteAlEste;
+    }
+
+    public void setEncontreElLimiteAlEste(boolean encontreElLimiteAlEste) {
+        this.encontreElLimiteAlEste = encontreElLimiteAlEste;
+    }
+
+    public boolean isEncontreElLimiteAlNorte() {
+        return encontreElLimiteAlNorte;
+    }
+
+    public void setEncontreElLimiteAlNorte(boolean encontreElLimiteAlNorte) {
+        this.encontreElLimiteAlNorte = encontreElLimiteAlNorte;
+    }
+
+    public boolean isEncontreElLimiteAlOeste() {
+        return encontreElLimiteAlOeste;
+    }
+
+    public void setEncontreElLimiteAlOeste(boolean encontreElLimiteAlOeste) {
+        this.encontreElLimiteAlOeste = encontreElLimiteAlOeste;
+    }
+
+    public boolean isEncontreElLimiteAlSur() {
+        return encontreElLimiteAlSur;
+    }
+
+    public void setEncontreElLimiteAlSur(boolean encontreElLimiteAlSur) {
+        this.encontreElLimiteAlSur = encontreElLimiteAlSur;
+    }
+
+    public void destrabaAlAgente() {
+        this.celdasVisitadas.clear();
+    }
+
+    public int getVecesQueSeGiro() {
+        return this.vecesQueSeGiro;
+    }
+
+    public void setVecesQueSeGiro(int vecesQueSeGiro) {
+        this.vecesQueSeGiro = vecesQueSeGiro;
+    }
+
+    public void incVecesQueSeGiro() {
+        this.vecesQueSeGiro++;
+    }
+
+    public int getVecesQueSeGiroDerecha() {
+        return this.vecesQueSeGiroDerecha;
+    }
+
+    public void setVecesQueSeGiroDerecha(int vecesQueSeGiroDerecha) {
+        this.vecesQueSeGiroDerecha = vecesQueSeGiroDerecha;
+    }
+
+    public void incVecesQueSeGiroDerecha() {
+        this.vecesQueSeGiroDerecha++;
+    }
 }
