@@ -1,0 +1,19 @@
+#summary Instrucciones para la instalación en sistemas Windows.
+#labels Featured
+
+= Notas =
+
+Las pruebas fueron realizadas en Windows XP SP 2, así como en ciertas versiones de otros programas. Si se encuentran problemas al seguir la guía, por favor dejar un comentario en esta página.
+
+= Software necesario =
+
+ * Sistema operativo utilizado: Windows XP SP 2.
+ * [http://www.netbeans.org/ NetBeans] 6.1.
+
+
+= Details =
+
+Add your content here.  Format your content with:
+  * Text in *bold* or _italic_
+  * Headings, paragraphs, and lists
+  * Automatic links to other wiki pages
