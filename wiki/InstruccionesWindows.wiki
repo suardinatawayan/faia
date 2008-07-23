@@ -21,16 +21,18 @@ Es muy probable que se puedan utilizar versiones más actualizadas, aunque quiz�
 
 == Instalación de SWI-Prolog en Windows ==
 
-La instalación de este software, para ser utilizado por FAIA, no es trivial. Luego de haber instalado SWI-Prolog con el instalador para Windows, hay que agregar a la variable de entorno PATH la ruta al directorio '<DirectorioInstalacion>/pl/bin', como por ejemplo "C:/Archivos de programa/pl/bin".
+La instalación de este software para ser utilizado por FAIA no es trivial. Luego de haber instalado SWI-Prolog con el instalador para Windows, hay que agregar a la variable de entorno PATH la ruta al directorio '<DirectorioInstalacionSWIProlog>\bin', como por ejemplo "C:\Archivos de programa\pl\bin".
 
 Para esto: 
 
-* Hacer click derecho en "Mi PC" y elegir la opción "Propiedades".
-* En la solapa "Opciones avanzadas", presionar el botón "Variables de entorno".
-* En la parte de "Variables de sistema", hacer doble click en la variable "Path" para editarla.
-* Aún sin haberla modificado, verificar que la cadena finalice con punto y coma (;).
-* Luego agregar el path correspondiente como se ha dicho.
-* Finalmente, presionar el botón "Aceptar" para guardar los cambios.
+ * Hacer click derecho en "Mi PC" y elegir la opción "Propiedades".
+ * En la solapa "Opciones avanzadas", presionar el botón "Variables de entorno".
+ * En la parte de "Variables de sistema", hacer doble click en la variable "Path" para editarla.
+ * Aún sin haberla modificado, verificar que la cadena finalice con punto y coma (;).
+ * Luego agregar el path correspondiente como se ha dicho. Es importante no olvidarse de colocar las comillas dobles para indicar la ruta del directorio.
+ * Finalmente, presionar el botón "Aceptar" para guardar los cambios.
+
+Si !NetBeans estaba ejecutándose antes de realizar los cambios, es necesario reiniciarlo.
 
 = FAIA desde !NetBeans =
 
@@ -38,8 +40,16 @@ Para esto:
 
 TODO: Agregar la parte de importar el código desde el jar o zip (depende de cómo se lo entreguemos a los alumnos).
 
-== Configurar un proyecto para que use FAIA ==
+== Configurar un proyecto para utilizar _Búsqueda_ ==
 
-Se debe utilizar como directorio para librerías a 'faia/lib', donde se encuentran algunas dependencias que es necesario referenciar. Para esto, hacer click derecho en "Libraries" dentro del proyecto nuevo, y en "Libraries folder" elegir la carpeta 'faia/lib" (utilizar el botón Browse para ubicarla). Luego hacer click derecho nuevamente en "Libraries" y elegir la opción "Add JAR/Folder", y elegir el archivo 'jpl.jar'.
+TODO.
 
-Hacer click derecho en el proyecto, y elegir la opción "Properties". En "Run", dentro de la caja de texto "VM Options" hay que colocar: _-Djava.library.path="/usr/lib/pl-5.6.57/lib/i386-linux"_
+== Configurar un proyecto para utilizar _Cálculo Situacional_ ==
+
+Se debe utilizar como directorio para librerías a 'faia\lib', donde se encuentran algunas dependencias que es necesario referenciar. Para esto:
+
+ * Hacer click derecho en "Libraries" dentro del proyecto nuevo, y en "Libraries folder" elegir la carpeta 'faia\lib" (utilizar el botón Browse para ubicarla).
+ * Luego hacer click derecho nuevamente en "Libraries" y elegir la opción "Add JAR/Folder".
+ * Elegir el archivo 'jpl.jar'.
+ * Hacer click derecho en el proyecto, y elegir la opción "Properties".
+ * En "Run", dentro de la caja de texto "VM Options" colocar: _-Djava.library.path="<DirectorioInstalacionSWIProlog>\bin"_, por ejemplo _-Djava.library.path="C:\Archivos de programa\pl\bin"_. Es importante no olvidarse de colocar las comillas dobles para indicar la ruta del directorio.
