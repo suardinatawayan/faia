@@ -8,51 +8,51 @@ import frsf.cidisi.faia.state.EnvironmentState;
 
 public class IrC extends Action {
 
-	/**
-	 * 
-	 * @param s: Es el estado del agente en un determinado nodo del �rbol de b�squeda.-
-	 */
-	public AgentState execute(AgentState s){
-		EstadoRobot estR = (EstadoRobot)s;
-		
-		if (estR.getPosicionesVisitadas().contains(EstadoRobot.C))
-			return null;
-		
-		ArrayList<String> sucesores = new ArrayList<String>(estR.getSucesores());
-		if (sucesores!=null){
-			int index = sucesores.indexOf(EstadoRobot.C);
-			if (index>=0){
-				estR.setPosicion(EstadoRobot.C);
-				return estR;
-			}
-			
-		}
-		
-		return null;
-	}
+    /**
+     * 
+     * @param s: Es el estado del agente en un determinado nodo del �rbol de b�squeda.-
+     */
+    public AgentState execute(AgentState s) {
+        EstadoRobot estR = (EstadoRobot) s;
 
-	/**
-	 * Permite actualizar el estado real del agente y del ambiente.-
-	 * 
-	 * @param ast: Es el estado del agente a ser actualizado.-
-	 * @param est: Es el estado del ambiente a ser actualizado.-
-	 */
-	public EnvironmentState execute(AgentState ast, EnvironmentState est){
-		this.execute(ast);
-		return null;
-	}
-	
-	public Double getCost(){
-		return new Double(0);
-	}
+        if (estR.getPosicionesVisitadas().contains(EstadoRobot.C)) {
+            return null;
+        }
+        ArrayList<String> sucesores = new ArrayList<String>(estR.getSucesores());
+        if (sucesores != null) {
+            int index = sucesores.indexOf(EstadoRobot.C);
+            if (index >= 0) {
+                estR.setPosicion(EstadoRobot.C);
+                return estR;
+            }
 
-	public String toString() {
-		return "IrC";
-	}
+        }
 
-	@Override
-	public String getLogicName() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+        return null;
+    }
+
+    /**
+     * Permite actualizar el estado real del agente y del ambiente.-
+     * 
+     * @param ast: Es el estado del agente a ser actualizado.-
+     * @param est: Es el estado del ambiente a ser actualizado.-
+     */
+    public EnvironmentState execute(AgentState ast, EnvironmentState est) {
+        this.execute(ast);
+        return null;
+    }
+
+    public Double getCost() {
+        return new Double(0);
+    }
+
+    public String toString() {
+        return "IrC";
+    }
+
+    @Override
+    public String getLogicName() {
+        // TODO Auto-generated method stub
+        return null;
+    }
 }
