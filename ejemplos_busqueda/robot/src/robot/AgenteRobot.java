@@ -43,6 +43,7 @@ public class AgenteRobot extends SearchBasedAgent {
         this.setProblem(problema);
     }
 
+    @Override
     public Action selectAction() {
 
 //		// Instanciación la estrategia de búsqueda primero en profundidad.-
@@ -61,6 +62,7 @@ public class AgenteRobot extends SearchBasedAgent {
          * IStepCostFunction costo = new FuncionCosto();
          * UniformCostSearch estrategiaBusqueda = new UniformCostSearch(costo);
          */        // Instancia un proceso de búsqueda indicando como parámetro la estrategia a utilizar.-
+
         Search busqueda = new Search(estrategiaBusqueda);
 
         // Indica que el árbol de búsqueda debe ser mostrado e formato XML.-
