@@ -53,3 +53,5 @@ Se debe utilizar como directorio para librerías a 'faia\lib', donde se encuentr
  * Elegir el archivo 'jpl.jar'.
  * Hacer click derecho en el proyecto, y elegir la opción "Properties".
  * En "Run", dentro de la caja de texto "VM Options" colocar: _-Djava.library.path="<DirectorioInstalacionSWIProlog>\bin"_, por ejemplo _-Djava.library.path="C:\Archivos de programa\pl\bin"_. Es importante no olvidarse de colocar las comillas dobles para indicar la ruta del directorio.
+
+Luego de realizar correctamente los pasos anteriores, debería ser posible correr proyectos que utilicen Cálculo Situacional con FAIA. Es recomendable ver los ejemplos incluídos.
