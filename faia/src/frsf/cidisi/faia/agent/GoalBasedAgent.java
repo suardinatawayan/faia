@@ -13,7 +13,6 @@ import frsf.cidisi.faia.state.AgentState;
 public abstract class GoalBasedAgent extends Agent {
 
     protected Solve solver;
-    protected Problem problem;
     protected AgentState state;
 
     public GoalBasedAgent() {
@@ -26,16 +25,8 @@ public abstract class GoalBasedAgent extends Agent {
         this.getAgentState().updateState(p);
     }
 
-    public Problem getProblem() {
-        return problem;
-    }
-
     public Solve getSolver() {
         return solver;
-    }
-
-    public void setProblem(Problem problem) {
-        this.problem = problem;
     }
 
     public void setSolver(Solve solver) {

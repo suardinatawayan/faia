@@ -4,7 +4,7 @@
  */
 package pacman_logico;
 
-import frsf.cidisi.faia.agent.CalculusAgent;
+import frsf.cidisi.faia.agent.KnowledgeBasedAgent;
 import frsf.cidisi.faia.agent.problem.Action;
 import frsf.cidisi.faia.exceptions.CalculusException;
 import frsf.cidisi.faia.exceptions.KnowledgeBaseException;
@@ -17,7 +17,7 @@ import java.util.logging.Logger;
  *
  * @author miltondp
  */
-public class AgenteLogico extends CalculusAgent {
+public class AgenteLogico extends KnowledgeBasedAgent {
 
     public AgenteLogico() throws KnowledgeBaseException {
         EstadoPacman estadoPacman = new EstadoPacman();

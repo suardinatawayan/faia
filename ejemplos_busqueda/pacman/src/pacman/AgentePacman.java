@@ -3,11 +3,12 @@ package pacman;
 import java.util.Vector;
 
 import frsf.cidisi.faia.agent.GoalBasedAgent;
+import frsf.cidisi.faia.agent.SearchBasedAgent;
 import frsf.cidisi.faia.agent.problem.Action;
 import frsf.cidisi.faia.agent.problem.Problem;
 import frsf.cidisi.faia.solver.search.*;
 
-public class AgentePacman extends GoalBasedAgent {
+public class AgentePacman extends SearchBasedAgent {
 
     public AgentePacman() {
         // Instancia la meta del Pacman.-

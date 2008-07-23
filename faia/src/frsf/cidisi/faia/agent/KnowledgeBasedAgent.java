@@ -3,9 +3,9 @@ package frsf.cidisi.faia.agent;
 import frsf.cidisi.faia.agent.problem.Action;
 import frsf.cidisi.faia.solver.calculus.KnowledgeBase;
 
-public abstract class CalculusAgent extends GoalBasedAgent {
+public abstract class KnowledgeBasedAgent extends GoalBasedAgent {
 
-    public CalculusAgent() {
+    public KnowledgeBasedAgent() {
         super();
     }
 

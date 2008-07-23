@@ -1,6 +1,6 @@
 package pacman;
 
-import frsf.cidisi.faia.simulator.GoalBasedAgentSimulator;
+import frsf.cidisi.faia.simulator.SearchBasedAgentSimulator;
 
 public class Pacman {
 
@@ -12,7 +12,7 @@ public class Pacman {
 
         AmbientePacman ambiente = new AmbientePacman();
 
-        GoalBasedAgentSimulator simu = new GoalBasedAgentSimulator(ambiente, pacman);
+        SearchBasedAgentSimulator simu = new SearchBasedAgentSimulator(ambiente, pacman);
 
         simu.start();
     }
