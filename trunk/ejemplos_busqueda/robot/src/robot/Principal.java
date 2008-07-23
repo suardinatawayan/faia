@@ -4,19 +4,18 @@ import frsf.cidisi.faia.simulator.GoalBasedAgentSimulator;
 
 public class Principal {
 
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		AgenteRobot pacman = new AgenteRobot();
+    /**
+     * @param args
+     */
+    public static void main(String[] args) {
+        AgenteRobot pacman = new AgenteRobot();
 
-		AmbienteRobot ambiente = new AmbienteRobot();
-		
-		GoalBasedAgentSimulator simu = new GoalBasedAgentSimulator(ambiente, pacman);
+        AmbienteRobot ambiente = new AmbienteRobot();
 
-		simu.start();
-		
+        GoalBasedAgentSimulator simu = new GoalBasedAgentSimulator(ambiente, pacman);
 
-	}
+        simu.start();
 
+
+    }
 }
