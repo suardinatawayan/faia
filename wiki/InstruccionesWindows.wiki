@@ -1,20 +1,32 @@
 #summary Instrucciones para la instalación en sistemas Windows.
 
+= TODO =
+
+ * Ver si no se puede hacer un solo documento, no uno para Windows y otro para Linux.
+
 = Notas =
 
 Las pruebas fueron realizadas en Windows XP SP 2, así como en ciertas versiones de otros programas. Si se encuentran problemas al seguir la guía, por favor dejar un comentario en esta página.
 
 = Software necesario =
 
-Es muy probable que se puedan utilizar versiones más actualizadas, aunque quizá la guía no contemple por ejemplo cambios en las interfaces gráficas.
+Es muy probable que se puedan utilizar versiones más actualizadas, aunque quizá la guía no contemple por ejemplo cambios en las interfaces gráficas. Además, con estas versiones se ha probado FAIA, por lo tanto si es posible, es mejor utilizar éstas.
 
  * [http://www.netbeans.org/ NetBeans] 6.1 (es necesario tener instalado el JDK 5 o JDK 6. Se puede bajar un bundle con NetBeans y JDK [http://java.sun.com/javase/downloads/netbeans.html aquí]).
- * TODO: Falta poner acá SWI-Prolog.
+ * [http://www.swi-prolog.org/ SWI-Prolog] 5.6.57.
 
 == Software opcional ==
 
  * [http://miktex.org/ MiKTeX] 2.7 (Si se desea la generación de archivos PDF con los árboles de búsqueda. Bajar la versión "Basic").
 
-= Importar el código de FAIA a NetBeans =
+= FAIA desde NetBeans =
 
-TODO.
+== Importar FAIA ==
+
+TODO: Agregar la parte de importar el código desde el jar o zip (depende de cómo se lo entreguemos a los alumnos).
+
+== Configurar un proyecto para que use FAIA ==
+
+Se debe utilizar como directorio para librerías a 'faia/lib', donde se encuentran algunas dependencias que es necesario referenciar. Para esto, hacer click derecho en "Libraries" dentro del proyecto nuevo, y en "Libraries folder" elegir la carpeta 'faia/lib" (utilizar el botón Browse para ubicarla). Luego hacer click derecho nuevamente en "Libraries" y elegir la opción "Add JAR/Folder", y elegir el archivo 'jpl.jar'.
+
+Hacer click derecho en el proyecto, y elegir la opción "Properties". En "Run", dentro de la caja de texto "VM Options" hay que colocar: _-Djava.library.path="/usr/lib/pl-5.6.57/lib/i386-linux"_
