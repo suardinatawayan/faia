@@ -36,7 +36,7 @@ Para esto:
  * Luego agregar el path correspondiente como se ha dicho. Es importante no olvidarse de colocar las comillas dobles para indicar la ruta del directorio.
  * Finalmente, presionar el botón "Aceptar" para guardar los cambios.
 
-== En GNU/Linux (Ubuntu) ==
+=== En GNU/Linux (Ubuntu) ===
 
 = FAIA desde !NetBeans =
 
