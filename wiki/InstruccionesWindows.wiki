@@ -19,7 +19,11 @@ Es muy probable que se puedan utilizar versiones más actualizadas, aunque quiz�
 
  * [http://miktex.org/ MiKTeX] 2.7 (Si se desea la generación de archivos PDF con los árboles de búsqueda. Bajar la versión "Basic").
 
-== Instalación de SWI-Prolog en Windows ==
+== Instalación de SWI-Prolog ==
+
+Es necesario reinicar !NetBeans luego de realizar los siguientes cambios.
+
+=== En Windows XP ==
 
 La instalación de este software para ser utilizado por FAIA no es trivial. Luego de haber instalado SWI-Prolog con el instalador para Windows, hay que agregar a la variable de entorno PATH la ruta al directorio '<DirectorioInstalacionSWIProlog>\bin', como por ejemplo "C:\Archivos de programa\pl\bin".
 
@@ -32,7 +36,7 @@ Para esto:
  * Luego agregar el path correspondiente como se ha dicho. Es importante no olvidarse de colocar las comillas dobles para indicar la ruta del directorio.
  * Finalmente, presionar el botón "Aceptar" para guardar los cambios.
 
-Si !NetBeans estaba ejecutándose antes de realizar los cambios, es necesario reiniciarlo.
+== En GNU/Linux (Ubuntu) ==
 
 = FAIA desde !NetBeans =
 
