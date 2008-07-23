@@ -6,11 +6,15 @@ Las pruebas fueron realizadas en Windows XP SP 2, así como en ciertas versiones
 
 = Software necesario =
 
- * Sistema operativo utilizado: Windows XP SP 2.
- * [http://www.netbeans.org/ NetBeans] 6.1 (es necesario tener instalado el JDK 5 o JDK 6. Se puede bajar un bundle con NetBeans y JDK [http://java.sun.com/javase/downloads/netbeans.html aquí]).
- * [http://miktex.org/ MiKTeX] 2.7 (Si se desea la generación de archivos PDF con los árboles de búsqueda. Bajar la versión "Basic").
- * TODO: Falta poner acá SWI-Prolog.
-
 Es muy probable que se puedan utilizar versiones más actualizadas, aunque quizá la guía no contemple por ejemplo cambios en las interfaces gráficas.
 
-= MiKTeX =
+ * [http://www.netbeans.org/ NetBeans] 6.1 (es necesario tener instalado el JDK 5 o JDK 6. Se puede bajar un bundle con NetBeans y JDK [http://java.sun.com/javase/downloads/netbeans.html aquí]).
+ * TODO: Falta poner acá SWI-Prolog.
+
+== Software opcional ==
+
+ * [http://miktex.org/ MiKTeX] 2.7 (Si se desea la generación de archivos PDF con los árboles de búsqueda. Bajar la versión "Basic").
+
+= Importar el código de FAIA a NetBeans =
+
+TODO.
