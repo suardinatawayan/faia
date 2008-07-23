@@ -1,5 +1,4 @@
 #summary Instrucciones para la instalación en sistemas Windows.
-#labels Featured
 
 = Notas =
 
@@ -13,3 +12,5 @@ Las pruebas fueron realizadas en Windows XP SP 2, así como en ciertas versiones
  * TODO: Falta poner acá SWI-Prolog.
 
 Es muy probable que se puedan utilizar versiones más actualizadas, aunque quizá la guía no contemple por ejemplo cambios en las interfaces gráficas.
+
+= MiKTeX =
