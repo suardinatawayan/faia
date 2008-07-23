@@ -1,6 +1,7 @@
 package robot;
 
 import frsf.cidisi.faia.simulator.GoalBasedAgentSimulator;
+import frsf.cidisi.faia.simulator.SearchBasedAgentSimulator;
 
 public class Principal {
 
@@ -12,7 +13,7 @@ public class Principal {
 
         AmbienteRobot ambiente = new AmbienteRobot();
 
-        GoalBasedAgentSimulator simu = new GoalBasedAgentSimulator(ambiente, pacman);
+        SearchBasedAgentSimulator simu = new SearchBasedAgentSimulator(ambiente, pacman);
 
         simu.start();
 
