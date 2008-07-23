@@ -2,14 +2,13 @@ package robot;
 
 import java.util.Vector;
 
-import frsf.cidisi.faia.agent.GoalBasedAgent;
+import frsf.cidisi.faia.agent.SearchBasedAgent;
 import frsf.cidisi.faia.agent.problem.Action;
 import frsf.cidisi.faia.agent.problem.Problem;
 import frsf.cidisi.faia.solver.search.BreathFirstSearch;
-import frsf.cidisi.faia.solver.search.DepthFirstSearch;
 import frsf.cidisi.faia.solver.search.Search;
 
-public class AgenteRobot extends GoalBasedAgent {
+public class AgenteRobot extends SearchBasedAgent {
 
     public AgenteRobot() {
         // Instancia la meta del Pacman.-
