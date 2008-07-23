@@ -1,6 +1,6 @@
 package robot;
 
-import frsf.cidisi.faia.simulator.GoalBasedAgentSimulator;
+import frsf.cidisi.faia.simulator.SearchBasedAgentSimulator;
 import frsf.cidisi.faia.simulator.SearchBasedAgentSimulator;
 
 public class Principal {
