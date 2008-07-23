@@ -5,7 +5,7 @@
 package frsf.cidisi.faia.simulator;
 
 import frsf.cidisi.faia.agent.Agent;
-import frsf.cidisi.faia.agent.CalculusAgent;
+import frsf.cidisi.faia.agent.KnowledgeBasedAgent;
 import frsf.cidisi.faia.agent.GoalBasedAgent;
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.agent.problem.Action;
@@ -29,7 +29,7 @@ public class KnowledgeBasedAgentSimulator extends GoalBasedAgentSimulator {
 
     @Override
     public boolean isComplete() {
-        CalculusAgent calculusAgent = (CalculusAgent) this.getAgents().firstElement();
+        KnowledgeBasedAgent calculusAgent = (KnowledgeBasedAgent) this.getAgents().firstElement();
         KnowledgeBase kb = (KnowledgeBase) calculusAgent.getAgentState();
 
         String s = kb.getGoalReachedPredicate() + "(" + kb.getSituation() + ")";
@@ -42,16 +42,17 @@ public class KnowledgeBasedAgentSimulator extends GoalBasedAgentSimulator {
 
         Perception perception;
         Action action;
-        CalculusAgent agent;
+        KnowledgeBasedAgent agent;
 
         //TODO: Aca hay que tener en cuenta que podr�a haber m�s de un agente
         // por ahora el framework solo es monoagente :)
-        agent = (CalculusAgent) this.getAgents().firstElement();
+        agent = (KnowledgeBasedAgent) this.getAgents().firstElement();
 
         while (!isComplete()) {
 
-            System.out.println("-----------------------------------");
-            System.out.println("-----------------------------------");
+            System.out.println("---------------------------------------");
+            System.out.println("--- Knowledge Based Agent Simulator ---");
+            System.out.println("---------------------------------------");
 
             // Se crea la percepcion y se la envia al agente
             perception = this.getPercept(agent);
@@ -59,8 +60,8 @@ public class KnowledgeBasedAgentSimulator extends GoalBasedAgentSimulator {
 
             System.out.println("Agent State: " + agent.getAgentState());
             System.out.println("Environment: " + environment);
-            System.out.println("-----------------------------------");
-            System.out.println("-----------------------------------");
+            System.out.println("---------------------------------------");
+            System.out.println("---------------------------------------");
 
             // Pregunto al agente la accion a ejecutar
             action = agent.selectAction();
