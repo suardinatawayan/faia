@@ -5,7 +5,7 @@ import java.util.Vector;
 import raftasnake.EstadoSnake;
 
 import calculador.Calculador;
-import frsf.cidisi.faia.agent.CalculusAgent;
+import frsf.cidisi.faia.agent.KnowledgeBasedAgent;
 import frsf.cidisi.faia.agent.GoalBasedAgent;
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.agent.problem.Action;
@@ -14,7 +14,7 @@ import frsf.cidisi.faia.solver.calculus.Calculus;
 import frsf.cidisi.faia.solver.search.DepthFirstSearch;
 import frsf.cidisi.faia.solver.search.Search;
 
-public class AgenteCalculus extends CalculusAgent {
+public class AgenteCalculus extends KnowledgeBasedAgent {
 
     private Calculador calculador;
 
