@@ -1,4 +1,5 @@
 #summary Cosas por ver y hacer
+#labels Phase-Requirements,Phase-Design
 
 = Tareas por hacer =
 
