@@ -13,8 +13,8 @@ Es muy probable que se puedan utilizar versiones más actualizadas, aunque quiz�
 
 == Software opcional ==
 
- * LaTeX:
-   * En Windows: [http://miktex.org/ MiKTeX] 2.7 (Si se desea la generación de archivos PDF con los árboles de búsqueda. Bajar la versión "Basic").
+ * LaTeX (Si se desea la generación de archivos PDF con los árboles de búsqueda):
+   * En Windows: [http://miktex.org/ MiKTeX] 2.7 (Bajar la versión "Basic").
    * En GNU/Linux: el nombre del paquete a instalar depende de la distribución utilizada. Más abajo, en la sección de instalación de MiKTeX/LaTeX se darán detalles.
 
 == Instalación de SWI-Prolog ==
