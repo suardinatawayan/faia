@@ -52,6 +52,8 @@ TODO: Cuando intenté instalarlo justo no andaba la conexion al servidor. Termin
 
 === En GNU/Linux (Ubuntu) ===
 
+Para instalar LaTeX en Ubuntu son necesarios los paquetes texlive-latex-extra y texlive-latex-recommended. (TODO: Hay que corroborar que estos paquetes sean suficientes y necesarios).
+
 = FAIA desde !NetBeans =
 
 == Importar FAIA ==
