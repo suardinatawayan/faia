@@ -8,8 +8,6 @@ import java.util.Vector;
 import frsf.cidisi.faia.simulator.SimulatorEventHandler;
 import frsf.cidisi.faia.solver.search.NTree;
 import java.io.FileNotFoundException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class LatexOutput implements SimulatorEventHandler {
 
@@ -123,9 +121,9 @@ public class LatexOutput implements SimulatorEventHandler {
         str.append("\\usepackage{qtree}" + lineSeparator);
         str.append("\\usepackage{nodo}" + lineSeparator);
         str.append("\\usepackage[spanish]{babel}" + lineSeparator);
-        //str.append("\\usepackage[utf8]{inputenc}" + lineSeparator);
+        str.append("\\usepackage[utf8]{inputenc}" + lineSeparator);
 
-        str.append("\\title{Ejecución NÂº " + fileIdx + " Árbol de ejecución - Estrategia: " +
+        str.append("\\title{Árbol de ejecución - Ejecución Nro: " + fileIdx + " - Estrategia: " +
                 strategyName + "}" + lineSeparator);
         str.append("\\author{}" + lineSeparator);
         str.append("\\begin{document}" + lineSeparator);
