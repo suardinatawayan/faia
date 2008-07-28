@@ -1,8 +1,4 @@
-#summary Instrucciones para la instalación en sistemas Windows.
-
-= TODO =
-
- * Ver si no se puede hacer un solo documento, no uno para Windows y otro para Linux.
+﻿#summary Instrucciones para la instalación de FAIA tanto en Windows como en GNU/Linux.
 
 = Notas =
 
