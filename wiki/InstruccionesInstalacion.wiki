@@ -8,7 +8,7 @@ Las pruebas fueron realizadas en Windows XP SP 2, así como en ciertas versiones
 
 Es muy probable que se puedan utilizar versiones más actualizadas, aunque quizá la guía no contemple por ejemplo cambios en las interfaces gráficas. Además, con estas versiones se ha probado FAIA, por lo tanto si es posible, es mejor utilizar éstas.
 
- * [http://www.netbeans.org/ !NetBeans] 6.1 (es necesario tener instalado el JDK 5 o JDK 6. Se puede bajar un bundle con !NetBeans y JDK [http://java.sun.com/javase/downloads/netbeans.html aquí]).
+ * [http://www.netbeans.org/ NetBeans] 6.1 (es necesario tener instalado el JDK 5 o JDK 6. Se puede bajar un bundle con !NetBeans y JDK [http://java.sun.com/javase/downloads/netbeans.html aquí]).
  * [http://www.swi-prolog.org/ SWI-Prolog] 5.6.57.
 
 == Software opcional ==
@@ -40,6 +40,18 @@ TODO.
 
 == Instalación de MiKTeX/LaTeX ==
 
+=== En Windows XP ===
+
+La instalación de MiKTeX en Windows XP es simple como la instalación de cualquier programa. Sin embargo hay que mencionar un par de cosas:
+
+ * Durante la instalación, cuando aparezca la sección de "Settings", asegurarse de que la opción "Install missing packages on-the-fly" esté seteada a "Ask me first". De esta forma MiKTeX preguntará antes de instalar automáticamente algún paquete necesario. *Para el uso en FAIA no es importante esta opción*.
+
+ * Luego de que el instalador de MiKTeX haya finalizado, hay que instalar un paquete que por defecto no es incluído en la instalación estándar. El nombre del paquete es "pict2e". Para esto, ir a Inicio -> Programas -> MiKTeX 2.7 -> Browse Packages. Para buscar el paquete que tenemos que instalar, colocar en el campo "Name" el valor "pict2e" (sin las comillas). Elegir del resultado el paquete con ese nombre, hacer click derecho y elegir la opción "Install".
+
+TODO: Cuando intenté instalarlo justo no andaba la conexion al servidor. Terminar esta sección.
+
+=== En GNU/Linux (Ubuntu) ===
+
 = FAIA desde !NetBeans =
 
 == Importar FAIA ==
@@ -50,7 +62,7 @@ TODO: Agregar la parte de importar el código desde el jar o zip (depende de có
 
 TODO.
 
-== Configurar un proyecto para utilizar _Cálculo Situacional_ ==
+== Configurar un proyecto para utilizar _Prolog_ ==
 
 Se debe utilizar como directorio para librerías a 'faia\lib', donde se encuentran algunas dependencias que es necesario referenciar. Para esto:
 
