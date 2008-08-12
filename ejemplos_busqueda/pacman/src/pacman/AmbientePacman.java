@@ -12,13 +12,13 @@ public class AmbientePacman extends Environment {
     }
 
     public Perception getPercept(Agent agent) {
-        // El ambiente crea una percepción que va a ser recibida por el Pacman.- 
+        // El ambiente crea una percepciÃ³n que va a ser recibida por el Pacman.- 
         PercepcionPacman p = new PercepcionPacman();
 
-        // Es necesario realizar un "cast" para acceder a los métodos del agente Pacman.- 
+        // Es necesario realizar un "cast" para acceder a los mÃ©todos del agente Pacman.- 
         AgentePacman pacman = (AgentePacman) agent;
 
-        // Obtiene la posición actual del pacman para saber que percepciones brindarle.- 
+        // Obtiene la posiciï¿½n actual del pacman para saber que percepciones brindarle.- 
         int fil = ((EstadoPacman) pacman.getAgentState()).getFila();
         int col = ((EstadoPacman) pacman.getAgentState()).getColumna();
 
@@ -28,7 +28,7 @@ public class AmbientePacman extends Environment {
         p.setSensorDerecha(this.getDerecha(fil, col));
         p.setSensorAbajo(this.getAbajo(fil, col));
 
-        // Retorna la nueva percepción creada.-
+        // Retorna la nueva percepciï¿½n creada.-
         return p;
     }
 
