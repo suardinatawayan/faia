@@ -7,7 +7,12 @@ import java.util.Vector;
 
 import frsf.cidisi.faia.simulator.SimulatorEventHandler;
 import frsf.cidisi.faia.solver.search.NTree;
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 
 public class LatexOutput implements SimulatorEventHandler {
 
@@ -63,7 +68,7 @@ public class LatexOutput implements SimulatorEventHandler {
         File carpetaPdflatex = new File(pdflatexDir);
 
         System.out.println("Compilando archivos Latex...");
-
+        
         // Por cada archivo .tex compilo a PDF
         for (File archivoTex : carpetaPdflatex.listFiles(new TexFilter())) {
 
@@ -94,7 +99,7 @@ public class LatexOutput implements SimulatorEventHandler {
         }
 
         System.out.println();
-        System.out.println("CompilaciÛn finalizada.");
+        System.out.println("CompilaciÔøΩn finalizada.");
 
         // Ahora elimino los archivos temporales que cre√≥ pdflatex
         for (File archivoTemporal : carpetaPdflatex.listFiles(new TempFilesFilter())) {
@@ -123,7 +128,7 @@ public class LatexOutput implements SimulatorEventHandler {
         str.append("\\usepackage[spanish]{babel}" + lineSeparator);
         str.append("\\usepackage[utf8]{inputenc}" + lineSeparator);
 
-        str.append("\\title{¡rbol de ejecuciÛn - EjecuciÛn Nro: " + fileIdx + " - Estrategia: " +
+        str.append("\\title{√Årbol de ejecuci√≥n - Ejecuci√≥n Nro: " + fileIdx + " - Estrategia: " +
                 strategyName + "}" + lineSeparator);
         str.append("\\author{}" + lineSeparator);
         str.append("\\begin{document}" + lineSeparator);
@@ -175,9 +180,14 @@ public class LatexOutput implements SimulatorEventHandler {
             if (!f.exists()) {
                 f.mkdir();
             }
-            PrintOut print = new PrintOut(pdflatexDir + fileIdx + ".tex", false);
-            print.write(str.toString());
-            print.close();
+            
+            Writer out = new BufferedWriter(
+                    new OutputStreamWriter(
+                    new FileOutputStream(pdflatexDir + fileIdx + ".tex"),
+                    "UTF-8"));
+            
+            out.write(str.toString());
+            out.close();
 
             fileIdx++;
         } catch (Exception e) {
