@@ -112,13 +112,13 @@ public class PercepcionPacman extends Perception {
         resultado.append(this.convertirEstadoCelda(this.sensorAbajo));
         resultado.append("],");
 
-        // Posición del agente
+        // PosiciÃ³n del agente
         resultado.append(this.getFila());
         resultado.append(",");
         resultado.append(this.getColumna());
         resultado.append(",");
 
-        // Energía del agente
+        // EnergÃ­a del agente
         resultado.append(this.getEnergia());
         resultado.append(",");
 

@@ -6,11 +6,11 @@ package frsf.cidisi.faia.simulator;
 
 import frsf.cidisi.faia.agent.Agent;
 import frsf.cidisi.faia.agent.KnowledgeBasedAgent;
-import frsf.cidisi.faia.agent.GoalBasedAgent;
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.agent.problem.Action;
 import frsf.cidisi.faia.environment.Environment;
 import frsf.cidisi.faia.solver.calculus.KnowledgeBase;
+import frsf.cidisi.faia.solver.calculus.NoAction;
 import java.util.Vector;
 
 /**
@@ -68,16 +68,20 @@ public class KnowledgeBasedAgentSimulator extends GoalBasedAgentSimulator {
 
             System.out.println("Action: " + action);
 
-            if (action != null) {
-                /* Si la accion no es nula, entonces actualizo el mundo real en
-                 * el simulador, y luego aviso al agente sobre la accion
-                 * ejecutada, para que actualice su base de conocimiento. */
+            if (action instanceof NoAction) {
+                // If there is no action, then the agent has reached the goal.
+                System.out.println("Agent has reached the goal!");
+                break;
+            }
+            else if (action != null) {
+                /* If the action is not a NoAction instance, then we update
+                 * the real world on the simulator. Finally we tell the agent
+                 * the action chosen. */
                 this.updateState(action);
                 agent.tell(action);
-                agent.nextSituation();
-                agent.executeSuccessorStateAxioms();
 
             } else {
+                // If action is null, then there was an error.
                 System.out.println("ERROR: There is not solution for this problem. You should check the operators.");
                 break;
             }

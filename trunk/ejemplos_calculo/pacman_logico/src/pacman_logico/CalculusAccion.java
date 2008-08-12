@@ -19,7 +19,7 @@ public class CalculusAccion extends CalculusActionFactory {
     }
 
     @Override
-    public Action makeActionFromString(String stringAction) {
+    public Action stringToAction(String stringAction) {
         if (stringAction.equals("abajo")) {
             return new IrAbajo();
         } else if (stringAction.equals("arriba")) {
@@ -34,5 +34,12 @@ public class CalculusAccion extends CalculusActionFactory {
             return new Pelear();
         }
         return null;
+    }
+
+    @Override
+    public String noActionString() {
+        /* Retornamos el string que utilizamos en 'base_conocimiento.pl' en
+         * el predicado mejorAccion cuando se ha cumplido el objetivo */
+        return "noAccion";
     }
 }
