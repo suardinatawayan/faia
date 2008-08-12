@@ -54,18 +54,7 @@ public abstract class KnowledgeBase extends AgentState {
     }
 
     public void tell(Perception perception) {
-        //this.situation++;
-
-        // Le agrego a la percepción el parámetros situacional
-        //p.setTiempo(this.situation);
-
-//        this.prologQuery = new Query("assert(" + perception.toString() + ")");
-//        //this.log.info("assert(" + p.toString() + ")");
-//        this.prologQuery.hasSolution();
-
         this.addKnowledge(perception.toString());
-    //this.energia = p.getEnergia();
-    //this.visionAmbiente.actualizar(p);
     }
 
     public void executeSuccessorStateAxioms() {
@@ -78,35 +67,17 @@ public abstract class KnowledgeBase extends AgentState {
         if (action == null) {
             return;
         }
-
+        
         this.addKnowledge(this.getExecutedActionPredicate() +
                 "(" + action + "," + this.getSituation() + ")");
-
-//		try {
-//			a.ejecutar(this.visionAmbiente);
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+        
+        // Advance to the next situation
+        this.advanceToNextSituation();
+        
+        // Execute successors state axioms
+        this.executeSuccessorStateAxioms();
     }
-//    @Override
-//    public void updateState(Perception perception) {
-//        this.tell(perception);
-//    }
-
-//    public String queryForBestAction() {
-////		this.prologQuery = new Query("bestAction(X," + this.situation + ")");
-//        //this.log.info("mejorAccion(X," + this.situation + ")"+",assert(accionEjecutada(X," + this.situation + "))");
-//
-////		String solution = null;
-////		
-////		if (this.prologQuery.hasSolution())
-////			solution = this.prologQuery.oneSolution().get("X").toString();
-////		else
-////			return null;
-//
-//        return this.query("bestAction(X," + this.getSituation() + ")")[0].get("X").toString();
-//    }
+    
     public Hashtable[] query(String query) {
         this.prologQuery = new Query(query);
         return this.prologQuery.allSolutions();
@@ -121,46 +92,26 @@ public abstract class KnowledgeBase extends AgentState {
         this.prologQuery = new Query("asserta(" + predicate + ")");
         this.prologQuery.hasSolution();
     }
-//	public boolean goalReached() {
-//		String s = "goalReached(" + this.situation + ")";
-//		this.prologQuery = new Query(s);
-//		
-//		return this.prologQuery.hasSolution();
-//	}
-//    @Override
-//    public void updateState(Perception p) {
-//        this.tell(p);
-//    }
+    
     @Override
     public Object clone() {
-        // TODO Auto-generated method stub
-        return null;
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public boolean equals(Object obj) {
-        // TODO Auto-generated method stub
-        return false;
+        throw new UnsupportedOperationException();
     }
-
-//    @Override
-//    public String toString() {
-//        // TODO Auto-generated method stub
-//        return null;
-//    }
+    
     /**
      * Returns the actual situation of the Knowledge Base
      * @return
      */
     public int getSituation() {
-//        Hashtable[] resultado = this.query(this.getCurrentSituationPredicate() +
-//                "(S)");
-//        
-//        return Integer.parseInt(resultado[0].get("S").toString());
         return this.situation;
     }
 
-    public void nextSituation() {
+    public void advanceToNextSituation() {
         this.situation++;
     }
 

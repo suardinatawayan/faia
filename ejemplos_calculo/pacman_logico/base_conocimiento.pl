@@ -172,7 +172,7 @@ malo(D,S):-adyacente(Xa,Ya,D,S),not(conoceTodo(S)),enemigo(Xa,Ya,S),convienePele
 muy_malo(pelear,S):-posicion(X,Y,S),enemigo(X,Y,S).
 muy_malo(D,S):-adyacente(Xa,Ya,D,S),vacia(Xa,Ya,S).
 
-mejorAccion(null,S):-cumplioObjetivo(S),!.
+mejorAccion(noAccion,S):-cumplioObjetivo(S),!.
 mejorAccion(X,S):-excelente(X,S),!.
 mejorAccion(X,S):-muy_bueno(X,S),!.
 mejorAccion(X,S):-bueno(X,S),!.

@@ -9,15 +9,5 @@ public abstract class KnowledgeBasedAgent extends GoalBasedAgent {
         super();
     }
 
-    public void executeSuccessorStateAxioms() {
-        KnowledgeBase knowledgeBase = (KnowledgeBase) this.getAgentState();
-        knowledgeBase.executeSuccessorStateAxioms();
-    }
-
     public abstract void tell(Action action);
-
-    public void nextSituation() {
-        KnowledgeBase knowledgeBase = (KnowledgeBase) this.getAgentState();
-        knowledgeBase.nextSituation();
-    }
 }
