@@ -10,7 +10,6 @@ import frsf.cidisi.faia.solver.search.NTree;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 
@@ -99,7 +98,7 @@ public class LatexOutput implements SimulatorEventHandler {
         }
 
         System.out.println();
-        System.out.println("Compilaci�n finalizada.");
+        System.out.println("Compilación finalizada.");
 
         // Ahora elimino los archivos temporales que creó pdflatex
         for (File archivoTemporal : carpetaPdflatex.listFiles(new TempFilesFilter())) {
