@@ -48,7 +48,7 @@ La instalación de MiKTeX en Windows XP es simple como la instalación de cualqu
 
  * Luego de que el instalador de MiKTeX haya finalizado, hay que instalar un paquete que por defecto no es incluído en la instalación estándar. El nombre del paquete es "pict2e". Para esto, ir a Inicio -> Programas -> MiKTeX 2.7 -> Browse Packages. Para buscar el paquete que tenemos que instalar, colocar en el campo "Name" el valor "pict2e" (sin las comillas). Elegir del resultado el paquete con ese nombre, hacer click derecho y elegir la opción "Install".
 
-TODO: Cuando intenté instalarlo justo no andaba la conexion al servidor. Terminar esta sección.
+ * Finalmente, presionar el botón "Close" cuando la instalación haya terminado.
 
 === En GNU/Linux (Ubuntu) ===
 
