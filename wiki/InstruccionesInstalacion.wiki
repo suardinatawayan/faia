@@ -35,7 +35,12 @@ Para esto:
 
 === En GNU/Linux (Ubuntu) ===
 
-TODO.
+Para instalar SWI-Prolog en Ubuntu Linux, vamos a utilizar una versión especial que se provee en este sitio, y no la oficial de la distribución.
+
+ * Descargar el archivo "pl_5.6.57_i386-linux.deb" desde la [http://code.google.com/p/faia/downloads/list sección de Downloads] de éste sitio.
+ * Para realizar la instalación, es posible:
+   * Utilizar la interfaz gráfica: hacer doble click en el archivo para instalarlo desde el "Instalador de paquetes", y luego presionar el botón "Instalar el paquete"
+   * Utilizar la línea de comandos: abrir una termina y ubicarse en el directorio de descarga. Ejecutar el comando: _sudo dpkg -i pl_5.6.57_i386-linux.deb_
 
 == Instalación de MiKTeX/LaTeX ==
 
