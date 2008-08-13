@@ -19,8 +19,6 @@ Es muy probable que se puedan utilizar versiones más actualizadas, aunque quiz�
 
 == Instalación de SWI-Prolog ==
 
-Es necesario reinicar !NetBeans luego de realizar los siguientes cambios.
-
 === En Windows XP ==
 
 La instalación de este software para ser utilizado por FAIA no es trivial. Luego de haber instalado SWI-Prolog con el instalador para Windows, hay que agregar a la variable de entorno PATH la ruta al directorio '<DirectorioInstalacionSWIProlog>\bin', como por ejemplo "C:\Archivos de programa\pl\bin".
@@ -32,7 +30,8 @@ Para esto:
  * En la parte de "Variables de sistema", hacer doble click en la variable "Path" para editarla.
  * Aún sin haberla modificado, verificar que la cadena finalice con punto y coma (;).
  * Luego agregar el path correspondiente como se ha dicho. Es importante no olvidarse de colocar las comillas dobles para indicar la ruta del directorio.
- * Finalmente, presionar el botón "Aceptar" para guardar los cambios.
+ * Presionar el botón "Aceptar" para guardar los cambios.
+ * Finalmente, es necesario reiniciar !NetBeans.
 
 === En GNU/Linux (Ubuntu) ===
 
