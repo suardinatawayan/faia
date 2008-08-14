@@ -9,7 +9,6 @@ import frsf.cidisi.faia.agent.KnowledgeBasedAgent;
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.agent.problem.Action;
 import frsf.cidisi.faia.environment.Environment;
-import frsf.cidisi.faia.solver.calculus.KnowledgeBase;
 import frsf.cidisi.faia.solver.calculus.NoAction;
 import java.util.Vector;
 
@@ -28,16 +27,6 @@ public class KnowledgeBasedAgentSimulator extends GoalBasedAgentSimulator {
     }
 
     @Override
-    public boolean isComplete() {
-        KnowledgeBasedAgent calculusAgent = (KnowledgeBasedAgent) this.getAgents().firstElement();
-        KnowledgeBase kb = (KnowledgeBase) calculusAgent.getAgentState();
-
-        String s = kb.getGoalReachedPredicate() + "(" + kb.getSituation() + ")";
-
-        return kb.queryHasSolution(s);
-    }
-
-    @Override
     public void start() {
 
         Perception perception;
@@ -48,7 +37,7 @@ public class KnowledgeBasedAgentSimulator extends GoalBasedAgentSimulator {
         // por ahora el framework solo es monoagente :)
         agent = (KnowledgeBasedAgent) this.getAgents().firstElement();
 
-        while (!isComplete()) {
+        while (true) {
 
             System.out.println("---------------------------------------");
             System.out.println("--- Knowledge Based Agent Simulator ---");
@@ -68,23 +57,29 @@ public class KnowledgeBasedAgentSimulator extends GoalBasedAgentSimulator {
 
             System.out.println("Action: " + action);
 
-            if (action instanceof NoAction) {
-                // If there is no action, then the agent has reached the goal.
-                System.out.println("Agent has reached the goal!");
+            /* Check if agent has reached the goal or not, or if we must
+             * go on */
+            if (action instanceof NoAction || action == null) {
                 break;
-            }
-            else if (action != null) {
+            } else if (action != null) {
                 /* If the action is not a NoAction instance, then we update
                  * the real world on the simulator. Finally we tell the agent
                  * the action chosen. */
                 this.updateState(action);
                 agent.tell(action);
 
-            } else {
-                // If action is null, then there was an error.
-                System.out.println("ERROR: There is not solution for this problem. You should check the operators.");
-                break;
             }
         }
+
+        if (action instanceof NoAction) {
+            // If there is no action, then the agent has reached the goal.
+            System.out.println("Agent has reached the goal!");
+        } else {
+            // If action is null, then there was an error.
+            System.out.println("ERROR: There is not solution for this problem. You should check the operators.");
+        }
+        
+        // Leave a blank line
+        System.out.println();
     }
 }

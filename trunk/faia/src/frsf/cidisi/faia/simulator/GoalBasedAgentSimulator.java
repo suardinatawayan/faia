@@ -34,8 +34,6 @@ public abstract class GoalBasedAgentSimulator extends Simulator {
         this.agents = ags;
     }
 
-    public abstract boolean isComplete();
-
     public abstract void start();
 
     protected void updateState(Action action) {

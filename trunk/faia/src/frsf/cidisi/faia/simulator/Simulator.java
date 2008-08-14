@@ -49,8 +49,6 @@ public abstract class Simulator {
         return this.getEnvironment().getPercept(agent);
     }
 
-    public abstract boolean isComplete();
-
     /**
      * 
      * @param evm    evm
@@ -59,12 +57,4 @@ public abstract class Simulator {
     }
 
     public abstract void start();
-    /**
-     * 
-     * @param action    action
-     */
-    /*	protected void updateState(Action action){
-    this.getEnviroment().updateState(agents.elementAt(0), action);
-    }
-     */
 }
