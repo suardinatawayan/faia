@@ -12,7 +12,7 @@ public class AmbienteRobot extends Environment {
     }
 
     public Perception getPercept(Agent agent) {
-        // Retorna la nueva percepción creada.-
+        // Retorna la nueva percepciÃ³n creada.-
         return null;
     }
 

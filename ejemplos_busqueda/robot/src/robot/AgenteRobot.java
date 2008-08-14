@@ -46,35 +46,35 @@ public class AgenteRobot extends SearchBasedAgent {
     @Override
     public Action selectAction() {
 
-//		// Instanciaci髇 la estrategia de b鷖queda primero en profundidad.-
+//		// Instanciaci贸n la estrategia de b煤squeda primero en profundidad.-
 //		DepthFirstSearch estrategiaBusqueda = new DepthFirstSearch();
 
-        // Instanciaci髇 de la estrategia primero en amplitud.-
+        // Instanciaci贸n de la estrategia primero en amplitud.-
         BreathFirstSearch estrategiaBusqueda = new BreathFirstSearch();
 
         /**
-         * Ejemplos de instanciaci髇 de otras estrategias de b鷖queda.-
+         * Ejemplos de instanciaci贸n de otras estrategias de b煤squeda.-
          * 
-         * // Instanciaci髇 de la estrategia primero en amplitud.-
+         * // Instanciaci贸n de la estrategia primero en amplitud.-
          * BreathFirstSearch estrategiaBusqueda = new BreathFirstSearch();
          * 
-         * // Instanciaci髇 de la estrategia de costo uniforme.-
+         * // Instanciaci贸n de la estrategia de costo uniforme.-
          * IStepCostFunction costo = new FuncionCosto();
          * UniformCostSearch estrategiaBusqueda = new UniformCostSearch(costo);
-         */        // Instancia un proceso de b鷖queda indicando como par醡etro la estrategia a utilizar.-
+         */        // Instancia un proceso de b煤squeda indicando como par谩metro la estrategia a utilizar.-
 
         Search busqueda = new Search(estrategiaBusqueda);
 
-        // Indica que el 醨bol de b鷖queda debe ser mostrado e formato XML.-
+        // Indica que el 谩rbol de b煤squeda debe ser mostrado e formato XML.-
         busqueda.setVisibleTree(Search.XML_TREE);
 
-        // Le indica al Solver el proceso de b鷖queda que debe ejecutar.- 
+        // Le indica al Solver el proceso de b煤squeda que debe ejecutar.- 
         this.setSolver(busqueda);
 
-        // Se ejecuta el proceso de selecci髇 de la acci髇 m醩 adecuada.-
+        // Se ejecuta el proceso de selecci贸n de la acci贸n m谩s adecuada.-
         Action accionSeleccionada = this.getSolver().solve(this.getProblem());
 
-        // Retorna la acci髇 seleccionada.-
+        // Retorna la acci贸n seleccionada.-
         return accionSeleccionada;
     }
 }
