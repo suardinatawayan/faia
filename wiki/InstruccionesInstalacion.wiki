@@ -8,7 +8,7 @@ Las pruebas fueron realizadas en Windows XP SP 2 y Ubuntu Linux 8.04, así como 
 
 Es muy probable que se puedan utilizar versiones más actualizadas, aunque quizá la guía no contemple por ejemplo cambios en las interfaces gráficas. Además, con estas versiones se ha probado FAIA, por lo tanto si es posible, es mejor utilizar éstas.
 
- * [http://www.netbeans.org/ NetBeans] 6.1 (es necesario tener instalado el JDK 5 o JDK 6. Se puede bajar un bundle con !NetBeans y JDK [http://java.sun.com/javase/downloads/netbeans.html aquí]).
+ * [http://www.netbeans.org/ NetBeans] 6.1 (es necesario tener instalado el JDK 6. Se puede bajar un bundle con !NetBeans y JDK [http://java.sun.com/javase/downloads/netbeans.html aquí]).
  * [http://www.swi-prolog.org/ SWI-Prolog] 5.6.57.
 
 == Software opcional ==
@@ -39,8 +39,8 @@ Para instalar SWI-Prolog en Ubuntu Linux, vamos a utilizar una versión especial
 
  * Descargar el archivo "pl_5.6.57_i386-linux.deb" desde la [http://code.google.com/p/faia/downloads/list sección de Downloads] de éste sitio.
  * Para realizar la instalación, es posible:
-   * Utilizar la interfaz gráfica: hacer doble click en el archivo para instalarlo desde el "Instalador de paquetes", y luego presionar el botón "Instalar el paquete"
-   * Utilizar la línea de comandos: abrir una termina y ubicarse en el directorio de descarga. Ejecutar el comando: _sudo dpkg -i pl_5.6.57_i386-linux.deb_
+   * *Utilizar la interfaz gráfica:* hacer doble click en el archivo para instalarlo desde el "Instalador de paquetes", y luego presionar el botón "Instalar el paquete"
+   * *Utilizar la línea de comandos:* abrir una termina y ubicarse en el directorio de descarga. Ejecutar el comando: _sudo dpkg -i pl_5.6.57_i386-linux.deb_
 
 == Instalación de MiKTeX/LaTeX ==
 
@@ -75,7 +75,10 @@ Se debe utilizar como directorio para librerías a 'faia\lib', donde se encuentr
  * Hacer click derecho en "Libraries" dentro del proyecto nuevo, y en "Libraries folder" elegir la carpeta 'faia\lib" (utilizar el botón Browse para ubicarla).
  * Luego hacer click derecho nuevamente en "Libraries" y elegir la opción "Add JAR/Folder".
  * Elegir el archivo 'jpl.jar'.
- * Hacer click derecho en el proyecto, y elegir la opción "Properties".
- * En "Run", dentro de la caja de texto "VM Options" colocar: _-Djava.library.path="<DirectorioInstalacionSWIProlog>\bin"_, por ejemplo _-Djava.library.path="C:\Archivos de programa\pl\bin"_. Es importante no olvidarse de colocar las comillas dobles para indicar la ruta del directorio.
 
-Luego de realizar correctamente los pasos anteriores, debería ser posible correr proyectos que utilicen Cálculo Situacional con FAIA. Es recomendable ver los ejemplos incluídos.
+Con los pasos anteriores ya tenemos agregado el archivo 'jpl.jar' a nuestro classpath. Con esto ya podemos utilizar Prolog en Windows XP (suponiendo que ya ha sido instalado con los pasos dados en esta página, modificando la variable PATH como se indica). *Sin embargo, para sistemas GNU/Linux, es necesario realizar, además, los siguientes pasos:*
+
+ * Hacer click derecho en el proyecto, y elegir la opción "Properties".
+ * En "Run", dentro de la caja de texto "VM Options" colocar: _-Djava.library.path="/usr/lib/pl-5.6.57/lib/i386-linux"_. Es importante no olvidarse de colocar las comillas dobles para indicar la ruta del directorio, y así evitarse problemas.
+
+Luego de realizar correctamente los pasos anteriores, debería ser posible correr proyectos que utilicen Cálculo Situacional con FAIA. Es recomendable ver los ejemplos incluidos.
