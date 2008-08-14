@@ -26,7 +26,7 @@ public class EstadoAmbiente extends EnvironmentState {
     public static final String P = "P";
     public static final String Q = "Q";
     /**
-     * Este mapa tiene como clave a un punto del mundo (A, B, C, ...) y como valor una colección 
+     * Este mapa tiene como clave a un punto del mundo (A, B, C, ...) y como valor una colecciÃ³n 
      * que contiene a los sucesores del punto.-
      */
     private HashMap<String, Collection<String>> mapa;

@@ -27,12 +27,12 @@ public class EstadoRobot extends AgentState {
     public static final String P = "P";
     public static final String Q = "Q";
     /**
-     * Posición actual del robot.-
+     * PosiciÃ³n actual del robot.-
      */
     String posicion;
     /**
      * Este 
-     * Este mapa tiene como clave a un punto del mundo (A, B, C, ...) y como valor una colección 
+     * Este mapa tiene como clave a un punto del mundo (A, B, C, ...) y como valor una colecciÃ³n 
      * que contiene a los sucesores del punto.-
      */
     private HashMap<String, Collection<String>> mapaConocido;
