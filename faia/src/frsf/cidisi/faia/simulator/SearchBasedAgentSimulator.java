@@ -28,8 +28,7 @@ public class SearchBasedAgentSimulator extends GoalBasedAgentSimulator {
     public SearchBasedAgentSimulator(Environment environment, Agent agent) {
         super(environment, agent);
     }
-    
-    @Override
+
     public boolean isComplete() {
         //TODO: 
         // ACA HAY QUE HACER UN BUCLE PARA CUANDO HAY MAS DE UN AGENTE DEFINIDO
@@ -41,7 +40,7 @@ public class SearchBasedAgentSimulator extends GoalBasedAgentSimulator {
 
         return gt.isGoalState(aSt);
     }
-    
+
     public void start() {
         //TODO:
         // ANTES DE EMPEZAR CON LA SIMULACION HAY QUE TESTEAR QUE EL AMBIENTE ESTE
@@ -73,13 +72,22 @@ public class SearchBasedAgentSimulator extends GoalBasedAgentSimulator {
             if (action != null) {
                 this.updateState(action);
             } else {
-                System.out.println("ERROR: There is not solution for this problem. You should check the operators.");
                 break;
             }
-
             showSolution();
         }
 
+        // Check what happend, if agent has reached the goal or not.
+        if (this.isComplete()) {
+            System.out.println("Agent has reached the goal!");
+        } else {
+            System.out.println("ERROR: There is not solution for this problem. You should check the operators.");
+        }
+        
+        // Leave a blank line
+        System.out.println();
+        
+        // Launch simulationFinished event
         SimulatorEventNotifier.simulationFinished();
     }
 }
