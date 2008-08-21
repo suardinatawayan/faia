@@ -5,11 +5,11 @@ import java.util.Vector;
 import raftasnake.EstadoSnake;
 
 import calculador.Calculador;
-import frsf.cidisi.faia.agent.KnowledgeBasedAgent;
+import frsf.cidisi.faia.agent.knowledgebased.KnowledgeBasedAgent;
 import frsf.cidisi.faia.agent.GoalBasedAgent;
 import frsf.cidisi.faia.agent.Perception;
-import frsf.cidisi.faia.agent.problem.Action;
-import frsf.cidisi.faia.agent.problem.Problem;
+import frsf.cidisi.faia.agent.Action;
+import frsf.cidisi.faia.agent.searchbased.Problem;
 import frsf.cidisi.faia.solver.calculus.Calculus;
 import frsf.cidisi.faia.solver.search.DepthFirstSearch;
 import frsf.cidisi.faia.solver.search.Search;

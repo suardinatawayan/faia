@@ -1,4 +1,4 @@
-package frsf.cidisi.faia.agent.problem;
+package frsf.cidisi.faia.agent.searchbased;
 
 import frsf.cidisi.faia.state.AgentState;
 

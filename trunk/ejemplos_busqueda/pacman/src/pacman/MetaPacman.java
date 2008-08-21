@@ -1,6 +1,6 @@
 package pacman;
 
-import frsf.cidisi.faia.agent.problem.GoalTest;
+import frsf.cidisi.faia.agent.searchbased.GoalTest;
 import frsf.cidisi.faia.state.AgentState;
 
 public class MetaPacman extends GoalTest {

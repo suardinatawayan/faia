@@ -5,7 +5,8 @@
 
 package frsf.cidisi.faia.solver.calculus;
 
-import frsf.cidisi.faia.agent.problem.Action;
+import frsf.cidisi.faia.agent.Action;
+import frsf.cidisi.faia.agent.knowledgebased.CalculusAction;
 import frsf.cidisi.faia.state.AgentState;
 import frsf.cidisi.faia.state.EnvironmentState;
 
@@ -15,7 +16,7 @@ import frsf.cidisi.faia.state.EnvironmentState;
  * 
  * @author miltondp
  */
-public class NoAction extends Action {
+public class NoAction extends CalculusAction {
     
     private static NoAction instance;
     
@@ -30,23 +31,12 @@ public class NoAction extends Action {
     }
 
     @Override
-    public AgentState execute(AgentState s) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
     public EnvironmentState execute(AgentState ast, EnvironmentState est) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-
-    @Override
-    public Double getCost() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
+    
     @Override
     public String toString() {
         return "NoAction";
     }
-
 }

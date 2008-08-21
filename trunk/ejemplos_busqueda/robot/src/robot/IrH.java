@@ -2,11 +2,11 @@ package robot;
 
 import java.util.ArrayList;
 
-import frsf.cidisi.faia.agent.problem.Action;
+import frsf.cidisi.faia.agent.searchbased.SearchAction;
 import frsf.cidisi.faia.state.AgentState;
 import frsf.cidisi.faia.state.EnvironmentState;
 
-public class IrH extends Action {
+public class IrH extends SearchAction {
 
     /**
      * 
@@ -37,23 +37,20 @@ public class IrH extends Action {
      * @param ast: Es el estado del agente a ser actualizado.-
      * @param est: Es el estado del ambiente a ser actualizado.-
      */
+    @Override
     public EnvironmentState execute(AgentState ast, EnvironmentState est) {
         this.execute(ast);
 
         return null;
     }
 
+    @Override
     public Double getCost() {
         return new Double(0);
     }
 
+    @Override
     public String toString() {
         return "IrH";
-    }
-
-    @Override
-    public String getLogicName() {
-        // TODO Auto-generated method stub
-        return null;
     }
 }

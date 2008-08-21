@@ -1,6 +1,6 @@
 package pacman_logico;
 
-import frsf.cidisi.faia.agent.problem.Action;
+import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.solver.calculus.CalculusActionFactory;
 import pacman_logico.acciones.*;
 

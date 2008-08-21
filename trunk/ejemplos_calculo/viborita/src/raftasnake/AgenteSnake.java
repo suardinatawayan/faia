@@ -5,8 +5,8 @@ import java.util.Vector;
 import calculador.Calculador;
 
 import frsf.cidisi.faia.agent.GoalBasedAgent;
-import frsf.cidisi.faia.agent.problem.Action;
-import frsf.cidisi.faia.agent.problem.Problem;
+import frsf.cidisi.faia.agent.Action;
+import frsf.cidisi.faia.agent.searchbased.Problem;
 import frsf.cidisi.faia.solver.search.*;
 
 public class AgenteSnake extends GoalBasedAgent {

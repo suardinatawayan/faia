@@ -4,12 +4,8 @@ import java.util.Vector;
 
 import frsf.cidisi.faia.agent.GoalBasedAgent;
 import frsf.cidisi.faia.agent.Agent;
-import frsf.cidisi.faia.agent.Perception;
-import frsf.cidisi.faia.agent.problem.Action;
-import frsf.cidisi.faia.agent.problem.Problem;
+import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.environment.Environment;
-import frsf.cidisi.faia.agent.problem.GoalTest;
-import frsf.cidisi.faia.state.AgentState;
 
 /**
  * @author Jorge M. Roa
@@ -35,7 +31,7 @@ public abstract class GoalBasedAgentSimulator extends Simulator {
     }
 
     public abstract void start();
-
+    
     protected void updateState(Action action) {
         this.getEnvironment().updateState(((GoalBasedAgent) agents.elementAt(0)).getAgentState(), action);
     }

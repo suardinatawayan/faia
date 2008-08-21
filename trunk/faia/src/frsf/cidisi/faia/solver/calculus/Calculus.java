@@ -1,10 +1,8 @@
 package frsf.cidisi.faia.solver.calculus;
 
-import frsf.cidisi.faia.agent.problem.Action;
-import frsf.cidisi.faia.agent.problem.Problem;
+import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.exceptions.CalculusException;
 import frsf.cidisi.faia.solver.Solve;
-import frsf.cidisi.faia.state.AgentState;
 import java.util.Hashtable;
 
 public class Calculus extends Solve {
@@ -17,17 +15,11 @@ public class Calculus extends Solve {
         // TODO Auto-generated method stub
     }
 
-    /**
-     * Aca el Problem no es utilizado. 
-     */
     @Override
-    public Action solve(Problem problem) {
-        throw new UnsupportedOperationException("Not supported operation.");
-    }
-
-    @Override
-    public Action solve(KnowledgeBase knowledgeBase) throws CalculusException {
-
+    public Action solve(Object[] params) throws CalculusException {
+        
+        KnowledgeBase knowledgeBase = (KnowledgeBase)params[0];
+        
         /* Hago una consulta a la base de conocimiento, pidiendo por la mejor
          * accion. Esto me devuelve un Hashtable con todos los resultados.
          * En este caso solo deberia devolver uno. */

@@ -1,42 +1,16 @@
 package pacman_logico.acciones;
 
-import frsf.cidisi.faia.agent.problem.Action;
+import frsf.cidisi.faia.agent.Action;
+import frsf.cidisi.faia.agent.knowledgebased.CalculusAction;
 import frsf.cidisi.faia.state.AgentState;
 import frsf.cidisi.faia.state.EnvironmentState;
 import pacman_logico.EstadoAmbiente;
 import pacman_logico.EstadoPacman;
 import pacman_logico.PercepcionPacman;
 
-public class Pelear extends Action {
+public class Pelear extends CalculusAction {
 
-    /**
-     * Permite actualizar el estado de los nodos un �rbol de b�squeda durante la creaci�n del mismo.-
-     * 
-     * @param s: Es el estado del agente en un determinado nodo del �rbol de b�squeda.-
-     */
-    public AgentState execute(AgentState s) {
-//		EstadoPacman estP = ((EstadoPacman)s.clone());
-//		EstadoPacman estP = (EstadoPacman)s;
-//
-//		int fil = estP.getFila();
-//		int col = estP.getColumna();
-//		
-//		if ((estP.getMundo()[fil][col]==1) & (estP.getEnergia()>30)){
-//			estP.setMundo(fil, col, PercepcionPacman.PERCEPCION_VACIO);
-//			//System.out.println(" Pelear@Pac - ");
-//			return estP;
-//		}
-
-
-        return null;
-    }
-
-    /**
-     * Permite actualizar el estado real del agente y del ambiente.-
-     * 
-     * @param ast: Es el estado del agente a ser actualizado.-
-     * @param est: Es el estado del ambiente a ser actualizado.-
-     */
+    @Override
     public EnvironmentState execute(AgentState ast, EnvironmentState est) {
         EstadoAmbiente estA = (EstadoAmbiente) est;
         EstadoPacman estP = ((EstadoPacman) ast);
@@ -54,10 +28,7 @@ public class Pelear extends Action {
         return null;
     }
 
-    public Double getCost() {
-        return new Double(0);
-    }
-
+    @Override
     public String toString() {
         return "Pelear";
     }

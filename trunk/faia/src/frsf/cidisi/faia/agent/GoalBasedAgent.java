@@ -1,7 +1,5 @@
 package frsf.cidisi.faia.agent;
 
-import frsf.cidisi.faia.agent.problem.Action;
-import frsf.cidisi.faia.agent.problem.Problem;
 import frsf.cidisi.faia.solver.Solve;
 import frsf.cidisi.faia.state.AgentState;
 
@@ -17,8 +15,6 @@ public abstract class GoalBasedAgent extends Agent {
 
     public GoalBasedAgent() {
     }
-
-    public abstract Action selectAction();
 
     public void see(Perception p) {
         //problem.getAgentState().updateState(p);

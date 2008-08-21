@@ -7,10 +7,10 @@ package frsf.cidisi.faia.simulator;
 import frsf.cidisi.faia.agent.Agent;
 import frsf.cidisi.faia.agent.GoalBasedAgent;
 import frsf.cidisi.faia.agent.Perception;
-import frsf.cidisi.faia.agent.SearchBasedAgent;
-import frsf.cidisi.faia.agent.problem.Action;
-import frsf.cidisi.faia.agent.problem.GoalTest;
-import frsf.cidisi.faia.agent.problem.Problem;
+import frsf.cidisi.faia.agent.searchbased.SearchBasedAgent;
+import frsf.cidisi.faia.agent.searchbased.GoalTest;
+import frsf.cidisi.faia.agent.searchbased.Problem;
+import frsf.cidisi.faia.agent.searchbased.SearchAction;
 import frsf.cidisi.faia.environment.Environment;
 import frsf.cidisi.faia.state.AgentState;
 import java.util.Vector;
@@ -47,7 +47,7 @@ public class SearchBasedAgentSimulator extends GoalBasedAgentSimulator {
         // INICIALIZADO, ETC.
 
         Perception perception;
-        Action action;
+        SearchAction action;
         GoalBasedAgent agent;
 
         //TODO: Aca hay que tener en cuenta que podr�a haber m�s de un agente
@@ -67,7 +67,7 @@ public class SearchBasedAgentSimulator extends GoalBasedAgentSimulator {
             System.out.println("------------------------------------");
 
 
-            action = agent.selectAction();
+            action = (SearchAction) agent.selectAction();
             System.out.println("Action: " + action);
             if (action != null) {
                 this.updateState(action);
