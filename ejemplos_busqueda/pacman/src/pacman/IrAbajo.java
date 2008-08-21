@@ -1,16 +1,12 @@
 package pacman;
 
-import frsf.cidisi.faia.agent.problem.Action;
+import frsf.cidisi.faia.agent.searchbased.SearchAction;
 import frsf.cidisi.faia.state.AgentState;
 import frsf.cidisi.faia.state.EnvironmentState;
 
-public class IrAbajo extends Action {
+public class IrAbajo extends SearchAction {
 
-    /**
-     * Permite actualizar el estado de los nodos un �rbol de b�squeda durante la creaci�n del mismo.-
-     * 
-     * @param s: Es el estado del agente en un determinado nodo del �rbol de b�squeda.-
-     */
+    @Override
     public AgentState execute(AgentState s) {
 //		EstadoPacman estP = ((EstadoPacman)s.clone());
         EstadoPacman estP = (EstadoPacman) s;
@@ -36,12 +32,7 @@ public class IrAbajo extends Action {
         return null;
     }
 
-    /**
-     * Permite actualizar el estado real del agente y del ambiente.-
-     * 
-     * @param ast: Es el estado del agente a ser actualizado.-
-     * @param est: Es el estado del ambiente a ser actualizado.-
-     */
+    @Override
     public EnvironmentState execute(AgentState ast, EnvironmentState est) {
 //		EstadoPacman estP = ((EstadoPacman)s.clone());
         EstadoAmbiente estA = (EstadoAmbiente) est;
@@ -64,10 +55,12 @@ public class IrAbajo extends Action {
         return estA;
     }
 
+    @Override
     public Double getCost() {
         return new Double(0);
     }
 
+    @Override
     public String toString() {
         return "Abajo";
     }

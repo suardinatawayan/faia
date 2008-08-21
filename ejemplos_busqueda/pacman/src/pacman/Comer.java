@@ -1,16 +1,13 @@
 package pacman;
 
-import frsf.cidisi.faia.agent.problem.Action;
+import frsf.cidisi.faia.agent.Action;
+import frsf.cidisi.faia.agent.searchbased.SearchAction;
 import frsf.cidisi.faia.state.AgentState;
 import frsf.cidisi.faia.state.EnvironmentState;
 
-public class Comer extends Action {
-
-    /**
-     * Permite actualizar el estado de los nodos un �rbol de b�squeda durante la creaci�n del mismo.-
-     * 
-     * @param s: Es el estado del agente en un determinado nodo del �rbol de b�squeda.-
-     */
+public class Comer extends SearchAction {
+    
+    @Override
     public AgentState execute(AgentState s) {
         EstadoPacman estP = (EstadoPacman) s;
 
@@ -26,13 +23,8 @@ public class Comer extends Action {
 
         return null;
     }
-
-    /**
-     * Permite actualizar el estado real del agente y del ambiente.-
-     * 
-     * @param ast: Es el estado del agente a ser actualizado.-
-     * @param est: Es el estado del ambiente a ser actualizado.-
-     */
+    
+    @Override
     public EnvironmentState execute(AgentState ast, EnvironmentState est) {
         EstadoAmbiente estA = (EstadoAmbiente) est;
         EstadoPacman estP = ((EstadoPacman) ast);
@@ -50,10 +42,12 @@ public class Comer extends Action {
         return null;
     }
 
+    @Override
     public Double getCost() {
         return new Double(0);
     }
 
+    @Override
     public String toString() {
         return "Comer";
     }

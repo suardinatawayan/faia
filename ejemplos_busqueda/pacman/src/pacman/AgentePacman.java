@@ -1,12 +1,16 @@
 package pacman;
 
+import frsf.cidisi.faia.exceptions.CalculusException;
 import java.util.Vector;
 
 import frsf.cidisi.faia.agent.GoalBasedAgent;
-import frsf.cidisi.faia.agent.SearchBasedAgent;
-import frsf.cidisi.faia.agent.problem.Action;
-import frsf.cidisi.faia.agent.problem.Problem;
+import frsf.cidisi.faia.agent.searchbased.SearchBasedAgent;
+import frsf.cidisi.faia.agent.Action;
+import frsf.cidisi.faia.agent.searchbased.Problem;
+import frsf.cidisi.faia.agent.searchbased.SearchAction;
 import frsf.cidisi.faia.solver.search.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class AgentePacman extends SearchBasedAgent {
 
@@ -18,7 +22,7 @@ public class AgentePacman extends SearchBasedAgent {
         this.setAgentState(estado);
 
         // Se generan las instancias de los operadores del Pacman.-
-        Vector<Action> operadores = new Vector<Action>();
+        Vector<SearchAction> operadores = new Vector<SearchAction>();
         operadores.addElement(new Comer());
         operadores.addElement(new Pelear());
         operadores.addElement(new IrIzquierda());
@@ -32,6 +36,7 @@ public class AgentePacman extends SearchBasedAgent {
         this.setProblem(problema);
     }
 
+    @Override
     public Action selectAction() {
 
         // Instanciaci�n la estrategia de b�squeda primero en profundidad.-
@@ -64,11 +69,17 @@ public class AgentePacman extends SearchBasedAgent {
         // Indica que el �rbol de b�squeda debe ser mostrado e formato XML.-
         busqueda.setVisibleTree(Search.PDF_TREE);
 
-        // Le indica al Solver el proceso de b�squeda que debe ejecutar.- 
+        // Le indica al Solver el proceso de búsqueda que debe ejecutar.- 
         this.setSolver(busqueda);
 
-        // Se ejecuta el proceso de selecci�n de la acci�n m�s adecuada.-
-        Action accionSeleccionada = this.getSolver().solve(this.getProblem());
+        // Se ejecuta el proceso de selección de la acción más adecuada.-
+        Action accionSeleccionada = null;
+        try {
+            accionSeleccionada =
+                    this.getSolver().solve(new Object[]{this.getProblem()});
+        } catch (Exception ex) {
+            Logger.getLogger(AgentePacman.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         // Retorna la acci�n seleccionada.-
         return accionSeleccionada;

@@ -1,7 +1,8 @@
 package frsf.cidisi.faia.solver.search;
 
 import java.util.Vector;
-import frsf.cidisi.faia.agent.problem.Action;
+import frsf.cidisi.faia.agent.Action;
+import frsf.cidisi.faia.agent.searchbased.SearchAction;
 import frsf.cidisi.faia.state.AgentState;
 
 /**
@@ -13,7 +14,7 @@ public class NTree implements Cloneable, Comparable<NTree> {
 
     protected int deep;
     protected double cost;
-    protected Action action;
+    protected SearchAction action;
     protected NTree parent;
     protected Vector<NTree> sons;
     protected AgentState agentState;
@@ -27,7 +28,7 @@ public class NTree implements Cloneable, Comparable<NTree> {
         this.executionOrder = 0;
     }
 
-    public NTree(NTree firstNode, Action action, AgentState ast, int order) {
+    public NTree(NTree firstNode, SearchAction action, AgentState ast, int order) {
         this.deep = firstNode.getDeep() + 1;
         this.parent = firstNode;
         this.sons = new Vector<NTree>();
@@ -63,7 +64,7 @@ public class NTree implements Cloneable, Comparable<NTree> {
         return node;
     }
 
-    public Action getAction() {
+    public SearchAction getAction() {
         return action;
     }
 
@@ -104,7 +105,7 @@ public class NTree implements Cloneable, Comparable<NTree> {
      * 
      * @param action
      */
-    public void setAction(Action action) {
+    public void setAction(SearchAction action) {
         this.action = action;
     }
 
@@ -148,7 +149,7 @@ public class NTree implements Cloneable, Comparable<NTree> {
         this.agentState = state;
     }
 
-    public Action getActionFromBranchsTop() {
+    public SearchAction getActionFromBranchsTop() {
         return action;
     }
 

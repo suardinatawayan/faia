@@ -1,6 +1,6 @@
 package raftasnake;
 
-import frsf.cidisi.faia.agent.problem.GoalTest;
+import frsf.cidisi.faia.agent.searchbased.GoalTest;
 import frsf.cidisi.faia.state.AgentState;
 
 public class MetaSnake extends GoalTest {

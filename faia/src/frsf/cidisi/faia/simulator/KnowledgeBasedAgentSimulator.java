@@ -5,9 +5,9 @@
 package frsf.cidisi.faia.simulator;
 
 import frsf.cidisi.faia.agent.Agent;
-import frsf.cidisi.faia.agent.KnowledgeBasedAgent;
+import frsf.cidisi.faia.agent.knowledgebased.KnowledgeBasedAgent;
 import frsf.cidisi.faia.agent.Perception;
-import frsf.cidisi.faia.agent.problem.Action;
+import frsf.cidisi.faia.agent.knowledgebased.CalculusAction;
 import frsf.cidisi.faia.environment.Environment;
 import frsf.cidisi.faia.solver.calculus.NoAction;
 import java.util.Vector;
@@ -30,10 +30,10 @@ public class KnowledgeBasedAgentSimulator extends GoalBasedAgentSimulator {
     public void start() {
 
         Perception perception;
-        Action action;
+        CalculusAction action;
         KnowledgeBasedAgent agent;
 
-        //TODO: Aca hay que tener en cuenta que podr�a haber m�s de un agente
+        //TODO: Aca hay que tener en cuenta que podría haber más de un agente
         // por ahora el framework solo es monoagente :)
         agent = (KnowledgeBasedAgent) this.getAgents().firstElement();
 
@@ -53,7 +53,7 @@ public class KnowledgeBasedAgentSimulator extends GoalBasedAgentSimulator {
             System.out.println("---------------------------------------");
 
             // Pregunto al agente la accion a ejecutar
-            action = agent.selectAction();
+            action = (CalculusAction) agent.selectAction();
 
             System.out.println("Action: " + action);
 
@@ -67,7 +67,6 @@ public class KnowledgeBasedAgentSimulator extends GoalBasedAgentSimulator {
                  * the action chosen. */
                 this.updateState(action);
                 agent.tell(action);
-
             }
         }
 
@@ -78,7 +77,7 @@ public class KnowledgeBasedAgentSimulator extends GoalBasedAgentSimulator {
             // If action is null, then there was an error.
             System.out.println("ERROR: There is not solution for this problem. You should check the operators.");
         }
-        
+
         // Leave a blank line
         System.out.println();
     }

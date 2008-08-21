@@ -1,6 +1,6 @@
 package frsf.cidisi.faia.solver.calculus;
 
-import frsf.cidisi.faia.agent.problem.Action;
+import frsf.cidisi.faia.agent.Action;
 
 public abstract class CalculusActionFactory {
 

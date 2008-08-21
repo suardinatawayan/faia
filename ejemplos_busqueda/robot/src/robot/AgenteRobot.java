@@ -2,11 +2,14 @@ package robot;
 
 import java.util.Vector;
 
-import frsf.cidisi.faia.agent.SearchBasedAgent;
-import frsf.cidisi.faia.agent.problem.Action;
-import frsf.cidisi.faia.agent.problem.Problem;
+import frsf.cidisi.faia.agent.searchbased.SearchBasedAgent;
+import frsf.cidisi.faia.agent.Action;
+import frsf.cidisi.faia.agent.searchbased.Problem;
+import frsf.cidisi.faia.agent.searchbased.SearchAction;
 import frsf.cidisi.faia.solver.search.BreathFirstSearch;
 import frsf.cidisi.faia.solver.search.Search;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class AgenteRobot extends SearchBasedAgent {
 
@@ -18,7 +21,7 @@ public class AgenteRobot extends SearchBasedAgent {
         this.setAgentState(estado);
 
         // Se generan las instancias de los operadores del Pacman.-
-        Vector<Action> operadores = new Vector<Action>();
+        Vector<SearchAction> operadores = new Vector<SearchAction>();
         operadores.addElement(new IrA());
         operadores.addElement(new IrB());
         operadores.addElement(new IrC());
@@ -72,7 +75,12 @@ public class AgenteRobot extends SearchBasedAgent {
         this.setSolver(busqueda);
 
         // Se ejecuta el proceso de selección de la acción más adecuada.-
-        Action accionSeleccionada = this.getSolver().solve(this.getProblem());
+        Action accionSeleccionada = null;
+        try {
+            accionSeleccionada = this.getSolver().solve(new Object[]{this.getProblem()});
+        } catch (Exception ex) {
+            Logger.getLogger(AgenteRobot.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         // Retorna la acción seleccionada.-
         return accionSeleccionada;

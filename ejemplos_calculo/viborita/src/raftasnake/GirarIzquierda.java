@@ -1,6 +1,6 @@
 package raftasnake;
 
-import frsf.cidisi.faia.agent.problem.Action;
+import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.state.AgentState;
 import frsf.cidisi.faia.state.EnvironmentState;
 

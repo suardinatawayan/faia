@@ -1,5 +1,6 @@
-package frsf.cidisi.faia.agent.problem;
+package frsf.cidisi.faia.agent.searchbased;
 
+import frsf.cidisi.faia.agent.Action;
 import java.util.Vector;
 
 import frsf.cidisi.faia.state.AgentState;
@@ -13,7 +14,7 @@ public class Problem {
 
     protected GoalTest goalTest;
     protected AgentState agentState;
-    protected Vector<Action> actions;
+    protected Vector<SearchAction> actions;
 
     /**
      * 
@@ -21,13 +22,13 @@ public class Problem {
      * @param initState
      * @param action
      */
-    public Problem(GoalTest goalTest, AgentState initState, Vector<Action> actions) {
+    public Problem(GoalTest goalTest, AgentState initState, Vector<SearchAction> actions) {
         this.goalTest = goalTest;
         this.agentState = initState;
         this.actions = actions;
     }
 
-    public Vector<Action> getActions() {
+    public Vector<SearchAction> getActions() {
         return actions;
     }
 
@@ -39,7 +40,7 @@ public class Problem {
         return agentState;
     }
 
-    public void setActions(Vector<Action> actions) {
+    public void setActions(Vector<SearchAction> actions) {
         this.actions = actions;
     }
 

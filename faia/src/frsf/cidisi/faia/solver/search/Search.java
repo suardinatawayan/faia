@@ -2,12 +2,13 @@ package frsf.cidisi.faia.solver.search;
 
 import java.util.Vector;
 
-import frsf.cidisi.faia.agent.problem.Action;
-import frsf.cidisi.faia.agent.problem.Problem;
+import frsf.cidisi.faia.agent.Action;
+import frsf.cidisi.faia.agent.searchbased.Problem;
 import frsf.cidisi.faia.simulator.SimulatorEventNotifier;
 import frsf.cidisi.faia.solver.Solve;
 import frsf.cidisi.faia.state.AgentState;
-import frsf.cidisi.faia.agent.problem.GoalTest;
+import frsf.cidisi.faia.agent.searchbased.GoalTest;
+import frsf.cidisi.faia.agent.searchbased.SearchAction;
 import frsf.cidisi.faia.solver.calculus.KnowledgeBase;
 import frsf.cidisi.faia.util.LatexOutput;
 import frsf.cidisi.faia.util.XmlTree;
@@ -58,9 +59,12 @@ public class Search extends Solve {
      * 
      * @param problem
      */
-    public Action solve(Problem problem) {
+    @Override
+    public SearchAction solve(Object[] params) {
 
-        Vector<Action> actionList = problem.getActions();
+        Problem problem = (Problem)params[0];
+        
+        Vector<SearchAction> actionList = problem.getActions();
         AgentState agentState = (AgentState) problem.getAgentState();//.clone();
         GoalTest goalTest = problem.getGoalState();
 
@@ -92,7 +96,7 @@ public class Search extends Solve {
                     // The state of the selected node must be cloned to assure consistence.-
                     AgentState ast = (AgentState) firstNode.getAgentState().clone();
                     // This is the action that can generate a new node.- 
-                    Action action = actionList.elementAt(i);
+                    SearchAction action = actionList.elementAt(i);
                     ast = (AgentState) action.execute(ast);
                     // TODO: HAY QUE VER SI CONVIENE QUE CUANDO EL OPERADOR NO PUEDA SER 
                     // EJECUTADO DEVUELVA UN OBJETO EN LUGAR DE NULL.
@@ -206,16 +210,12 @@ public class Search extends Solve {
         this.visibleTree = visibleTree;
     }
 
+    @Override
     public void showSolution() {
         this.showTree();
     }
 
     public String getPath() {
         return this.getBestPath().toString();
-    }
-
-    @Override
-    public Action solve(KnowledgeBase knowledgeBase) {
-        throw new UnsupportedOperationException("Not supported operation.");
     }
 }
