@@ -1,6 +1,5 @@
 package frsf.cidisi.faia.agent;
 
-import frsf.cidisi.faia.agent.Agent;
 import frsf.cidisi.faia.environment.Environment;
 
 /**
@@ -18,6 +17,4 @@ public abstract class Perception {
     }
 
     public abstract void initPerception(Agent agent, Environment environment);
-
-    public abstract String toString();
 }
