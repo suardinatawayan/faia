@@ -60,27 +60,6 @@ La instalación de MiKTeX en Windows XP es simple como la instalación de cualqu
 
 Para instalar LaTeX en Ubuntu son necesarios los paquetes texlive-latex-extra y texlive-latex-recommended. (TODO: Hay que corroborar que estos paquetes sean suficientes y necesarios).
 
-= FAIA desde !NetBeans =
+= FAIA desde !Eclipse y !NetBeans =
 
-== Importar FAIA ==
-
-TODO: Agregar la parte de importar el código desde el jar o zip (depende de cómo se lo entreguemos a los alumnos).
-
-== Configurar un proyecto para utilizar _Búsqueda_ ==
-
-TODO.
-
-== Configurar un proyecto para utilizar _Prolog_ ==
-
-Se debe utilizar como directorio para librerías a 'faia\lib', donde se encuentran algunas dependencias que es necesario referenciar. Para esto:
-
- * Hacer click derecho en "Libraries" dentro del proyecto nuevo, y en "Libraries folder" elegir la carpeta 'faia\lib" (utilizar el botón Browse para ubicarla).
- * Luego hacer click derecho nuevamente en "Libraries" y elegir la opción "Add JAR/Folder".
- * Elegir el archivo 'jpl.jar'.
-
-Con los pasos anteriores ya tenemos agregado el archivo 'jpl.jar' a nuestro classpath. Con esto ya podemos utilizar Prolog en Windows XP (suponiendo que ya ha sido instalado con los pasos dados en esta página, modificando la variable PATH como se indica). *Sin embargo, para sistemas GNU/Linux, es necesario realizar, además, los siguientes pasos:*
-
- * Hacer click derecho en el proyecto, y elegir la opción "Properties".
- * En "Run", dentro de la caja de texto "VM Options" colocar: _-Djava.library.path="/usr/lib/pl-5.6.57/lib/i386-linux"_. Es importante no olvidarse de colocar las comillas dobles para indicar la ruta del directorio, y así evitarse problemas.
-
-Luego de realizar correctamente los pasos anteriores, debería ser posible correr proyectos que utilicen Cálculo Situacional con FAIA. Es recomendable ver los ejemplos incluidos.
+Se pueden encontrar instrucciones de cómo usar FAIA en la wiki del proyecto: tanto para [http://code.google.com/p/faia/wiki/FaiaConEclipse Eclipse] como para [http://code.google.com/p/faia/wiki/FaiaConNetbeans Netbeans].
