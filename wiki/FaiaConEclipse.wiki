@@ -5,7 +5,7 @@
 
 == Importar FAIA ==
 
-TODO: Agregar la parte de importar el código desde el jar o zip (depende de cómo se lo entreguemos a los alumnos).
+TODO.
 
 == Configurar un proyecto para utilizar _Búsqueda_ ==
 
