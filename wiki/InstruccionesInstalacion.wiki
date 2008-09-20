@@ -9,6 +9,7 @@ Las pruebas fueron realizadas en Windows XP SP 2 y Ubuntu Linux 8.04, así como 
 Es muy probable que se puedan utilizar versiones más actualizadas, aunque quizá la guía no contemple por ejemplo cambios en las interfaces gráficas. Además, con estas versiones se ha probado FAIA, por lo tanto si es posible, es mejor utilizar éstas.
 
  * [http://www.netbeans.org/ NetBeans] 6.1 (es necesario tener instalado el JDK 6. Se puede bajar un bundle con !NetBeans y JDK [http://java.sun.com/javase/downloads/netbeans.html aquí]).
+ * [http://www.eclipse.org/ Eclipse 3.4]
  * [http://www.swi-prolog.org/ SWI-Prolog] 5.6.57.
 
 == Software opcional ==
