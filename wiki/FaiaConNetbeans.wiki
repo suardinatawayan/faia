@@ -1,4 +1,5 @@
 #summary Instrucciones para utilizar FAIA con NetBeans.
+#labels Featured
 
 *LEER ANTES DE CONTINUAR:* Antes de seguir estos pasos es necesario leer [http://code.google.com/p/faia/wiki/InstruccionesInstalacion las instrucciones de instalación].
 
