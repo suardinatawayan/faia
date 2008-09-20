@@ -1,13 +1,13 @@
-#summary One-sentence summary of this page.
+#summary Instrucciones para utilizar FAIA con Eclipse.
 
-= Introduction =
+== Importar FAIA ==
 
-Add your content here.
+TODO: Agregar la parte de importar el código desde el jar o zip (depende de cómo se lo entreguemos a los alumnos).
 
+== Configurar un proyecto para utilizar _Búsqueda_ ==
 
-= Details =
+TODO.
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+== Configurar un proyecto para utilizar _Prolog_ ==
+
+TODO.
