@@ -1,0 +1,16 @@
+= ¿Qué es FAIA? =
+FAIA es un framework para el desarrollo de aplicaciones de interés académico que utilizan técnicas de Inteligencia Artificial (IA). El objetivo del mismo es permitir que el alumno pueda enfocarse en modelar y resolver el problema desde el punto de vista de la IA facilitando el proceso de implementación de la aplicación. Para lograr esto FAIA dispone de un conjunto de clases y algoritmos que deben ser utilizados y/o extendidos por el alumno. Se puede encontrar información más detallada en el paper FAIA: Framework para la enseñanza de agentes en IA, que se encuentra en la [http://www.frsf.utn.edu.ar/matero/visitante/index.php?id_catedra=142 página de la cátedra] en la sección “Repositorio”.
+
+= ¿Cómo puedo obtener FAIA? =
+
+= ¿Cómo importar FAIA en Eclipse o Netbeans? =
+
+= ¿Hay algún ejemplo disponible que me permita ver cómo utilizar FAIA? =
+
+= ¿Qué contiene el ejemplo? =
+
+= ¿Cómo se ejecuta el ejemplo? =
+
+= ¿Cómo debo configurar Eclipse o Netbeans para que mi proyecto utilice FAIA? =
+
+= ¿Cómo puedo exportar mi proyecto para utilizarlo en el Java Lab? =
