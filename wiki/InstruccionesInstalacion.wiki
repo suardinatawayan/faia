@@ -60,6 +60,6 @@ La instalación de MiKTeX en Windows XP es simple como la instalación de cualqu
 
 Para instalar LaTeX en Ubuntu son necesarios los paquetes texlive-latex-extra y texlive-latex-recommended. (TODO: Hay que corroborar que estos paquetes sean suficientes y necesarios).
 
-= FAIA desde !Eclipse y !NetBeans =
+= FAIA desde Eclipse y !NetBeans =
 
-Se pueden encontrar instrucciones de cómo usar FAIA en la wiki del proyecto: tanto para [http://code.google.com/p/faia/wiki/FaiaConEclipse Eclipse] como para [http://code.google.com/p/faia/wiki/FaiaConNetbeans Netbeans].
+Se pueden encontrar instrucciones de cómo usar FAIA en la wiki del proyecto: tanto para [http://code.google.com/p/faia/wiki/FaiaConEclipse Eclipse] como para [http://code.google.com/p/faia/wiki/FaiaConNetbeans NetBeans].
