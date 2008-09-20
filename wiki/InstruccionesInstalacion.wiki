@@ -1,4 +1,5 @@
 ﻿#summary Instrucciones para la instalación de FAIA tanto en Windows como en GNU/Linux.
+#labels Featured
 
 = Notas =
 
