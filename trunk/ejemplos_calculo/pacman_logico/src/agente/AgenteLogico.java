@@ -4,6 +4,7 @@
  */
 package agente;
 
+import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.agent.knowledgebased.KnowledgeBasedAgent;
 import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.agent.knowledgebased.CalculusAction;
@@ -47,5 +48,10 @@ public class AgenteLogico extends KnowledgeBasedAgent {
     public void tell(CalculusAction action) {
         KnowledgeBase kb = (KnowledgeBase) this.getAgentState();
         kb.tell(action.getLogicName());
+    }
+
+    @Override
+    public void see(Perception p) {
+        this.getAgentState().updateState(p);
     }
 }

@@ -9,6 +9,7 @@ import java.util.Vector;
 import calculador.Calculador;
 
 import frsf.cidisi.faia.agent.Action;
+import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.agent.searchbased.Problem;
 import frsf.cidisi.faia.agent.searchbased.SearchAction;
 import frsf.cidisi.faia.agent.searchbased.SearchBasedAgent;
@@ -88,4 +89,9 @@ public class AgenteSnake extends SearchBasedAgent {
 
         this.calculador = calculador;
     }
+
+	@Override
+	public void see(Perception p) {
+		this.getAgentState().updateState(p);
+	}
 }

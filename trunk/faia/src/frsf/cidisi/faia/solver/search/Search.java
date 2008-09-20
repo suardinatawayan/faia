@@ -2,14 +2,12 @@ package frsf.cidisi.faia.solver.search;
 
 import java.util.Vector;
 
-import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.agent.searchbased.Problem;
 import frsf.cidisi.faia.simulator.SimulatorEventNotifier;
 import frsf.cidisi.faia.solver.Solve;
 import frsf.cidisi.faia.state.AgentState;
 import frsf.cidisi.faia.agent.searchbased.GoalTest;
 import frsf.cidisi.faia.agent.searchbased.SearchAction;
-import frsf.cidisi.faia.solver.calculus.KnowledgeBase;
 import frsf.cidisi.faia.util.LatexOutput;
 import frsf.cidisi.faia.util.XmlTree;
 

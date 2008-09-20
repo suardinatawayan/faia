@@ -16,10 +16,7 @@ public abstract class GoalBasedAgent extends Agent {
     public GoalBasedAgent() {
     }
 
-    public void see(Perception p) {
-        //problem.getAgentState().updateState(p);
-        this.getAgentState().updateState(p);
-    }
+    public abstract void see(Perception p);
 
     public Solve getSolver() {
         return solver;

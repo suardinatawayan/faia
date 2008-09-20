@@ -29,6 +29,9 @@ public class Comer extends CalculusAction {
 
     @Override
     public String toString() {
+        /* El nombre de la acción se pasará a minúsculas para trabajar
+         * con la base de conocimiento, por lo tanto se debe utilizar el mismo
+         * nombre aquí */
         return "Comer";
     }
 }
