@@ -5,6 +5,7 @@ import java.util.Vector;
 
 import frsf.cidisi.faia.agent.searchbased.SearchBasedAgent;
 import frsf.cidisi.faia.agent.Action;
+import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.agent.searchbased.Problem;
 import frsf.cidisi.faia.agent.searchbased.SearchAction;
 import frsf.cidisi.faia.solver.search.BreathFirstSearch;
@@ -86,4 +87,9 @@ public class AgenteRobot extends SearchBasedAgent {
         // Retorna la acción seleccionada.-
         return accionSeleccionada;
     }
+
+	@Override
+	public void see(Perception p) {
+		this.getAgentState().updateState(p);
+	}
 }

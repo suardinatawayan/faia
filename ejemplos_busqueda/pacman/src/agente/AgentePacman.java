@@ -6,10 +6,9 @@ import agente.acciones.IrIzquierda;
 import agente.acciones.Pelear;
 import agente.acciones.IrArriba;
 import agente.acciones.IrDerecha;
-import frsf.cidisi.faia.exceptions.CalculusException;
+import frsf.cidisi.faia.agent.Perception;
 import java.util.Vector;
 
-import frsf.cidisi.faia.agent.GoalBasedAgent;
 import frsf.cidisi.faia.agent.searchbased.SearchBasedAgent;
 import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.agent.searchbased.Problem;
@@ -89,5 +88,10 @@ public class AgentePacman extends SearchBasedAgent {
 
         // Retorna la acci�n seleccionada.-
         return accionSeleccionada;
+    }
+
+    @Override
+    public void see(Perception p) {
+        this.getAgentState().updateState(p);
     }
 }
