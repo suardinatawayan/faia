@@ -5,7 +5,10 @@
 
 == Importar FAIA ==
 
-TODO: Agregar la parte de importar el código desde el jar o zip (depende de cómo se lo entreguemos a los alumnos).
+ * Descomprimir los archivos de FAIA descargados:
+   # Crear una carpeta para almacenar FAIA y los ejemplos.
+   # Descomprimir el contenido *exacto* de los archivos correspondientes a FAIA y a los ejemplos en esa misma carpeta. La estructura final debería quedar de la siguiente forma: https://faia.googlecode.com/svn/wiki/images/estructura_directorios_faia.png
+   # Otra cosa.
 
 == Configurar un proyecto para utilizar _Búsqueda_ ==
 
