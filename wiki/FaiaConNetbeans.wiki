@@ -5,7 +5,7 @@
 
 == Importar FAIA ==
 || 1. Ir al menú File -> Open project... ||
-|| https://faia.googlecode.com/svn/wiki/images/faiaConNetBeans/importarFaia1.png ||
+|| http://faia.googlecode.com/svn/wiki/images/faiaConNetBeans/importarFaia1.png ||
 
 == Configurar un proyecto para utilizar _Búsqueda_ ==
 
