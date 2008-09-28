@@ -55,3 +55,16 @@ Para instalar LaTeX en Ubuntu son necesarios los paquetes texlive-latex-extra y 
 = FAIA desde Eclipse y !NetBeans =
 
 Se pueden encontrar instrucciones de cómo usar FAIA en la wiki del proyecto: tanto para [http://code.google.com/p/faia/wiki/FaiaConEclipse Eclipse] como para [http://code.google.com/p/faia/wiki/FaiaConNetbeans NetBeans].
+
+
+= Instalar FAIA =
+
+Si bien los detalles para importar FAIA en Eclipse o !NetBans están en sus respectivas páginas wiki, aquí se dan unas breves instrucciones para armar correctamente la estructura de directorios al descomprimir los archivos de FAIA y los ejemplos:
+
+ * Descomprimir los archivos de FAIA descargados:
+   # Crear una carpeta para almacenar FAIA y los ejemplos.
+   # Descomprimir el contenido *exacto* de los archivos correspondientes a FAIA y a los ejemplos en esa misma carpeta. La estructura final debería ser similar a la imagen que se muestra abajo.
+   # Otra cosa.
+
+|| Estructura de directorios ||
+|| http://faia.googlecode.com/svn/wiki/images/estructura_directorios_faia.png ||
