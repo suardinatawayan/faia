@@ -4,11 +4,8 @@
 *LEER ANTES DE CONTINUAR:* Antes de seguir estos pasos es necesario leer [http://code.google.com/p/faia/wiki/InstruccionesInstalacion las instrucciones de instalación].
 
 == Importar FAIA ==
-
- * Descomprimir los archivos de FAIA descargados:
-   # Crear una carpeta para almacenar FAIA y los ejemplos.
-   # Descomprimir el contenido *exacto* de los archivos correspondientes a FAIA y a los ejemplos en esa misma carpeta. La estructura final debería quedar de la siguiente forma: https://faia.googlecode.com/svn/wiki/images/estructura_directorios_faia.png
-   # Otra cosa.
+|| 1. Ir al menú File -> Open project... ||
+|| https://faia.googlecode.com/svn/wiki/images/faiaConNetBeans/importarFaia1.png ||
 
 == Configurar un proyecto para utilizar _Búsqueda_ ==
 
