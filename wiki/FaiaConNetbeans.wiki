@@ -60,9 +60,9 @@ _NOTAS:_
 
 Con los pasos anteriores ya tenemos agregado el archivo 'jpl.jar' a nuestro classpath. Con esto ya podemos utilizar Prolog en Windows (suponiendo que ya ha sido instalado con los pasos dados en la página de instalación, modificando la variable Path de Windows como se indica allí).
 
+Con estos pasos realizados, debería ser posible poder correr proyectos que utilicen Cálculo Situacional con !NetBeans. Es altamente recomendable ver el ejemplo "pacman_logico".
+
 *En sistemas GNU/Linux*, es necesario realizar, _además_, los siguientes pasos:
 
  # Hacer click derecho en el proyecto, y elegir la opción _Properties_.
  # En "Run", dentro de la caja de texto "VM Options" colocar: _-Djava.library.path="/usr/lib/pl-5.6.57/lib/i386-linux"_. Es importante no olvidarse de colocar las comillas dobles para indicar la ruta del directorio, y así evitarse problemas.
-
-Con estos pasos realizados, debería ser posible poder correr proyectos que utilicen Cálculo Situacional con !NetBeans. Es altamente recomendable ver el ejemplo "pacman_logico".
