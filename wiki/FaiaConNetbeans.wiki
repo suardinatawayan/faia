@@ -50,7 +50,8 @@ Ver UtilizarBusqueda.
 == Configurar un proyecto para utilizar _Cálculo Situacional_ ==
 
 _NOTAS:_
- * Para utilizar Cálculo Situacional, es necesario haber instalado SWI-Prolog. En InstruccionesInstalacion se dan detalles de cómo hacerlo, ya que la instalación y configuración no es trivial.
+ * Es necesario haber importado FAIA.
+ * Es necesario tener instalado SWI-Prolog. En InstruccionesInstalacion se dan detalles de cómo hacerlo, ya que la instalación y configuración no es trivial.
 
 || *1.* Hacemos click derecho sobre _Libraries_ en nuestro proyecto, y elegimos la opción _Add JAR/Folder_. ||
 || http://faia.googlecode.com/svn/wiki/images/faiaConNetBeans/prolog1.png ||
