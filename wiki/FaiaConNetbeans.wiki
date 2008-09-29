@@ -48,7 +48,7 @@ Vale aclarar aquí una cuestión. Cuando se corre un proyecto que utiliza alguna
  * Archivos *XML*, que se almacenan en el directorio "searchTrees" dentro de la carpeta del proyecto.
  * Archivos *PDF*, que muestran de una forma gráfica los árboles generados durante el proceso de búsqueda. Se almacenan en el directorio "pdfLatex" de la carpeta del proyecto. Esta opción utiliza LaTeX. En la página de instrucciones de instalación hay una guía para su instalación en Windows y GNU/Linux.
 
-Para configurar el agente y obtener alguna de estas salidas, se puede utilizar el método _setVisibleTree_ de la clase _Search_. En el ejemplo del Pacman esta opción es seteada en el método _selectAction_ de la clase !_AgentePacman_:
+Para configurar el agente y obtener alguna de estas salidas, se puede utilizar el método _setVisibleTree_ de la clase _Search_. En el ejemplo del Pacman esta opción es seteada en el método _selectAction_ de la clase _!AgentePacman_:
 
 {{{
 Search busqueda = new Search(estrategiaBusqueda);
