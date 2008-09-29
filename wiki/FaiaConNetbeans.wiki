@@ -24,6 +24,7 @@ _NOTAS:_
 _NOTAS:_
  * Antes de seguir estos pasos es necesario haber importado FAIA.
  * Estos son pasos básicos para agregar una referencia a nuestro proyecto para utilizar FAIA. Más abajo se dan pasos detallados para poder utilizar Búsqueda y Cálculo Situacional.
+ * Recordar cambiar la codificación de caracteres de los proyectos recién creados a "UTF-8". Las instrucciones están en la sección para importar FAIA.
 
 || *1.* Creamos un nuevo proyecto yendo a _File -> New Project_.  ||
 || http://faia.googlecode.com/svn/wiki/images/faiaConNetBeans/configurarProyecto1.png ||
