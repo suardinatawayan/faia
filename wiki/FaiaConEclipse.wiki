@@ -66,9 +66,9 @@ _NOTAS:_
  * Es necesario haber importado FAIA.
  * Es necesario tener instalado SWI-Prolog. En InstruccionesInstalacion se dan detalles de cómo hacerlo, ya que la instalación y configuración no es trivial.
 
-Si se ha instalado SWI-Prolog e importado FAIA correctamente, entonces nuestro proyecto que utiliza Cálculo Situacional ya debería funcionar. Es altamente recomendable ver el ejemplo "pacman_logico".
+Si se ha instalado SWI-Prolog e importado FAIA correctamente, entonces nuestro proyecto que utiliza Cálculo Situacional ya debería funcionar en Windows. Es altamente recomendable ver el ejemplo "pacman_logico".
 
-*En sistemas GNU/Linux*, es necesario realizar, _además_, los siguientes pasos:
+*En sistemas GNU/Linux*, es necesario realizar los siguientes pasos:
 
  # Hacer click derecho en nuestro proyecto y elegir la opción _Run As -> Run Configurations_.
  # En la lista de la izquierda, hacer click derecho en _Java Application_, y elegir la opción _New_.
