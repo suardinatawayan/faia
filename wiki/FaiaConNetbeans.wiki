@@ -30,7 +30,7 @@ _NOTAS:_
 || http://faia.googlecode.com/svn/wiki/images/faiaConNetBeans/configurarProyecto1.png ||
 || *2.* En _Categories_ elegimos la opción _Java_, y luego en _Projects_ elegimos _Java Application_. Presionamos _Next_. ||
 || http://faia.googlecode.com/svn/wiki/images/faiaConNetBeans/configurarProyecto2.png ||
-|| *3.* Colocamos un nombre en el campo _Project Name_. Podemos cambiar algunas opciones del proyecto, como su ubicación, etc. Cuando finalicemos, presionamos _Finish_. ||
+|| *3.* Colocamos un nombre en el campo _Project Name_. Podemos cambiar algunas opciones del proyecto, como su ubicación (es conveniente almacenarlo en la misma carpeta padre en donde se encuentra el proyecto _faia_). Cuando finalicemos, presionamos _Finish_. ||
 || http://faia.googlecode.com/svn/wiki/images/faiaConNetBeans/configurarProyecto3.png ||
 || *4.* El proyecto ha sido creado. Ahora agregamos una referencia al proyecto FAIA: hacemos click derecho en _Libraries_, y elegimos _Add Project..._. ||
 || http://faia.googlecode.com/svn/wiki/images/faiaConNetBeans/configurarProyecto4.png ||
@@ -49,9 +49,10 @@ Vale aclarar aquí una cuestión. Cuando se corre un proyecto que utiliza alguna
 
 Se debe utilizar como directorio para librerías a 'faia\lib', donde se encuentran algunas dependencias que es necesario referenciar. Para esto:
 
- * Hacer click derecho en "Libraries" dentro del proyecto nuevo, y en "Libraries folder" elegir la carpeta 'faia\lib" (utilizar el botón Browse para ubicarla).
- * Luego hacer click derecho nuevamente en "Libraries" y elegir la opción "Add JAR/Folder".
- * Elegir el archivo 'jpl.jar'.
+ # Hacer click derecho en _Libraries_ dentro del proyecto nuevo y elegir la opción _Properties_.
+ # En la sección _Libraries_, en el campo _Libraries folder_ elegir la carpeta 'faia\lib" (utilizar el botón _Browse_ para ubicarla).
+ # Luego hacer click derecho nuevamente en "Libraries" y elegir la opción "Add JAR/Folder".
+ # Elegir el archivo 'jpl.jar'.
 
 Con los pasos anteriores ya tenemos agregado el archivo 'jpl.jar' a nuestro classpath. Con esto ya podemos utilizar Prolog en Windows XP (suponiendo que ya ha sido instalado con los pasos dados en esta página, modificando la variable PATH como se indica). *Sin embargo, para sistemas GNU/Linux, es necesario realizar, además, los siguientes pasos:*
 
