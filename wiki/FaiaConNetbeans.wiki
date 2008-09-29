@@ -15,7 +15,7 @@ _NOTAS:_
 || http://faia.googlecode.com/svn/wiki/images/faiaConNetBeans/importarFaia2.png ||
 || *3.* Ahora es necesario *cambiar la codificación de caracteres* de _faia_. Hacemos click derecho en el proyecto y elegimos _Properties_. ||
 || http://faia.googlecode.com/svn/wiki/images/faiaConNetBeans/importarFaia3.png ||
-|| *4.*  ||
+|| *4.* En la sección _Sources_, asegurarse que el campo _Encoding_ tenga seleccionada la opción "UTF-8". ||
 || http://faia.googlecode.com/svn/wiki/images/faiaConNetBeans/importarFaia4.png ||
 
 == Configurar un proyecto para que utilice FAIA ==
