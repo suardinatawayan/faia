@@ -28,6 +28,16 @@ _NOTAS:_
 
 || *1.* ||
 || http://faia.googlecode.com/svn/wiki/images/faiaConEclipse/configurarProyecto1.png ||
+|| *2.* ||
+|| http://faia.googlecode.com/svn/wiki/images/faiaConEclipse/configurarProyecto2.png ||
+|| *3.* ||
+|| http://faia.googlecode.com/svn/wiki/images/faiaConEclipse/configurarProyecto3.png ||
+|| *4.* ||
+|| http://faia.googlecode.com/svn/wiki/images/faiaConEclipse/configurarProyecto4.png ||
+|| *5.* ||
+|| http://faia.googlecode.com/svn/wiki/images/faiaConEclipse/configurarProyecto5.png ||
+|| *6.* ||
+|| http://faia.googlecode.com/svn/wiki/images/faiaConEclipse/configurarProyecto6.png ||
 
 == Configurar un proyecto para utilizar _Búsqueda_ ==
 
