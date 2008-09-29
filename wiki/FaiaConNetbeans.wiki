@@ -14,6 +14,21 @@ _NOTA:_ Es importante, antes de continuar, haber leído la sección "Instalar FA
 || *3.* Finalmente, es posible recorrer los distintos paquetes y el código fuente de los proyectos importados.  ||
 || http://faia.googlecode.com/svn/wiki/images/faiaConNetBeans/importarFaia3.png ||
 
+== Configurar un proyecto para que utilice FAIA ==
+
+|| *1.* Primero es necesario haber importado FAIA con las instrucciones anteriores. Luego creamos un nuevo proyecto yendo a ||
+|| http://faia.googlecode.com/svn/wiki/images/faiaConNetBeans/configurarProyecto1.png ||
+|| *2.* ||
+|| http://faia.googlecode.com/svn/wiki/images/faiaConNetBeans/configurarProyecto2.png ||
+|| *3.* ||
+|| http://faia.googlecode.com/svn/wiki/images/faiaConNetBeans/configurarProyecto3.png ||
+|| *4.* ||
+|| http://faia.googlecode.com/svn/wiki/images/faiaConNetBeans/configurarProyecto4.png ||
+|| *5.* ||
+|| http://faia.googlecode.com/svn/wiki/images/faiaConNetBeans/configurarProyecto5.png ||
+|| *6.* ||
+|| http://faia.googlecode.com/svn/wiki/images/faiaConNetBeans/configurarProyecto6.png ||
+
 == Configurar un proyecto para utilizar _Búsqueda_ ==
 
 TODO.
