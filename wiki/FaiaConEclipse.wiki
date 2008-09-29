@@ -7,7 +7,7 @@
 
 _NOTAS:_
  * Es importante, antes de continuar, haber leído la sección "Instalar FAIA" de la [http://code.google.com/p/faia/wiki/InstruccionesInstalacion página de instrucciones de instalación].
- * Estas instrucciones de importación de FAIA se aplican para los ejemplos, ya que los pasos son muy similares. Se pone especial énfasis en configurar correctamente la codificación de caracteres, como se indica uno de los pasos.
+ * Estas instrucciones de importación de FAIA se aplican para los ejemplos, ya que los pasos son muy similares. Se pone especial énfasis en configurar correctamente la codificación de caracteres, como se indica uno de los pasos, ya que de otro modo surgirán errores.
 
 || *1.* Ir al menú _File -> Import..._ ||
 || http://faia.googlecode.com/svn/wiki/images/faiaConEclipse/importarFaia1.png ||
