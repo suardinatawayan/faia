@@ -66,7 +66,8 @@ _NOTAS:_
  * Es necesario haber importado FAIA.
  * Es necesario tener instalado SWI-Prolog. En InstruccionesInstalacion se dan detalles de cómo hacerlo, ya que la instalación y configuración no es trivial.
 
-Si se ha instalado SWI-Prolog e importado FAIA correctamente, entonces sólo es necesario referenciar al proyecto _faia_ desde el nuestro:
+Si se ha instalado SWI-Prolog e importado FAIA correctamente, entonces nuestro proyecto que utiliza Cálculo Situacional ya debería funcionar. Es altamente recomendable ver el ejemplo "pacman_logico".
 
-|| *1.* ||
-||  ||
+*En sistemas GNU/Linux*, es necesario realizar, _además_, los siguientes pasos:
+
+ # 
