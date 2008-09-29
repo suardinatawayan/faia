@@ -41,14 +41,12 @@ _NOTAS:_
 
 == Configurar un proyecto para utilizar _Búsqueda_ ==
 
-TODO: Esta sección no está terminada.
-
 Para comenzar a utilizar estrategias de Búsqueda simplemente se deben especializar las clases que correspondan, proveídas por el framework FAIA. Para aprender cómo hacerlo, es conveniente observar los ejemplos incluidos.
 
 Vale aclarar aquí una cuestión. Cuando se corre un proyecto que utiliza alguna estrategia de Búsqueda con FAIA, es posible indicarle al framework que genere cierto tipo de salidas sobre la corrida, para poder observar luego el funcionamiento interno del agente, esto es, el árbol de búsqueda. FAIA provee dos tipos de salidas:
 
  * Archivos *XML*, que se almacenan en el directorio "searchTrees" dentro de la carpeta del proyecto.
- * Archivos *PDF*, que muestran de una forma gráfica los árboles generados durante el proceso de búsqueda. Esta opción utiliza LaTeX. En la página de instrucciones de instalación hay una guía para su instalación en Windows y GNU/Linux.
+ * Archivos *PDF*, que muestran de una forma gráfica los árboles generados durante el proceso de búsqueda. Se almacenan en el directorio "pdfLatex" de la carpeta del proyecto. Esta opción utiliza LaTeX. En la página de instrucciones de instalación hay una guía para su instalación en Windows y GNU/Linux.
 
 Para configurar el agente y obtener alguna de estas salidas, se puede utilizar el método _setVisibleTree_ de la clase _Search_. En el ejemplo del Pacman esta opción es seteada en el método _selectAction_ de la clase _AgentePacman_:
 
