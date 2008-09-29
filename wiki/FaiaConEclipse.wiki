@@ -47,8 +47,8 @@ _NOTAS:_
 
 == Configurar un proyecto para utilizar _Búsqueda_ ==
 
-TODO.
+TODO: Esta sección no está terminada.
 
 == Configurar un proyecto para utilizar _Prolog_ ==
 
-TODO.
+TODO: Esta sección no está terminada.
