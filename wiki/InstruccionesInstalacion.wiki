@@ -1,9 +1,9 @@
 ﻿#summary Instrucciones para la instalación de FAIA tanto en Windows como en GNU/Linux.
 #labels Featured
 
-= Notas =
+_NOTAS_:
 
-Las pruebas fueron realizadas en Windows XP SP 2 y Ubuntu Linux 8.04, así como en ciertas versiones de otros programas. Si se encuentran problemas al seguir la guía, por favor dejar un comentario en esta página.
+ * Las pruebas fueron realizadas en Windows XP SP 2 y Ubuntu Linux 8.04, así como en ciertas versiones de otros programas. Si se encuentran problemas al seguir la guía, por favor dejar un comentario en esta página.
 
 = Software necesario =
 
