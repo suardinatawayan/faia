@@ -55,4 +55,5 @@ Ver UtilizarBusqueda.
 
 == Configurar un proyecto para utilizar _Prolog_ ==
 
-TODO: Esta sección no está terminada.
+_NOTAS:_
+ * Para utilizar Prolog, es necesario haber instalado SWI-Prolog. En InstruccionesInstalacion se dan detalles de cómo hacerlo.
