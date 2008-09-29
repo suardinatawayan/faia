@@ -16,7 +16,9 @@ _NOTA:_ Es importante, antes de continuar, haber leído la sección "Instalar FA
 
 == Configurar un proyecto para que utilice FAIA ==
 
-|| *1.* Primero es necesario haber importado FAIA con las instrucciones anteriores. Luego creamos un nuevo proyecto yendo a ||
+_NOTA:_ Antes de seguir estos pasos es necesario haber importado FAIA.
+
+|| *1.* Creamos un nuevo proyecto yendo a _File ->  ||
 || http://faia.googlecode.com/svn/wiki/images/faiaConNetBeans/configurarProyecto1.png ||
 || *2.* ||
 || http://faia.googlecode.com/svn/wiki/images/faiaConNetBeans/configurarProyecto2.png ||
