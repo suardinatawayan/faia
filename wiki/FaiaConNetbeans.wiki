@@ -57,6 +57,13 @@ Search busqueda = new Search(estrategiaBusqueda);
 busqueda.setVisibleTree(Search.PDF_TREE);
 }}}
 
+Si se ha configurado FAIA para generar un PDF, entonces la carpeta "pdfLatex" luce de esta forma:
+
+http://faia.googlecode.com/svn/wiki/images/busqueda/carpetaPdflatex.png
+
+[http://faia.googlecode.com/svn/wiki/images/busqueda/arbolGenerado.pdf En éste enlace] se puede bajar un archivo PDF de ejemplo.
+
+
 == Configurar un proyecto para utilizar _Prolog_ ==
 
 TODO: Esta sección no está terminada.
