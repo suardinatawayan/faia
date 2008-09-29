@@ -35,7 +35,7 @@ Para esto:
  * Presionar el botón "Aceptar" para guardar los cambios.
  * Es necesario reiniciar el IDE (tanto Eclipse como !NetBeans) para que tomen los cambios realizados.
 
-https://faia.googlecode.com/svn/wiki/images/instalacion/variablePath.png
+http://faia.googlecode.com/svn/wiki/images/instalacion/variablePath.png
 
 
 === En GNU/Linux (Ubuntu) ===
