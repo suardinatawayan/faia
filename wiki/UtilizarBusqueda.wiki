@@ -29,6 +29,8 @@ En Eclipse por ejemplo, la salida de ejecución será algo parecido a esto:
 
 http://faia.googlecode.com/svn/wiki/images/busqueda/salidaEclipse.png
 
+Los archivos .tex son archivos de LaTeX, y no son importantes. Son eliminados al finalizar la compilación de los mismos a PDF. En el directorio "pdfLatex", como se puede ver en la imagen mostrada antes, sólo se mantienen los archivos PDF.
+
 [http://faia.googlecode.com/svn/wiki/images/busqueda/arbolGenerado.pdf En éste enlace] se puede bajar un archivo PDF de ejemplo. La lectura del mismo debe realizarse de izquierda a derecha, de arriba hacia abajo.
 
 De esta forma, en el PDF de ejemplo, si observamos a la izquierda arriba, veremos un subárbol en el que su nodo padre tiene su "Execution Order" (EO) igual a 0 (o sea, es el primer nodo creado, y el que representa el estado actual del agente). Allí podemos ver que el agente ha aplicado 4 operaciones posibles sobre el mismo (Izquierda, Arriba, Derecha y Abajo), generando 4 nodos más. Observar que el costo del nodo inicial (EO = 0) es 0 (cero), en cambio sus hijos tienen un valor de -1. Esto es así porque se utiliza una estructura tipo lista ordenada para todas las estrategias, y para simular el comportamiento de una pila (que es la estructura que deberíamos utilizar para almacenar los nodos expandidos en "Primero en Profundidad") el costo de los nodos hijos es una unidad menos que el padre.
