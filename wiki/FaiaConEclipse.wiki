@@ -5,7 +5,10 @@
 
 == Importar FAIA ==
 
-TODO.
+|| *1.* Ir al menú _File -> Import..._ ||
+|| http://faia.googlecode.com/svn/wiki/images/faiaConEclipse/importarFaia1.png ||
+|| *2.* Elegir la opción _Existing Project into Workspace_ ubicada dentro de _General_. Luego presionar _Next_. ||
+|| http://faia.googlecode.com/svn/wiki/images/faiaConEclipse/importarFaia2.png ||
 
 == Configurar un proyecto para utilizar _Búsqueda_ ==
 
