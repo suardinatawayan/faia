@@ -3,6 +3,7 @@
 
 *LEER ANTES DE CONTINUAR:* Antes de seguir estos pasos es necesario leer [http://code.google.com/p/faia/wiki/InstruccionesInstalacion las instrucciones de instalación].
 
+
 == Importar FAIA ==
 
 _NOTAS:_
@@ -18,6 +19,7 @@ _NOTAS:_
 || http://faia.googlecode.com/svn/wiki/images/faiaConNetBeans/importarFaia3.png ||
 || *4.* En la sección _Sources_, asegurarse que el campo _Encoding_ tenga seleccionada la opción "UTF-8". Presionar el botón _OK_. ||
 || http://faia.googlecode.com/svn/wiki/images/faiaConNetBeans/importarFaia4.png ||
+
 
 == Configurar un proyecto para que utilice FAIA ==
 
@@ -38,6 +40,7 @@ _NOTAS:_
 || http://faia.googlecode.com/svn/wiki/images/faiaConNetBeans/configurarProyecto5.png ||
 || *6.* Finalmente ya podemos comenzar a utilizar FAIA en nuestro proyecto. ||
 || http://faia.googlecode.com/svn/wiki/images/faiaConNetBeans/configurarProyecto6.png ||
+
 
 == Configurar un proyecto para utilizar _Búsqueda_ ==
 
