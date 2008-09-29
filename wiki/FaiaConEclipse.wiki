@@ -9,13 +9,13 @@
 || http://faia.googlecode.com/svn/wiki/images/faiaConEclipse/importarFaia1.png ||
 || *2.* Elegir la opción _Existing Projects into Workspace_ ubicada dentro de _General_. Luego presionar _Next_. ||
 || http://faia.googlecode.com/svn/wiki/images/faiaConEclipse/importarFaia2.png ||
-|| *3.* ||
+|| *3.* Elegir la opción _Select archive file_, y presionar el botón _Browse_.||
 || http://faia.googlecode.com/svn/wiki/images/faiaConEclipse/importarFaia3.png ||
-|| *4.* ||
+|| *4.* Navegar hacia la carpeta donde fue descargado FAIA y elegir el archivo. Presionar en _Abrir_. ||
 || http://faia.googlecode.com/svn/wiki/images/faiaConEclipse/importarFaia4.png ||
-|| *5.* ||
+|| *5.* Asegurarse que en la lista de abajo titulada _Projects_ se encuentra activado el proyecto _faia_, y presionar _Finish_. ||
 || http://faia.googlecode.com/svn/wiki/images/faiaConEclipse/importarFaia5.png ||
-|| *6.* ||
+|| *6.* Finalmente el proyecto ha sido importado y se puede navegar por los paquetes y el código fuente. ||
 || http://faia.googlecode.com/svn/wiki/images/faiaConEclipse/importarFaia6.png ||
 
 == Configurar un proyecto para utilizar _Búsqueda_ ==
