@@ -20,6 +20,11 @@ _NOTA:_ Es importante, antes de continuar, haber leído la sección "Instalar FA
 || *6.* Finalmente el proyecto ha sido importado y se puede navegar por los paquetes y el código fuente. ||
 || http://faia.googlecode.com/svn/wiki/images/faiaConEclipse/importarFaia6.png ||
 
+== Configurar un proyecto para que utilice FAIA ==
+
+|| *1.* Primero es necesario haber importado FAIA con las instrucciones anteriores. Luego creamos un nuevo proyecto yendo a ||
+|| http://faia.googlecode.com/svn/wiki/images/faiaConEclipse/configurarProyecto1.png ||
+
 == Configurar un proyecto para utilizar _Búsqueda_ ==
 
 TODO.
