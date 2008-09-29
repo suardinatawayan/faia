@@ -18,17 +18,17 @@ _NOTA:_ Es importante, antes de continuar, haber leído la sección "Instalar FA
 
 _NOTA:_ Antes de seguir estos pasos es necesario haber importado FAIA.
 
-|| *1.* Creamos un nuevo proyecto yendo a _File ->  ||
+|| *1.* Creamos un nuevo proyecto yendo a _File -> New Project_.  ||
 || http://faia.googlecode.com/svn/wiki/images/faiaConNetBeans/configurarProyecto1.png ||
-|| *2.* ||
+|| *2.* En _Categories_ elegimos la opción _Java_, y luego en _Projects_ elegimos _Java Application_. Presionamos _Next_. ||
 || http://faia.googlecode.com/svn/wiki/images/faiaConNetBeans/configurarProyecto2.png ||
-|| *3.* ||
+|| *3.* Colocamos un nombre en el campo _Project Name_. Podemos cambiar algunas opciones del proyecto, como su ubicación, etc. Cuando finalicemos, presionamos _Finish_. ||
 || http://faia.googlecode.com/svn/wiki/images/faiaConNetBeans/configurarProyecto3.png ||
-|| *4.* ||
+|| *4.* El proyecto ha sido creado. Ahora agregamos una referencia al proyecto FAIA: hacemos click derecho en _Libraries_, y elegimos _Add Project..._. ||
 || http://faia.googlecode.com/svn/wiki/images/faiaConNetBeans/configurarProyecto4.png ||
-|| *5.* ||
+|| *5.* Buscamos la carpeta donde tenemos el proyecto FAIA, lo seleccionamos y presionamos _Add Project JAR Files_. ||
 || http://faia.googlecode.com/svn/wiki/images/faiaConNetBeans/configurarProyecto5.png ||
-|| *6.* ||
+|| *6.* Finalmente ya podemos comenzar a utilizar FAIA en nuestro proyecto. *Una aclaración importante*: estos son pasos básicos para agregar una referencia a nuestro proyecto para utilizar FAIA. Más abajo se dan pasos detallados para poder utilizar Búsqueda y Cálculo Situacional. ||
 || http://faia.googlecode.com/svn/wiki/images/faiaConNetBeans/configurarProyecto6.png ||
 
 == Configurar un proyecto para utilizar _Búsqueda_ ==
