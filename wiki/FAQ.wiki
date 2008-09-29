@@ -8,7 +8,7 @@ La página principal del proyecto es esta: http://code.google.com/p/faia/
 En la sección de [http://code.google.com/p/faia/downloads/list Downloads] se pueden bajar las últimas versiones estables y el software relacionado. También se puede acceder a la versión en desarrollo en el [http://code.google.com/p/faia/source/checkout repositorio Subversion].
 
 
-= ¿Cómo importar FAIA en Eclipse o NetBeans? =
+= ¿Cómo importar FAIA en Eclipse o !NetBeans? =
 En la [http://code.google.com/p/faia/w/list wiki] se pueden encontrar documentos que explican como importar FAIA y utilizarlo, tanto para [http://code.google.com/p/faia/wiki/FaiaConEclipse Eclipse] como para [http://code.google.com/p/faia/wiki/FaiaConNetbeans Netbeans].
 
 = ¿Hay algún ejemplo disponible que me permita ver cómo utilizar FAIA? =
