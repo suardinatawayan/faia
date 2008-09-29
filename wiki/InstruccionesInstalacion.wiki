@@ -30,10 +30,13 @@ Para esto:
  * Hacer click derecho en "Mi PC" y elegir la opción "Propiedades".
  * En la solapa "Opciones avanzadas", presionar el botón "Variables de entorno".
  * En la parte de "Variables de sistema", hacer doble click en la variable      "Path" para editarla.
- * Aún sin haberla modificado, verificar que la cadena finalice con punto y     coma (;).
- * Luego agregar el path correspondiente como se ha dicho. Es importante no     olvidarse de colocar las comillas dobles para indicar la ruta del directorio.
+ * Aún sin haberla modificado, verificar que el contenido del campo "Valor de variable" finalice con punto y coma (;).
+ * Luego agregar el path correspondiente como se ha dicho, que puede variar dependiendo de dónde se haya instalado SWI-Prolog. Abajo se puede observar una imagen.
  * Presionar el botón "Aceptar" para guardar los cambios.
- * Finalmente, es necesario reiniciar !NetBeans.
+ * Es necesario reiniciar el IDE (tanto Eclipse como !NetBeans) para que tomen los cambios realizados.
+
+https://faia.googlecode.com/svn/wiki/images/instalacion/variablePath.png
+
 
 === En GNU/Linux (Ubuntu) ===
 
@@ -75,4 +78,4 @@ Si bien los detalles para importar FAIA en Eclipse o !NetBans están en sus resp
  # Descomprimir el contenido *exacto* de los archivos correspondientes a FAIA y a los ejemplos en esa misma carpeta. La estructura final debería ser similar a la imagen que se muestra abajo.
 
 || Estructura de directorios ||
-|| http://faia.googlecode.com/svn/wiki/images/estructura_directorios_faia.png ||
+|| http://faia.googlecode.com/svn/wiki/images/instalacion/estructura_directorios_faia.png ||
