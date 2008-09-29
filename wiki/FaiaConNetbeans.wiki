@@ -47,7 +47,7 @@ _NOTAS:_
 Ver UtilizarBusqueda.
 
 
-== Configurar un proyecto para utilizar _Prolog_ ==
+== Configurar un proyecto para utilizar _Cálculo Situacional_ ==
 
 _NOTAS:_
  * Para utilizar Prolog, es necesario haber instalado SWI-Prolog. En InstruccionesInstalacion se dan detalles de cómo hacerlo.
