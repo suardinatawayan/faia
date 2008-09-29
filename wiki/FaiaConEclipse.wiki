@@ -47,6 +47,13 @@ _NOTAS:_
 || *6.* Finalmente ya podemos comenzar a utilizar FAIA en nuestro proyecto. ||
 || http://faia.googlecode.com/svn/wiki/images/faiaConEclipse/configurarProyecto6.png ||
 
+Si nuestro proyecto ya ha sido creado, la forma de referenciar _faia_ es siguiendo estos pasos:
+
+ # Hacer click derecho en nuestro proyecto, y elegir _Build Path -> Configure Build Path_.
+ # En la solapa _Projects_ hacer click en el botón _Add_.
+ # De la lista, elegir el proyecto _faia_ y hacer click en el botón _OK_.
+ # Hacer click en _OK_.
+
 
 == Configurar un proyecto para utilizar _Búsqueda_ ==
 
@@ -56,4 +63,10 @@ Ver UtilizarBusqueda.
 == Configurar un proyecto para utilizar _Cálculo Situacional_ ==
 
 _NOTAS:_
- * Para utilizar Cálculo Situacional, es necesario haber instalado SWI-Prolog. En InstruccionesInstalacion se dan detalles de cómo hacerlo, ya que la instalación y configuración no es trivial.
+ * Es necesario haber importado FAIA.
+ * Es necesario tener instalado SWI-Prolog. En InstruccionesInstalacion se dan detalles de cómo hacerlo, ya que la instalación y configuración no es trivial.
+
+Si se ha instalado SWI-Prolog e importado FAIA correctamente, entonces sólo es necesario referenciar al proyecto _faia_ desde el nuestro:
+
+|| *1.* ||
+||  ||
