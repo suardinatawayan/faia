@@ -66,7 +66,8 @@ http://faia.googlecode.com/svn/wiki/images/busqueda/carpetaPdflatex.png
 De esta forma, en el PDF de ejemplo, si observamos a la izquierda arriba, veremos un subárbol en el que su nodo padre tiene su "Execution Order" (EO) igual a 0 (o sea, es el primer nodo creado, y el que representa el estado actual del agente). Allí podemos ver que el agente ha aplicado 4 operaciones posibles sobre el mismo (Izquierda, Arriba, Derecha y Abajo), generando 4 nodos más. Observar que el costo del nodo inicial (EO = 0) es 0 (cero), en cambio sus hijos tienen un valor de -1. Esto es así porque se utiliza una estructura tipo lista ordenada para todas las estrategias, y para simular el comportamiento de una pila (que es la estructura que deberíamos utilizar para almacenar los nodos expandidos en "Primero en Profundidad") el costo de los nodos hijos es una unidad menos que el padre.
 
 En el subárbol de la derecha, podemos observar que el nodo padre del mismo es aquel con EO igual a 1. O sea, es el nodo que se ha generado al aplicar el operador Izquierda sobre el nodo 0 (EO = 0). De esta forma entendemos que nuestra estrategia de búsqueda ha escogido ese nodo para expandir en el paso siguiente. Observar que esta vez se aplicaron 3 operadores: Izquierda, Arriba y Abajo.
-Luego podemos ver que el agente ha escogido los nodos: 5, 8, 11, 14, 17, 19, 22, etc... terminando su ejecución
+
+Luego podemos ver que el agente ha escogido los nodos: 5, 8, 11, 14, 17, 19, 22, etc... terminando su ejecución en el nodo 40, donde ha llegado al objetivo. Por lo tanto, la acción que va a tomar es la que indica el nodo EO = 1: Izquierda.
 
 
 == Configurar un proyecto para utilizar _Prolog_ ==
