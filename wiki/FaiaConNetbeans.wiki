@@ -52,12 +52,10 @@ Ver UtilizarBusqueda.
 _NOTAS:_
  * Para utilizar Cálculo Situacional, es necesario haber instalado SWI-Prolog. En InstruccionesInstalacion se dan detalles de cómo hacerlo, ya que la instalación y configuración no es trivial.
 
-Se debe utilizar como directorio para librerías a 'faia\lib', donde se encuentran algunas dependencias que es necesario referenciar. Para esto:
-
- # Hacer click derecho en _Libraries_ dentro del proyecto nuevo y elegir la opción _Properties_.
- # En la sección _Libraries_, en el campo _Libraries folder_ elegir la carpeta 'faia\lib" (utilizar el botón _Browse_ para ubicarla).
- # Luego hacer click derecho nuevamente en "Libraries" y elegir la opción "Add JAR/Folder".
- # Elegir el archivo 'jpl.jar'.
+|| *1.* Hacemos click derecho sobre _Libraries_ en nuestro proyecto, y elegimos la opción _Add  ||
+|| http://faia.googlecode.com/svn/wiki/images/faiaConNetBeans/prolog1.png ||
+|| *2.* ||
+|| http://faia.googlecode.com/svn/wiki/images/faiaConNetBeans/prolog2.png ||
 
 Con los pasos anteriores ya tenemos agregado el archivo 'jpl.jar' a nuestro classpath. Con esto ya podemos utilizar Prolog en Windows XP (suponiendo que ya ha sido instalado con los pasos dados en esta página, modificando la variable PATH como se indica). *Sin embargo, para sistemas GNU/Linux, es necesario realizar, además, los siguientes pasos:*
 
