@@ -22,7 +22,9 @@ _NOTA:_ Es importante, antes de continuar, haber leído la sección "Instalar FA
 
 == Configurar un proyecto para que utilice FAIA ==
 
-_NOTA:_ Antes de seguir estos pasos es necesario haber importado FAIA.
+_NOTAS:_
+ * Antes de seguir estos pasos es necesario haber importado FAIA.
+ * Estos son pasos básicos para agregar una referencia a nuestro proyecto para utilizar FAIA. Más abajo se dan pasos detallados para poder utilizar Búsqueda y Cálculo Situacional.
 
 || *1.* ||
 || http://faia.googlecode.com/svn/wiki/images/faiaConEclipse/configurarProyecto1.png ||
