@@ -26,17 +26,17 @@ _NOTAS:_
  * Antes de seguir estos pasos es necesario haber importado FAIA.
  * Estos son pasos básicos para agregar una referencia a nuestro proyecto para utilizar FAIA. Más abajo se dan pasos detallados para poder utilizar Búsqueda y Cálculo Situacional.
 
-|| *1.* ||
+|| *1.* Creamos un nuevo proyecto yendo a _File -> New -> Java Project_. ||
 || http://faia.googlecode.com/svn/wiki/images/faiaConEclipse/configurarProyecto1.png ||
-|| *2.* ||
+|| *2.* Colocamos un nombre al mismo y presionamos _Next_. ||
 || http://faia.googlecode.com/svn/wiki/images/faiaConEclipse/configurarProyecto2.png ||
-|| *3.* ||
+|| *3.* Hacer click en la solapa _Projects_ y presionar el botón _Add_. ||
 || http://faia.googlecode.com/svn/wiki/images/faiaConEclipse/configurarProyecto3.png ||
-|| *4.* ||
+|| *4.* Elegir _faia_ y presionar el botón _OK_. ||
 || http://faia.googlecode.com/svn/wiki/images/faiaConEclipse/configurarProyecto4.png ||
-|| *5.* ||
+|| *5.* Ahora nuestro proyecto referencia a _faia_. Hacer click en el botón _Finish_. ||
 || http://faia.googlecode.com/svn/wiki/images/faiaConEclipse/configurarProyecto5.png ||
-|| *6.* ||
+|| *6.* Finalmente ya podemos comenzar a utilizar FAIA en nuestro proyecto. ||
 || http://faia.googlecode.com/svn/wiki/images/faiaConEclipse/configurarProyecto6.png ||
 
 == Configurar un proyecto para utilizar _Búsqueda_ ==
