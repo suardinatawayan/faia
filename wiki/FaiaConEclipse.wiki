@@ -17,8 +17,10 @@ _NOTA:_ Es importante, antes de continuar, haber leído la sección "Instalar FA
 || http://faia.googlecode.com/svn/wiki/images/faiaConEclipse/importarFaia4.png ||
 || *5.* Asegurarse que en la lista de abajo titulada _Projects_ se encuentra activado el proyecto _faia_, y presionar _Finish_. ||
 || http://faia.googlecode.com/svn/wiki/images/faiaConEclipse/importarFaia5.png ||
-|| *6.* Finalmente el proyecto ha sido importado y se puede navegar por los paquetes y el código fuente. ||
+|| *6.* El proyecto ha sido importado. Ahora es necesario *cambiar la codificación de caracteres* de _faia_. Hacemos click derecho en el proyecto y elegimos _Properties_. ||
 || http://faia.googlecode.com/svn/wiki/images/faiaConEclipse/importarFaia6.png ||
+|| *7.*  ||
+|| http://faia.googlecode.com/svn/wiki/images/faiaConEclipse/importarFaia7.png ||
 
 == Configurar un proyecto para que utilice FAIA ==
 
