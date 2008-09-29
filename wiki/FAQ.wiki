@@ -11,12 +11,13 @@ En la sección de [http://code.google.com/p/faia/downloads/list Downloads] se pu
 = ¿Cómo importar FAIA en Eclipse o !NetBeans? =
 En la [http://code.google.com/p/faia/w/list wiki] se pueden encontrar documentos que explican como importar FAIA y utilizarlo, tanto para [http://code.google.com/p/faia/wiki/FaiaConEclipse Eclipse] como para [http://code.google.com/p/faia/wiki/FaiaConNetbeans Netbeans].
 
+
 = ¿Hay algún ejemplo disponible que me permita ver cómo utilizar FAIA? =
 Si, hay ejemplos disponibles en los releases en la página de Downloads o accediendo al código disponible en el repositorio Subversion (aunque es recomendable utilizar las versiones estables). Hay ejemplos que demuestran la funcionalidad de FAIA en los enfoques de Búsqueda y Calculo Situacional.
 
 El de '''Búsqueda''' es una versión simplificada del juego "Pacman". El enunciado del ejemplo lo pueden encontrar en la sección "Trabajos prácticos" de la cátedra de [http://www.frsf.utn.edu.ar/matero/visitante/index.php?id_catedra=142&ver=12 Inteligencia Artificial]. Para correr y probar los ejemplos, es necesario seguir una serie de pasos detallados en la wiki. Hay instrucciones tanto para Eclipse como para Netbeans.
 
-_TODO:_ Falta el ejemplo de Cálculo Situacional.
+El ejemplo de '''Cálculo Situacional''' es el mismo problema que el "Pacman" mencionado en el párrafo anterior, pero utilizando Prolog para resolverlo.
 
 
 = ¿Qué contienen los ejemplos? =
