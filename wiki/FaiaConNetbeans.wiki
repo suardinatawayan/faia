@@ -4,6 +4,9 @@
 *LEER ANTES DE CONTINUAR:* Antes de seguir estos pasos es necesario leer [http://code.google.com/p/faia/wiki/InstruccionesInstalacion las instrucciones de instalación].
 
 == Importar FAIA ==
+
+_NOTA:_ Es importante, antes de continuar, haber leído la sección "Instalar FAIA" de la [http://code.google.com/p/faia/wiki/InstruccionesInstalacion página de instrucciones de instalación].
+
 || *1.* Ir al menú _File -> Open Project..._ ||
 || http://faia.googlecode.com/svn/wiki/images/faiaConNetBeans/importarFaia1.png ||
 || *2.* Dirigirse a la carpeta donde se han descomprimido FAIA y los ejemplos. Manteniendo presionada la tecla _Control_, es posible abrir únicamente el proyecto 'faia' o éste junto con todos los ejemplos. Finalmente presionar la tecla _Open Project_. ||
