@@ -3,6 +3,7 @@
 
 *LEER ANTES DE CONTINUAR:* Antes de seguir estos pasos es necesario leer [http://code.google.com/p/faia/wiki/InstruccionesInstalacion las instrucciones de instalación].
 
+
 == Importar FAIA ==
 
 _NOTAS:_
@@ -25,6 +26,7 @@ _NOTAS:_
 || *7.* En la sección _Resource_ dentro del marco _Text file encoding_ activamos la opción _Other_, y de la lista desplegable elegimos la opción _UTF-8_. Presionamos el botón _Apply_ y luego _OK_. ||
 || http://faia.googlecode.com/svn/wiki/images/faiaConEclipse/importarFaia7.png ||
 
+
 == Configurar un proyecto para que utilice FAIA ==
 
 _NOTAS:_
@@ -45,9 +47,11 @@ _NOTAS:_
 || *6.* Finalmente ya podemos comenzar a utilizar FAIA en nuestro proyecto. ||
 || http://faia.googlecode.com/svn/wiki/images/faiaConEclipse/configurarProyecto6.png ||
 
+
 == Configurar un proyecto para utilizar _Búsqueda_ ==
 
-TODO: Esta sección no está terminada.
+Ver UtilizarBusqueda.
+
 
 == Configurar un proyecto para utilizar _Prolog_ ==
 
