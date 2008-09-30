@@ -1,6 +1,5 @@
 package frsf.cidisi.faia.agent.searchbased;
 
-import frsf.cidisi.faia.agent.Action;
 import java.util.Vector;
 
 import frsf.cidisi.faia.state.AgentState;

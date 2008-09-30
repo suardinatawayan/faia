@@ -20,21 +20,20 @@ public class Calculus extends Solve {
         
         KnowledgeBase knowledgeBase = (KnowledgeBase)params[0];
         
-        /* Hago una consulta a la base de conocimiento, pidiendo por la mejor
-         * accion. Esto me devuelve un Hashtable con todos los resultados.
-         * En este caso solo deberia devolver uno. */
+        /* We query the knowledge base, asking for the best action. This returns
+         * a Hashtable with the results. In this case, it should return only
+         * one. */
         Hashtable[] results =
                 knowledgeBase.query(knowledgeBase.getBestActionPredicate() + "(X," +
                 knowledgeBase.getSituation() + ")");
 
-        // Busco el primer resultado de la consulta.
+        // We look for the first result.
         if (results.length == 0) {
             throw new CalculusException("No solutions returned. Maybe there is an error in the knowledge base.");
         }
         String mejorAccion = results[0].get("X").toString();
 
-        /* Transformo el string 'mejorAccion' que representa a la accion
-         * escogida en un objeto Action */
+        /* We convert the string 'bestAction' in an Action object */
         return knowledgeBase.getActionFactory().makeActionFromString(mejorAccion);
     }
 }

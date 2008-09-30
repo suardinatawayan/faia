@@ -18,8 +18,8 @@ public abstract class Solve {
      * @param problem
      */
     public abstract Action solve(Object[] params) throws Exception;
-
-    // Tal vez no es correcto poner este m�todo en esta clase debido a que es probable
-    // que en algunas tecnicas de IA no se pueda mostrar la soluci�n del problema.-
+    
+    /* Maybe it's not correct to leave this method here, due to it's probable
+     * some AI techniques could not show the solution */
     public abstract void showSolution();
 }
