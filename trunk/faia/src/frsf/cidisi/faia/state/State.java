@@ -14,11 +14,14 @@ public abstract class State implements Cloneable {
     public State() {
     }
 
+    @Override
     public abstract Object clone();
 
     public abstract void initState();
 
+    @Override
     public abstract String toString();
 
+    @Override
     public abstract boolean equals(Object obj);
 }

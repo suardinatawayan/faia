@@ -13,8 +13,9 @@ public abstract class KnowledgeBase extends AgentState {
 
     private String knowledgeBaseFile;
     private Query prologQuery;
+    
     /**
-     * Situación actual.
+     * Actual situation.
      */
     private int situation;
     //VisionAmbiente visionAmbiente;
@@ -39,7 +40,7 @@ public abstract class KnowledgeBase extends AgentState {
 
         JPL.init();
 
-        // Cargo la base de conocimiento
+        // Load the knowledge base
         this.prologQuery = new Query("consult('" + this.knowledgeBaseFile + "')");
 
         /* TODO: Aca hay que manejar los errores de otra forma. La excepción tiene

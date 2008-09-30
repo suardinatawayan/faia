@@ -3,7 +3,6 @@ package frsf.cidisi.faia.environment;
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.agent.Agent;
 import frsf.cidisi.faia.agent.Action;
-import frsf.cidisi.faia.agent.searchbased.SearchAction;
 import frsf.cidisi.faia.state.EnvironmentState;
 import frsf.cidisi.faia.state.AgentState;
 
