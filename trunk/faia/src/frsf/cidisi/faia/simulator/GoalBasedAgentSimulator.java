@@ -30,8 +30,14 @@ public abstract class GoalBasedAgentSimulator extends Simulator {
         this.agents = ags;
     }
 
+    @Override
     public abstract void start();
     
+    /**
+     * Here we update the state of the agent and the real state of the
+     * simulator.
+     * @param action
+     */
     protected void updateState(Action action) {
         this.getEnvironment().updateState(((GoalBasedAgent) agents.elementAt(0)).getAgentState(), action);
     }

@@ -1,5 +1,9 @@
 package frsf.cidisi.faia.solver.search;
 
+/**
+ * This class is used by the InformedSearchStrategy constructors to set
+ * a dummy estimated cost function when making a Greedy search object.
+ */
 public class DummyStepCostFunction implements IStepCostFunction {
 
     private static DummyStepCostFunction g;

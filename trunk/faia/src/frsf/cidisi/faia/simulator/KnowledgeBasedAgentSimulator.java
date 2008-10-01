@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package frsf.cidisi.faia.simulator;
 
 import frsf.cidisi.faia.agent.Agent;
@@ -43,7 +40,7 @@ public class KnowledgeBasedAgentSimulator extends GoalBasedAgentSimulator {
             System.out.println("--- Knowledge Based Agent Simulator ---");
             System.out.println("---------------------------------------");
 
-            // Se crea la percepcion y se la envia al agente
+            // We make the perception and send it to the agent.
             perception = this.getPercept(agent);
             agent.see(perception);
 
@@ -52,7 +49,7 @@ public class KnowledgeBasedAgentSimulator extends GoalBasedAgentSimulator {
             System.out.println("---------------------------------------");
             System.out.println("---------------------------------------");
 
-            // Pregunto al agente la accion a ejecutar
+            // Ask agent for an action
             action = (CalculusAction) agent.selectAction();
 
             System.out.println("Action: " + action);

@@ -3,9 +3,8 @@ package frsf.cidisi.faia.agent;
 import frsf.cidisi.faia.environment.Environment;
 
 /**
- * @author Jorge M. Roa
- * @version 1.0
- * @created 08-Mar-2007 13:16:05
+ * This class is used to inform the agent about perceptions of the
+ * real world.
  */
 public abstract class Perception {
 
