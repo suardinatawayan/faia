@@ -6,17 +6,16 @@ import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.state.EnvironmentState;
 import frsf.cidisi.faia.state.AgentState;
 
-/**
- * @author Jorge M. Roa
- * @version 1.0
- * @created 08-Mar-2007 13:16:04
- */
 public abstract class Environment {
 
     protected EnvironmentState environmentState;
 
+    /**
+     * This method updates the state of the simulator, that is the real world.
+     * @param ast The state of the Agent
+     * @param action
+     */
     public void updateState(AgentState ast, Action action) {
-        //State state = (State)environmentState;
         environmentState = (EnvironmentState) action.execute(ast, environmentState);
     }
 
@@ -28,5 +27,10 @@ public abstract class Environment {
         return environmentState;
     }
 
+    /**
+     * This method will return a perception made by the subclass of Environment
+     * @param agent
+     * @return
+     */
     public abstract Perception getPercept(Agent agent);
 }

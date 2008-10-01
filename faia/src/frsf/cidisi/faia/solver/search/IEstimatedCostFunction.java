@@ -1,17 +1,10 @@
 package frsf.cidisi.faia.solver.search;
 
-import frsf.cidisi.faia.state.AgentState;
-
 /**
- * @author Jorge M. Roa
- * @version 1.0
- * @created 09-Mar-2007 14:13:17
+ * This interface can be used to define a function to
+ * calculate some NTree's estimated cost.
  */
 public interface IEstimatedCostFunction {
-
-    /**
-     * 
-     * @param agentState
-     */
+	
     public abstract double getEstimatedCost(NTree node);
 }

@@ -3,11 +3,6 @@ package frsf.cidisi.faia.agent;
 import frsf.cidisi.faia.solver.Solve;
 import frsf.cidisi.faia.state.AgentState;
 
-/**
- * @author Jorge M. Roa
- * @version 1.0
- * @created 08-Mar-2007 13:16:04
- */
 public abstract class GoalBasedAgent extends Agent {
 
     protected Solve solver;
@@ -16,6 +11,11 @@ public abstract class GoalBasedAgent extends Agent {
     public GoalBasedAgent() {
     }
 
+    /**
+     * This method must be overrode by the agent to receive perceptions
+     * from the simulator.
+     * @param p
+     */
     public abstract void see(Perception p);
 
     public Solve getSolver() {

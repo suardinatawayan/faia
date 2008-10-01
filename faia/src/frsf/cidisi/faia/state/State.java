@@ -2,11 +2,6 @@ package frsf.cidisi.faia.state;
 
 import frsf.cidisi.faia.state.datastructure.DataStructure;
 
-/**
- * @author Jorge M. Roa
- * @version 1.0
- * @created 08-Mar-2007 13:16:05
- */
 public abstract class State implements Cloneable {
 
     protected DataStructure dataStructure;
@@ -14,14 +9,17 @@ public abstract class State implements Cloneable {
     public State() {
     }
 
-    @Override
-    public abstract Object clone();
-
+    /**
+     * This method is used in two places:
+     *   1. To set the initial state (the real one) of the world, seen
+     *      by the simulator.
+     *   2. To set the initial state of the agent.
+     */
     public abstract void initState();
 
+    /**
+     * This method is used to print the state in the console.
+     */
     @Override
     public abstract String toString();
-
-    @Override
-    public abstract boolean equals(Object obj);
 }

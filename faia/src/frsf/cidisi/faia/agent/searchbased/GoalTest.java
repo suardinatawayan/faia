@@ -3,14 +3,11 @@ package frsf.cidisi.faia.agent.searchbased;
 import frsf.cidisi.faia.state.AgentState;
 
 /**
- * @author Jorge M. Roa
- * @version 1.0
- * @created 08-Mar-2007 13:16:04
+ * This class is used to define a function to determine when an agent state
+ * is a goal state. It's used by the agent's internal search process, and by
+ * the simulator, to know when to stop.
  */
 public abstract class GoalTest {
-
-    public GoalTest() {
-    }
 
     public abstract boolean isGoalState(AgentState agentState);
 }
