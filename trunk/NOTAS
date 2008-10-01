@@ -1,26 +1,11 @@
-- Esta bien que CalculusAgent especialice GoalBasedAgent? El problema es que
-van a aparecer los métodos para setear y obtener el Problem.
+- Tema de la licencia: veo que en el sitio pusieron que faia es GPLv3. Explicar
+en qué consiste mas o menos y que habría que poner en todos los archivos el
+header de la licencia, con el copyright.
 
-- GoalBasedAgent hace que no se tenga que sobreescribir el método 'see'. Para
-el agente lógico, quizá sea interesante que los alumnos tengan que
-sobreescribirlo.
+- En la clase EstadoAmbiente, del ejemplo del Pacman, comenté el método clone,
+ya que en esta clase no es necesario. Quité de la clase State el método clone
+y lo puse en la clase AgentState, ya que sólo es necesario allí.
 
-- En la clase Solve ahora hay un método 'solve(AgentState)' (sin Problem) para
-  el agente lógico. El problema es que todos tienen que sobreescribir todos los
-  métodos, incluso los que no les interesan.
-
-- Ver el método solve(AgentState). El problema que se presenta es que el solver
-  debe saber muchas cosas para obtener la mejor accion: el nombre del predicado
-  'mejorAccion' que cada uno puede definir como quiere, y la clase para
-  transformar las acciones string en objetos Action. Sería más directo y
-  fácil que lo haga el método 'selectAction' del agente que definan los
-  alumnos. VER SOLUCION PROPUESTA EN EL CODIGO.
-
-- Debería estar visible u oculto el método 'updateState' en EstadoPacman? El
-  método es de AgentState, y en la parte de búsqueda se lo oculta dentro de
-  FAIA. Quizá no esté mal mostrarlo para que los alumnos vean que se está
-  haciendo un 'tell' con la percepción a la base de conocimientos.
-
-- Mostrar lo que estoy haciendo con el simulador especializado para Calculo,
-  cómo sobreescribo los métodos y qué reutilizo de GoalBasedAgentSimulator.
+- Algo similar a lo anterior con el método equals en State: lo moví a
+AgentState, ya que allí se utiliza únicamente.
 
