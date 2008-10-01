@@ -5,7 +5,8 @@ import frsf.cidisi.faia.simulator.SearchBasedAgentSimulator;
 public class Pacman {
 
     /**
-     * @param args
+     * Este es el método principal que crea el agente Pacman, su ambiente y
+     * el simulador de búsqueda (que lo inicia).
      */
     public static void main(String[] args) {
         AgentePacman pacman = new AgentePacman();

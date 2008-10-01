@@ -2,6 +2,9 @@ package agente;
 
 import frsf.cidisi.faia.state.EnvironmentState;
 
+/**
+ * Representa el estado del mundo.
+ */
 public class EstadoAmbiente extends EnvironmentState {
 
     private int[][] mundo;
@@ -15,6 +18,58 @@ public class EstadoAmbiente extends EnvironmentState {
         this.initState();
     }
 
+//    @Override
+//    public Object clone() {
+//        int[][] nuevoMundo = new int[4][4];
+//
+//        for (int fil = 0; fil < mundo.length; fil++) {
+//            for (int col = 0; col < mundo.length; col++) {
+//                nuevoMundo[fil][col] = mundo[fil][col];
+//            }
+//        }
+//        EstadoAmbiente nuevoEstado = new EstadoAmbiente(nuevoMundo);
+//
+//        return nuevoEstado;
+//    }
+
+    @Override
+    public void initState() {
+    	
+    	// Pongo todas las celdas como vacías.
+        for (int fil = 0; fil < mundo.length; fil++) {
+            for (int col = 0; col < mundo.length; col++) {
+                mundo[fil][col] = PercepcionPacman.PERCEPCION_VACIO;
+            }
+        }
+        
+        /* Coloco en algunas posiciones ciertos elementos como comida y
+         * alimentos. */
+        mundo[0][0] = PercepcionPacman.PERCEPCION_COMIDA;
+        mundo[0][2] = PercepcionPacman.PERCEPCION_COMIDA;
+        mundo[3][1] = PercepcionPacman.PERCEPCION_ENEMIGO;
+        mundo[2][1] = PercepcionPacman.PERCEPCION_COMIDA;
+        mundo[0][3] = PercepcionPacman.PERCEPCION_ENEMIGO;
+        mundo[1][2] = PercepcionPacman.PERCEPCION_COMIDA;
+    }
+    
+    @Override
+    public String toString() {
+        String str = "";
+
+        str = str + "[ \n";
+        for (int fil = 0; fil < mundo.length; fil++) {
+            str = str + "[ ";
+            for (int col = 0; col < mundo.length; col++) {
+                str = str + mundo[fil][col] + " ";
+            }
+            str = str + " ]\n";
+        }
+        str = str + " ]";
+
+        return str;
+    }
+    
+    // Estos métodos son internos de la clase EstadoAmbiente.
     public int[][] getMundo() {
         return mundo;
     }
@@ -25,34 +80,6 @@ public class EstadoAmbiente extends EnvironmentState {
 
     public void setMundo(int fil, int col, int valor) {
         this.mundo[fil][col] = valor;
-    }
-
-    public Object clone() {
-        int[][] nuevoMundo = new int[4][4];
-
-        for (int fil = 0; fil < mundo.length; fil++) {
-            for (int col = 0; col < mundo.length; col++) {
-                nuevoMundo[fil][col] = mundo[fil][col];
-            }
-        }
-        EstadoAmbiente nuevoEstado = new EstadoAmbiente(nuevoMundo);
-
-        return nuevoEstado;
-    }
-
-    public void initState() {
-
-        for (int fil = 0; fil < mundo.length; fil++) {
-            for (int col = 0; col < mundo.length; col++) {
-                mundo[fil][col] = PercepcionPacman.PERCEPCION_VACIO;
-            }
-        }
-        mundo[0][0] = PercepcionPacman.PERCEPCION_COMIDA;
-        mundo[0][2] = PercepcionPacman.PERCEPCION_COMIDA;
-        mundo[3][1] = PercepcionPacman.PERCEPCION_ENEMIGO;
-        mundo[2][1] = PercepcionPacman.PERCEPCION_COMIDA;
-        mundo[0][3] = PercepcionPacman.PERCEPCION_ENEMIGO;
-        mundo[1][2] = PercepcionPacman.PERCEPCION_COMIDA;
     }
 
     public int getArriba(int fil, int col) {
@@ -81,26 +108,5 @@ public class EstadoAmbiente extends EnvironmentState {
             return mundo[0][col];
         }
         return mundo[fil + 1][col];
-    }
-
-    public String toString() {
-        String str = "";
-
-        str = str + "[ \n";
-        for (int fil = 0; fil < mundo.length; fil++) {
-            str = str + "[ ";
-            for (int col = 0; col < mundo.length; col++) {
-                str = str + mundo[fil][col] + " ";
-            }
-            str = str + " ]\n";
-        }
-        str = str + " ]";
-
-        return str;
-    }
-
-    public boolean equals(Object obj) {
-        //TODO: Falta hacer este codigo, pero por ahora no es necesario porque no uso este metodo.-
-        return true;
     }
 }

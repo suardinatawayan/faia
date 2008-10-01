@@ -7,6 +7,9 @@ import frsf.cidisi.faia.state.EnvironmentState;
 
 public class IrDerecha extends SearchAction {
     
+	/**
+	 * Ver el comentario hecho en la clase Comer.
+	 */
     @Override
     public AgentState execute(AgentState s) {
 //		EstadoPacman estP = ((EstadoPacman)s.clone());
@@ -33,6 +36,9 @@ public class IrDerecha extends SearchAction {
         return null;
     }
     
+    /**
+	 * Ver el comentario hecho en la clase Comer.
+	 */
     @Override
     public EnvironmentState execute(AgentState ast, EnvironmentState est) {
 //		EstadoPacman estP = ((EstadoPacman)s.clone());
@@ -57,11 +63,17 @@ public class IrDerecha extends SearchAction {
         return estA;
     }
 
+    /**
+	 * Ver el comentario hecho en la clase Comer.
+	 */
     @Override
     public Double getCost() {
         return new Double(0);
     }
 
+    /**
+	 * Ver el comentario hecho en la clase Comer.
+	 */
     @Override
     public String toString() {
         return "Derecha";

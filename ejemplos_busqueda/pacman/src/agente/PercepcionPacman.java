@@ -24,6 +24,10 @@ public class PercepcionPacman extends Perception {
         super(agent, environment);
     }
 
+    /**
+     * Método utilizado para inicializar una percepción.
+     */
+    @Override
     public void initPerception(Agent agent, Environment environment) {
         AgentePacman pacman = (AgentePacman) agent;
         AmbientePacman ambiente = (AmbientePacman) environment;
@@ -37,6 +41,7 @@ public class PercepcionPacman extends Perception {
         setSensorAbajo(ambiente.getAbajo(fil, col));
     }
 
+    // Estos métodos son internos de la clase PercepcionPacman.
     public int getSensorIzquierda() {
         return sensorIzquierda;
     }
