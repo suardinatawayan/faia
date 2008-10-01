@@ -20,13 +20,15 @@ import java.util.logging.Logger;
 public class AgentePacman extends SearchBasedAgent {
 
     public AgentePacman() {
-        // Instancia la meta del Pacman.-
+        
+        // Instancia la meta del Pacman.
         MetaPacman meta = new MetaPacman();
-        // Instancia el estado inicial del Pacman.-
+        
+        // Instancia el estado inicial del Pacman.
         EstadoPacman estado = new EstadoPacman();
         this.setAgentState(estado);
 
-        // Se generan las instancias de los operadores del Pacman.-
+        // Se generan las instancias de los operadores del Pacman.
         Vector<SearchAction> operadores = new Vector<SearchAction>();
         operadores.addElement(new Comer());
         operadores.addElement(new Pelear());
@@ -35,49 +37,58 @@ public class AgentePacman extends SearchBasedAgent {
         operadores.addElement(new IrDerecha());
         operadores.addElement(new IrAbajo());
 
-        // Se inicializa y asigna el problema inicial que debe resolver el Pacman.-
+        // Se inicializa y asigna el problema inicial que debe resolver el Pacman.
         EstadoPacman estP = (EstadoPacman) this.getAgentState();
         Problem problema = new Problem(meta, estP, operadores);
         this.setProblem(problema);
     }
-
+    
+    /**
+     * Es el método que ejecuta el simulador para pedirle una acción al agente
+     * @return
+     */
     @Override
     public Action selectAction() {
 
-        // Instanciaci�n la estrategia de b�squeda primero en profundidad.-
+        // Instanciación de la estrategia de búsqueda primero en profundidad.
         DepthFirstSearch estrategiaBusqueda = new DepthFirstSearch();
 
         /**
-         * Ejemplos de instanciaci�n de otras estrategias de b�squeda.-
+         * Ejemplos de instanciación de otras estrategias de búsqueda.
          * 
          * Primero en profundidad:
          * DepthFirstSearch estrategiaBusqueda = new DepthFirstSearch();
          * 
-         * // Instanciaci�n de la estrategia primero en amplitud.-
+         * // Instanciación de la estrategia primero en amplitud.
          * BreathFirstSearch estrategiaBusqueda = new BreathFirstSearch();
          * 
-         * // Instanciaci�n de la estrategia de costo uniforme.-
+         * // Instanciación de la estrategia de costo uniforme.
          * IStepCostFunction costo = new FuncionCosto();
          * UniformCostSearch estrategiaBusqueda = new UniformCostSearch(costo);
          * 
-         * A Estrella:
+         * // Instanciación de la estrategia A* (A Estrella)
          * IStepCostFunction costo = new FuncionCosto();
          * IEstimatedCostFunction heuristica = new Heuristica();
          * AStarSearch estrategiaBusqueda = new AStarSearch(costo, heuristica);
          * 
-         * Avara:
+         * // Instanciación de la estrategia Avara
          * IEstimatedCostFunction heuristica = new Heuristica();
          * GreedySearch estrategiaBusqueda = new GreedySearch(heuristica);
-         */        // Instancia un proceso de b�squeda indicando como par�metro la estrategia a utilizar.-
+         */
+        
+        /* Instancia un proceso de búsqueda indicando como parámetro
+         la estrategia a utilizar. */
         Search busqueda = new Search(estrategiaBusqueda);
 
-        // Indica que el �rbol de b�squeda debe ser mostrado e formato XML.-
+        // Indica que el árbol de búsqueda debe ser mostrado e formato PDF.
         busqueda.setVisibleTree(Search.PDF_TREE);
+        // La linea de abajo se utiliza para una salida XML, en lugar de PDF.
+        //busqueda.setVisibleTree(Search.XML_TREE);
 
-        // Le indica al Solver el proceso de búsqueda que debe ejecutar.- 
+        // Le indica al Solver el proceso de búsqueda que debe ejecutar.
         this.setSolver(busqueda);
 
-        // Se ejecuta el proceso de selección de la acción más adecuada.-
+        // Se ejecuta el proceso de selección de la acción más adecuada.
         Action accionSeleccionada = null;
         try {
             accionSeleccionada =
@@ -86,10 +97,15 @@ public class AgentePacman extends SearchBasedAgent {
             Logger.getLogger(AgentePacman.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        // Retorna la acci�n seleccionada.-
+        // Retorna la acción seleccionada.
         return accionSeleccionada;
     }
 
+    /**
+     * Este método debe ser sobreescrito para recibir del simulador las
+     * percepciones, y actualizar nuestro estado interno con ellas.
+     * @param p
+     */
     @Override
     public void see(Perception p) {
         this.getAgentState().updateState(p);
