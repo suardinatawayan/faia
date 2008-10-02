@@ -9,26 +9,35 @@ import jpl.JPL;
 import jpl.PrologException;
 import jpl.Query;
 
+/**
+ * This is the knowledge base used by the agent. It offers some methods
+ * to easily consult for the agent's state, and adding new knowledge.
+ */
 public abstract class KnowledgeBase extends AgentState {
 
+	/**
+	 * The knowledge base file written by the user.
+	 */
     private String knowledgeBaseFile;
+    
+    /**
+     * This is used internally to query the state of the agent,
+     * and to add new knowledge.
+     */
     private Query prologQuery;
     
     /**
-     * Actual situation.
+     * Current situation.
      */
     private int situation;
-    //VisionAmbiente visionAmbiente;
-    //private int energia;
+    
     public KnowledgeBase(String knowledgeBaseFile) throws KnowledgeBaseException {
         super();
 
         this.knowledgeBaseFile = knowledgeBaseFile;
         this.situation = 0;
-        //this.visionAmbiente = new VisionAmbiente();
 
-        /* Aumento la memoria disponible para el stack local, el global y el de
-         * restro. */
+        /* Set some JPL options */
         JPL.setDefaultInitArgs(new String[]{
                     "pl",
                     "-G128m",
