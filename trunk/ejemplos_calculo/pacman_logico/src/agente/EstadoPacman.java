@@ -6,14 +6,140 @@ import frsf.cidisi.faia.solver.calculus.CalculusActionFactory;
 import frsf.cidisi.faia.solver.calculus.KnowledgeBase;
 import java.util.Hashtable;
 
+/**
+ * Esta clase representa el estado del pacman, que en su versión lógica,
+ * vendría a ser la base de conocimientos.
+ * A esta clase se le realizan consultas sobre el estado del agente, y
+ * se le informan de las percepciones enviadas desde el simulador, etc.
+ */
 public class EstadoPacman extends KnowledgeBase {
     
+	/**
+	 * Se le pasa al constructor de la clase padre el archivo que estamos
+	 * utilizando para escribir nuestras sentencias prolog.
+	 * Luego se inicializa el estado del agente.
+	 * @throws KnowledgeBaseException
+	 */
     public EstadoPacman() throws KnowledgeBaseException {
         super("base_conocimiento.pl");
 
         this.initState();
     }
     
+    /**
+     * Este método es utilizado por el agente, dentro de 'see', para informar
+     * sobre una percepción enviada por el simulador. Se traduce a una llamada
+     * al método 'tell'.
+     */
+    @Override
+    public void updateState(Perception perception) {
+        this.tell(perception);
+    }
+    
+    /**
+     * Imprime una representación de la base de conocimiento del agente por
+     * consola.
+     */
+    @Override
+    public String toString() {
+        String str = "";
+
+        str = str + " posicion=\"(" + getFila() + "," + "" + getColumna() + ")\"";
+        str = str + " energia=\"" + this.getEnergia() + "\"\n";
+
+        str = str + "mundo=\"[ \n";
+        for (int fil = 0; fil < this.getMundoLength(); fil++) {
+            str = str + "[ ";
+            for (int col = 0; col < this.getMundoLength(); col++) {
+
+                if (this.getFila() == fil && this.getColumna() == col) {
+                    str = str + "P" + " ";
+                    continue;
+                }
+
+                if (this.getEstadoPosicion(fil, col) == PercepcionPacman.PERCEPCION_DESCONOCIDO) {
+                    str = str + "* ";
+                } else {
+                    str = str + this.getEstadoPosicion(fil, col) + " ";
+                }
+            }
+            str = str + " ]\n";
+        }
+        str = str + " ]\"";
+
+        return str;
+    }
+    
+    /**
+     * Aquí se indica cuál es el objeto CalculusActionFactory definido
+     * por el usuario. Ver comentarios en la clase CalculusAccionFactory.
+     */
+    @Override
+    public CalculusActionFactory getActionFactory() {
+        return CalculusAccionFactory.getInstance();
+    }
+
+    /**
+     * Este método debe devolver el string que se utiliza en el archivo
+     * prolog para representar la mejor acción. En este proyecto,
+     * 'pacman_logico', se lo utiliza por ejemplo en esta línea:
+     * 
+     *   mejorAccion(noAccion,S):-cumplioObjetivo(S),!.
+     *   
+     * Esto es necesario ya que la base de conocimiento realiza consultas
+     * dependiendo de los nombres de los predicados utilizadas en el
+     * archivo prolog.
+     */
+    @Override
+    public String getBestActionPredicate() {
+        return "mejorAccion";
+    }
+
+    /**
+     * Tiene el mismo objetivo que el método 'getBestActionPredicate'.
+     * 
+     * Este método debe devolver el string que se utiliza en el archivo
+     * prolog para representar la sentencia de que el objetivo se ha
+     * cumplido. En este proyecto, 'pacman_logico', se lo utiliza por
+     * ejemplo en esta línea:
+     * 
+     *   cumplioObjetivo(S):-tableroVacio(S).
+     * 
+     */
+    @Override
+    public String getGoalReachedPredicate() {
+        return "cumplioObjetivo";
+    }
+    
+    /**
+     * Tiene el mismo objetivo que el método 'getBestActionPredicate'.
+     */
+    @Override
+    public String getExecutedActionPredicate() {
+        return "accionEjecutada";
+    }
+
+    /**
+     * Tiene el mismo objetivo que el método 'getBestActionPredicate'.
+     */
+    @Override
+    public String getCurrentSituationPredicate() {
+        return "situacionActual";
+    }
+
+    /**
+     * Aquí simplemente se agrega conocimiento inicial. En este caso,
+     * que la situación actual es 0, que estoy en la posición 1,2, y
+     * que tengo 50 puntos de energía.
+     */
+    @Override
+    public void initState() {
+        this.addKnowledge("situacionActual(0)");
+        this.addKnowledge("posicion(1,2,0)");
+        this.addKnowledge("energia(50,0)");
+    }
+    
+    // Estos métodos son internos de la clase EstadoPacman.
     public int[] getPosicion() {
         // TODO: Aca habria que hacer una consulta Prolog
         String consultaPosicion = "posicion(X,Y," + this.getSituation() + ")";
@@ -42,11 +168,6 @@ public class EstadoPacman extends KnowledgeBase {
         int energia = Integer.parseInt(resultado[0].get("E").toString());
 
         return energia;
-    }
-
-    @Override
-    public void updateState(Perception perception) {
-        this.tell(perception);
     }
 
     public boolean todoConocido() {
@@ -103,70 +224,9 @@ public class EstadoPacman extends KnowledgeBase {
         return 9;
     }
 
-    public String toString() {
-        String str = "";
-
-        str = str + " posicion=\"(" + getFila() + "," + "" + getColumna() + ")\"";
-        str = str + " energia=\"" + this.getEnergia() + "\"\n";
-
-        str = str + "mundo=\"[ \n";
-        for (int fil = 0; fil < this.getMundoLength(); fil++) {
-            str = str + "[ ";
-            for (int col = 0; col < this.getMundoLength(); col++) {
-
-                if (this.getFila() == fil && this.getColumna() == col) {
-                    str = str + "P" + " ";
-                    continue;
-                }
-
-                if (this.getEstadoPosicion(fil, col) == PercepcionPacman.PERCEPCION_DESCONOCIDO) {
-                    str = str + "* ";
-                } else {
-                    str = str + this.getEstadoPosicion(fil, col) + " ";
-                }
-            }
-            str = str + " ]\n";
-        }
-        str = str + " ]\"";
-
-        return str;
-    }
-
     public int getCeldasVisitadas() {
         // TODO: Aca habria que hacer una consulta Prolog
 
         return 0;
-    }
-
-    @Override
-    public CalculusActionFactory getActionFactory() {
-        return CalculusAccion.getInstance();
-    }
-
-    @Override
-    public String getBestActionPredicate() {
-        return "mejorAccion";
-    }
-
-    @Override
-    public String getGoalReachedPredicate() {
-        return "cumplioObjetivo";
-    }
-
-    @Override
-    public void initState() {
-        this.addKnowledge("situacionActual(0)");
-        this.addKnowledge("posicion(1,2,0)");
-        this.addKnowledge("energia(50,0)");
-    }
-
-    @Override
-    public String getExecutedActionPredicate() {
-        return "accionEjecutada";
-    }
-
-    @Override
-    public String getCurrentSituationPredicate() {
-        return "situacionActual";
     }
 }

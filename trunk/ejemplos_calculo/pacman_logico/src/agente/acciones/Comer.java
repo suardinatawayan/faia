@@ -19,8 +19,7 @@ public class Comer extends CalculusAction {
 
         if (estA.getMundo()[fil][col] == PercepcionPacman.PERCEPCION_COMIDA) {
             estA.setMundo(fil, col, PercepcionPacman.PERCEPCION_VACIO);
-            //estP.setMundo(fil, col, PercepcionPacman.PERCEPCION_VACIO);
-            //System.out.println(" Comer@Amb - ");
+            
             return estA;
         }
 
