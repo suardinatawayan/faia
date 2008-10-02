@@ -32,6 +32,10 @@ public class EstadoAmbiente extends EnvironmentState {
 //        return nuevoEstado;
 //    }
 
+    /**
+     * Este método se utiliza para setear el estado inicial del mundo
+     * real, visto por el simulador.
+     */
     @Override
     public void initState() {
     	
@@ -52,6 +56,9 @@ public class EstadoAmbiente extends EnvironmentState {
         mundo[1][2] = PercepcionPacman.PERCEPCION_COMIDA;
     }
     
+    /**
+     * Para imprimir por consola una representación del mundo real.
+     */
     @Override
     public String toString() {
         String str = "";
