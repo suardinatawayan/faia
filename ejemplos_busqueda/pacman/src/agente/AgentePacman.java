@@ -45,7 +45,6 @@ public class AgentePacman extends SearchBasedAgent {
     
     /**
      * Es el método que ejecuta el simulador para pedirle una acción al agente
-     * @return
      */
     @Override
     public Action selectAction() {

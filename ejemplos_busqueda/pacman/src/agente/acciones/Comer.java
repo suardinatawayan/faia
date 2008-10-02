@@ -30,8 +30,8 @@ public class Comer extends SearchAction {
     }
     
     /**
-     * Este método se utiliza para actualiar el estado interno del agente,
-     * tanto como para el estado real del simulador.
+     * Este método se utiliza tanto para actualiar el estado interno del agente,
+     * como para el estado real del simulador.
      */
     @Override
     public EnvironmentState execute(AgentState ast, EnvironmentState est) {
