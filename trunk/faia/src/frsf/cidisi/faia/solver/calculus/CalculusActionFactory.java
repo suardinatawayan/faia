@@ -2,6 +2,13 @@ package frsf.cidisi.faia.solver.calculus;
 
 import frsf.cidisi.faia.agent.Action;
 
+/**
+ * Calculus (a Solver subclass) receives an string representation
+ * of the best action when invoking the knowledge base, in the
+ * solve() method. This string must be converted to an Action object.
+ * This is class must be implemented by the user to carry out this
+ * conversion.
+ */
 public abstract class CalculusActionFactory {
 
     /**
@@ -26,5 +33,9 @@ public abstract class CalculusActionFactory {
      */
     public abstract Action stringToAction(String stringAction);
     
+    /**
+     * This method must return the string representation of a NoAction,
+     * used by the user in the prolog file.
+     */
     public abstract String noActionString();
 }
