@@ -21,7 +21,7 @@ public abstract class CalculusActionFactory {
      */
     public Action makeActionFromString(String stringAction) {
         if (stringAction.equals(this.noActionString()))
-            return NoAction.getInstance();
+            return CalculusNoAction.getInstance();
         
         return this.stringToAction(stringAction);
     }
