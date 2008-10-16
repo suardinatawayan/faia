@@ -5,7 +5,6 @@
 
 package frsf.cidisi.faia.solver.calculus;
 
-import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.agent.knowledgebased.CalculusAction;
 import frsf.cidisi.faia.state.AgentState;
 import frsf.cidisi.faia.state.EnvironmentState;
@@ -13,19 +12,18 @@ import frsf.cidisi.faia.state.EnvironmentState;
 /**
  * This class is used by the KnowledBasedAgentSimulator to know where the
  * agent has finished.
- * 
- * @author miltondp
  */
-public class NoAction extends CalculusAction {
+public class CalculusNoAction extends CalculusAction {
     
-    private static NoAction instance;
+    private static CalculusNoAction instance;
     
-    private NoAction()
-    {}
+    private CalculusNoAction() {
+    	
+    }
     
-    public static NoAction getInstance() {
+    public static CalculusNoAction getInstance() {
         if (instance == null)
-            instance = new NoAction();
+            instance = new CalculusNoAction();
         
         return instance;
     }

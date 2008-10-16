@@ -7,10 +7,6 @@ package frsf.cidisi.faia.agent.searchbased;
 import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.state.AgentState;
 
-/**
- * 
- * @author miltondp
- */
 public abstract class SearchAction extends Action {
 
 	/**

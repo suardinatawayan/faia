@@ -7,11 +7,6 @@ import frsf.cidisi.faia.agent.Agent;
 import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.environment.Environment;
 
-/**
- * @author Jorge M. Roa
- * @version 1.0
- * @created 09-Mar-2007 14:48:38
- */
 public abstract class GoalBasedAgentSimulator extends Simulator {
 
     /**

@@ -15,10 +15,6 @@ import frsf.cidisi.faia.environment.Environment;
 import frsf.cidisi.faia.state.AgentState;
 import java.util.Vector;
 
-/**
- *
- * @author miltondp
- */
 public class SearchBasedAgentSimulator extends GoalBasedAgentSimulator {
 
     public SearchBasedAgentSimulator(Environment environment, Vector<Agent> agents) {
@@ -77,7 +73,7 @@ public class SearchBasedAgentSimulator extends GoalBasedAgentSimulator {
             showSolution();
         }
 
-        // Check what happend, if agent has reached the goal or not.
+        // Check what happened, if agent has reached the goal or not.
         if (this.isComplete()) {
             System.out.println("Agent has reached the goal!");
         } else {
