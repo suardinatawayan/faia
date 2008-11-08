@@ -1,0 +1,3 @@
+#summary Cosas que se podrían agregar o mejorar.
+
+ * La generación de archivos PDF con los árboles de búsqueda se realiza con LaTeX. Se podría utilizar alguna librería hecha en Java para dibujarlos, y así no depender de LaTeX.
