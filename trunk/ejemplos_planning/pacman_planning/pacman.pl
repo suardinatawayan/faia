@@ -9,25 +9,25 @@
 %
 
 % avanzar(Pos1,Pos2)
-%preconditions( avanzar(Pos1,Pos2), [en(Pos1), adyacente(Pos1,Pos2)] ).
-preconditions( avanzar(Pos1,Pos2), [en(Pos1), adyacente(Pos1,Pos2), celdaNoVisitada(Pos2)] ).
+preconditions( avanzar(Pos1,Pos2), [en(Pos1), adyacente(Pos1,Pos2)] ).
+%preconditions( avanzar(Pos1,Pos2), [en(Pos1), adyacente(Pos1,Pos2), celdaNoVisitada(Pos2)] ).
 achieves( avanzar(Pos1,Pos2), en(Pos2) ).
 deletes( avanzar(Pos1,Pos2), en(Pos1) ).
-deletes( avanzar(Pos1,Pos2), celdaNoVisitada(Pos2) ).
+%deletes( avanzar(Pos1,Pos2), celdaNoVisitada(Pos2) ).
 
 % descubrir(Pos)
 preconditions( descubrir(Pos), [en(Pos), desconocido(Pos)] ).
-achieves( descubrir(Pos), vacio(Pos) ).
+achieves( descubrir(Pos), descubre(Pos) ).
 deletes( descubrir(Pos), desconocido(Pos) ).
 
 % comer(Pos)
 preconditions( comer(Pos), [en(Pos), comida(Pos)] ).
-achieves( comer(Pos), vacio(Pos) ).
+achieves( comer(Pos), come(Pos) ).
 deletes( comer(Pos), comida(Pos) ).
 
 % pelear(Pos)
 preconditions( pelear(Pos), [en(Pos), enemigo(Pos)] ).
-achieves( pelear(Pos), vacio(Pos) ).
+achieves( pelear(Pos), pelea(Pos) ).
 deletes( pelear(Pos), enemigo(Pos) ).
 
 
@@ -39,8 +39,12 @@ primitive( adyacente(_,_) ).
 primitive( enemigo(_) ).
 primitive( comida(_) ).
 primitive( vacio(_) ).
-primitive( celdaNoVisitada(_) ).
+%primitive( celdaNoVisitada(_) ).
 primitive( desconocido(_) ).
+primitive( descubre(_) ).
+primitive( pelea(_) ).
+primitive( come(_) ).
+
 
 
 % Adyacencia
@@ -188,10 +192,10 @@ holds(adyacente(Pos1, Pos2), init) :-
 % ESTADO INICIAL
 
 holds(en(0), init).
-holds(vacio(1), init).
+holds(comida(1), init).
 holds(comida(0), init).
 holds(vacio(2), init).
-holds(vacio(3), init).
+holds(enemigo(3), init).
 %holds(comida(4), init).
 %holds(comida(3), init).
 %holds(comida(12), init).
@@ -232,18 +236,45 @@ holds(celdaNoVisitada(Pos), init) :-
 achieves(init,X) :-
 	holds(X,init).
 
-armarObjetivos(L) :-
-	armarObjetivosAux(L, 0).
+%
+% armarObjetivo(L)
+%
+% Devuelve una lista con los objetivos por cumplir
+%
 
-armarObjetivosAux([vacio(N)|Xs],N) :-
+armarObjetivos(L) :-
+	armarObjetivosAux(L,0).
+
+armarObjetivosAux([come(N)|Xs],N) :-
 	tamaño_mundo(T),
 	N < T * T,
+	holds(comida(N), init),
 	M is N + 1,
 	armarObjetivosAux(Xs, M).
 
-armarObjetivosAux([], N) :-
+armarObjetivosAux([pelea(N)|Xs],N) :-
 	tamaño_mundo(T),
-	N =:= T * T.
+	N < T * T,
+	holds(enemigo(N), init),
+	M is N + 1,
+	armarObjetivosAux(Xs, M).
+
+armarObjetivosAux([descubre(N)|Xs],N) :-
+	tamaño_mundo(T),
+	N < T * T,
+	holds(desconocido(N), init),
+	M is N + 1,
+	armarObjetivosAux(Xs, M).
+
+armarObjetivosAux(Xs,N) :-
+	holds(vacio(N), init),
+	M is N + 1,
+	armarObjetivosAux(Xs, M).
+
+armarObjetivosAux([],N) :-
+	tamaño_mundo(T),
+	N is T * T.
+
 
 %
 % obtenerAccion(Accion)
