@@ -9,16 +9,9 @@
 %
 
 % avanzar(Pos1,Pos2)
-preconditions( avanzar(Pos1,Pos2), [en(Pos1), adyacente(Pos1,Pos2)] ).
-%preconditions( avanzar(Pos1,Pos2), [en(Pos1), adyacente(Pos1,Pos2), celdaNoVisitada(Pos2)] ).
+preconditions( avanzar(Pos1,Pos2), [en(Pos1), adyacente(Pos1,Pos2), vacio(Pos1)] ).
 achieves( avanzar(Pos1,Pos2), en(Pos2) ).
 deletes( avanzar(Pos1,Pos2), en(Pos1) ).
-%deletes( avanzar(Pos1,Pos2), celdaNoVisitada(Pos2) ).
-
-% descubrir(Pos)
-preconditions( descubrir(Pos), [en(Pos), desconocido(Pos)] ).
-achieves( descubrir(Pos), vacio(Pos) ).
-deletes( descubrir(Pos), desconocido(Pos) ).
 
 % comer(Pos)
 preconditions( comer(Pos), [en(Pos), comida(Pos)] ).
@@ -39,8 +32,6 @@ primitive( adyacente(_,_) ).
 primitive( enemigo(_) ).
 primitive( comida(_) ).
 primitive( vacio(_) ).
-%primitive( celdaNoVisitada(_) ).
-primitive( desconocido(_) ).
 
 
 % Adyacencia
@@ -49,7 +40,6 @@ primitive( desconocido(_) ).
 % 8   9   10  11
 % 12  13  14  15
 
-/*
 holds(adyacente(10,6), init).
 holds(adyacente(10,11), init).
 holds(adyacente(10,14), init).
@@ -134,98 +124,41 @@ holds(adyacente(9,5), init).
 holds(adyacente(9,10), init).
 holds(adyacente(9,13), init).
 holds(adyacente(9,8), init).
-*/
 
-tamaño_mundo(2).
-
-rangoCorrecto(Pos) :-
-	tamaño_mundo(T),
-	Pos >= 0, Pos < T * T.
-
-holds(adyacente(Pos1, Pos2), init) :-
-	rangoCorrecto(Pos1),
-	tamaño_mundo(T),
-	M is Pos1 mod T, M =\= T - 1,
-	Pos2 is Pos1 + 1.
-
-holds(adyacente(Pos1, Pos2), init) :-
-	rangoCorrecto(Pos1),
-	tamaño_mundo(T),
-	M is Pos1 mod T, M =\= 0,
-	Pos2 is Pos1 - 1.
-
-holds(adyacente(Pos1, Pos2), init) :-
-	rangoCorrecto(Pos1),
-	tamaño_mundo(T),
-	Pos1 < T * (T - 1),
-	Pos2 is Pos1 + T.
-
-holds(adyacente(Pos1, Pos2), init) :-
-	rangoCorrecto(Pos1),
-	tamaño_mundo(T),
-	Pos1 >= T,
-	Pos2 is Pos1 - T.
-	
-
+% ESTADO INICIAL
 % 0   1   2   3
 % 4   5   6   7
 % 8   9   10  11
 % 12  13  14  15
 
-% ESTADO INICIAL
-
+holds(vacio(0), init).
+holds(vacio(1), init).
+holds(vacio(2), init).
+holds(vacio(3), init).
+holds(vacio(4), init).
+holds(vacio(5), init).
+holds(vacio(6), init).
+holds(vacio(7), init).
+holds(vacio(8), init).
+holds(vacio(9), init).
+holds(vacio(10), init).
+holds(comida(11), init).
+holds(vacio(12), init).
+holds(vacio(13), init).
+holds(vacio(14), init).
+holds(vacio(15), init).
 holds(en(0), init).
-holds(comida(1), init).
-holds(comida(0), init).
-holds(comida(2), init).
-%holds(comida(4), init).
-%holds(comida(3), init).
-%holds(comida(12), init).
 
-%holds(desconocido(3), init).
+% Si no hay comida ni enemigo en la celda, entonces
+% está vacía.
 
-/*
-holds(celdaNoVisitada(0), init).
-holds(celdaNoVisitada(1), init).
-holds(celdaNoVisitada(2), init).
-holds(celdaNoVisitada(3), init).
-holds(celdaNoVisitada(4), init).
-holds(celdaNoVisitada(5), init).
-holds(celdaNoVisitada(6), init).
-holds(celdaNoVisitada(7), init).
-holds(celdaNoVisitada(8), init).
-holds(celdaNoVisitada(9), init).
-holds(celdaNoVisitada(10), init).
-holds(celdaNoVisitada(11), init).
-holds(celdaNoVisitada(12), init).
-holds(celdaNoVisitada(13), init).
-holds(celdaNoVisitada(14), init).
-holds(celdaNoVisitada(15), init).
-*/
-
-% Si no hay comida ni enemigo ni está vacía la celda, entonces
-% es desconocida.
-
-holds(desconocido(Pos), init) :-
-	not(holds(enemigo(Pos), init)),
-	not(holds(comida(Pos), init)),
-	not(holds(vacio(Pos), init)).
+%holds(desconocido(Pos), init) :-
+%	not(holds(enemigo(Pos), init)),
+%	not(holds(comida(Pos), init)),
+%	not(holds(vacio(Pos), init)).
 
 achieves(init,X) :-
 	holds(X,init).
-
-armarObjetivos(L) :-
-	armarObjetivosAux(L, 0).
-
-armarObjetivosAux([vacio(N)|Xs],N) :-
-	tamaño_mundo(T),
-	N < T * T,
-	M is N + 1,
-	armarObjetivosAux(Xs, M).
-
-armarObjetivosAux([], N) :-
-	tamaño_mundo(T),
-	N =:= T * T.
 
 %
 % obtenerAccion(Accion)
@@ -234,7 +167,11 @@ armarObjetivosAux([], N) :-
 %
 
 obtenerAccion(Accion) :-
-	resolver(Accion,S).
+	solve([vacio(0),vacio(1),vacio(2),vacio(3),
+		   vacio(4),vacio(5),vacio(6),vacio(7),
+		   vacio(8),vacio(9),vacio(10),vacio(11),
+		   vacio(12),vacio(13),vacio(14),vacio(15)],P,10),
+	seq(P,[Init,Accion|S]),!.
 
 
 %
@@ -243,20 +180,13 @@ obtenerAccion(Accion) :-
 % Es igual que obtenerAccion. Lo uso para debugging.
 %
 
-debug([Accion|S]) :-
-	resolver(Accion,S).
-
-
-%
-% resolver(S)
-%
-% Realiza la resolución principal. Es común a debug y obtenerAccion.
-%
-
-resolver(Accion,S) :-
-	armarObjetivos(Objetivos),
-	solve(Objetivos,P,10),
-	seq(P,[Init,Accion|S]),!.
+debug(S) :-
+	solve([vacio(0),vacio(1),vacio(2),vacio(3),
+		   vacio(4),vacio(5),vacio(6),vacio(7),
+		   vacio(8),vacio(9),vacio(10),vacio(11),
+		   vacio(12),vacio(13),vacio(14),vacio(15)],P,10),
+	seq(P,S),!,
+	write(S).
 
 
 %
@@ -277,9 +207,6 @@ ejecutarAccion(comer(Pos)) :-
 
 ejecutarAccion(pelear(Pos)) :-
 	retract(holds(enemigo(Pos),init)),
-	assert(holds(vacio(Pos),init)).
-
-ejecutarAccion(descubrir(Pos)) :-
 	assert(holds(vacio(Pos),init)).
 
 ejecutarAccion(end).
