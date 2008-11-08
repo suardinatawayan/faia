@@ -63,7 +63,10 @@ La instalación de MiKTeX en Windows XP es simple como la instalación de cualqu
 
 === En GNU/Linux (Ubuntu) ===
 
-Para instalar LaTeX en Ubuntu son necesarios los paquetes texlive-latex-extra y texlive-latex-recommended. (TODO: Hay que corroborar que estos paquetes sean suficientes y necesarios).
+Para instalar LaTeX en Ubuntu son necesarios los siguientes paquetes (TODO: Hay que corroborar que estos paquetes sean suficientes y necesarios):
+
+ * texlive-latex-extra
+ * texlive-latex-recommended.
 
 = FAIA desde Eclipse y !NetBeans =
 
