@@ -9,11 +9,11 @@
 %
 
 % avanzar(Pos1,Pos2)
-preconditions( avanzar(Pos1,Pos2), [en(Pos1), adyacente(Pos1,Pos2)] ).
-%preconditions( avanzar(Pos1,Pos2), [en(Pos1), adyacente(Pos1,Pos2), celdaNoVisitada(Pos2)] ).
+%preconditions( avanzar(Pos1,Pos2), [en(Pos1), adyacente(Pos1,Pos2)] ).
+preconditions( avanzar(Pos1,Pos2), [en(Pos1), adyacente(Pos1,Pos2), celdaNoVisitada(Pos2)] ).
 achieves( avanzar(Pos1,Pos2), en(Pos2) ).
 deletes( avanzar(Pos1,Pos2), en(Pos1) ).
-%deletes( avanzar(Pos1,Pos2), celdaNoVisitada(Pos2) ).
+deletes( avanzar(Pos1,Pos2), celdaNoVisitada(Pos2) ).
 
 % descubrir(Pos)
 preconditions( descubrir(Pos), [en(Pos), desconocido(Pos)] ).
@@ -39,7 +39,7 @@ primitive( adyacente(_,_) ).
 primitive( enemigo(_) ).
 primitive( comida(_) ).
 primitive( vacio(_) ).
-%primitive( celdaNoVisitada(_) ).
+primitive( celdaNoVisitada(_) ).
 primitive( desconocido(_) ).
 
 
@@ -138,30 +138,43 @@ holds(adyacente(9,8), init).
 
 tamaño_mundo(2).
 
-rangoCorrecto(Pos) :-
+generarPosicion(0).
+generarPosicion(N) :-
+	generarPosicionAux(N,0).
+
+generarPosicionAux(Sig,Num) :-
+	Sig is Num + 1.
+
+generarPosicionAux(Sig,Num) :-
 	tamaño_mundo(T),
-	Pos >= 0, Pos < T * T.
+	Num < (T * T) - 2,
+	generarPosicionAux(Sig, Num + 1).
+
+
+celdaCorrecta(Pos1, Pos2) :-
+	generarPosicion(Pos1),
+	generarPosicion(Pos2).
 
 holds(adyacente(Pos1, Pos2), init) :-
-	rangoCorrecto(Pos1),
+	celdaCorrecta(Pos1,Pos2),
 	tamaño_mundo(T),
 	M is Pos1 mod T, M =\= T - 1,
 	Pos2 is Pos1 + 1.
 
 holds(adyacente(Pos1, Pos2), init) :-
-	rangoCorrecto(Pos1),
+	celdaCorrecta(Pos1,Pos2),
 	tamaño_mundo(T),
 	M is Pos1 mod T, M =\= 0,
 	Pos2 is Pos1 - 1.
 
 holds(adyacente(Pos1, Pos2), init) :-
-	rangoCorrecto(Pos1),
+	celdaCorrecta(Pos1,Pos2),
 	tamaño_mundo(T),
 	Pos1 < T * (T - 1),
 	Pos2 is Pos1 + T.
 
 holds(adyacente(Pos1, Pos2), init) :-
-	rangoCorrecto(Pos1),
+	celdaCorrecta(Pos1,Pos2),
 	tamaño_mundo(T),
 	Pos1 >= T,
 	Pos2 is Pos1 - T.
@@ -175,9 +188,10 @@ holds(adyacente(Pos1, Pos2), init) :-
 % ESTADO INICIAL
 
 holds(en(0), init).
-holds(comida(1), init).
+holds(vacio(1), init).
 holds(comida(0), init).
-holds(comida(2), init).
+holds(vacio(2), init).
+holds(vacio(3), init).
 %holds(comida(4), init).
 %holds(comida(3), init).
 %holds(comida(12), init).
@@ -211,6 +225,10 @@ holds(desconocido(Pos), init) :-
 	not(holds(comida(Pos), init)),
 	not(holds(vacio(Pos), init)).
 
+holds(celdaNoVisitada(Pos), init) :-
+	holds(en(P), init),
+	Pos =\= P.
+
 achieves(init,X) :-
 	holds(X,init).
 
@@ -234,7 +252,7 @@ armarObjetivosAux([], N) :-
 %
 
 obtenerAccion(Accion) :-
-	resolver(Accion,S).
+	resolver(Init,Accion,S).
 
 
 %
@@ -243,8 +261,8 @@ obtenerAccion(Accion) :-
 % Es igual que obtenerAccion. Lo uso para debugging.
 %
 
-debug([Accion|S]) :-
-	resolver(Accion,S).
+debug([Init,Accion|As]) :-
+	resolver(Init,Accion,As).
 
 
 %
@@ -253,7 +271,7 @@ debug([Accion|S]) :-
 % Realiza la resolución principal. Es común a debug y obtenerAccion.
 %
 
-resolver(Accion,S) :-
+resolver(Init,Accion,S) :-
 	armarObjetivos(Objetivos),
 	solve(Objetivos,P,10),
 	seq(P,[Init,Accion|S]),!.
