@@ -27,11 +27,11 @@ deletes( irAbajo(Pos1,Pos2), en(Pos1) ).
 */
 
 % avanzar(Pos1,Pos2)
-%preconditions( avanzar(Pos1,Pos2), [en(Pos1), adyacente(Pos1,Pos2)] ).
-preconditions( avanzar(Pos1,Pos2), [en(Pos1), adyacente(Pos1,Pos2), celdaNoVisitada(Pos2)] ).
+preconditions( avanzar(Pos1,Pos2), [en(Pos1), adyacente(Pos1,Pos2)] ).
+%preconditions( avanzar(Pos1,Pos2), [en(Pos1), adyacente(Pos1,Pos2), celdaNoVisitada(Pos2)] ).
 achieves( avanzar(Pos1,Pos2), en(Pos2) ).
 deletes( avanzar(Pos1,_Pos2), en(Pos1) ).
-deletes( avanzar(Pos1,Pos2), celdaNoVisitada(Pos2) ).
+%deletes( avanzar(Pos1,Pos2), celdaNoVisitada(Pos2) ).
 
 % descubrir(Pos)
 preconditions( descubrir(Pos), [en(Pos), desconocido(Pos)] ).
@@ -65,7 +65,7 @@ primitive( desconocido(_) ).
 primitive( descubre(_) ).
 primitive( pelea(_) ).
 primitive( come(_) ).
-primitive( celdaNoVisitada(_) ).
+%primitive( celdaNoVisitada(_) ).
 
 %
 % tamaño_mundo(N).
@@ -172,10 +172,10 @@ holds(vacio(0), init).
 holds(desconocido(1), init).
 holds(vacio(2), init).
 holds(comida(3), init).
-holds(comida(4), init).
-holds(vacio(5), init).
+holds(vacio(4), init).
+holds(enemigo(5), init).
 holds(enemigo(6), init).
-holds(comida(7), init).
+holds(vacio(7), init).
 holds(comida(8), init).
 
 
