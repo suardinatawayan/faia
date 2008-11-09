@@ -8,12 +8,30 @@
 % OPERADORES
 %
 
+/*
+preconditions( irDerecha(Pos1,Pos2), [en(Pos1), adyDerecha(Pos1,Pos2)] ).
+achieves( irDerecha(Pos1,Pos2), en(Pos2) ).
+deletes( irDerecha(Pos1,Pos2), en(Pos1) ).
+
+preconditions( irIzquierda(Pos1,Pos2), [en(Pos1), adyIzquierda(Pos1,Pos2)] ).
+achieves( irIzquierda(Pos1,Pos2), en(Pos2) ).
+deletes( irIzquierda(Pos1,Pos2), en(Pos1) ).
+
+preconditions( irArriba(Pos1,Pos2), [en(Pos1), adyArriba(Pos1,Pos2)] ).
+achieves( irArriba(Pos1,Pos2), en(Pos2) ).
+deletes( irArriba(Pos1,Pos2), en(Pos1) ).
+
+preconditions( irAbajo(Pos1,Pos2), [en(Pos1), adyAbajo(Pos1,Pos2)] ).
+achieves( irAbajo(Pos1,Pos2), en(Pos2) ).
+deletes( irAbajo(Pos1,Pos2), en(Pos1) ).
+*/
+
 % avanzar(Pos1,Pos2)
-preconditions( avanzar(Pos1,Pos2), [en(Pos1), adyacente(Pos1,Pos2)] ).
-%preconditions( avanzar(Pos1,Pos2), [en(Pos1), adyacente(Pos1,Pos2), celdaNoVisitada(Pos2)] ).
-achieves( avanzar(_Pos1,Pos2), en(Pos2) ).
+%preconditions( avanzar(Pos1,Pos2), [en(Pos1), adyacente(Pos1,Pos2)] ).
+preconditions( avanzar(Pos1,Pos2), [en(Pos1), adyacente(Pos1,Pos2), celdaNoVisitada(Pos2)] ).
+achieves( avanzar(Pos1,Pos2), en(Pos2) ).
 deletes( avanzar(Pos1,_Pos2), en(Pos1) ).
-%deletes( avanzar(Pos1,Pos2), celdaNoVisitada(Pos2) ).
+deletes( avanzar(Pos1,Pos2), celdaNoVisitada(Pos2) ).
 
 % descubrir(Pos)
 preconditions( descubrir(Pos), [en(Pos), desconocido(Pos)] ).
@@ -35,6 +53,10 @@ deletes( pelear(Pos), enemigo(Pos) ).
 % PREDICADOS DEL DOMINIO
 
 primitive( en(_) ).
+%primitive( adyDerecha(_,_) ).
+%primitive( adyIzquierda(_,_) ).
+%primitive( adyAbajo(_,_) ).
+%primitive( adyArriba(_,_) ).
 primitive( adyacente(_,_) ).
 primitive( enemigo(_) ).
 primitive( comida(_) ).
@@ -105,6 +127,36 @@ holds(adyacente(Pos1, Pos2), init) :-
 	Pos1 >= T,
 	Pos2 is Pos1 - T.
 
+/*
+holds(adyDerecha(Pos1, Pos2), init) :-
+	generarPosicion(Pos1),
+	generarPosicion(Pos2),
+	tamaño_mundo(T),
+	M is Pos1 mod T, M =\= T - 1,
+	Pos2 is Pos1 + 1.
+
+holds(adyIzquierda(Pos1, Pos2), init) :-
+	generarPosicion(Pos1),
+	generarPosicion(Pos2),
+	tamaño_mundo(T),
+	M is Pos1 mod T, M =\= 0,
+	Pos2 is Pos1 - 1.
+
+holds(adyAbajo(Pos1, Pos2), init) :-
+	generarPosicion(Pos1),
+	generarPosicion(Pos2),
+	tamaño_mundo(T),
+	Pos1 < T * (T - 1),
+	Pos2 is Pos1 + T.
+
+holds(adyArriba(Pos1, Pos2), init) :-
+	generarPosicion(Pos1),
+	generarPosicion(Pos2),
+	tamaño_mundo(T),
+	Pos1 >= T,
+	Pos2 is Pos1 - T.
+*/
+
 
 % Ejemplo de un mundo 4 x 4
 %
@@ -116,11 +168,15 @@ holds(adyacente(Pos1, Pos2), init) :-
 % ESTADO INICIAL
 
 holds(en(0), init).
-holds(comida(0), init).
-holds(comida(1), init).
+holds(vacio(0), init).
+holds(desconocido(1), init).
 holds(vacio(2), init).
-%holds(comida(12), init).
-%holds(enemigo(15), init).
+holds(comida(3), init).
+holds(comida(4), init).
+holds(vacio(5), init).
+holds(enemigo(6), init).
+holds(comida(7), init).
+holds(comida(8), init).
 
 
 % Si no hay comida ni enemigo ni está vacía la celda, entonces
@@ -206,7 +262,7 @@ debug([Init,Accion|As]) :-
 
 resolver(Init,Accion,S) :-
 	armarObjetivos(Objetivos),
-	solve(Objetivos,P,50),
+	solve(Objetivos,P,20),
 	seq(P,[Init,Accion|S]),!.
 
 
@@ -231,6 +287,7 @@ ejecutarAccion(pelear(Pos)) :-
 	assert(holds(vacio(Pos),init)).
 
 ejecutarAccion(descubrir(Pos)) :-
+	retract(holds(desconocido(Pos),init)),
 	assert(holds(vacio(Pos),init)).
 
 ejecutarAccion(end).
