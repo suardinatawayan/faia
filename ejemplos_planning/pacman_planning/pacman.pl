@@ -9,11 +9,11 @@
 %
 
 % avanzar(Pos1,Pos2)
-%preconditions( avanzar(Pos1,Pos2), [en(Pos1), adyacente(Pos1,Pos2)] ).
-preconditions( avanzar(Pos1,Pos2), [en(Pos1), adyacente(Pos1,Pos2), celdaNoVisitada(Pos2)] ).
-achieves( avanzar(Pos1,Pos2), en(Pos2) ).
-deletes( avanzar(Pos1,Pos2), en(Pos1) ).
-deletes( avanzar(Pos1,Pos2), celdaNoVisitada(Pos2) ).
+preconditions( avanzar(Pos1,Pos2), [en(Pos1), adyacente(Pos1,Pos2)] ).
+%preconditions( avanzar(Pos1,Pos2), [en(Pos1), adyacente(Pos1,Pos2), celdaNoVisitada(Pos2)] ).
+achieves( avanzar(_Pos1,Pos2), en(Pos2) ).
+deletes( avanzar(Pos1,_Pos2), en(Pos1) ).
+%deletes( avanzar(Pos1,Pos2), celdaNoVisitada(Pos2) ).
 
 % descubrir(Pos)
 preconditions( descubrir(Pos), [en(Pos), desconocido(Pos)] ).
@@ -206,7 +206,7 @@ debug([Init,Accion|As]) :-
 
 resolver(Init,Accion,S) :-
 	armarObjetivos(Objetivos),
-	solve(Objetivos,P,100),
+	solve(Objetivos,P,50),
 	seq(P,[Init,Accion|S]),!.
 
 
