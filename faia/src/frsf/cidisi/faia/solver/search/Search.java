@@ -11,11 +11,6 @@ import frsf.cidisi.faia.agent.searchbased.SearchAction;
 import frsf.cidisi.faia.util.LatexOutput;
 import frsf.cidisi.faia.util.XmlTree;
 
-/**
- * @author Jorge M. Roa
- * @version 1.0
- * @created 08-Mar-2007 13:16:05
- */
 public class Search extends Solve {
 
     public static final int WHITHOUT_TREE = 0;

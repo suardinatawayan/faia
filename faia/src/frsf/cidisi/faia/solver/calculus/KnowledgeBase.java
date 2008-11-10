@@ -72,27 +72,6 @@ public abstract class KnowledgeBase extends AgentState {
     public boolean queryHasSolution(String query) {
     	return this.prologConnector.queryHasSolution(query);
     }
-    
-    /**
-     * Returns the best action for the current situation.
-     * @return
-     * @throws CalculusException
-     */
-    public Action getBestAction() throws CalculusException {
-        Hashtable[] results =
-                this.prologConnector.query(this.getBestActionPredicate() + "(X," +
-                this.getSituation() + ")");
-
-        // We look for the first result.
-        if (results.length == 0) {
-            throw new CalculusException("No solutions returned. Maybe there is an error in the knowledge base.");
-        }
-        
-        String bestAction = results[0].get("X").toString();
-
-        /* We convert the string 'bestAction' in an Action object */
-        return this.getActionFactory().makeActionFromString(bestAction);
-    }
 	
 	@Override
 	public Object clone() {
