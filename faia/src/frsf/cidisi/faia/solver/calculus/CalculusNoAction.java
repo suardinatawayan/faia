@@ -10,7 +10,7 @@ import frsf.cidisi.faia.state.AgentState;
 import frsf.cidisi.faia.state.EnvironmentState;
 
 /**
- * This class is used by the KnowledBasedAgentSimulator to know where the
+ * This class is used by the KnowledBasedAgentSimulator to know when the
  * agent has finished.
  */
 public class CalculusNoAction extends CalculusAction {

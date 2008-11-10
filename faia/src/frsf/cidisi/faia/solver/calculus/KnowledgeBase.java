@@ -5,7 +5,7 @@ import java.util.Hashtable;
 import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.exceptions.CalculusException;
-import frsf.cidisi.faia.exceptions.KnowledgeBaseException;
+import frsf.cidisi.faia.exceptions.PrologConnectorException;
 import frsf.cidisi.faia.solver.PrologConnector;
 import frsf.cidisi.faia.state.AgentState;
 
@@ -21,7 +21,7 @@ public abstract class KnowledgeBase extends AgentState {
      */
     protected PrologConnector prologConnector;
 	
-    public KnowledgeBase(String knowledgeBaseFile) throws KnowledgeBaseException {
+    public KnowledgeBase(String knowledgeBaseFile) throws PrologConnectorException {
     	this.prologConnector = new PrologConnector(knowledgeBaseFile);
     	this.situation = 0;
     }
@@ -72,16 +72,6 @@ public abstract class KnowledgeBase extends AgentState {
     public boolean queryHasSolution(String query) {
     	return this.prologConnector.queryHasSolution(query);
     }
-	
-	@Override
-	public Object clone() {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		throw new UnsupportedOperationException();
-	}
 	
 	public abstract CalculusActionFactory getActionFactory();
 	

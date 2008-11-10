@@ -8,6 +8,7 @@ import frsf.cidisi.faia.solver.Solve;
 import frsf.cidisi.faia.state.AgentState;
 import frsf.cidisi.faia.agent.searchbased.GoalTest;
 import frsf.cidisi.faia.agent.searchbased.SearchAction;
+import frsf.cidisi.faia.agent.searchbased.SearchBasedAgentState;
 import frsf.cidisi.faia.util.LatexOutput;
 import frsf.cidisi.faia.util.XmlTree;
 
@@ -58,7 +59,7 @@ public class Search extends Solve {
         Problem problem = (Problem)params[0];
         
         Vector<SearchAction> actionList = problem.getActions();
-        AgentState agentState = (AgentState) problem.getAgentState();//.clone();
+        SearchBasedAgentState agentState = problem.getAgentState();//.clone();
         GoalTest goalTest = problem.getGoalState();
 
         int nodeIdx = 1;
@@ -87,10 +88,10 @@ public class Search extends Solve {
                 // Every item in the action list represents a possible son for the actual node.-
                 for (int i = 0; i < actionList.size(); i++) {
                     // The state of the selected node must be cloned to assure consistence.-
-                    AgentState ast = (AgentState) firstNode.getAgentState().clone();
+                    SearchBasedAgentState ast = firstNode.getAgentState().clone();
                     // This is the action that can generate a new node.- 
                     SearchAction action = actionList.elementAt(i);
-                    ast = (AgentState) action.execute(ast);
+                    ast = action.execute(ast);
                     // TODO: HAY QUE VER SI CONVIENE QUE CUANDO EL OPERADOR NO PUEDA SER 
                     // EJECUTADO DEVUELVA UN OBJETO EN LUGAR DE NULL.
                     if (ast != null) {	// If the action was correctly executed.-

@@ -19,7 +19,7 @@ public abstract class SearchAction extends Action {
 	 *            This is the state of the agent to be updated on search tree's
 	 *            node.
 	 */
-	public abstract AgentState execute(AgentState s);
+	public abstract SearchBasedAgentState execute(SearchBasedAgentState s);
 
 	/**
 	 * Depending on the strategy used by the agent, this method can be overrode
