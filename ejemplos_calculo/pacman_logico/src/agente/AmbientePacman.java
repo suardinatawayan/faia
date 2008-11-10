@@ -3,7 +3,7 @@ package agente;
 import frsf.cidisi.faia.agent.Agent;
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.environment.Environment;
-import frsf.cidisi.faia.solver.calculus.KnowledgeBase;
+import frsf.cidisi.faia.solver.PrologConnector;
 
 /**
  * Esta clase es muy similar a su correspondiente en el ejemplo 'pacman', basado

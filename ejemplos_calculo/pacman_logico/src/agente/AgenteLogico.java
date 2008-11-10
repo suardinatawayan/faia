@@ -6,8 +6,10 @@ import frsf.cidisi.faia.agent.knowledgebased.KnowledgeBasedAgent;
 import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.agent.knowledgebased.CalculusAction;
 import frsf.cidisi.faia.exceptions.KnowledgeBaseException;
+import frsf.cidisi.faia.solver.PrologConnector;
 import frsf.cidisi.faia.solver.calculus.Calculus;
 import frsf.cidisi.faia.solver.calculus.KnowledgeBase;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -57,7 +59,7 @@ public class AgenteLogico extends KnowledgeBasedAgent {
      */
     @Override
     public void tell(CalculusAction action) {
-        KnowledgeBase kb = (KnowledgeBase) this.getAgentState();
+    	EstadoPacman kb = (EstadoPacman) this.getAgentState();
         kb.tell(action.getLogicName());
     }
 

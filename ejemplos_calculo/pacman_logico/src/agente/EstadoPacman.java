@@ -2,8 +2,10 @@ package agente;
 
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.exceptions.KnowledgeBaseException;
+import frsf.cidisi.faia.solver.PrologConnector;
 import frsf.cidisi.faia.solver.calculus.CalculusActionFactory;
 import frsf.cidisi.faia.solver.calculus.KnowledgeBase;
+
 import java.util.Hashtable;
 
 /**
@@ -106,11 +108,11 @@ public class EstadoPacman extends KnowledgeBase {
      *   cumplioObjetivo(S):-tableroVacio(S).
      * 
      */
-    @Override
-    public String getGoalReachedPredicate() {
-        return "cumplioObjetivo";
-    }
-    
+//    @Override
+//    public String getGoalReachedPredicate() {
+//        return "cumplioObjetivo";
+//    }
+//    
     /**
      * Tiene el mismo objetivo que el método 'getBestActionPredicate'.
      */
@@ -118,14 +120,14 @@ public class EstadoPacman extends KnowledgeBase {
     public String getExecutedActionPredicate() {
         return "accionEjecutada";
     }
-
-    /**
-     * Tiene el mismo objetivo que el método 'getBestActionPredicate'.
-     */
-    @Override
-    public String getCurrentSituationPredicate() {
-        return "situacionActual";
-    }
+//
+//    /**
+//     * Tiene el mismo objetivo que el método 'getBestActionPredicate'.
+//     */
+//    @Override
+//    public String getCurrentSituationPredicate() {
+//        return "situacionActual";
+//    }
 
     /**
      * Aquí simplemente se agrega conocimiento inicial. En este caso,
