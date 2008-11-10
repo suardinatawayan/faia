@@ -3,6 +3,7 @@ package frsf.cidisi.faia.solver.search;
 import java.util.Vector;
 import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.agent.searchbased.SearchAction;
+import frsf.cidisi.faia.agent.searchbased.SearchBasedAgentState;
 import frsf.cidisi.faia.state.AgentState;
 
 /**
@@ -17,7 +18,7 @@ public class NTree implements Cloneable, Comparable<NTree> {
     protected SearchAction action;
     protected NTree parent;
     protected Vector<NTree> sons;
-    protected AgentState agentState;
+    protected SearchBasedAgentState agentState;
     protected int executionOrder;
 
     public NTree() {
@@ -28,7 +29,7 @@ public class NTree implements Cloneable, Comparable<NTree> {
         this.executionOrder = 0;
     }
 
-    public NTree(NTree firstNode, SearchAction action, AgentState ast, int order) {
+    public NTree(NTree firstNode, SearchAction action, SearchBasedAgentState ast, int order) {
         this.deep = firstNode.getDeep() + 1;
         this.parent = firstNode;
         this.sons = new Vector<NTree>();
@@ -49,7 +50,7 @@ public class NTree implements Cloneable, Comparable<NTree> {
 
         NTree node = new NTree();
 
-        AgentState agSt = (AgentState) agentState.clone();
+        SearchBasedAgentState agSt = agentState.clone();
         /*		if (parent!=null)
         node.setParent((NTree)parent.clone());*/
         node.setParent(parent);
@@ -97,7 +98,7 @@ public class NTree implements Cloneable, Comparable<NTree> {
         return temp;
     }
 
-    public AgentState getAgentState() {
+    public SearchBasedAgentState getAgentState() {
         return agentState;
     }
 
@@ -145,7 +146,7 @@ public class NTree implements Cloneable, Comparable<NTree> {
      * 
      * @param state
      */
-    public void setAgentState(AgentState state) {
+    public void setAgentState(SearchBasedAgentState state) {
         this.agentState = state;
     }
 

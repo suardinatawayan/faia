@@ -2,7 +2,7 @@ package frsf.cidisi.faia.solver;
 
 import java.util.Hashtable;
 
-import frsf.cidisi.faia.exceptions.KnowledgeBaseException;
+import frsf.cidisi.faia.exceptions.PrologConnectorException;
 import jpl.JPL;
 import jpl.PrologException;
 import jpl.Query;
@@ -18,7 +18,7 @@ public class PrologConnector {
 	 */
     private String prologFile;
     
-    public PrologConnector(String prologFile) throws KnowledgeBaseException {
+    public PrologConnector(String prologFile) throws PrologConnectorException {
 
         this.prologFile = prologFile;
         
@@ -45,7 +45,7 @@ public class PrologConnector {
         try {
             prologQuery.hasSolution();
         } catch (PrologException e) {
-            throw new KnowledgeBaseException("Load of prolog file failed ('" +
+            throw new PrologConnectorException("Load of prolog file failed ('" +
                     this.prologFile + "').");
         }
     }

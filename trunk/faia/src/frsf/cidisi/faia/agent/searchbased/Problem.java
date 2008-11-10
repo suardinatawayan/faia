@@ -4,15 +4,10 @@ import java.util.Vector;
 
 import frsf.cidisi.faia.state.AgentState;
 
-/**
- * @author Jorge M. Roa
- * @version 1.0
- * @created 08-Mar-2007 13:16:05
- */
 public class Problem {
 
     protected GoalTest goalTest;
-    protected AgentState agentState;
+    protected SearchBasedAgentState agentState;
     protected Vector<SearchAction> actions;
 
     /**
@@ -21,7 +16,7 @@ public class Problem {
      * @param initState
      * @param action
      */
-    public Problem(GoalTest goalTest, AgentState initState, Vector<SearchAction> actions) {
+    public Problem(GoalTest goalTest, SearchBasedAgentState initState, Vector<SearchAction> actions) {
         this.goalTest = goalTest;
         this.agentState = initState;
         this.actions = actions;
@@ -35,7 +30,7 @@ public class Problem {
         return goalTest;
     }
 
-    public AgentState getAgentState() {
+    public SearchBasedAgentState getAgentState() {
         return agentState;
     }
 
@@ -47,7 +42,7 @@ public class Problem {
         this.goalTest = goalTest;
     }
 
-    public void setAgentState(AgentState agentState) {
+    public void setAgentState(SearchBasedAgentState agentState) {
         this.agentState = agentState;
     }
 }

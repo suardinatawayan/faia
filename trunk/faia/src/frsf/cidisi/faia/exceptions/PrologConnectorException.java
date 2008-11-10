@@ -8,9 +8,9 @@ package frsf.cidisi.faia.exceptions;
  *
  * @author miltondp
  */
-public class KnowledgeBaseException extends Exception {
+public class PrologConnectorException extends Exception {
 
-    public KnowledgeBaseException(String message) {
+    public PrologConnectorException(String message) {
         super(message);
     }
 }
