@@ -2,77 +2,50 @@ package frsf.cidisi.faia.solver.calculus;
 
 import java.util.Hashtable;
 
+import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.agent.Perception;
+import frsf.cidisi.faia.exceptions.CalculusException;
 import frsf.cidisi.faia.exceptions.KnowledgeBaseException;
+import frsf.cidisi.faia.solver.PrologConnector;
 import frsf.cidisi.faia.state.AgentState;
-import jpl.JPL;
-import jpl.PrologException;
-import jpl.Query;
 
-/**
- * This is the knowledge base used by the agent. It offers some methods
- * to easily consult for the agent's state, and adding new knowledge.
- */
 public abstract class KnowledgeBase extends AgentState {
 
 	/**
-	 * The knowledge base file written by the user.
-	 */
-    private String knowledgeBaseFile;
-    
-    /**
-     * This is used internally to query the state of the agent,
-     * and to add new knowledge.
-     */
-    private Query prologQuery;
-    
-    /**
      * Current situation.
      */
     private int situation;
     
+    /**
+     * Prolog connector
+     */
+    protected PrologConnector prologConnector;
+	
     public KnowledgeBase(String knowledgeBaseFile) throws KnowledgeBaseException {
-        super();
-
-        this.knowledgeBaseFile = knowledgeBaseFile;
-        this.situation = 0;
-
-        /* Set some JPL options */
-        JPL.setDefaultInitArgs(new String[]{
-                    "pl",
-                    "-G128m",
-                    "-L128m",
-                    "-T128m",
-                    "--quiet",
-                    "--nosignals"
-                });
-
-        JPL.init();
-
-        // Load the knowledge base
-        this.prologQuery = new Query("consult('" + this.knowledgeBaseFile + "')");
-
-        /* TODO: Aca hay que manejar los errores de otra forma. La excepción tiene
-         * que arrojarse, pero la PrologException tira un error feo.
-         */
-        try {
-            this.prologQuery.hasSolution();
-        } catch (PrologException e) {
-            throw new KnowledgeBaseException("Load of knowledge base failed ('" +
-                    this.knowledgeBaseFile + "').");
-        }
+    	this.prologConnector = new PrologConnector(knowledgeBaseFile);
+    	this.situation = 0;
+    }
+    
+	/**
+     * Returns the actual situation of the Knowledge Base
+     * @return
+     */
+    public int getSituation() {
+        return this.situation;
     }
 
+    public void advanceToNextSituation() {
+        this.situation++;
+    }
+    
+    public void executeSuccessorStateAxioms() {
+        this.prologConnector.executeNonQuery("findall(X,est(" + this.getSituation() + "),L)");
+    }
+    
     public void tell(Perception perception) {
         this.addKnowledge(perception.toString());
     }
-
-    public void executeSuccessorStateAxioms() {
-        this.prologQuery = new Query("findall(X,est(" + this.getSituation() + "),L)");
-        //this.log.info("findall(X,est("+this.tiempo+"),L)");
-        this.prologQuery.hasSolution();
-    }
-
+    
     public void tell(String action) {
         if (action == null) {
             return;
@@ -88,50 +61,53 @@ public abstract class KnowledgeBase extends AgentState {
         this.executeSuccessorStateAxioms();
     }
     
-    public Hashtable[] query(String query) {
-        this.prologQuery = new Query(query);
-        return this.prologQuery.allSolutions();
-    }
-
-    public boolean queryHasSolution(String query) {
-        this.prologQuery = new Query(query);
-        return this.prologQuery.hasSolution();
-    }
-
     public void addKnowledge(String predicate) {
-        this.prologQuery = new Query("asserta(" + predicate + ")");
-        this.prologQuery.hasSolution();
+    	this.prologConnector.executeNonQuery("asserta(" + predicate + ")");
     }
     
-    @Override
-    public Object clone() {
-        throw new UnsupportedOperationException();
+    public Hashtable[] query(String query) {
+    	return this.prologConnector.query(query);
     }
-
-    @Override
-    public boolean equals(Object obj) {
-        throw new UnsupportedOperationException();
+    
+    public boolean queryHasSolution(String query) {
+    	return this.prologConnector.queryHasSolution(query);
     }
     
     /**
-     * Returns the actual situation of the Knowledge Base
+     * Returns the best action for the current situation.
      * @return
+     * @throws CalculusException
      */
-    public int getSituation() {
-        return this.situation;
+    public Action getBestAction() throws CalculusException {
+        Hashtable[] results =
+                this.prologConnector.query(this.getBestActionPredicate() + "(X," +
+                this.getSituation() + ")");
+
+        // We look for the first result.
+        if (results.length == 0) {
+            throw new CalculusException("No solutions returned. Maybe there is an error in the knowledge base.");
+        }
+        
+        String bestAction = results[0].get("X").toString();
+
+        /* We convert the string 'bestAction' in an Action object */
+        return this.getActionFactory().makeActionFromString(bestAction);
     }
+	
+	@Override
+	public Object clone() {
+		throw new UnsupportedOperationException();
+	}
 
-    public void advanceToNextSituation() {
-        this.situation++;
-    }
-
-    public abstract CalculusActionFactory getActionFactory();
-
+	@Override
+	public boolean equals(Object obj) {
+		throw new UnsupportedOperationException();
+	}
+	
+	public abstract CalculusActionFactory getActionFactory();
+	
     public abstract String getBestActionPredicate();
-
-    public abstract String getGoalReachedPredicate();
-
+    
     public abstract String getExecutedActionPredicate();
 
-    public abstract String getCurrentSituationPredicate();
 }
