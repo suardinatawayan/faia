@@ -19,7 +19,7 @@ public abstract class KnowledgeBase extends AgentState {
     /**
      * Prolog connector
      */
-    protected PrologConnector prologConnector;
+    private PrologConnector prologConnector;
 	
     public KnowledgeBase(String knowledgeBaseFile) throws PrologConnectorException {
     	this.prologConnector = new PrologConnector(knowledgeBaseFile);
