@@ -1,7 +1,7 @@
 package agente;
 
 import frsf.cidisi.faia.agent.Perception;
-import frsf.cidisi.faia.exceptions.KnowledgeBaseException;
+import frsf.cidisi.faia.exceptions.PrologConnectorException;
 import frsf.cidisi.faia.solver.PrologConnector;
 import frsf.cidisi.faia.solver.calculus.CalculusActionFactory;
 import frsf.cidisi.faia.solver.calculus.KnowledgeBase;
@@ -20,9 +20,9 @@ public class EstadoPacman extends KnowledgeBase {
 	 * Se le pasa al constructor de la clase padre el archivo que estamos
 	 * utilizando para escribir nuestras sentencias prolog.
 	 * Luego se inicializa el estado del agente.
-	 * @throws KnowledgeBaseException
+	 * @throws PrologConnectorException
 	 */
-    public EstadoPacman() throws KnowledgeBaseException {
+    public EstadoPacman() throws PrologConnectorException {
         super("base_conocimiento.pl");
 
         this.initState();

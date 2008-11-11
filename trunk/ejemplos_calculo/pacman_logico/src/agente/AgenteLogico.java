@@ -5,7 +5,7 @@ import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.agent.knowledgebased.KnowledgeBasedAgent;
 import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.agent.knowledgebased.CalculusAction;
-import frsf.cidisi.faia.exceptions.KnowledgeBaseException;
+import frsf.cidisi.faia.exceptions.PrologConnectorException;
 import frsf.cidisi.faia.solver.PrologConnector;
 import frsf.cidisi.faia.solver.calculus.Calculus;
 import frsf.cidisi.faia.solver.calculus.KnowledgeBase;
@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 
 public class AgenteLogico extends KnowledgeBasedAgent {
 
-    public AgenteLogico() throws KnowledgeBaseException {
+    public AgenteLogico() throws PrologConnectorException {
     	/* Creamos el objeto EstadoPacman, que es la base de conocimiento
     	 * del agente, y la seteamos al mismo.
     	 */
