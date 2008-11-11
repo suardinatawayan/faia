@@ -3,6 +3,7 @@ package agente.acciones;
 import agente.*;
 import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.agent.searchbased.SearchAction;
+import frsf.cidisi.faia.agent.searchbased.SearchBasedAgentState;
 import frsf.cidisi.faia.state.AgentState;
 import frsf.cidisi.faia.state.EnvironmentState;
 
@@ -12,7 +13,7 @@ public class IrIzquierda extends SearchAction {
 	 * Ver el comentario hecho en la clase Comer.
 	 */
     @Override
-    public AgentState execute(AgentState s) {
+    public SearchBasedAgentState execute(SearchBasedAgentState s) {
 //		EstadoPacman estP = ((EstadoPacman)s.clone());
         EstadoPacman estP = (EstadoPacman) s;
 

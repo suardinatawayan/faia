@@ -1,12 +1,12 @@
 package agente;
 
 import frsf.cidisi.faia.agent.Perception;
-import frsf.cidisi.faia.state.AgentState;
+import frsf.cidisi.faia.agent.searchbased.SearchBasedAgentState;
 
 /**
  * Representa el estado interno del Pacman, su visión del mundo.
  */
-public class EstadoPacman extends AgentState {
+public class EstadoPacman extends SearchBasedAgentState {
 
     private int[][] mundo;
     private int[][] mundoConocido;
@@ -47,7 +47,7 @@ public class EstadoPacman extends AgentState {
      * en el proceso de búsqueda, al armar el árbol.
      */
     @Override
-    public Object clone() {
+    public SearchBasedAgentState clone() {
         int[][] nuevoMundo = new int[4][4];
         int[][] nuevoMundoConocido = new int[4][4];
 

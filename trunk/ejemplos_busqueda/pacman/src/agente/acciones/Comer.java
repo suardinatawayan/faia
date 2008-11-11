@@ -2,6 +2,7 @@ package agente.acciones;
 
 import agente.*;
 import frsf.cidisi.faia.agent.searchbased.SearchAction;
+import frsf.cidisi.faia.agent.searchbased.SearchBasedAgentState;
 import frsf.cidisi.faia.state.AgentState;
 import frsf.cidisi.faia.state.EnvironmentState;
 
@@ -13,7 +14,7 @@ public class Comer extends SearchAction {
 	 * del agente, sino sólamente el estado de un nodo del árbol.
 	 */
     @Override
-    public AgentState execute(AgentState s) {
+    public SearchBasedAgentState execute(SearchBasedAgentState s) {
         EstadoPacman estP = (EstadoPacman) s;
 
         int fil = estP.getFila();
