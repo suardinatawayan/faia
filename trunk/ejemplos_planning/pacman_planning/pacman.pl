@@ -99,6 +99,7 @@ generarPosicionAux(Sig,Num) :-
 % Adyacencia de las celdas
 %
 
+% Adyacente por derecha no en borde
 holds(adyacente(Pos1, Pos2), init) :-
 	generarPosicion(Pos1),
 	generarPosicion(Pos2),
@@ -106,6 +107,15 @@ holds(adyacente(Pos1, Pos2), init) :-
 	M is Pos1 mod T, M =\= T - 1,
 	Pos2 is Pos1 + 1.
 
+% Adyacente por derecha en borde
+holds(adyacente(Pos1, Pos2), init) :-
+	generarPosicion(Pos1),
+	generarPosicion(Pos2),
+	tamaño_mundo(T),
+	M is Pos1 mod T, M =:= T - 1,
+	Pos2 is Pos1 - (T - 1).
+
+% Adyacente por izquierda no en borde
 holds(adyacente(Pos1, Pos2), init) :-
 	generarPosicion(Pos1),
 	generarPosicion(Pos2),
@@ -113,6 +123,15 @@ holds(adyacente(Pos1, Pos2), init) :-
 	M is Pos1 mod T, M =\= 0,
 	Pos2 is Pos1 - 1.
 
+% Adyacente por izquierda en borde
+holds(adyacente(Pos1, Pos2), init) :-
+	generarPosicion(Pos1),
+	generarPosicion(Pos2),
+	tamaño_mundo(T),
+	M is Pos1 mod T, M =:= 0,
+	Pos2 is Pos1 + (T - 1).
+
+% Adyacente por abajo no en borde
 holds(adyacente(Pos1, Pos2), init) :-
 	generarPosicion(Pos1),
 	generarPosicion(Pos2),
@@ -120,12 +139,29 @@ holds(adyacente(Pos1, Pos2), init) :-
 	Pos1 < T * (T - 1),
 	Pos2 is Pos1 + T.
 
+% Adyacente por abajo en borde
+holds(adyacente(Pos1, Pos2), init) :-
+	generarPosicion(Pos1),
+	generarPosicion(Pos2),
+	tamaño_mundo(T),
+	Pos1 >= T * (T - 1),
+	Pos2 is Pos1 - (T * (T - 1)).
+
+% Adyacente por arriba no en borde
 holds(adyacente(Pos1, Pos2), init) :-
 	generarPosicion(Pos1),
 	generarPosicion(Pos2),
 	tamaño_mundo(T),
 	Pos1 >= T,
 	Pos2 is Pos1 - T.
+
+% Adyacente por arriba en borde
+holds(adyacente(Pos1, Pos2), init) :-
+	generarPosicion(Pos1),
+	generarPosicion(Pos2),
+	tamaño_mundo(T),
+	Pos1 < T,
+	Pos2 is Pos1 + (T * (T - 1)).
 
 /*
 holds(adyDerecha(Pos1, Pos2), init) :-
@@ -164,19 +200,27 @@ holds(adyArriba(Pos1, Pos2), init) :-
 % 4   5   6   7
 % 8   9   10  11
 % 12  13  14  15
+%
+% Ejemplo de un mundo 3 x 3
+%
+% 0  1  2
+% 3  4  5
+% 6  7  8
 
 % ESTADO INICIAL
 
+
 holds(en(0), init).
 holds(vacio(0), init).
-holds(desconocido(1), init).
+holds(vacio(1), init).
 holds(vacio(2), init).
 holds(comida(3), init).
 holds(vacio(4), init).
-holds(enemigo(5), init).
+holds(vacio(5), init).
 holds(enemigo(6), init).
 holds(vacio(7), init).
 holds(comida(8), init).
+
 
 
 % Si no hay comida ni enemigo ni está vacía la celda, entonces
