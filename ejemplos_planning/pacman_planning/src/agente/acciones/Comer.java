@@ -6,14 +6,11 @@ import frsf.cidisi.faia.state.EnvironmentState;
 import agente.EstadoAmbiente;
 import agente.EstadoPacman;
 import agente.PercepcionPacman;
-import agente.estados.PosicionadoEn;
 
 public class Comer extends PlanningAction {
 	
 	public Comer() {
 		super();
-		
-		this.preconditions.add(new PosicionadoEn(this));
 	}
 	
     @Override
@@ -21,11 +18,10 @@ public class Comer extends PlanningAction {
         EstadoAmbiente estA = (EstadoAmbiente) est;
         EstadoPacman estP = ((EstadoPacman) ast);
 
-        int fil = estP.getFila();
-        int col = estP.getColumna();
+        int pos = estP.getPosicion();
 
-        if (estA.getMundo()[fil][col] == PercepcionPacman.PERCEPCION_COMIDA) {
-            estA.setMundo(fil, col, PercepcionPacman.PERCEPCION_VACIO);
+        if (estA.getMundo(pos) == PercepcionPacman.PERCEPCION_COMIDA) {
+            estA.setMundo(pos, PercepcionPacman.PERCEPCION_VACIO);
             
             return estA;
         }

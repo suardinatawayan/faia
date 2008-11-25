@@ -1,8 +1,10 @@
 package agente;
 
+import agente.acciones.Comer;
+import agente.acciones.Avanzar;
+import agente.acciones.Pelear;
 import frsf.cidisi.faia.agent.Action;
-import frsf.cidisi.faia.solver.calculus.CalculusActionFactory;
-import agente.acciones.*;
+import frsf.cidisi.faia.solver.ActionFactory;
 
 /**
  * Cuando el Solver (en este caso la clase Calculus) pide la mejor acción
@@ -13,16 +15,16 @@ import agente.acciones.*;
  * debe ser implementada por el usuario.
  * Se utiliza el patrón Singleton.
  */
-public class CalculusAccionFactory extends CalculusActionFactory {
+public class PlanningAccionFactory extends ActionFactory {
 	
-    private static CalculusAccionFactory instancia;
+    private static PlanningAccionFactory instancia;
 
-    private CalculusAccionFactory() {
+    private PlanningAccionFactory() {
     }
 
-    public static CalculusAccionFactory getInstance() {
+    public static PlanningAccionFactory getInstance() {
         if (instancia == null) {
-            instancia = new CalculusAccionFactory();
+            instancia = new PlanningAccionFactory();
         }
         return instancia;
     }
@@ -33,7 +35,13 @@ public class CalculusAccionFactory extends CalculusActionFactory {
      */
     @Override
     public Action stringToAction(String stringAction) {
-        
+    	if (stringAction.equals("avanzar")) {
+            return new Avanzar();
+        } else if (stringAction.equals("comer")) {
+            return new Comer();
+        } else if (stringAction.equals("pelear")) {
+            return new Pelear();
+        }
         return null;
     }
 
@@ -47,7 +55,7 @@ public class CalculusAccionFactory extends CalculusActionFactory {
      *   
      */
     @Override
-    public String noActionString() {
-        return "noAccion";
+    public String endActionString() {
+        return "end";
     }
 }

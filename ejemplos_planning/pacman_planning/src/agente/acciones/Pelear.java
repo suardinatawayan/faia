@@ -12,16 +12,14 @@ public class Pelear extends PlanningAction {
 
     @Override
     public EnvironmentState execute(AgentState ast, EnvironmentState est) {
-        EstadoAmbiente estA = (EstadoAmbiente) est;
+    	EstadoAmbiente estA = (EstadoAmbiente) est;
         EstadoPacman estP = ((EstadoPacman) ast);
 
-        int fil = estP.getFila();
-        int col = estP.getColumna();
+        int pos = estP.getPosicion();
 
-        if ((estA.getMundo()[fil][col] == 1) & (estP.getEnergia() > 30)) {
-            estA.setMundo(fil, col, PercepcionPacman.PERCEPCION_VACIO);
-            //estP.setMundo(fil, col, PercepcionPacman.PERCEPCION_VACIO);
-            //System.out.println(" Pelear@Amb - ");
+        if (estA.getMundo(pos) == PercepcionPacman.PERCEPCION_ENEMIGO) {
+            estA.setMundo(pos, PercepcionPacman.PERCEPCION_VACIO);
+            
             return estA;
         }
 

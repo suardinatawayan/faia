@@ -6,19 +6,15 @@ import java.util.logging.Logger;
 import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.agent.planning.PlanningBasedAgent;
-import frsf.cidisi.faia.exceptions.KnowledgeBaseException;
-import frsf.cidisi.faia.solver.planning.EndAction;
-import frsf.cidisi.faia.solver.planning.InitAction;
+import frsf.cidisi.faia.exceptions.PrologConnectorException;
 import frsf.cidisi.faia.solver.planning.Planning;
+import frsf.cidisi.faia.state.AgentState;
 
 public class AgentePlanificacion extends PlanningBasedAgent {
 	
-	public AgentePlanificacion() throws KnowledgeBaseException {
-    	/* Creamos el objeto EstadoPacman, que es la base de conocimiento
-    	 * del agente, y la seteamos al mismo.
-    	 */
-        EstadoPacman estadoPacman = new EstadoPacman();
-        this.setState(estadoPacman);
+	public AgentePlanificacion() throws PrologConnectorException {
+    	EstadoPacman estado = new EstadoPacman();
+    	this.setAgentState(estado);
     }
 	
 	@Override
@@ -43,17 +39,12 @@ public class AgentePlanificacion extends PlanningBasedAgent {
         // Retorna la accion seleccionada.
         return accionSeleccionada;
 	}
-
+	
 	@Override
-	public EndAction getEndAction() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public InitAction getInitAction() {
-		// TODO Auto-generated method stub
-		return null;
+	public EstadoPacman getAgentState() {
+		EstadoPacman estado = (EstadoPacman) super.getAgentState();
+		
+		return estado;
 	}
 
 }
