@@ -24,6 +24,7 @@ import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.exceptions.CalculusException;
 import frsf.cidisi.faia.exceptions.PrologConnectorException;
+import frsf.cidisi.faia.solver.ActionFactory;
 import frsf.cidisi.faia.solver.PrologConnector;
 import frsf.cidisi.faia.state.AgentState;
 
@@ -80,7 +81,7 @@ public abstract class KnowledgeBase extends AgentState {
     }
     
     public void addKnowledge(String predicate) {
-    	this.prologConnector.executeNonQuery("asserta(" + predicate + ")");
+    	this.prologConnector.addPredicate(predicate);
     }
     
     public Hashtable[] query(String query) {
@@ -91,7 +92,7 @@ public abstract class KnowledgeBase extends AgentState {
     	return this.prologConnector.queryHasSolution(query);
     }
 	
-	public abstract CalculusActionFactory getActionFactory();
+	public abstract ActionFactory getActionFactory();
 	
     public abstract String getBestActionPredicate();
     

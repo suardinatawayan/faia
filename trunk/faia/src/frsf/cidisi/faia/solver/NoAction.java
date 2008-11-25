@@ -16,27 +16,27 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package frsf.cidisi.faia.solver.calculus;
+package frsf.cidisi.faia.solver;
 
-import frsf.cidisi.faia.agent.knowledgebased.CalculusAction;
+import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.state.AgentState;
 import frsf.cidisi.faia.state.EnvironmentState;
 
 /**
- * This class is used by the KnowledBasedAgentSimulator to know when the
- * agent has finished.
+ * This class is used to know when the agent has finished. It has
+ * no sense for a search based agent.
  */
-public class CalculusNoAction extends CalculusAction {
+public class NoAction extends Action {
     
-    private static CalculusNoAction instance;
+    private static NoAction instance;
     
-    private CalculusNoAction() {
+    private NoAction() {
     	
     }
     
-    public static CalculusNoAction getInstance() {
+    public static NoAction getInstance() {
         if (instance == null)
-            instance = new CalculusNoAction();
+            instance = new NoAction();
         
         return instance;
     }

@@ -20,7 +20,7 @@ package frsf.cidisi.faia.solver.planning;
 
 import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.agent.planning.PlanningAction;
-import frsf.cidisi.faia.solver.calculus.CalculusNoAction;
+import frsf.cidisi.faia.solver.NoAction;
 import frsf.cidisi.faia.state.AgentState;
 import frsf.cidisi.faia.state.EnvironmentState;
 
