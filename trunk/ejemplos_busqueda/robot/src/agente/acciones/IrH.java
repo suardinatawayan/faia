@@ -4,6 +4,7 @@ import agente.EstadoRobot;
 import java.util.ArrayList;
 
 import frsf.cidisi.faia.agent.searchbased.SearchAction;
+import frsf.cidisi.faia.agent.searchbased.SearchBasedAgentState;
 import frsf.cidisi.faia.state.AgentState;
 import frsf.cidisi.faia.state.EnvironmentState;
 
@@ -13,7 +14,7 @@ public class IrH extends SearchAction {
      * 
      * @param s: Es el estado del agente en un determinado nodo del �rbol de b�squeda.-
      */
-    public AgentState execute(AgentState s) {
+    public SearchBasedAgentState execute(SearchBasedAgentState s) {
         EstadoRobot estR = (EstadoRobot) s;
 
         if (estR.getPosicionesVisitadas().contains(EstadoRobot.H)) {
@@ -40,7 +41,7 @@ public class IrH extends SearchAction {
      */
     @Override
     public EnvironmentState execute(AgentState ast, EnvironmentState est) {
-        this.execute(ast);
+        this.execute((SearchBasedAgentState)ast);
 
         return null;
     }

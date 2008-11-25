@@ -5,9 +5,9 @@ import java.util.Collection;
 import java.util.HashMap;
 
 import frsf.cidisi.faia.agent.Perception;
-import frsf.cidisi.faia.state.AgentState;
+import frsf.cidisi.faia.agent.searchbased.SearchBasedAgentState;
 
-public class EstadoRobot extends AgentState {
+public class EstadoRobot extends SearchBasedAgentState {
 
     public static final String A = "A";
     public static final String B = "B";
@@ -42,7 +42,7 @@ public class EstadoRobot extends AgentState {
         this.initState();
     }
 
-    public Object clone() {
+    public EstadoRobot clone() {
         EstadoRobot nuevoEstado = new EstadoRobot();
         nuevoEstado.setPosicion(posicion);
         ArrayList<String> posVis = (ArrayList<String>) posicionesVisitadas.clone();
