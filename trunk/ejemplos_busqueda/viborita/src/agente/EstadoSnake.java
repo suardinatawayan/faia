@@ -5,9 +5,10 @@ import java.util.Iterator;
 import java.util.Vector;
 
 import frsf.cidisi.faia.agent.Perception;
+import frsf.cidisi.faia.agent.searchbased.SearchBasedAgentState;
 import frsf.cidisi.faia.state.AgentState;
 
-public class EstadoSnake extends AgentState {
+public class EstadoSnake extends SearchBasedAgentState {
 
     private Vector<Point> composicionDelAgente;
     /*
@@ -1174,7 +1175,7 @@ public class EstadoSnake extends AgentState {
     }
 
     @Override
-    public Object clone() {
+    public SearchBasedAgentState clone() {
         EstadoSnake clon = new EstadoSnake();
 
         try {

@@ -4,13 +4,14 @@ import agente.*;
 import java.awt.Point;
 
 import frsf.cidisi.faia.agent.searchbased.SearchAction;
+import frsf.cidisi.faia.agent.searchbased.SearchBasedAgentState;
 import frsf.cidisi.faia.state.AgentState;
 import frsf.cidisi.faia.state.EnvironmentState;
 
 public class Avanzar extends SearchAction {
 
     @Override
-    public AgentState execute(AgentState s) {
+    public SearchBasedAgentState execute(SearchBasedAgentState s) {
         EstadoSnake snake = (EstadoSnake) s;
         snake.incrementarCosto(this.getCost());
 
