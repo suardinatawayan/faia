@@ -1,234 +1,166 @@
 package agente;
 
 import frsf.cidisi.faia.agent.Perception;
-import frsf.cidisi.faia.exceptions.KnowledgeBaseException;
-import frsf.cidisi.faia.solver.calculus.CalculusActionFactory;
-import frsf.cidisi.faia.solver.calculus.CalculusKnowledgeBase;
-import frsf.cidisi.faia.solver.planning.PlanningKnowledgeBase;
+import frsf.cidisi.faia.exceptions.PrologConnectorException;
+import frsf.cidisi.faia.solver.ActionFactory;
+import frsf.cidisi.faia.solver.planning.PlanningBasedAgentState;
 
 import java.util.Hashtable;
 
-/**
- * Esta clase representa el estado del pacman, que en su versión lógica,
- * vendría a ser la base de conocimientos.
- * A esta clase se le realizan consultas sobre el estado del agente, y
- * se le informan de las percepciones enviadas desde el simulador, etc.
- */
-public class EstadoPacman extends PlanningKnowledgeBase {
-    
+public class EstadoPacman extends PlanningBasedAgentState {
+
+	public EstadoPacman() throws PrologConnectorException {
+		super("pacman.pl");
+		
+		this.initState();
+	}
+	
+	@Override
+	public void updateState(Perception p) {
+		PercepcionPacman pp = (PercepcionPacman) p;
+		
+		for (String estado : pp.toPrologPredicates())
+			this.addInitState(estado);
+	}
+
+	@Override
+	public void initState() {
+		this.addInitState("en(4)");
+		// TODO: Falta setear la energía.
+	}
+	
+	public int getPosicion() {
+		String consulta = "en(X)";
+		Hashtable[] resultado = this.query(consulta);
+		int pos = Integer.parseInt(resultado[0].get("X").toString());
+		
+		return pos;
+	}
+	
+	public int getTamañoMundo() {
+		String consulta = "tamaño_mundo(X)";
+		Hashtable[] resultado = this.plainQuery(consulta);
+		int tam = Integer.parseInt(resultado[0].get("X").toString());
+		
+		return tam;
+	}
+	
+	public int getEstadoPosicion(int pos) {
+		// Veo si hay comida en la posición
+		String consulta = "comida(" + pos + ")";
+		if (this.queryHasSolution(consulta)) return PercepcionPacman.PERCEPCION_COMIDA;
+		
+		consulta = "enemigo(" + pos + ")";
+		if (this.queryHasSolution(consulta)) return PercepcionPacman.PERCEPCION_ENEMIGO;
+		
+		consulta = "vacio(" + pos + ")";
+		if (this.queryHasSolution(consulta)) return PercepcionPacman.PERCEPCION_VACIO;
+		
+		consulta = "desconocido(" + pos + ")";
+		if (this.queryHasSolution(consulta)) return PercepcionPacman.PERCEPCION_DESCONOCIDO;
+		
+		// No se debería llegar a esta setencia.
+		return Integer.MIN_VALUE;
+	}
+	
 	/**
-	 * Se le pasa al constructor de la clase padre el archivo que estamos
-	 * utilizando para escribir nuestras sentencias prolog.
-	 * Luego se inicializa el estado del agente.
-	 * @throws KnowledgeBaseException
+	 * Dada una posición, devuelve la celda superior a la misma.
+	 * @param pos
+	 * @return
 	 */
-    public EstadoPacman() throws KnowledgeBaseException {
-        super("base_conocimiento.pl");
+	public int getCeldaArriba(int pos) {
+		String consulta = "adyacenteArriba(" + pos + ",X).";
+		Hashtable[] resultado = this.plainQuery(consulta);
+		int arriba = Integer.parseInt(resultado[0].get("X").toString());
+		
+		return arriba;
+	}
+	
+	/**
+	 * Dada una posición, devuelve la celda inferior a la misma.
+	 * @param pos
+	 * @return
+	 */
+	public int getCeldaAbajo(int pos) {
+		String consulta = "adyacenteAbajo(" + pos + ",X).";
+		Hashtable[] resultado = this.plainQuery(consulta);
+		int abajo = Integer.parseInt(resultado[0].get("X").toString());
+		
+		return abajo;
+	}
+	
+	/**
+	 * Dada una posición, devuelve la celda que se encuentra a
+	 * la derecha de la misma.
+	 * @param pos
+	 * @return
+	 */
+	public int getCeldaDerecha(int pos) {
+		String consulta = "adyacenteDerecha(" + pos + ",X).";
+		Hashtable[] resultado = this.plainQuery(consulta);
+		int derecha = Integer.parseInt(resultado[0].get("X").toString());
+		
+		return derecha;
+	}
+	
+	/**
+	 * Dada una posición, devuelve la celda que se encuentra a
+	 * la izquierda de la misma.
+	 * @param pos
+	 * @return
+	 */
+	public int getCeldaIzquierda(int pos) {
+		String consulta = "adyacenteIzquierda(" + pos + ",X).";
+		Hashtable[] resultado = this.plainQuery(consulta);
+		int izquierda = Integer.parseInt(resultado[0].get("X").toString());
+		
+		return izquierda;
+	}
+	
+	@Override
+	public String getBestActionPredicate() {
+		return "obtenerAccion";
+	}
+	
+	@Override
+	public String getExecuteActionPredicate() {
+		return "ejecutarAccion";
+	}
+	
+	@Override
+	public ActionFactory getActionFactory() {
+		return PlanningAccionFactory.getInstance();
+	}
 
-        this.initState();
-    }
-    
-    /**
-     * Este método es utilizado por el agente, dentro de 'see', para informar
-     * sobre una percepción enviada por el simulador. Se traduce a una llamada
-     * al método 'tell'.
-     */
-    @Override
-    public void updateState(Perception perception) {
-        this.tell(perception);
-    }
-    
-    /**
-     * Imprime una representación de la base de conocimiento del agente por
-     * consola.
-     */
-    @Override
-    public String toString() {
-        String str = "";
+	@Override
+	public String toString() {
+		StringBuilder str = new StringBuilder();
+		int pos = 0;
 
-        str = str + " posicion=\"(" + getFila() + "," + "" + getColumna() + ")\"";
-        str = str + " energia=\"" + this.getEnergia() + "\"\n";
+        str.append(" posicion=\"" + this.getPosicion() + "\"");
+        //str = str + " energia=\"" + this.getEnergia() + "\"\n";
 
-        str = str + "mundo=\"[ \n";
-        for (int fil = 0; fil < this.getMundoLength(); fil++) {
-            str = str + "[ ";
-            for (int col = 0; col < this.getMundoLength(); col++) {
+        str.append("mundo=\"[ \n");
+        for (int fil = 0; fil < this.getTamañoMundo(); fil++) {
+            str.append("[ ");
+            for (int col = 0; col < this.getTamañoMundo(); col++) {
 
-                if (this.getFila() == fil && this.getColumna() == col) {
-                    str = str + "P" + " ";
-                    continue;
+                if (this.getPosicion() == pos)
+                    str.append("P" + " ");
+                else {
+	                if (this.getEstadoPosicion(pos) == PercepcionPacman.PERCEPCION_DESCONOCIDO) {
+	                    str.append("* ");
+	                } else {
+	                    str.append(this.getEstadoPosicion(pos) + " ");
+	                }
                 }
-
-                if (this.getEstadoPosicion(fil, col) == PercepcionPacman.PERCEPCION_DESCONOCIDO) {
-                    str = str + "* ";
-                } else {
-                    str = str + this.getEstadoPosicion(fil, col) + " ";
-                }
+                
+                pos++;
             }
-            str = str + " ]\n";
+            str.append(" ]\n");
         }
-        str = str + " ]\"";
+        str.append(" ]\"");
 
-        return str;
-    }
-    
-    /**
-     * Aquí se indica cuál es el objeto CalculusActionFactory definido
-     * por el usuario. Ver comentarios en la clase CalculusAccionFactory.
-     */
-    @Override
-    public CalculusActionFactory getActionFactory() {
-        return CalculusAccionFactory.getInstance();
-    }
-
-    /**
-     * Este método debe devolver el string que se utiliza en el archivo
-     * prolog para representar la mejor acción. En este proyecto,
-     * 'pacman_logico', se lo utiliza por ejemplo en esta línea:
-     * 
-     *   mejorAccion(noAccion,S):-cumplioObjetivo(S),!.
-     *   
-     * Esto es necesario ya que la base de conocimiento realiza consultas
-     * dependiendo de los nombres de los predicados utilizadas en el
-     * archivo prolog.
-     */
-    @Override
-    public String getBestActionPredicate() {
-        return "mejorAccion";
-    }
-
-    /**
-     * Tiene el mismo objetivo que el método 'getBestActionPredicate'.
-     * 
-     * Este método debe devolver el string que se utiliza en el archivo
-     * prolog para representar la sentencia de que el objetivo se ha
-     * cumplido. En este proyecto, 'pacman_logico', se lo utiliza por
-     * ejemplo en esta línea:
-     * 
-     *   cumplioObjetivo(S):-tableroVacio(S).
-     * 
-     */
-//    @Override
-//    public String getGoalReachedPredicate() {
-//        return "cumplioObjetivo";
-//    }
-    
-    /**
-     * Tiene el mismo objetivo que el método 'getBestActionPredicate'.
-     */
-    @Override
-    public String getExecutedActionPredicate() {
-        return "accionEjecutada";
-    }
-
-    /**
-     * Tiene el mismo objetivo que el método 'getBestActionPredicate'.
-     */
-//    @Override
-//    public String getCurrentSituationPredicate() {
-//        return "situacionActual";
-//    }
-
-    /**
-     * Aquí simplemente se agrega conocimiento inicial. En este caso,
-     * que la situación actual es 0, que estoy en la posición 1,2, y
-     * que tengo 50 puntos de energía.
-     */
-    @Override
-    public void initState() {
-        this.addKnowledge("situacionActual(0)");
-        this.addKnowledge("posicion(1,2,0)");
-        this.addKnowledge("energia(50,0)");
-    }
-    
-    // Estos métodos son internos de la clase EstadoPacman.
-    public int[] getPosicion() {
-        // TODO: Aca habria que hacer una consulta Prolog
-        String consultaPosicion = "posicion(X,Y," + this.getSituation() + ")";
-
-        Hashtable[] resultado = this.query(consultaPosicion);
-
-        int x = Integer.parseInt(resultado[0].get("X").toString());
-        int y = Integer.parseInt(resultado[0].get("Y").toString());
-
-        return new int[]{x, y};
-    }
-    
-    public int getFila() {
-        return this.getPosicion()[0];
-    }
-
-    public int getColumna() {
-        return this.getPosicion()[1];
-    }
-
-    public int getEnergia() {
-        String consultaPosicion = "energia(E," + this.getSituation() + ")";
-
-        Hashtable[] resultado = this.query(consultaPosicion);
-
-        int energia = Integer.parseInt(resultado[0].get("E").toString());
-
-        return energia;
-    }
-
-    public boolean todoConocido() {
-        // TODO: Aca habria que hacer una consulta Prolog
-        return true;
-    }
-
-    public int getCeldasDesconocidas() {
-        // TODO: Aca habria que hacer una consulta Prolog
-        return 0;
-    }
-
-    public int getComidaRestante() {
-        // TODO: Aca habria que hacer una consulta Prolog
-        return 0;
-    }
-
-    public boolean noHayMasComida() {
-        // TODO: Aca habria que hacer una consulta Prolog
-        return false;
-    }
-
-    private int getMundoLength() {
-        return 4;
-    }
-
-    private int getEstadoPosicion(int fila, int col) {
-
-        // Veo si conozco el estado de la celda
-        String consultaEstadoCelda = "conoce(" + fila + "," +
-                col + "," + this.getSituation() + ")";
-
-        if (!this.queryHasSolution(consultaEstadoCelda)) {
-            return PercepcionPacman.PERCEPCION_DESCONOCIDO;        // Veo si hay un enemigo
-        }
-        consultaEstadoCelda = "enemigo(" + fila + "," +
-                col + "," + this.getSituation() + ")";
-
-        if (this.queryHasSolution(consultaEstadoCelda)) {
-            return PercepcionPacman.PERCEPCION_ENEMIGO;        // Veo si hay comida
-        }
-        consultaEstadoCelda = "comida(" + fila + "," +
-                col + "," + this.getSituation() + ")";
-
-        if (this.queryHasSolution(consultaEstadoCelda)) {
-            return PercepcionPacman.PERCEPCION_COMIDA;        // Veo si esta vacia
-        }
-        consultaEstadoCelda = "vacia(" + fila + "," +
-                col + "," + this.getSituation() + ")";
-
-        if (this.queryHasSolution(consultaEstadoCelda)) {
-            return PercepcionPacman.PERCEPCION_VACIO;        // TODO: No deberia llegar aca nunca
-        }
-        return 9;
-    }
-
-    public int getCeldasVisitadas() {
-        // TODO: Aca habria que hacer una consulta Prolog
-
-        return 0;
-    }
+        return str.toString();
+	}
 }

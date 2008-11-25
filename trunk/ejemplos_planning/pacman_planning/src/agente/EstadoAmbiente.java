@@ -13,101 +13,93 @@ import frsf.cidisi.faia.state.EnvironmentState;
  */
 public class EstadoAmbiente extends EnvironmentState {
 
-    private int[][] mundo;
+    private int[] mundo;
+    private int tamaño_mundo = 3;
 
-    EstadoAmbiente(int[][] m) {
-        mundo = m;
-    }
-
-    EstadoAmbiente() {
-        mundo = new int[4][4];
+    public EstadoAmbiente() {
+        mundo = new int[tamaño_mundo * tamaño_mundo];
         this.initState();
     }
-    
-//  public Object clone() {
-//  int[][] nuevoMundo = new int[4][4];
-//
-//  for (int fil = 0; fil < mundo.length; fil++) {
-//      for (int col = 0; col < mundo.length; col++) {
-//          nuevoMundo[fil][col] = mundo[fil][col];
-//      }
-//  }
-//  EstadoAmbiente nuevoEstado = new EstadoAmbiente(nuevoMundo);
-//
-//  return nuevoEstado;
-//}
     
     @Override
     public void initState() {
 
-        for (int fil = 0; fil < mundo.length; fil++) {
-            for (int col = 0; col < mundo.length; col++) {
-                mundo[fil][col] = PercepcionPacman.PERCEPCION_VACIO;
-            }
+        for (int i = 0; i < mundo.length; i++) {
+        	mundo[i] = PercepcionPacman.PERCEPCION_VACIO;
         }
-        mundo[0][0] = PercepcionPacman.PERCEPCION_COMIDA;
-        mundo[0][2] = PercepcionPacman.PERCEPCION_COMIDA;
-        mundo[3][1] = PercepcionPacman.PERCEPCION_ENEMIGO;
-        mundo[2][1] = PercepcionPacman.PERCEPCION_COMIDA;
-        mundo[0][3] = PercepcionPacman.PERCEPCION_ENEMIGO;
-        mundo[1][2] = PercepcionPacman.PERCEPCION_COMIDA;
+        
+        mundo[0] = PercepcionPacman.PERCEPCION_COMIDA;
+        mundo[3] = PercepcionPacman.PERCEPCION_ENEMIGO;
+        mundo[8] = PercepcionPacman.PERCEPCION_ENEMIGO;
+        mundo[7] = PercepcionPacman.PERCEPCION_COMIDA;
     }
     
     @Override
     public String toString() {
-        String str = "";
-
-        str = str + "[ \n";
-        for (int fil = 0; fil < mundo.length; fil++) {
-            str = str + "[ ";
-            for (int col = 0; col < mundo.length; col++) {
-                str = str + mundo[fil][col] + " ";
+        StringBuilder str = new StringBuilder();
+        int pos = 0;
+        
+        str.append("[ \n");
+        for (int fil = 0; fil < this.tamaño_mundo; fil++) {
+            str.append("[ ");
+            for (int col = 0; col < this.tamaño_mundo; col++) {
+            	str.append(mundo[pos] + " ");
+            	pos++;
             }
-            str = str + " ]\n";
+            str.append(" ]\n");
         }
-        str = str + " ]";
+        str.append(" ]");
 
-        return str;
+        return str.toString();
     }
 
     // Estos métodos son internos de la clase EstadoAmbiente.
-    public int[][] getMundo() {
-        return mundo;
+//    public int[][] getMundo() {
+//        return mundo;
+//    }
+//
+//    public void setMundo(int[][] mundo) {
+//        this.mundo = mundo;
+//    }
+//
+//    public void setMundo(int fil, int col, int valor) {
+//        this.mundo[fil][col] = valor;
+//    }
+    
+    public void setMundo(int pos, int valor) {
+    	this.mundo[pos] = valor;
+    }
+    
+    public int getMundo(int pos) {
+    	return this.mundo[pos];
     }
 
-    public void setMundo(int[][] mundo) {
-        this.mundo = mundo;
-    }
-
-    public void setMundo(int fil, int col, int valor) {
-        this.mundo[fil][col] = valor;
-    }
-
-    public int getArriba(int fil, int col) {
-        if (fil == 0) {
-            return mundo[3][col];
+    public int getArriba(int pos) {
+        if (pos >= 0 && pos < this.tamaño_mundo) {
+            return mundo[pos + this.tamaño_mundo * (this.tamaño_mundo - 1)];
         }
-        return mundo[fil - 1][col];
+        return mundo[pos - this.tamaño_mundo];
     }
 
-    public int getIzquierda(int fil, int col) {
-        if (col == 0) {
-            return mundo[fil][3];
+    public int getIzquierda(int pos) {
+    	if (pos % this.tamaño_mundo == 0) {
+            return mundo[pos + (this.tamaño_mundo - 1)];
         }
-        return mundo[fil][col - 1];
+        return mundo[pos - 1];
     }
 
-    public int getDerecha(int fil, int col) {
-        if (col == 3) {
-            return mundo[fil][0];
+    public int getDerecha(int pos) {
+    	if (pos % this.tamaño_mundo == this.tamaño_mundo - 1) {
+            return mundo[pos - (this.tamaño_mundo - 1)];
         }
-        return mundo[fil][col + 1];
+        return mundo[pos + 1];
     }
 
-    public int getAbajo(int fil, int col) {
-        if (fil == 3) {
-            return mundo[0][col];
+    public int getAbajo(int pos) {
+    	if (pos < this.tamaño_mundo * this.tamaño_mundo &&
+    			pos >= this.tamaño_mundo * (this.tamaño_mundo - 1)) {
+            return mundo[pos - this.tamaño_mundo * (this.tamaño_mundo - 1)];
         }
-        return mundo[fil + 1][col];
+        return mundo[pos + this.tamaño_mundo];
     }
 }

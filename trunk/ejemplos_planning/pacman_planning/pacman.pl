@@ -192,6 +192,7 @@ adyacenteArriba(Pos1, Pos2) :-
 % ESTADO INICIAL
 
 
+/*
 holds(en(0), init).
 holds(vacio(0), init).
 holds(vacio(1), init).
@@ -202,7 +203,7 @@ holds(vacio(5), init).
 holds(enemigo(6), init).
 holds(vacio(7), init).
 holds(comida(8), init).
-
+*/
 
 
 % Si no hay comida ni enemigo ni está vacía la celda, entonces

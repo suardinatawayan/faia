@@ -1,5 +1,7 @@
 package agente;
 
+import java.util.Vector;
+
 import frsf.cidisi.faia.agent.Agent;
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.environment.Environment;
@@ -11,17 +13,19 @@ public class PercepcionPacman extends Perception {
     public static final int PERCEPCION_ENEMIGO = 1;
     public static final int PERCEPCION_COMIDA = 2;
     private int sensorIzquierda;
+    private int posIzquierda;
     private int sensorArriba;
+    private int posArriba;
     private int sensorDerecha;
+    private int posDerecha;
     private int sensorAbajo;
+    private int posAbajo;
     private int energia;
-    private int fila;
-    private int columna;
-    private int tiempo;
+    private int posPacman;
 
-    public PercepcionPacman() {
-        energia = 50;
-    }
+//    public PercepcionPacman() {
+//        energia = 50;
+//    }
 
     public PercepcionPacman(Agent agent, Environment environment) {
         super(agent, environment);
@@ -29,15 +33,24 @@ public class PercepcionPacman extends Perception {
 
     public void initPerception(Agent agent, Environment environment) {
         AgentePlanificacion pacman = (AgentePlanificacion) agent;
+        EstadoPacman estadoPacman = pacman.getAgentState();
         AmbientePacman ambiente = (AmbientePacman) environment;
 
-        this.setFila(((EstadoPacman) pacman.getAgentState()).getFila());
-        this.setColumna(((EstadoPacman) pacman.getAgentState()).getColumna());
-
-        setSensorArriba(ambiente.getArriba(this.getFila(), this.getColumna()));
-        setSensorIzquierda(ambiente.getIzquierda(this.getFila(), this.getColumna()));
-        setSensorDerecha(ambiente.getDerecha(this.getFila(), this.getColumna()));
-        setSensorAbajo(ambiente.getAbajo(this.getFila(), this.getColumna()));
+        this.posPacman = pacman.getAgentState().getPosicion();
+        
+        // TODO: Falta la energía
+        
+        this.sensorArriba = ambiente.getArriba(this.posPacman);
+        this.posArriba = estadoPacman.getCeldaArriba(this.posPacman);
+        
+        this.sensorIzquierda = ambiente.getIzquierda(this.posPacman);
+        this.posIzquierda = estadoPacman.getCeldaIzquierda(this.posPacman);
+        
+        this.sensorDerecha = ambiente.getDerecha(this.posPacman);
+        this.posDerecha = estadoPacman.getCeldaDerecha(this.posPacman);
+        
+        this.sensorAbajo = ambiente.getAbajo(this.posPacman);
+        this.posAbajo = estadoPacman.getCeldaAbajo(this.posPacman);
     }
 
     public int getSensorIzquierda() {
@@ -91,66 +104,37 @@ public class PercepcionPacman extends Perception {
                 resultado = "enemigo";
                 break;
             case PercepcionPacman.PERCEPCION_VACIO:
-                resultado = "vacia";
+                resultado = "vacio";
                 break;
         }
 
         return resultado;
     }
 
-    @Override
-    public String toString() {
-        StringBuffer resultado = new StringBuffer("percepcion([");
-
+    public Vector<String> toPrologPredicates() {
+    	Vector<String> resultados = new Vector<String>();
+        
         // Celdas adyacentes
-        resultado.append(this.convertirEstadoCelda(this.sensorIzquierda));
-        resultado.append(",");
-        resultado.append(this.convertirEstadoCelda(this.sensorDerecha));
-        resultado.append(",");
-        resultado.append(this.convertirEstadoCelda(this.sensorArriba));
-        resultado.append(",");
-        resultado.append(this.convertirEstadoCelda(this.sensorAbajo));
-        resultado.append("],");
+        resultados.add(this.convertirEstadoCelda(this.sensorArriba) + "(" +
+        		this.posArriba +
+        		")");
+        
+        resultados.add(this.convertirEstadoCelda(this.sensorDerecha) + "(" +
+        		this.posDerecha +
+        		")");
+        
+        resultados.add(this.convertirEstadoCelda(this.sensorAbajo) + "(" +
+        		this.posAbajo +
+        		")");
+        
+        resultados.add(this.convertirEstadoCelda(this.sensorArriba) + "(" +
+        		this.posArriba +
+        		")");
 
-        // Posición del agente
-        resultado.append(this.getFila());
-        resultado.append(",");
-        resultado.append(this.getColumna());
-        resultado.append(",");
+        // TODO: Energía del agente
+//        cadena.append(this.getEnergia());
+//        cadena.append(",");
 
-        // Energía del agente
-        resultado.append(this.getEnergia());
-        resultado.append(",");
-
-        // Tiempo
-        resultado.append(this.getTiempo());
-
-        resultado.append(")");
-
-        return resultado.toString();
-    }
-
-    public int getTiempo() {
-        return tiempo;
-    }
-
-    public void setTiempo(int tiempo) {
-        this.tiempo = tiempo;
-    }
-
-    public int getFila() {
-        return fila;
-    }
-
-    public void setFila(int fila) {
-        this.fila = fila;
-    }
-
-    public int getColumna() {
-        return columna;
-    }
-
-    public void setColumna(int columna) {
-        this.columna = columna;
+        return resultados;
     }
 }
