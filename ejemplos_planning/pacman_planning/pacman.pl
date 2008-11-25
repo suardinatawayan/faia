@@ -99,8 +99,21 @@ generarPosicionAux(Sig,Num) :-
 % Adyacencia de las celdas
 %
 
-% Adyacente por derecha no en borde
 holds(adyacente(Pos1, Pos2), init) :-
+	adyacenteArriba(Pos1, Pos2).
+
+holds(adyacente(Pos1, Pos2), init) :-
+	adyacenteDerecha(Pos1, Pos2).
+
+holds(adyacente(Pos1, Pos2), init) :-
+	adyacenteAbajo(Pos1, Pos2).
+
+holds(adyacente(Pos1, Pos2), init) :-
+	adyacenteIzquierda(Pos1, Pos2).
+
+
+% Adyacente por derecha no en borde
+adyacenteDerecha(Pos1, Pos2) :-
 	generarPosicion(Pos1),
 	generarPosicion(Pos2),
 	tamaño_mundo(T),
@@ -108,7 +121,7 @@ holds(adyacente(Pos1, Pos2), init) :-
 	Pos2 is Pos1 + 1.
 
 % Adyacente por derecha en borde
-holds(adyacente(Pos1, Pos2), init) :-
+adyacenteDerecha(Pos1, Pos2) :-
 	generarPosicion(Pos1),
 	generarPosicion(Pos2),
 	tamaño_mundo(T),
@@ -116,7 +129,7 @@ holds(adyacente(Pos1, Pos2), init) :-
 	Pos2 is Pos1 - (T - 1).
 
 % Adyacente por izquierda no en borde
-holds(adyacente(Pos1, Pos2), init) :-
+adyacenteIzquierda(Pos1, Pos2) :-
 	generarPosicion(Pos1),
 	generarPosicion(Pos2),
 	tamaño_mundo(T),
@@ -124,7 +137,7 @@ holds(adyacente(Pos1, Pos2), init) :-
 	Pos2 is Pos1 - 1.
 
 % Adyacente por izquierda en borde
-holds(adyacente(Pos1, Pos2), init) :-
+adyacenteIzquierda(Pos1, Pos2) :-
 	generarPosicion(Pos1),
 	generarPosicion(Pos2),
 	tamaño_mundo(T),
@@ -132,7 +145,7 @@ holds(adyacente(Pos1, Pos2), init) :-
 	Pos2 is Pos1 + (T - 1).
 
 % Adyacente por abajo no en borde
-holds(adyacente(Pos1, Pos2), init) :-
+adyacenteAbajo(Pos1, Pos2) :-
 	generarPosicion(Pos1),
 	generarPosicion(Pos2),
 	tamaño_mundo(T),
@@ -140,7 +153,7 @@ holds(adyacente(Pos1, Pos2), init) :-
 	Pos2 is Pos1 + T.
 
 % Adyacente por abajo en borde
-holds(adyacente(Pos1, Pos2), init) :-
+adyacenteAbajo(Pos1, Pos2) :-
 	generarPosicion(Pos1),
 	generarPosicion(Pos2),
 	tamaño_mundo(T),
@@ -148,7 +161,7 @@ holds(adyacente(Pos1, Pos2), init) :-
 	Pos2 is Pos1 - (T * (T - 1)).
 
 % Adyacente por arriba no en borde
-holds(adyacente(Pos1, Pos2), init) :-
+adyacenteArriba(Pos1, Pos2) :-
 	generarPosicion(Pos1),
 	generarPosicion(Pos2),
 	tamaño_mundo(T),
@@ -156,43 +169,12 @@ holds(adyacente(Pos1, Pos2), init) :-
 	Pos2 is Pos1 - T.
 
 % Adyacente por arriba en borde
-holds(adyacente(Pos1, Pos2), init) :-
+adyacenteArriba(Pos1, Pos2) :-
 	generarPosicion(Pos1),
 	generarPosicion(Pos2),
 	tamaño_mundo(T),
 	Pos1 < T,
 	Pos2 is Pos1 + (T * (T - 1)).
-
-/*
-holds(adyDerecha(Pos1, Pos2), init) :-
-	generarPosicion(Pos1),
-	generarPosicion(Pos2),
-	tamaño_mundo(T),
-	M is Pos1 mod T, M =\= T - 1,
-	Pos2 is Pos1 + 1.
-
-holds(adyIzquierda(Pos1, Pos2), init) :-
-	generarPosicion(Pos1),
-	generarPosicion(Pos2),
-	tamaño_mundo(T),
-	M is Pos1 mod T, M =\= 0,
-	Pos2 is Pos1 - 1.
-
-holds(adyAbajo(Pos1, Pos2), init) :-
-	generarPosicion(Pos1),
-	generarPosicion(Pos2),
-	tamaño_mundo(T),
-	Pos1 < T * (T - 1),
-	Pos2 is Pos1 + T.
-
-holds(adyArriba(Pos1, Pos2), init) :-
-	generarPosicion(Pos1),
-	generarPosicion(Pos2),
-	tamaño_mundo(T),
-	Pos1 >= T,
-	Pos2 is Pos1 - T.
-*/
-
 
 % Ejemplo de un mundo 4 x 4
 %
@@ -276,6 +258,14 @@ armarObjetivosAux(Xs,N) :-
 armarObjetivosAux([],N) :-
 	tamaño_mundo(T),
 	N is T * T.
+
+%
+% celdaArriba(X,R).
+%
+% Recibe una posición en X y devuelve la celda que está arriba en R.
+%
+
+%celdaArriba(X,R) :-
 
 
 %
