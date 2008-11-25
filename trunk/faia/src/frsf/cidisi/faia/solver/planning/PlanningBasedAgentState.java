@@ -1,32 +1,29 @@
 package frsf.cidisi.faia.solver.planning;
 
-import frsf.cidisi.faia.agent.Perception;
+import java.util.Hashtable;
+
 import frsf.cidisi.faia.exceptions.PrologConnectorException;
 import frsf.cidisi.faia.solver.PrologConnector;
 import frsf.cidisi.faia.state.AgentState;
 
 public abstract class PlanningBasedAgentState extends AgentState {
 
-	private PrologConnector prologConnector;
+	protected PrologConnector prologConnector;
 	
 	public PlanningBasedAgentState(String prologFile) throws PrologConnectorException {
 		this.prologConnector = new PrologConnector(prologFile);
 	}
 	
-	@Override
-	public void updateState(Perception p) {
-		// TODO Aquí irían asserts
-	}
-
-	@Override
-	public void initState() {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		return null;
+	public void addInitState(String state) {
+		String query = "holds(" + state + ", init).";
+		this.prologConnector.executeNonQuery(query);
 	}
 	
+	public Hashtable[] query(String query) {
+    	return this.prologConnector.query("holds(" + query + ", init).");
+    }
+	
+	public boolean queryHasSolution(String query) {
+    	return this.prologConnector.queryHasSolution(query);
+    }
 }
