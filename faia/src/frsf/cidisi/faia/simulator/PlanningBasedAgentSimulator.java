@@ -20,11 +20,13 @@ package frsf.cidisi.faia.simulator;
 
 import java.util.Vector;
 
+import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.agent.Agent;
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.agent.planning.PlanningAction;
 import frsf.cidisi.faia.agent.planning.PlanningBasedAgent;
 import frsf.cidisi.faia.environment.Environment;
+import frsf.cidisi.faia.solver.NoAction;
 import frsf.cidisi.faia.solver.planning.PlanningNoAction;
 
 public class PlanningBasedAgentSimulator extends GoalBasedAgentSimulator {
@@ -40,7 +42,7 @@ public class PlanningBasedAgentSimulator extends GoalBasedAgentSimulator {
 	@Override
 	public void start() {
 		Perception perception;
-        PlanningAction action;
+        Action action;
         PlanningBasedAgent agent;
 
         //TODO: Aca hay que tener en cuenta que podría haber más de un agente
@@ -63,7 +65,7 @@ public class PlanningBasedAgentSimulator extends GoalBasedAgentSimulator {
             System.out.println("---------------------------------------");
 
             // Ask agent for an action
-            action = (PlanningAction) agent.selectAction();
+            action = agent.selectAction();
 
             System.out.println("Action: " + action);
 
@@ -74,7 +76,7 @@ public class PlanningBasedAgentSimulator extends GoalBasedAgentSimulator {
                  * the real world on the simulator. */
                 this.updateState(action);
             }
-        } while (! (action instanceof PlanningNoAction || action == null));
+        } while (! (action instanceof NoAction || action == null));
 
         if (action instanceof PlanningNoAction) {
             // If there is no action, then the agent has reached the goal.

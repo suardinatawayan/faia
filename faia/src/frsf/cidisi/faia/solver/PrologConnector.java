@@ -68,8 +68,14 @@ public class PrologConnector {
         }
     }
     
-    public void executeNonQuery(String nonQuery) {
-    	this.queryHasSolution(nonQuery);
+    public void executeNonQuery(String query) {
+    	Query prologQuery = new Query(query);
+    	prologQuery.hasSolution();
+    }
+    
+    public void addPredicate(String predicate) {
+    	Query query = new Query("asserta(" + predicate + ")");
+    	query.hasSolution();
     }
     
     public Hashtable[] query(String query) {

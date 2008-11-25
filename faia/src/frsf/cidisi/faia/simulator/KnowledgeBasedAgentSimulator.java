@@ -24,7 +24,8 @@ import frsf.cidisi.faia.agent.knowledgebased.KnowledgeBasedAgent;
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.agent.knowledgebased.CalculusAction;
 import frsf.cidisi.faia.environment.Environment;
-import frsf.cidisi.faia.solver.calculus.CalculusNoAction;
+import frsf.cidisi.faia.solver.NoAction;
+
 import java.util.Vector;
 
 public class KnowledgeBasedAgentSimulator extends GoalBasedAgentSimulator {
@@ -41,7 +42,7 @@ public class KnowledgeBasedAgentSimulator extends GoalBasedAgentSimulator {
     public void start() {
 
         Perception perception;
-        CalculusAction action;
+        Action action;
         KnowledgeBasedAgent agent;
 
         //TODO: Aca hay que tener en cuenta que podría haber más de un agente
@@ -64,22 +65,22 @@ public class KnowledgeBasedAgentSimulator extends GoalBasedAgentSimulator {
             System.out.println("---------------------------------------");
 
             // Ask agent for an action
-            action = (CalculusAction) agent.selectAction();
+            action = agent.selectAction();
 
             System.out.println("Action: " + action);
 
             /* Check if agent has reached the goal or not, or if we must
              * go on */
-            if (action != null && ! (action instanceof CalculusNoAction)) {
+            if (action != null && ! (action instanceof NoAction)) {
                 /* If the action is not a NoAction instance, then we update
                  * the real world on the simulator. Finally we tell the agent
                  * the action chosen. */
                 this.updateState(action);
-                agent.tell(action);
+                agent.tell((CalculusAction)action);
             }
-        } while (! (action instanceof CalculusNoAction || action == null));
+        } while (! (action instanceof NoAction || action == null));
 
-        if (action instanceof CalculusNoAction) {
+        if (action instanceof NoAction) {
             // If there is no action, then the agent has reached the goal.
             System.out.println("Agent has reached the goal!");
         } else {

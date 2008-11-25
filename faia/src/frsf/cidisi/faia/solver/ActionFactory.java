@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package frsf.cidisi.faia.solver.calculus;
+package frsf.cidisi.faia.solver;
 
 import frsf.cidisi.faia.agent.Action;
 
@@ -27,7 +27,7 @@ import frsf.cidisi.faia.agent.Action;
  * This is class must be implemented by the user to carry out this
  * conversion.
  */
-public abstract class CalculusActionFactory {
+public abstract class ActionFactory {
 
     /**
      * This method is executed before stringToAction, which is overrode
@@ -38,8 +38,8 @@ public abstract class CalculusActionFactory {
      * @return The Action represented by stringAction
      */
     public Action makeActionFromString(String stringAction) {
-        if (stringAction.equals(this.noActionString()))
-            return CalculusNoAction.getInstance();
+        if (stringAction.equals(this.endActionString()))
+            return NoAction.getInstance();
         
         return this.stringToAction(stringAction);
     }
@@ -49,11 +49,12 @@ public abstract class CalculusActionFactory {
      * @param stringAction
      * @return The Action represented by stringAction.
      */
-    public abstract Action stringToAction(String stringAction);
+    protected abstract Action stringToAction(String stringAction);
     
     /**
-     * This method must return the string representation of a NoAction,
-     * used by the user in the prolog file.
+     * This method must return the string representation of an end action
+     * (which says the agent has reached the goal), used by the user in
+     * the prolog file.
      */
-    public abstract String noActionString();
+    protected abstract String endActionString();
 }
