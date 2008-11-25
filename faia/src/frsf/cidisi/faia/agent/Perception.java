@@ -30,7 +30,7 @@ public abstract class Perception {
     }
 
     public Perception(Agent agent, Environment environment) {
-        initPerception(agent, environment);
+        this.initPerception(agent, environment);
     }
 
     public abstract void initPerception(Agent agent, Environment environment);
