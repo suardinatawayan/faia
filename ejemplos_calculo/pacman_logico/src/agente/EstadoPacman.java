@@ -2,8 +2,7 @@ package agente;
 
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.exceptions.PrologConnectorException;
-import frsf.cidisi.faia.solver.PrologConnector;
-import frsf.cidisi.faia.solver.calculus.CalculusActionFactory;
+import frsf.cidisi.faia.solver.ActionFactory;
 import frsf.cidisi.faia.solver.calculus.KnowledgeBase;
 
 import java.util.Hashtable;
@@ -46,13 +45,13 @@ public class EstadoPacman extends KnowledgeBase {
     public String toString() {
         String str = "";
 
-        str = str + " posicion=\"(" + getFila() + "," + "" + getColumna() + ")\"";
+        str = str + " posicion=\"(" + this.getFila() + "," + "" + this.getColumna() + ")\"";
         str = str + " energia=\"" + this.getEnergia() + "\"\n";
 
         str = str + "mundo=\"[ \n";
-        for (int fil = 0; fil < this.getMundoLength(); fil++) {
+        for (int fil = 0; fil < this.getTamañoMundo(); fil++) {
             str = str + "[ ";
-            for (int col = 0; col < this.getMundoLength(); col++) {
+            for (int col = 0; col < this.getTamañoMundo(); col++) {
 
                 if (this.getFila() == fil && this.getColumna() == col) {
                     str = str + "P" + " ";
@@ -77,7 +76,7 @@ public class EstadoPacman extends KnowledgeBase {
      * por el usuario. Ver comentarios en la clase CalculusAccionFactory.
      */
     @Override
-    public CalculusActionFactory getActionFactory() {
+    public ActionFactory getActionFactory() {
         return CalculusAccionFactory.getInstance();
     }
 
@@ -192,7 +191,7 @@ public class EstadoPacman extends KnowledgeBase {
         return false;
     }
 
-    private int getMundoLength() {
+    private int getTamañoMundo() {
         return 4;
     }
 

@@ -1,7 +1,7 @@
 package agente;
 
 import frsf.cidisi.faia.agent.Action;
-import frsf.cidisi.faia.solver.calculus.CalculusActionFactory;
+import frsf.cidisi.faia.solver.ActionFactory;
 import agente.acciones.*;
 
 /**
@@ -13,7 +13,7 @@ import agente.acciones.*;
  * debe ser implementada por el usuario.
  * Se utiliza el patrón Singleton.
  */
-public class CalculusAccionFactory extends CalculusActionFactory {
+public class CalculusAccionFactory extends ActionFactory {
 	
     private static CalculusAccionFactory instancia;
 
@@ -59,7 +59,7 @@ public class CalculusAccionFactory extends CalculusActionFactory {
      *   
      */
     @Override
-    public String noActionString() {
+    public String endActionString() {
         return "noAccion";
     }
 }
