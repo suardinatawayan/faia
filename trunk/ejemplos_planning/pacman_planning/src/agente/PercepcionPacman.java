@@ -127,8 +127,8 @@ public class PercepcionPacman extends Perception {
         		this.posAbajo +
         		")");
         
-        resultados.add(this.convertirEstadoCelda(this.sensorArriba) + "(" +
-        		this.posArriba +
+        resultados.add(this.convertirEstadoCelda(this.sensorIzquierda) + "(" +
+        		this.posIzquierda +
         		")");
 
         // TODO: Energía del agente
