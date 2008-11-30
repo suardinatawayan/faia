@@ -23,17 +23,13 @@ import frsf.cidisi.faia.state.AgentState;
 import frsf.cidisi.faia.state.EnvironmentState;
 
 public abstract class PlanningAction extends Action {
-
-	@Override
-	public EnvironmentState execute(AgentState ast, EnvironmentState est) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+//	protected String action;
+//	
+//	public PlanningAction(String action) {
+//		this.action = action;
+//	}
+//	
+//	public String getAction() {
+//		return this.action;
+//	}
 }

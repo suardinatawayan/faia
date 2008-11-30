@@ -322,7 +322,6 @@ ejecutarAccion(pelear(Pos)) :-
 	assert(holds(vacio(Pos),init)).
 
 ejecutarAccion(descubrir(Pos)) :-
-	retract(holds(desconocido(Pos),init)),
 	assert(holds(vacio(Pos),init)).
 
 ejecutarAccion(end).

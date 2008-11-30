@@ -9,10 +9,6 @@ import agente.PercepcionPacman;
 
 public class Comer extends PlanningAction {
 	
-	public Comer() {
-		super();
-	}
-	
     @Override
     public EnvironmentState execute(AgentState ast, EnvironmentState est) {
         EstadoAmbiente estA = (EstadoAmbiente) est;

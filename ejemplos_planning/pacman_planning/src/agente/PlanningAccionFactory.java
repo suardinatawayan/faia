@@ -2,6 +2,7 @@ package agente;
 
 import agente.acciones.Comer;
 import agente.acciones.Avanzar;
+import agente.acciones.Descubrir;
 import agente.acciones.Pelear;
 import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.solver.ActionFactory;
@@ -35,11 +36,13 @@ public class PlanningAccionFactory extends ActionFactory {
      */
     @Override
     public Action stringToAction(String stringAction) {
-    	if (stringAction.equals("avanzar")) {
+    	if (stringAction.startsWith("avanzar")) {
             return new Avanzar();
-        } else if (stringAction.equals("comer")) {
+    	} else if (stringAction.startsWith("descubrir")) {
+    		return new Descubrir();
+        } else if (stringAction.startsWith("comer")) {
             return new Comer();
-        } else if (stringAction.equals("pelear")) {
+        } else if (stringAction.startsWith("pelear")) {
             return new Pelear();
         }
         return null;

@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 
 import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.agent.Perception;
+import frsf.cidisi.faia.agent.planning.PlanningAction;
 import frsf.cidisi.faia.agent.planning.PlanningBasedAgent;
 import frsf.cidisi.faia.exceptions.PrologConnectorException;
 import frsf.cidisi.faia.solver.planning.Planning;
@@ -46,5 +47,12 @@ public class AgentePlanificacion extends PlanningBasedAgent {
 		
 		return estado;
 	}
+
+//	@Override
+//	public void tell(PlanningAction action) {
+//		EstadoPacman estado = this.getAgentState();
+//		
+//		estado.
+//	}
 
 }
