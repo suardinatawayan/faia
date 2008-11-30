@@ -9,7 +9,7 @@ import agente.EstadoPacman;
 import agente.PercepcionPacman;
 
 public class Pelear extends PlanningAction {
-
+	
     @Override
     public EnvironmentState execute(AgentState ast, EnvironmentState est) {
     	EstadoAmbiente estA = (EstadoAmbiente) est;

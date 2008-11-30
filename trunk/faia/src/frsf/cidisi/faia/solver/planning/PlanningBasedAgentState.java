@@ -34,11 +34,11 @@ public abstract class PlanningBasedAgentState extends AgentState {
 	}
 	
 	public void addInitState(String state) {
-		String query = "holds(" + state + ", init)";
-		
 		// Check if the new init state isn't already added.
-		if (this.queryHasSolution(query))
+		if (this.queryHasSolution(state))
 			return;
+		
+		String query = this.prepareQuery(state);
 		
 		this.prologConnector.addPredicate(query);
 	}
@@ -58,15 +58,6 @@ public abstract class PlanningBasedAgentState extends AgentState {
 	private String prepareQuery(String query) {
 		return "holds(" + query + ", init)";
 	}
-	
-//	String getBestAction() {
-//		String bestActionQuery = this.getBestActionPredicate() + "(X).";
-//		
-//		Hashtable[] result = this.prologConnector.query(bestActionQuery);
-//		String bestAction = result[0].get("X").toString();
-//		
-//		return bestAction;
-//	}
 	
 	/**
 	 * Returns the best action and applies it on the agent state.

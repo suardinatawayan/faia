@@ -103,6 +103,10 @@ public class EstadoPacman extends PlanningBasedAgentState {
 		return derecha;
 	}
 	
+//	public void accionEjecutada(PlanningAction accion) {
+//		this.prologConnector.executeNonQuery(query)
+//	}
+	
 	/**
 	 * Dada una posición, devuelve la celda que se encuentra a
 	 * la izquierda de la misma.

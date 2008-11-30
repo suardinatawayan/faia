@@ -24,4 +24,6 @@ public abstract class PlanningBasedAgent extends GoalBasedAgent {
 	public PlanningBasedAgent() {
 		super();
 	}
+	
+	//public abstract void tell(PlanningAction action);
 }

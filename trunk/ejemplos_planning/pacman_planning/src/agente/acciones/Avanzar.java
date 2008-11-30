@@ -5,7 +5,7 @@ import frsf.cidisi.faia.state.AgentState;
 import frsf.cidisi.faia.state.EnvironmentState;
 
 public class Avanzar extends PlanningAction {
-    
+	
     @Override
     public EnvironmentState execute(AgentState ast, EnvironmentState est) {
         return est;
@@ -13,6 +13,6 @@ public class Avanzar extends PlanningAction {
 
     @Override
     public String toString() {
-        return "Abajo";
+        return "Avanzar";
     }
 }

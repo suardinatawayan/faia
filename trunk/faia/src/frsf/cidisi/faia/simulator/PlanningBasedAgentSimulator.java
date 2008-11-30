@@ -27,7 +27,6 @@ import frsf.cidisi.faia.agent.planning.PlanningAction;
 import frsf.cidisi.faia.agent.planning.PlanningBasedAgent;
 import frsf.cidisi.faia.environment.Environment;
 import frsf.cidisi.faia.solver.NoAction;
-import frsf.cidisi.faia.solver.planning.PlanningNoAction;
 
 public class PlanningBasedAgentSimulator extends GoalBasedAgentSimulator {
 
@@ -71,14 +70,14 @@ public class PlanningBasedAgentSimulator extends GoalBasedAgentSimulator {
 
             /* Check if agent has reached the goal or not, or if we must
              * go on */
-            if (action != null && ! (action instanceof PlanningNoAction)) {
+            if (action != null && ! (action instanceof NoAction)) {
                 /* If the action is not a NoAction instance, then we update
                  * the real world on the simulator. */
                 this.updateState(action);
             }
         } while (! (action instanceof NoAction || action == null));
 
-        if (action instanceof PlanningNoAction) {
+        if (action instanceof NoAction) {
             // If there is no action, then the agent has reached the goal.
             System.out.println("Agent has reached the goal!");
         } else {

@@ -37,6 +37,11 @@ public class Planning extends Solve {
 		
 		String bestAction = agentState.getBestActionAction();
 		
+//		// Take only the action name, not the arguments, ie if we get
+//		// 'discover(3)' as the best action, take only 'discover'.
+//		String[] aver = bestAction.split("\\(");
+//		bestAction = aver[0];
+		
 		return agentState.getActionFactory().makeActionFromString(bestAction);
 	}
 
