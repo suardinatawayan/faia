@@ -18,10 +18,6 @@
 
 package frsf.cidisi.faia.exceptions;
 
-/**
- *
- * @author miltondp
- */
 public class PrologConnectorException extends Exception {
 
     public PrologConnectorException(String message) {
