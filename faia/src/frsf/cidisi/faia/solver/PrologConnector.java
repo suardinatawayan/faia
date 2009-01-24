@@ -1,5 +1,5 @@
 /*
- * Copyright 2007-2008 Georgina Stegmayer, Milagros Gutiérrez, Jorge Roa,
+ * Copyright 2007-2009 Georgina Stegmayer, Milagros Gutiérrez, Jorge Roa,
  * Luis Ignacio Larrateguy y Milton Pividori.
  * 
  * This program is free software: you can redistribute it and/or modify
