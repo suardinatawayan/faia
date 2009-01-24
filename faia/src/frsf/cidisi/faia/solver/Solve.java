@@ -19,7 +19,7 @@
 package frsf.cidisi.faia.solver;
 
 import frsf.cidisi.faia.agent.Action;
-import frsf.cidisi.faia.exceptions.CalculusException;
+import frsf.cidisi.faia.exceptions.SituationCalculusException;
 
 /**
  * @author Jorge M. Roa

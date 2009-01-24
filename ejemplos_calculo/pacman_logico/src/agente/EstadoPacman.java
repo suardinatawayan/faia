@@ -3,7 +3,7 @@ package agente;
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.exceptions.PrologConnectorException;
 import frsf.cidisi.faia.solver.ActionFactory;
-import frsf.cidisi.faia.solver.calculus.KnowledgeBase;
+import frsf.cidisi.faia.solver.situationcalculus.KnowledgeBase;
 
 import java.util.Hashtable;
 

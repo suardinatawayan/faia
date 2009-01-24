@@ -2,18 +2,18 @@
 package agente;
 
 import frsf.cidisi.faia.agent.Perception;
-import frsf.cidisi.faia.agent.knowledgebased.KnowledgeBasedAgent;
 import frsf.cidisi.faia.agent.Action;
-import frsf.cidisi.faia.agent.knowledgebased.CalculusAction;
+import frsf.cidisi.faia.agent.situationcalculus.SituationCalculusAction;
+import frsf.cidisi.faia.agent.situationcalculus.SituationCalculusBasedAgent;
 import frsf.cidisi.faia.exceptions.PrologConnectorException;
 import frsf.cidisi.faia.solver.PrologConnector;
-import frsf.cidisi.faia.solver.calculus.Calculus;
-import frsf.cidisi.faia.solver.calculus.KnowledgeBase;
+import frsf.cidisi.faia.solver.situationcalculus.SituationCalculus;
+import frsf.cidisi.faia.solver.situationcalculus.KnowledgeBase;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class AgenteLogico extends KnowledgeBasedAgent {
+public class AgenteLogico extends SituationCalculusBasedAgent {
 
     public AgenteLogico() throws PrologConnectorException {
     	/* Creamos el objeto EstadoPacman, que es la base de conocimiento
@@ -35,7 +35,7 @@ public class AgenteLogico extends KnowledgeBasedAgent {
     	 * Calculus. Esta es la única diferencia en el código de este método
     	 * con respecto al agente basado en búsqueda.
     	 */
-        Calculus calculus = new Calculus();
+        SituationCalculus calculus = new SituationCalculus();
         this.setSolver(calculus);
 
         // Se ejecuta el proceso de seleccion de la accion mas adecuada.
@@ -58,7 +58,7 @@ public class AgenteLogico extends KnowledgeBasedAgent {
      * llamando a otro método del mismo nombre.
      */
     @Override
-    public void tell(CalculusAction action) {
+    public void tell(SituationCalculusAction action) {
     	EstadoPacman kb = (EstadoPacman) this.getAgentState();
         kb.tell(action.getLogicName());
     }

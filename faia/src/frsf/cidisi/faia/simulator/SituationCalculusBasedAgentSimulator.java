@@ -20,21 +20,21 @@ package frsf.cidisi.faia.simulator;
 
 import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.agent.Agent;
-import frsf.cidisi.faia.agent.knowledgebased.KnowledgeBasedAgent;
 import frsf.cidisi.faia.agent.Perception;
-import frsf.cidisi.faia.agent.knowledgebased.CalculusAction;
+import frsf.cidisi.faia.agent.situationcalculus.SituationCalculusAction;
+import frsf.cidisi.faia.agent.situationcalculus.SituationCalculusBasedAgent;
 import frsf.cidisi.faia.environment.Environment;
 import frsf.cidisi.faia.solver.NoAction;
 
 import java.util.Vector;
 
-public class KnowledgeBasedAgentSimulator extends GoalBasedAgentSimulator {
+public class SituationCalculusBasedAgentSimulator extends GoalBasedAgentSimulator {
 
-    public KnowledgeBasedAgentSimulator(Environment environment, Vector<Agent> agents) {
+    public SituationCalculusBasedAgentSimulator(Environment environment, Vector<Agent> agents) {
         super(environment, agents);
     }
 
-    public KnowledgeBasedAgentSimulator(Environment environment, Agent agent) {
+    public SituationCalculusBasedAgentSimulator(Environment environment, Agent agent) {
         super(environment, agent);
     }
 
@@ -43,11 +43,11 @@ public class KnowledgeBasedAgentSimulator extends GoalBasedAgentSimulator {
 
         Perception perception;
         Action action;
-        KnowledgeBasedAgent agent;
+        SituationCalculusBasedAgent agent;
 
         //TODO: Aca hay que tener en cuenta que podría haber más de un agente
         // por ahora el framework solo es monoagente :)
-        agent = (KnowledgeBasedAgent) this.getAgents().firstElement();
+        agent = (SituationCalculusBasedAgent) this.getAgents().firstElement();
 
         do {
 
@@ -76,7 +76,7 @@ public class KnowledgeBasedAgentSimulator extends GoalBasedAgentSimulator {
                  * the real world on the simulator. Finally we tell the agent
                  * the action chosen. */
                 this.updateState(action);
-                agent.tell((CalculusAction)action);
+                agent.tell((SituationCalculusAction)action);
             }
         } while (! (action instanceof NoAction || action == null));
 

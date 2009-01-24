@@ -1,10 +1,10 @@
 package agente.acciones;
 
-import frsf.cidisi.faia.agent.knowledgebased.CalculusAction;
+import frsf.cidisi.faia.agent.situationcalculus.SituationCalculusAction;
 import frsf.cidisi.faia.state.AgentState;
 import frsf.cidisi.faia.state.EnvironmentState;
 
-public class IrAbajo extends CalculusAction {
+public class IrAbajo extends SituationCalculusAction {
     
     @Override
     public EnvironmentState execute(AgentState ast, EnvironmentState est) {

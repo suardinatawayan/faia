@@ -2,7 +2,7 @@ package agente;
 
 import frsf.cidisi.faia.exceptions.PrologConnectorException;
 import frsf.cidisi.faia.simulator.GoalBasedAgentSimulator;
-import frsf.cidisi.faia.simulator.KnowledgeBasedAgentSimulator;
+import frsf.cidisi.faia.simulator.SituationCalculusBasedAgentSimulator;
 
 public class Pacman {
 
@@ -14,7 +14,7 @@ public class Pacman {
 
         AmbientePacman ambiente = new AmbientePacman();
 
-        KnowledgeBasedAgentSimulator simu = new KnowledgeBasedAgentSimulator(ambiente, pacman);
+        SituationCalculusBasedAgentSimulator simu = new SituationCalculusBasedAgentSimulator(ambiente, pacman);
 
         simu.start();
     }

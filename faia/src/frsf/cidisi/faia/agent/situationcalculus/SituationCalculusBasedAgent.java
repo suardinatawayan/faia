@@ -16,13 +16,20 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package frsf.cidisi.faia.agent.knowledgebased;
+package frsf.cidisi.faia.agent.situationcalculus;
 
-import frsf.cidisi.faia.agent.Action;
+import frsf.cidisi.faia.agent.*;
 
-public abstract class CalculusAction extends Action {
+public abstract class SituationCalculusBasedAgent extends GoalBasedAgent {
 
-    public String getLogicName() {
-        return this.toString().toLowerCase();
+    public SituationCalculusBasedAgent() {
+        super();
     }
+
+    /**
+     * This method is executed by the simulator to tell the agent
+     * what action was executed in the current situation.
+     * @param action
+     */
+    public abstract void tell(SituationCalculusAction action);
 }

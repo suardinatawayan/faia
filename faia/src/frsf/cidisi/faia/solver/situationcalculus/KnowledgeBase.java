@@ -16,13 +16,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package frsf.cidisi.faia.solver.calculus;
+package frsf.cidisi.faia.solver.situationcalculus;
 
 import java.util.Hashtable;
 
 import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.agent.Perception;
-import frsf.cidisi.faia.exceptions.CalculusException;
+import frsf.cidisi.faia.exceptions.SituationCalculusException;
 import frsf.cidisi.faia.exceptions.PrologConnectorException;
 import frsf.cidisi.faia.solver.ActionFactory;
 import frsf.cidisi.faia.solver.PrologConnector;
