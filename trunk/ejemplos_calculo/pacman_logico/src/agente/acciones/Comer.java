@@ -1,13 +1,13 @@
 package agente.acciones;
 
-import frsf.cidisi.faia.agent.knowledgebased.CalculusAction;
+import frsf.cidisi.faia.agent.situationcalculus.SituationCalculusAction;
 import frsf.cidisi.faia.state.AgentState;
 import frsf.cidisi.faia.state.EnvironmentState;
 import agente.EstadoAmbiente;
 import agente.EstadoPacman;
 import agente.PercepcionPacman;
 
-public class Comer extends CalculusAction {
+public class Comer extends SituationCalculusAction {
     
     @Override
     public EnvironmentState execute(AgentState ast, EnvironmentState est) {

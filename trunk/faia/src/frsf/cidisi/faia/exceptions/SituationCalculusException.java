@@ -22,9 +22,9 @@ package frsf.cidisi.faia.exceptions;
  *
  * @author miltondp
  */
-public class CalculusException extends Exception {
+public class SituationCalculusException extends Exception {
 
-    public CalculusException(String message) {
+    public SituationCalculusException(String message) {
         super(message);
     }
 }
