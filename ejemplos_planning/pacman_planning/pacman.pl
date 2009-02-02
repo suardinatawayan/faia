@@ -192,6 +192,11 @@ adyacenteArriba(Pos1, Pos2) :-
 % ESTADO INICIAL
 
 
+holds(en(0), init).
+holds(vacio(6), init).
+holds(comida(1), init).
+holds(enemigo(2), init).
+holds(enemigo(3), init).
 /*
 holds(en(0), init).
 holds(vacio(0), init).

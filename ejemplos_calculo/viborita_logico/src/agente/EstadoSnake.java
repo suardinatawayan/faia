@@ -1,14 +1,14 @@
 package agente;
 
-import frsf.cidisi.faia.solver.calculus.CalculusActionFactory;
+import frsf.cidisi.faia.solver.ActionFactory;
+import frsf.cidisi.faia.solver.PrologConnector;
 import java.awt.Point;
 import java.util.Iterator;
 import java.util.Vector;
 
 import frsf.cidisi.faia.agent.Perception;
-import frsf.cidisi.faia.solver.calculus.KnowledgeBase;
 
-public class EstadoSnake extends KnowledgeBase {
+public class EstadoSnake extends PrologConnector {
     
     public EstadoSnake() {
         super("base_conocimiento.pl");
@@ -1699,7 +1699,7 @@ public class EstadoSnake extends KnowledgeBase {
     }
 
     @Override
-    public CalculusActionFactory getActionFactory() {
+    public ActionFactory getActionFactory() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 

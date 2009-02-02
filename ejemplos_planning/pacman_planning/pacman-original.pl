@@ -132,18 +132,18 @@ holds(adyacente(9,8), init).
 % 12  13  14  15
 
 holds(vacio(0), init).
-holds(vacio(1), init).
+holds(enemigo(1), init).
 holds(vacio(2), init).
-holds(vacio(3), init).
-holds(vacio(4), init).
+holds(enemigo(3), init).
+holds(comida(4), init).
 holds(vacio(5), init).
 holds(vacio(6), init).
 holds(vacio(7), init).
 holds(vacio(8), init).
 holds(vacio(9), init).
 holds(vacio(10), init).
-holds(comida(11), init).
-holds(vacio(12), init).
+holds(vacio(11), init).
+holds(enemigo(12), init).
 holds(vacio(13), init).
 holds(vacio(14), init).
 holds(vacio(15), init).

@@ -1,7 +1,7 @@
 package agente.acciones;
 
-import frsf.cidisi.faia.agent.knowledgebased.CalculusAction;
 import frsf.cidisi.faia.agent.planning.PlanningAction;
+import frsf.cidisi.faia.agent.situationcalculus.SituationCalculusAction;
 import frsf.cidisi.faia.state.AgentState;
 import frsf.cidisi.faia.state.EnvironmentState;
 import agente.EstadoAmbiente;

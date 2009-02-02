@@ -1,13 +1,13 @@
 package agente;
 
 import calculador.Calculador;
-import frsf.cidisi.faia.agent.knowledgebased.CalculusAction;
-import frsf.cidisi.faia.agent.knowledgebased.KnowledgeBasedAgent;
+import frsf.cidisi.faia.agent.situationcalculus.SituationCalculusAction;
+import frsf.cidisi.faia.agent.situationcalculus.SituationCalculusBasedAgent;
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.agent.Action;
-import frsf.cidisi.faia.solver.calculus.Calculus;
+import frsf.cidisi.faia.solver.situationcalculus.SituationCalculus;
 
-public class AgenteCalculus extends KnowledgeBasedAgent {
+public class AgenteCalculus extends SituationCalculusBasedAgent {
 
     private Calculador calculador;
 
@@ -39,7 +39,7 @@ public class AgenteCalculus extends KnowledgeBasedAgent {
     }
 
     @Override
-    public void tell(CalculusAction action) {
+    public void tell(SituationCalculusAction action) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 }
