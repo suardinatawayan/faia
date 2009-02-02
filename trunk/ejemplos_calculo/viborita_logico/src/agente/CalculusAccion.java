@@ -5,9 +5,9 @@ import viborita.Comer;
 import viborita.GirarDerecha;
 import viborita.GirarIzquierda;
 import frsf.cidisi.faia.agent.Action;
-import frsf.cidisi.faia.solver.calculus.CalculusActionFactory;
+import frsf.cidisi.faia.solver.ActionFactory;
 
-public class CalculusAccion extends CalculusActionFactory {
+public class CalculusAccion extends ActionFactory {
 
     private static CalculusAccion instancia;
 
