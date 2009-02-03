@@ -5,9 +5,9 @@ import frsf.cidisi.faia.exceptions.PrologConnectorException;
 import frsf.cidisi.faia.solver.ActionFactory;
 import frsf.cidisi.faia.solver.situationcalculus.KnowledgeBase;
 
-public class AgentState extends KnowledgeBase {
+public class WumpusAgentState extends KnowledgeBase {
 
-	public AgentState() throws PrologConnectorException {
+	public WumpusAgentState() throws PrologConnectorException {
 		super("wumpus_world.pl");
 		
 		this.initState();
