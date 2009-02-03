@@ -1,7 +1,6 @@
 package agent;
 
 import frsf.cidisi.faia.agent.Agent;
-import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.environment.Environment;
 
 public class WumpusWorldEnvironment extends Environment {
@@ -11,9 +10,13 @@ public class WumpusWorldEnvironment extends Environment {
 	}
 	
 	@Override
-	public Perception getPercept(Agent agent) {
-		// TODO Auto-generated method stub
-		return null;
+	public WumpusPerception getPercept(Agent agent) {
+		WumpusPerception p = new WumpusPerception();
+
+        WumpusAgent wumpusAgent = (WumpusAgent) agent;
+        WumpusAgentState wumpusAgentState = wumpusAgent.getAgentState();
+
+        return null;
 	}
 
 }

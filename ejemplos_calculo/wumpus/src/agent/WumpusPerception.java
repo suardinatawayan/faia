@@ -3,7 +3,7 @@ package agent;
 import frsf.cidisi.faia.agent.Agent;
 import frsf.cidisi.faia.environment.Environment;
 
-public class Perception extends frsf.cidisi.faia.agent.Perception {
+public class WumpusPerception extends frsf.cidisi.faia.agent.Perception {
 	
 	public static final int STENCH = 0;
 	public static final int BREEZE = 1;
@@ -13,7 +13,7 @@ public class Perception extends frsf.cidisi.faia.agent.Perception {
 	
 	private boolean[] sensors;
 	
-	public Perception() {
+	public WumpusPerception() {
 		super();
 		
 		this.sensors = new boolean[5];

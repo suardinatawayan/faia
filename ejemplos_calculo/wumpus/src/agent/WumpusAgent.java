@@ -6,7 +6,7 @@ import frsf.cidisi.faia.agent.situationcalculus.SituationCalculusAction;
 import frsf.cidisi.faia.agent.situationcalculus.SituationCalculusBasedAgent;
 import frsf.cidisi.faia.solver.situationcalculus.SituationCalculus;
 
-public class Agent extends SituationCalculusBasedAgent {
+public class WumpusAgent extends SituationCalculusBasedAgent {
 
 	@Override
 	public void tell(SituationCalculusAction action) {
@@ -38,8 +38,8 @@ public class Agent extends SituationCalculusBasedAgent {
 	}
 	
 	@Override
-	public AgentState getAgentState() {
-		AgentState agentState = (AgentState) this.getAgentState();
+	public WumpusAgentState getAgentState() {
+		WumpusAgentState agentState = (WumpusAgentState) this.getAgentState();
 		
 		return agentState;
 	}

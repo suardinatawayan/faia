@@ -14,7 +14,6 @@ public class WumpusWorldState extends EnvironmentState {
 	@Override
 	public void initState() {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
