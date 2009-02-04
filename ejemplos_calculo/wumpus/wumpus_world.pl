@@ -38,12 +38,6 @@ count(Query, Count) :-
 
 %position([1,1],1) :- perception([_,_,_,_,_],1).
 
-position([1,1],1).
-orientation(right,1).
-holding(arrow,1).
-
-at(nothing,[1,1]).
-
 stench(P) :-
 	perception([stench,_,_,_,_],S),
 	position(P,S).
@@ -97,27 +91,26 @@ unknown(P) :-
 	not(bump(P)),
 	not(at(nothing,P)).
 
-
 belief(wumpus,Pa) :-
 	stench(P),
-	adjacent(P,Pa),
-	count((adjacent(Pa,Pb),(unknown(Pb);stench(Pb))),4).
+	adjacent(P,Pa).
+%	count((adjacent(Pa,Pb),(unknown(Pb);stench(Pb))),4).
 
-at(wumpus,P) :-
-	belief(wumpus,P),
-	count((belief(wumpus,P)),1).
+%at(wumpus,P) :-
+%	belief(wumpus,P),
+%	count((belief(wumpus,P)),1).
 
 %stench(P) :- at(wumpus,P).
 %stench(Pa) :- at(wumpus,P),adjacent(P,Pa).
 
 belief(pit,Pa) :-
 	breeze(P),
-	adjacent(P,Pa),
-	count((adjacent(Pa,Pb),(unknown(Pb);breeze(Pb))),4).
+	adjacent(P,Pa).
+%	count((adjacent(Pa,Pb),(unknown(Pb);breeze(Pb))),4).
 
-at(pit,P) :-
-	belief(pit,P),
-	count((belief(pit,P)),1).
+%at(pit,P) :-
+%	belief(pit,P),
+%	count((belief(pit,P)),1).
 
 at(wall,Pa) :- bump(P),orientation(O,S),adjacent2(O,P,Pa).
 
@@ -147,15 +140,15 @@ excelent(grab,S) :- position(P,S),glitter(P).
 excelent(shoot,S) :- holding(arrow,S),orientation(O,S),position(P,S),adjacent2(O,P,Pa),at(wumpus,Pa).
 
 veryGood(forward,S) :- orientation(O,S),position(P,S),adjacent2(O,P,Pa),safe(Pa).
-veryGood(turnRight,S) :- orientation(O,S),position(P,S),moveRight(O,O1),adjacent2(O1,P,Pa),safe(Pa).
-veryGood(turnLeft,S) :- orientation(O,S),position(P,S),moveLeft(O,O1),adjacent2(O1,P,Pa),safe(Pa).
+veryGood(turnright,S) :- orientation(O,S),position(P,S),moveRight(O,O1),adjacent2(O1,P,Pa),safe(Pa).
+veryGood(turnleft,S) :- orientation(O,S),position(P,S),moveLeft(O,O1),adjacent2(O1,P,Pa),safe(Pa).
 
 notSoGood(forward,S) :- orientation(O,S),position(P,S),adjacent2(O,P,Pa),belief(wumpus,Pa).
 notSoGood(forward,S) :- orientation(O,S),position(P,S),adjacent2(O,P,Pa),belief(pit,Pa).
 
-veryBad(forward,S) :- orientation(O,S),position(P,S),adjacent2(O,P,Pa),at(wumpus,Pa).
-veryBad(forward,S) :- orientation(O,S),position(P,S),adjacent2(O,P,Pa),at(pit,Pa).
-veryBad(forward,S) :- orientation(O,S),position(P,S),adjacent2(O,P,Pa),at(wall,Pa).
+%veryBad(forward,S) :- orientation(O,S),position(P,S),adjacent2(O,P,Pa),at(wumpus,Pa).
+%veryBad(forward,S) :- orientation(O,S),position(P,S),adjacent2(O,P,Pa),at(pit,Pa).
+%veryBad(forward,S) :- orientation(O,S),position(P,S),adjacent2(O,P,Pa),at(wall,Pa).
 
 bestAction(noAction,S) :- holding(gold,S).
 bestAction(A,S) :- excelent(A,S).
