@@ -9,12 +9,14 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		
+//        System.out.println("milton".substring(0, "milton".length() - 1));
+
 		WumpusAgent agent = new WumpusAgent();
 		WumpusWorldEnvironment wumpusWorld = new WumpusWorldEnvironment();
-		
+
 		SituationCalculusBasedAgentSimulator simulator =
 			new SituationCalculusBasedAgentSimulator(wumpusWorld, agent);
-		
+
 		simulator.start();
 	}
 

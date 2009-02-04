@@ -5,12 +5,6 @@ import frsf.cidisi.faia.environment.Environment;
 
 public class WumpusPerception extends frsf.cidisi.faia.agent.Perception {
 	
-	public static final int STENCH = 0;
-	public static final int BREEZE = 1;
-	public static final int GLITTER = 2;
-	public static final int BUMP = 3;
-	public static final int WUMPUS_SCREAM = 4;
-	
 	private boolean[] sensors;
 	
 	public WumpusPerception() {

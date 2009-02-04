@@ -14,8 +14,7 @@ public class TurnLeft extends SituationCalculusAction {
 
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return null;
+		return "turnleft";
 	}
 
 }

@@ -14,8 +14,7 @@ public class Grab extends SituationCalculusAction {
 
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return null;
+		return "grab";
 	}
 
 }
