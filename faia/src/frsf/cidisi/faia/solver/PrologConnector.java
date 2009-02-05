@@ -74,7 +74,12 @@ public class PrologConnector {
     }
     
     public void addPredicate(String predicate) {
-    	Query query = new Query("asserta(" + predicate + ")");
+        
+        String procesedPredicate = predicate;
+        if (predicate.endsWith("."))
+            procesedPredicate = predicate.substring(0, predicate.length() - 1);
+
+    	Query query = new Query("asserta(" + procesedPredicate + ")");
     	query.hasSolution();
     }
     
