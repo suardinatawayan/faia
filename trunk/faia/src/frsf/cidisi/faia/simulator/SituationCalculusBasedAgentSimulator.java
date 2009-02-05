@@ -51,9 +51,9 @@ public class SituationCalculusBasedAgentSimulator extends GoalBasedAgentSimulato
 
         do {
 
-            System.out.println("---------------------------------------");
-            System.out.println("--- Knowledge Based Agent Simulator ---");
-            System.out.println("---------------------------------------");
+            System.out.println("------------------------------------------------");
+            System.out.println("--- Situation Calculus Based Agent Simulator ---");
+            System.out.println("------------------------------------------------");
 
             // We make the perception and send it to the agent.
             perception = this.getPercept(agent);
