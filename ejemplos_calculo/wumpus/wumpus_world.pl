@@ -122,10 +122,13 @@ at(wall,Pa) :- bump(P),orientation(O,S),adjacent2(O,P,Pa).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 ssa(S1):- S1 > 0,S is S1-1,action(A,S),A=\=forward,posicion(P,S),asserta(position(P,S1)).
+ssa(S1):- S1 > 0,S is S1-1,action(A,S),A=\=turnright,orientation(O,S),asserta(orientation(O,S1)).
+ssa(S1):- S1 > 0,S is S1-1,action(A,S),A=\=turnleft,orientation(O,S),asserta(orientation(O,S1)).
 
 ssa(S1):- S1 > 0,S is S1-1,action(forward,S),orientation(O,S),position(P,S),adjacent2(O,P,Pa),asserta(position(Pa,S1)).
 
 ssa(S1):- S1 > 0,S is S1-1,action(grab,S),asserta(holding(gold,S1)).
+ssa(S1):- S1 > 0,S is S1-1,action(A,S),holding(gold,S),A=\=release,asserta(holding(gold,S1)).
 
 ssa(S1):- S1 > 0,S is S1-1,action(A,S),A=\=shoot,asserta(holding(arrow,S1)).
 

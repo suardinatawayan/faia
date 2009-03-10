@@ -1,5 +1,6 @@
 package agent;
 
+import agent.actions.*;
 import frsf.cidisi.faia.agent.Action;
 
 public class WumpusActionFactory extends frsf.cidisi.faia.solver.ActionFactory {
@@ -18,14 +19,28 @@ public class WumpusActionFactory extends frsf.cidisi.faia.solver.ActionFactory {
 
 	@Override
 	protected String endActionString() {
-		// TODO Auto-generated method stub
-		return null;
+		return "noAction";
 	}
 
 	@Override
 	protected Action stringToAction(String stringAction) {
-		// TODO Auto-generated method stub
-		return null;
+		Action actionObject = null;
+		
+		if (stringAction.equals("climb")) {
+            actionObject = new Climb();
+        } else if (stringAction.equals("forward")) {
+        	actionObject = new Forward();
+        } else if (stringAction.equals("grab")) {
+        	actionObject = new Grab();
+        } else if (stringAction.equals("shoot")) {
+        	actionObject = new Shoot();
+        } else if (stringAction.equals("turnleft")) {
+        	actionObject = new TurnLeft();
+        } else if (stringAction.equals("turnright")) {
+        	actionObject = new TurnRight();
+        }
+		
+		return actionObject;
 	}
 
 }
