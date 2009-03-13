@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="dist/examples.jar"/>
+	<classpathentry kind="lib" path="dist/lib/calculador20080423.jar"/>
+	<classpathentry kind="lib" path="dist/lib/faia.jar"/>
+	<classpathentry kind="lib" path="dist/lib/jpl.jar"/>
+	<classpathentry kind="lib" path="lib/calculador/calculador20080423.jar"/>
+	<classpathentry kind="lib" path="lib/CopyLibs/org-netbeans-modules-java-j2seproject-copylibstask.jar"/>
+	<classpathentry kind="lib" path="lib/junit_4/junit-4.5-src.jar"/>
+	<classpathentry kind="lib" path="lib/junit_4/junit-4.5.jar"/>
+	<classpathentry kind="lib" path="lib/junit/junit-3.8.2.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/faia"/>
+	<classpathentry kind="output" path="build/classes"/>
+</classpath>
