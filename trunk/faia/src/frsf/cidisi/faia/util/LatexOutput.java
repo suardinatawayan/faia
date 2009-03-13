@@ -23,6 +23,7 @@ import java.io.FilenameFilter;
 import java.io.IOException;
 import java.util.Vector;
 
+import frsf.cidisi.faia.exceptions.LatexOutputException;
 import frsf.cidisi.faia.simulator.SimulatorEventHandler;
 import frsf.cidisi.faia.solver.search.NTree;
 import java.io.BufferedWriter;
@@ -56,7 +57,7 @@ public class LatexOutput implements SimulatorEventHandler {
         FileOperations.CopyFile(faiaPdflatex + "qtree.sty", pdflatexDir + "qtree.sty");
     }
 
-    public void compileLatexFiles(boolean removeTexFiles) {
+    public void compileLatexFiles(boolean removeTexFiles) throws LatexOutputException {
         // Copio los archivos necesarios para poder compilar con pdflatex
         // FIXME: Estoy suponiendo acá que FAIA se encuentra en la carpeta "..faia"
         try {
@@ -66,16 +67,12 @@ public class LatexOutput implements SimulatorEventHandler {
                 // Probamos a buscar un niver mas arriba
                 this.copyFiles("../" + this.faiaPdflatexDir);
             } catch (IOException ex) {
-                System.out.println("ERROR: Hubo un error desconocido al copiar los archivos de LaTeX " +
-                        "al proyecto: " + e1.getMessage());
-
-                return;
+            	throw new LatexOutputException("LaTeX files not found: "
+                        + e1.getMessage());
             }
         } catch (Exception e2) {
-            System.out.println("ERROR: Hubo un error desconocido al copiar los archivos de LaTeX " +
-                    "al proyecto: " + e2.getMessage());
-
-            return;
+        	throw new LatexOutputException("LaTeX files not found: "
+                    + e2.getMessage());
         }
 
         Process p;
@@ -105,8 +102,7 @@ public class LatexOutput implements SimulatorEventHandler {
                     System.out.print(" -> Error");
                 }
             } catch (IOException e) {
-                System.out.print(" -> Error: Posiblemente no exista el comando 'pdflatex': " + e.getMessage());
-                return;
+            	throw new LatexOutputException("LaTeX/MiKTeX is not installed: " + e.getMessage());
             } catch (InterruptedException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
@@ -215,7 +211,12 @@ public class LatexOutput implements SimulatorEventHandler {
 
     @Override
     public void simulationFinished() {
-        this.compileLatexFiles(true);
+        try {
+			this.compileLatexFiles(true);
+		} catch (LatexOutputException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 }
 

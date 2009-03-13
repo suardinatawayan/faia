@@ -49,9 +49,9 @@ public class EstadoPacmanLogico extends KnowledgeBase {
         str = str + " energia=\"" + this.getEnergia() + "\"\n";
 
         str = str + "mundo=\"[ \n";
-        for (int fil = 0; fil < this.getTamañoMundo(); fil++) {
+        for (int fil = 0; fil < this.getTamanioMundo(); fil++) {
             str = str + "[ ";
-            for (int col = 0; col < this.getTamañoMundo(); col++) {
+            for (int col = 0; col < this.getTamanioMundo(); col++) {
 
                 if (this.getFila() == fil && this.getColumna() == col) {
                     str = str + "P" + " ";
@@ -191,7 +191,7 @@ public class EstadoPacmanLogico extends KnowledgeBase {
         return false;
     }
 
-    private int getTamañoMundo() {
+    private int getTamanioMundo() {
         return 4;
     }
 
