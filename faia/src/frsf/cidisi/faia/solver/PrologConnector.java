@@ -42,16 +42,23 @@ public class PrologConnector {
         
 
         /* Set some JPL options */
-        JPL.setDefaultInitArgs(new String[]{
-                    "pl",
-                    "-G128m",
-                    "-L128m",
-                    "-T128m",
-                    "--quiet",
-                    "--nosignals"
-                });
-
-        JPL.init();
+        try {
+	        JPL.setDefaultInitArgs(new String[]{
+	                    "pl",
+	                    "-G128m",
+	                    "-L128m",
+	                    "-T128m",
+	                    "--quiet",
+	                    "--nosignals"
+	                });
+	
+	        JPL.init();
+        }
+        catch(UnsatisfiedLinkError ex) {
+        	throw new PrologConnectorException("SWI-Prolog is not installed: " +
+        			ex.getMessage());
+        }
+        
 
         // Load the knowledge base
         Query prologQuery;

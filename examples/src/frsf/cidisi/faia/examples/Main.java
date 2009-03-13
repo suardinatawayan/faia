@@ -27,18 +27,17 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws PrologConnectorException {
+        // Ejemplo de búsqueda 'robot'
+        AgenteRobot agente = new AgenteRobot();
+        AmbienteRobot ambiente = new AmbienteRobot();
+        SearchBasedAgentSimulator simu = new SearchBasedAgentSimulator(ambiente, agente);
+        simu.start();
+        
         // Ejemplo de búsqueda 'pacman' con generación de archivos PDF
         // de los árboles de búsqueda. Estos archivos se generan en la carpeta
         // 'pdflatex'
-        AgentePacman agente = new AgentePacman();
-        AmbientePacman ambiente = new AmbientePacman();
-        SearchBasedAgentSimulator simu = new SearchBasedAgentSimulator(ambiente, agente);
-        simu.start();
-
-
-        // Ejemplo de búsqueda 'robot'
-//        AgenteRobot agente = new AgenteRobot();
-//        AmbienteRobot ambiente = new AmbienteRobot();
+//        AgentePacman agente = new AgentePacman();
+//        AmbientePacman ambiente = new AmbientePacman();
 //        SearchBasedAgentSimulator simu = new SearchBasedAgentSimulator(ambiente, agente);
 //        simu.start();
 
