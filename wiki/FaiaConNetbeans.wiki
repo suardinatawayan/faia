@@ -11,13 +11,14 @@ _NOTAS:_
  * Estas instrucciones de importación de FAIA se aplican también para los ejemplos, ya que los pasos son muy similares.
  * Se pone especial énfasis en configurar correctamente la codificación de caracteres de cada proyecto importado o creado, como se indica en uno de los pasos siguientes, ya que de otro modo surgirán errores.
 
-|| *1.* Ir al menú _File -> Open Project..._ ||
+|| *1.* Descomprimir los archivos de FAIA y los ejemplos en alguna carpeta. ||
+|| *2.* Ir al menú _File -> Open Project..._ ||
 || http://faia.googlecode.com/svn/wiki/images/faiaConNetBeans/importarFaia1.png ||
-|| *2.* Dirigirse a la carpeta donde se han descomprimido FAIA y los ejemplos. Manteniendo presionada la tecla _Control_, es posible abrir únicamente el proyecto 'faia' o éste junto con todos los ejemplos. Finalmente presionar la tecla _Open Project_. ||
+|| *3.* Dirigirse a la carpeta donde se han descomprimido FAIA y los ejemplos. Manteniendo presionada la tecla _Control_, es posible abrir únicamente el proyecto 'faia' o éste junto con todos los ejemplos. Finalmente presionar la tecla _Open Project_. ||
 || http://faia.googlecode.com/svn/wiki/images/faiaConNetBeans/importarFaia2.png ||
-|| *3.* Ahora es necesario *cambiar la codificación de caracteres* de _faia_ y los demás proyectos importados. Hacemos click derecho en el proyecto y elegimos _Properties_. ||
+|| *4.* Ahora es necesario *cambiar la codificación de caracteres* de _faia_ y los demás proyectos importados. Hacemos click derecho en el proyecto y elegimos _Properties_. ||
 || http://faia.googlecode.com/svn/wiki/images/faiaConNetBeans/importarFaia3.png ||
-|| *4.* En la sección _Sources_, asegurarse que el campo _Encoding_ tenga seleccionada la opción "UTF-8". Presionar el botón _OK_. ||
+|| *5.* En la sección _Sources_, asegurarse que el campo _Encoding_ tenga seleccionada la opción "UTF-8". Presionar el botón _OK_. ||
 || http://faia.googlecode.com/svn/wiki/images/faiaConNetBeans/importarFaia4.png ||
 
 
