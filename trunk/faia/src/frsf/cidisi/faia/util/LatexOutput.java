@@ -74,12 +74,17 @@ public class LatexOutput implements SimulatorEventHandler {
         	throw new LatexOutputException("LaTeX files not found: "
                     + e2.getMessage());
         }
+        
+        // Creo el objeto que representa la carpeta pdfLatex
+        File carpetaPdflatex = new File(pdflatexDir);
+        
+        // Elimino los archivos PDF que haya en el directorio pdfLatex
+        for (File archivoPdf : carpetaPdflatex.listFiles(new PdfFilesFilter())) {
+            archivoPdf.delete();
+        }
 
         Process p;
         String[] comando;
-
-        // Creo el objeto que representa la carpeta pdfLatex
-        File carpetaPdflatex = new File(pdflatexDir);
 
         System.out.println("Compilando archivos Latex...");
         
@@ -220,11 +225,19 @@ public class LatexOutput implements SimulatorEventHandler {
     }
 }
 
+class PdfFilesFilter implements FilenameFilter {
+
+    @Override
+    public boolean accept(File arg0, String arg1) {
+        return (arg1.toLowerCase().endsWith(".pdf"));
+    }
+}
+
 class TexFilter implements FilenameFilter {
 
     @Override
     public boolean accept(File arg0, String arg1) {
-        return (arg1.endsWith(".tex"));
+        return (arg1.toLowerCase().endsWith(".tex"));
     }
 }
 
@@ -232,6 +245,6 @@ class TempFilesFilter implements FilenameFilter {
 
     @Override
     public boolean accept(File arg0, String arg1) {
-        return (arg1.endsWith(".aux") || arg1.endsWith(".log"));
+        return (arg1.toLowerCase().endsWith(".aux") || arg1.toLowerCase().endsWith(".log"));
     }
 }
