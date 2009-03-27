@@ -26,9 +26,12 @@ import java.util.Vector;
 import frsf.cidisi.faia.exceptions.LatexOutputException;
 import frsf.cidisi.faia.simulator.SimulatorEventHandler;
 import frsf.cidisi.faia.solver.search.NTree;
+
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 
@@ -104,7 +107,19 @@ public class LatexOutput implements SimulatorEventHandler {
                 if (p.exitValue() == 0) {
                     System.out.print(" -> Ok");
                 } else {
-                    System.out.print(" -> Error");
+                    System.out.println(" -> There was an error. This is tandard output of the 'pdflatex' command:");
+                    System.out.println();
+                    BufferedReader stdError = new BufferedReader(new
+                    		InputStreamReader(p.getErrorStream()));
+                    
+                    String s = null;
+                    while ((s = stdError.readLine()) != null) {
+                    	System.out.println("\t" + s);
+                    }
+                    
+                    System.out.println();
+                    
+                    throw new LatexOutputException("'pdflatex' execution failed.");
                 }
             } catch (IOException e) {
             	throw new LatexOutputException("LaTeX/MiKTeX is not installed: " + e.getMessage());
