@@ -16,13 +16,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package frsf.cidisi.faia.solver.planning;
+package frsf.cidisi.faia.agent.planning;
 
 import java.util.Hashtable;
 
 import frsf.cidisi.faia.exceptions.PrologConnectorException;
-import frsf.cidisi.faia.solver.ActionFactory;
-import frsf.cidisi.faia.solver.PrologConnector;
+import frsf.cidisi.faia.agent.ActionFactory;
+import frsf.cidisi.faia.agent.PrologConnector;
 import frsf.cidisi.faia.state.AgentState;
 
 public abstract class PlanningBasedAgentState extends AgentState {
@@ -62,7 +62,7 @@ public abstract class PlanningBasedAgentState extends AgentState {
 	/**
 	 * Returns the best action and applies it on the agent state.
 	 */
-	String getBestActionAction() {
+	public String getBestActionAction() {
 		String bestActionQuery = this.getBestActionPredicate() + "(X)";
 		
 		// Query for the best action.

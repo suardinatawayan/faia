@@ -2,8 +2,8 @@ package frsf.cidisi.faia.examples.situationcalculus.pacman;
 
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.exceptions.PrologConnectorException;
-import frsf.cidisi.faia.solver.ActionFactory;
-import frsf.cidisi.faia.solver.situationcalculus.KnowledgeBase;
+import frsf.cidisi.faia.agent.ActionFactory;
+import frsf.cidisi.faia.agent.situationcalculus.KnowledgeBase;
 
 import java.util.Hashtable;
 
@@ -223,11 +223,5 @@ public class EstadoPacmanLogico extends KnowledgeBase {
             return PercepcionPacmanLogico.PERCEPCION_VACIO;        // TODO: No deberia llegar aca nunca
         }
         return 9;
-    }
-
-    public int getCeldasVisitadas() {
-        // TODO: Aca habria que hacer una consulta Prolog
-
-        return 0;
     }
 }

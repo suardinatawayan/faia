@@ -16,14 +16,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package frsf.cidisi.faia.solver.situationcalculus;
+package frsf.cidisi.faia.agent.situationcalculus;
 
 import java.util.Hashtable;
 
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.exceptions.PrologConnectorException;
-import frsf.cidisi.faia.solver.ActionFactory;
-import frsf.cidisi.faia.solver.PrologConnector;
+import frsf.cidisi.faia.agent.ActionFactory;
+import frsf.cidisi.faia.agent.PrologConnector;
 import frsf.cidisi.faia.state.AgentState;
 
 public abstract class KnowledgeBase extends AgentState {

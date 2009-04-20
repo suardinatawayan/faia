@@ -1,7 +1,7 @@
 package frsf.cidisi.faia.examples.situationcalculus.pacman;
 
 import frsf.cidisi.faia.agent.Action;
-import frsf.cidisi.faia.solver.ActionFactory;
+import frsf.cidisi.faia.agent.ActionFactory;
 import frsf.cidisi.faia.examples.situationcalculus.pacman.actions.*;
 
 /**

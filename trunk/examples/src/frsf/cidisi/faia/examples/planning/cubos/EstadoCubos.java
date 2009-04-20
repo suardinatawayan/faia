@@ -4,8 +4,8 @@ import java.util.Hashtable;
 
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.exceptions.PrologConnectorException;
-import frsf.cidisi.faia.solver.ActionFactory;
-import frsf.cidisi.faia.solver.planning.PlanningBasedAgentState;
+import frsf.cidisi.faia.agent.ActionFactory;
+import frsf.cidisi.faia.agent.planning.PlanningBasedAgentState;
 
 public class EstadoCubos extends PlanningBasedAgentState {
 

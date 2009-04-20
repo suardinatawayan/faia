@@ -6,9 +6,9 @@ import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.agent.situationcalculus.SituationCalculusAction;
 import frsf.cidisi.faia.agent.situationcalculus.SituationCalculusBasedAgent;
 import frsf.cidisi.faia.exceptions.PrologConnectorException;
-import frsf.cidisi.faia.solver.PrologConnector;
+import frsf.cidisi.faia.agent.PrologConnector;
 import frsf.cidisi.faia.solver.situationcalculus.SituationCalculus;
-import frsf.cidisi.faia.solver.situationcalculus.KnowledgeBase;
+import frsf.cidisi.faia.agent.situationcalculus.KnowledgeBase;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;

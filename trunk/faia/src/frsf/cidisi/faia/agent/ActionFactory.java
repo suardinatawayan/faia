@@ -16,8 +16,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package frsf.cidisi.faia.solver;
+package frsf.cidisi.faia.agent;
 
+import frsf.cidisi.faia.solver.*;
 import frsf.cidisi.faia.agent.Action;
 
 /**

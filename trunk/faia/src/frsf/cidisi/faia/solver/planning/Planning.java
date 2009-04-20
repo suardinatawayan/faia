@@ -18,6 +18,7 @@
 
 package frsf.cidisi.faia.solver.planning;
 
+import frsf.cidisi.faia.agent.planning.PlanningBasedAgentState;
 import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.agent.planning.PlanningBasedAgent;
 import frsf.cidisi.faia.solver.Solve;

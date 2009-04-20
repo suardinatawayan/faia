@@ -8,7 +8,7 @@ import frsf.cidisi.faia.examples.planning.cubos.acciones.Apilar;
 import frsf.cidisi.faia.examples.planning.cubos.acciones.Depositar;
 import frsf.cidisi.faia.examples.planning.cubos.acciones.Desapilar;
 import frsf.cidisi.faia.examples.planning.cubos.acciones.Tomar;
-import frsf.cidisi.faia.solver.ActionFactory;
+import frsf.cidisi.faia.agent.ActionFactory;
 
 public class CubosActionFactory extends ActionFactory {
 	

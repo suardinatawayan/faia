@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package frsf.cidisi.faia.solver;
+package frsf.cidisi.faia.agent;
 
 import java.util.Hashtable;
 
