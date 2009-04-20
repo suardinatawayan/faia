@@ -24,7 +24,7 @@ import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.agent.situationcalculus.SituationCalculusAction;
 import frsf.cidisi.faia.agent.situationcalculus.SituationCalculusBasedAgent;
 import frsf.cidisi.faia.environment.Environment;
-import frsf.cidisi.faia.solver.NoAction;
+import frsf.cidisi.faia.agent.NoAction;
 
 import java.util.Vector;
 

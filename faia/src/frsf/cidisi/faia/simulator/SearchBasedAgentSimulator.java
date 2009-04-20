@@ -51,6 +51,7 @@ public class SearchBasedAgentSimulator extends GoalBasedAgentSimulator {
         return gt.isGoalState(aSt);
     }
 
+    @Override
     public void start() {
         //TODO:
         // ANTES DE EMPEZAR CON LA SIMULACION HAY QUE TESTEAR QUE EL AMBIENTE ESTE

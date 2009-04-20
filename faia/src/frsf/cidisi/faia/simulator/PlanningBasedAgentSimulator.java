@@ -26,7 +26,7 @@ import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.agent.planning.PlanningAction;
 import frsf.cidisi.faia.agent.planning.PlanningBasedAgent;
 import frsf.cidisi.faia.environment.Environment;
-import frsf.cidisi.faia.solver.NoAction;
+import frsf.cidisi.faia.agent.NoAction;
 
 public class PlanningBasedAgentSimulator extends GoalBasedAgentSimulator {
 

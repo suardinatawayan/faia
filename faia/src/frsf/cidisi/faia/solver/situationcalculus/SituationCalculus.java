@@ -18,9 +18,10 @@
 
 package frsf.cidisi.faia.solver.situationcalculus;
 
+import frsf.cidisi.faia.agent.situationcalculus.KnowledgeBase;
 import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.exceptions.SituationCalculusException;
-import frsf.cidisi.faia.solver.PrologConnector;
+import frsf.cidisi.faia.agent.PrologConnector;
 import frsf.cidisi.faia.solver.Solve;
 import java.util.Hashtable;
 

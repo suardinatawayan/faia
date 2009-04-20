@@ -44,10 +44,10 @@ public class Main {
 //        SearchBasedAgentSimulator simu = new SearchBasedAgentSimulator(ambiente, agente);
 //        simu.start();
         
-        AgenteCubos agente = new AgenteCubos();
-        AmbienteCubos ambiente = new AmbienteCubos();
-        PlanningBasedAgentSimulator simu = new PlanningBasedAgentSimulator(ambiente, agente);
-        simu.start();
+//        AgenteCubos agente = new AgenteCubos();
+//        AmbienteCubos ambiente = new AmbienteCubos();
+//        PlanningBasedAgentSimulator simu = new PlanningBasedAgentSimulator(ambiente, agente);
+//        simu.start();
 
 
         // Ejemplo de búsqueda 'viborita'
@@ -60,9 +60,9 @@ public class Main {
 
         
         // Ejemplo de cálculo situacional 'pacman'
-//        AgentePacmanLogico agente = new AgentePacmanLogico();
-//        AmbientePacmanLogico ambiente = new AmbientePacmanLogico();
-//        SituationCalculusBasedAgentSimulator simu = new SituationCalculusBasedAgentSimulator(ambiente, agente);
-//        simu.start();
+        AgentePacmanLogico agente = new AgentePacmanLogico();
+        AmbientePacmanLogico ambiente = new AmbientePacmanLogico();
+        SituationCalculusBasedAgentSimulator simu = new SituationCalculusBasedAgentSimulator(ambiente, agente);
+        simu.start();
     }
 }
