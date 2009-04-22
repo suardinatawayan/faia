@@ -1,0 +1,27 @@
+#Extensiones y mejoras a FAIA
+
+= Introducción =
+
+Esta es una lista de posibles extensiones y mejoras al framework. El orden no indica prioridad.
+
+
+= Detalles =
+
+* Revisión exhaustiva del estado del arte actual de frameworks que permiten resolver problemas de IA
+* Comparación: FAIA vs. Otras propuestas
+* Enumeración de puntos fuertes y débiles que se detectaron en el uso de FAIA
+* Revisión exhaustiva de la arquitectura y del modelo de datos actual con el objetivo de:
+    Validar el modelo desde el punto de vista teórico
+    Detectar inconsistencias
+    Simplificar el modelo y/o el proceso de extensión del framework para la resolución de los problemas planteados
+    Minimizar la cantidad de código necesario en la implementación de las extensiones que permiten resolver el problema de IA
+* Implementación de todos los algoritmos de búsqueda que se enseñan en la cátedra.
+* Plantear alternativas para la optimización de los algoritmos desarrollados en el framework.
+* Desarrollo de un editor (plug-in de Eclipse) que permita modelar el problema a resolver mediante FAIA 
+* Desarrollo de una maquina de transformación modelo-a-código que permita generar el código Java genérico, es decir, las clases, atributos y métodos genéricos que se mantienen constantes de problema en problema.
+* Desarrollo de un plug-in Eclipse que permita visualizar en un diagrama de secuencia el proceso de simulación. Este diagrama se puede utilizar como depurador y sirve como base fundamental para que los alumnos comprendan el proceso de simulación.
+* Desarrollo de un plug-in Eclipse para la visualización de los árboles de búsqueda. El árbol se debe generar de manera dinámica en tiempo real durante la ejecución del algoritmo de búsqueda. Esto permite entender como se generan los árboles de búsqueda. Además, debe ser posible ver el estado de cada nodo del árbol en la vista de propiedades que provee Eclipse. Esta vista también debe mostrar la lista de nodos a expandir.
+* Desarrollo de un plug-in Eclipse para la visualización de la ejecución de los agentes (la interfaz) que sea fácilmente extensible y fácil de personalizar para utilizar en la resolución de cualquier problema. Como ejemplo puedo mencionar la interfaz que había diseñado para el Pac-Man.
+* Integración de los puntos 7, 8, y 9 de manera tal que en una misma interfaz se pueda visualizar todo: proceso de simulación, árbol de búsqueda, e interfaz real de la solución del problema.
+* Investigación de métodos alternativos a Prolog para resolver problemas de Planning y Cálculo Situacional (por ejemplo orientación a objetos): ver factibilidad, reutilización de frameworks existentes, facilidad de implementación, facilidad de extensión y uso por parte de los alumnos.
+* Implementar todos los ejercicios de las guías utilizando el framework.
