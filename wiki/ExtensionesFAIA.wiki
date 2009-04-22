@@ -11,10 +11,10 @@ Esta es una lista de posibles extensiones y mejoras al framework. El orden no in
  * Comparación: FAIA vs. Otras propuestas
  * Enumeración de puntos fuertes y débiles que se detectaron en el uso de FAIA
  * Revisión exhaustiva de la arquitectura y del modelo de datos actual con el objetivo de:
-  *Validar el modelo desde el punto de vista teórico
-  *Detectar inconsistencias
-  *Simplificar el modelo y/o el proceso de extensión del framework para la resolución de los problemas planteados
-  *Minimizar la cantidad de código necesario en la implementación de las extensiones que permiten resolver el problema de IA
+  * Validar el modelo desde el punto de vista teórico
+  * Detectar inconsistencias
+  * Simplificar el modelo y/o el proceso de extensión del framework para la resolución de los problemas planteados
+  * Minimizar la cantidad de código necesario en la implementación de las extensiones que permiten resolver el problema de IA
  * Implementación de todos los algoritmos de búsqueda que se enseñan en la cátedra.
  * Plantear alternativas para la optimización de los algoritmos desarrollados en el framework.
  * Desarrollo de un editor (plug-in de Eclipse) que permita modelar el problema a resolver mediante FAIA 
