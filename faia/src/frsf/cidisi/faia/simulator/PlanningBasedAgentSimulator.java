@@ -59,6 +59,7 @@ public class PlanningBasedAgentSimulator extends GoalBasedAgentSimulator {
             agent.see(perception);
 
             System.out.println("Agent State: " + agent.getAgentState());
+            System.out.println();
             System.out.println("Environment: " + environment);
             System.out.println("---------------------------------------");
             System.out.println("---------------------------------------");
