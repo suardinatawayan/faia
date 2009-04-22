@@ -63,7 +63,7 @@ public class EstadoCubos extends PlanningBasedAgentState {
 		}
 		
 		// Cubo que el brazo está sosteniendo
-		sb.append("\n");
+		//sb.append("\n");
 		String cuboSostenido = "(ninguno)";
 		
 		resultado = this.query("sostenido(X)");
