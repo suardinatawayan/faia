@@ -6,18 +6,15 @@ import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.agent.situationcalculus.SituationCalculusAction;
 import frsf.cidisi.faia.agent.situationcalculus.SituationCalculusBasedAgent;
 import frsf.cidisi.faia.exceptions.PrologConnectorException;
-import frsf.cidisi.faia.agent.PrologConnector;
 import frsf.cidisi.faia.solver.situationcalculus.SituationCalculus;
-import frsf.cidisi.faia.agent.situationcalculus.KnowledgeBase;
-
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class AgentePacmanLogico extends SituationCalculusBasedAgent {
 
     public AgentePacmanLogico() throws PrologConnectorException {
-    	/* Creamos el objeto EstadoPacman, que es la base de conocimiento
-    	 * del agente, y la seteamos al mismo.
+    	/* Creamos el objeto EstadoPacmanLogico, que es la base de conocimiento
+    	 * del agente, y la asignamos al mismo.
     	 */
         EstadoPacmanLogico estadoPacman = new EstadoPacmanLogico();
         this.setState(estadoPacman);
@@ -32,8 +29,8 @@ public class AgentePacmanLogico extends SituationCalculusBasedAgent {
     	/*
     	 * Así como en el ejemplo 'pacman' (de Búsqueda) el Solver era un
     	 * objeto de la clase Search, en este caso es uno de la clase
-    	 * Calculus. Esta es la única diferencia en el código de este método
-    	 * con respecto al agente basado en búsqueda.
+    	 * SituationCalculus. Esta es la única diferencia en el código de
+    	 * este método con respecto al agente basado en búsqueda.
     	 */
         SituationCalculus calculus = new SituationCalculus();
         this.setSolver(calculus);
@@ -60,7 +57,7 @@ public class AgentePacmanLogico extends SituationCalculusBasedAgent {
     @Override
     public void tell(SituationCalculusAction action) {
     	EstadoPacmanLogico kb = (EstadoPacmanLogico) this.getAgentState();
-        kb.tell(action.getLogicName());
+        kb.tell(action);
     }
 
     /**

@@ -1,10 +1,10 @@
 package frsf.cidisi.faia.examples.situationcalculus.pacman;
 
 import frsf.cidisi.faia.agent.Agent;
-import frsf.cidisi.faia.agent.Perception;
+import frsf.cidisi.faia.agent.situationcalculus.SituationCalculusPerception;
 import frsf.cidisi.faia.environment.Environment;
 
-public class PercepcionPacmanLogico extends Perception {
+public class PercepcionPacmanLogico extends SituationCalculusPerception {
 
     public static final int PERCEPCION_DESCONOCIDO = -1;
     public static final int PERCEPCION_VACIO = 0;
@@ -27,6 +27,7 @@ public class PercepcionPacmanLogico extends Perception {
         super(agent, environment);
     }
 
+    @Override
     public void initPerception(Agent agent, Environment environment) {
         AgentePacmanLogico pacman = (AgentePacmanLogico) agent;
         AmbientePacmanLogico ambiente = (AmbientePacmanLogico) environment;
@@ -34,10 +35,42 @@ public class PercepcionPacmanLogico extends Perception {
         this.setFila(((EstadoPacmanLogico) pacman.getAgentState()).getFila());
         this.setColumna(((EstadoPacmanLogico) pacman.getAgentState()).getColumna());
 
-        setSensorArriba(ambiente.getArriba(this.getFila(), this.getColumna()));
-        setSensorIzquierda(ambiente.getIzquierda(this.getFila(), this.getColumna()));
-        setSensorDerecha(ambiente.getDerecha(this.getFila(), this.getColumna()));
-        setSensorAbajo(ambiente.getAbajo(this.getFila(), this.getColumna()));
+        this.setSensorArriba(ambiente.getArriba(this.getFila(), this.getColumna()));
+        this.setSensorIzquierda(ambiente.getIzquierda(this.getFila(), this.getColumna()));
+        this.setSensorDerecha(ambiente.getDerecha(this.getFila(), this.getColumna()));
+        this.setSensorAbajo(ambiente.getAbajo(this.getFila(), this.getColumna()));
+    }
+    
+    @Override
+    public String toString() {
+        StringBuffer resultado = new StringBuffer("percepcion([");
+
+        // Celdas adyacentes
+        resultado.append(this.convertirEstadoCelda(this.sensorIzquierda));
+        resultado.append(",");
+        resultado.append(this.convertirEstadoCelda(this.sensorDerecha));
+        resultado.append(",");
+        resultado.append(this.convertirEstadoCelda(this.sensorArriba));
+        resultado.append(",");
+        resultado.append(this.convertirEstadoCelda(this.sensorAbajo));
+        resultado.append("],");
+
+        // Posición del agente
+        resultado.append(this.getFila());
+        resultado.append(",");
+        resultado.append(this.getColumna());
+        resultado.append(",");
+
+        // Energía del agente
+        resultado.append(this.getEnergia());
+        resultado.append(",");
+
+        // Tiempo
+        resultado.append(this.getTiempo());
+
+        resultado.append(")");
+
+        return resultado.toString();
     }
 
     public int getSensorIzquierda() {
@@ -96,38 +129,6 @@ public class PercepcionPacmanLogico extends Perception {
         }
 
         return resultado;
-    }
-
-    @Override
-    public String toString() {
-        StringBuffer resultado = new StringBuffer("percepcion([");
-
-        // Celdas adyacentes
-        resultado.append(this.convertirEstadoCelda(this.sensorIzquierda));
-        resultado.append(",");
-        resultado.append(this.convertirEstadoCelda(this.sensorDerecha));
-        resultado.append(",");
-        resultado.append(this.convertirEstadoCelda(this.sensorArriba));
-        resultado.append(",");
-        resultado.append(this.convertirEstadoCelda(this.sensorAbajo));
-        resultado.append("],");
-
-        // Posición del agente
-        resultado.append(this.getFila());
-        resultado.append(",");
-        resultado.append(this.getColumna());
-        resultado.append(",");
-
-        // Energía del agente
-        resultado.append(this.getEnergia());
-        resultado.append(",");
-
-        // Tiempo
-        resultado.append(this.getTiempo());
-
-        resultado.append(")");
-
-        return resultado.toString();
     }
 
     public int getTiempo() {
