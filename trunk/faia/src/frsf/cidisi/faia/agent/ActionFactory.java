@@ -37,6 +37,7 @@ public abstract class ActionFactory {
      * 
      * @param stringAction
      * @return The Action represented by stringAction
+     * @throws Exception 
      */
     public Action makeActionFromString(String stringAction) {
         if (stringAction.equals(this.endActionString()))
