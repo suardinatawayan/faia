@@ -12,7 +12,7 @@ import frsf.cidisi.faia.simulator.SearchBasedAgentSimulator;
  *
  * @author miltondp
  */
-public class Main {
+public class SnakeMain {
 
     /**
      * @param args the command line arguments

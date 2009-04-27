@@ -11,7 +11,7 @@ import frsf.cidisi.faia.simulator.PlanningBasedAgentSimulator;
  *
  * @author miltondp
  */
-public class Main {
+public class CubosMain {
 
     /**
      * @param args the command line arguments
