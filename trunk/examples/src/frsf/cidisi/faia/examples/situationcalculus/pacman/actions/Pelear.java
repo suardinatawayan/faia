@@ -30,6 +30,6 @@ public class Pelear extends SituationCalculusAction {
 
     @Override
     public String toString() {
-        return "Pelear";
+        return "pelear";
     }
 }

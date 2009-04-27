@@ -44,6 +44,6 @@ public class Comer extends SituationCalculusAction {
      */
     @Override
     public String toString() {
-        return "Comer";
+        return "comer";
     }
 }
