@@ -14,7 +14,7 @@ import frsf.cidisi.faia.simulator.SearchBasedAgentSimulator;
 public class PacmanMain {
 
     /**
-     * @param args the command line arguments 
+     * @param args the command line arguments
      */
     public static void main(String[] args) throws PrologConnectorException {
         AgentePacman agente = new AgentePacman();
