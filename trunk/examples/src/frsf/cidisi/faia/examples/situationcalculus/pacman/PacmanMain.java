@@ -11,7 +11,7 @@ import frsf.cidisi.faia.simulator.SituationCalculusBasedAgentSimulator;
  *
  * @author miltondp
  */
-public class Main {
+public class PacmanMain {
 
     /**
      * @param args the command line arguments
