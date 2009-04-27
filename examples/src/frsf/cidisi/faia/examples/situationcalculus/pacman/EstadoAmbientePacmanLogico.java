@@ -24,19 +24,6 @@ public class EstadoAmbientePacmanLogico extends EnvironmentState {
         this.initState();
     }
     
-//  public Object clone() {
-//  int[][] nuevoMundo = new int[4][4];
-//
-//  for (int fil = 0; fil < mundo.length; fil++) {
-//      for (int col = 0; col < mundo.length; col++) {
-//          nuevoMundo[fil][col] = mundo[fil][col];
-//      }
-//  }
-//  EstadoAmbiente nuevoEstado = new EstadoAmbiente(nuevoMundo);
-//
-//  return nuevoEstado;
-//}
-    
     @Override
     public void initState() {
 
@@ -61,7 +48,7 @@ public class EstadoAmbientePacmanLogico extends EnvironmentState {
         for (int fil = 0; fil < mundo.length; fil++) {
             str = str + "[ ";
             for (int col = 0; col < mundo.length; col++) {
-                str = str + mundo[fil][col] + " ";
+                str = str + this.convertirCelda(mundo[fil][col]) + " ";
             }
             str = str + " ]\n";
         }
@@ -71,6 +58,20 @@ public class EstadoAmbientePacmanLogico extends EnvironmentState {
     }
 
     // Estos métodos son internos de la clase EstadoAmbiente.
+    
+    private String convertirCelda(int p) {
+    	String r = "";
+    	
+    	if (p == PercepcionPacmanLogico.PERCEPCION_COMIDA)
+    		r = "C";
+    	else if (p == PercepcionPacmanLogico.PERCEPCION_ENEMIGO)
+    		r = "E";
+    	else if (p == PercepcionPacmanLogico.PERCEPCION_VACIO)
+    		r = " ";
+    	
+    	return r;
+    }
+    
     public int[][] getMundo() {
         return mundo;
     }

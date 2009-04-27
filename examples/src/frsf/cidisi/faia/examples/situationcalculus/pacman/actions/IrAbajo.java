@@ -13,6 +13,6 @@ public class IrAbajo extends SituationCalculusAction {
 
     @Override
     public String toString() {
-        return "Abajo";
+        return "abajo";
     }
 }

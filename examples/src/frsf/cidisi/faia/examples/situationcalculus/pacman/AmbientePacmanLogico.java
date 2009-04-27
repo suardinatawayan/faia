@@ -56,7 +56,10 @@ public class AmbientePacmanLogico extends Environment {
         return environmentState.toString();
     }
 
-    // Este métodos de abajo, son internos de la clase AmbientePacman.
+    //////////////////////////////////////////////////////////////////
+    // Estos métodos de abajo son internos de la clase AmbientePacman.
+    //////////////////////////////////////////////////////////////////
+    
     public int getArriba(int fil, int col) {
         return ((EstadoAmbientePacmanLogico) this.environmentState).getArriba(fil, col);
     }

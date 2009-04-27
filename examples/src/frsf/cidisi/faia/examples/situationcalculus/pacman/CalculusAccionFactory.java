@@ -9,7 +9,7 @@ import frsf.cidisi.faia.examples.situationcalculus.pacman.actions.*;
  * al agente (ver el método solve()), recibe de la base de conocimiento
  * un string que representa a la acción elegida. Sin embargo, el método
  * solve debe devolver un *objeto* Action.
- * Esta clase es utilizada para transformar un string en un objeto acción, y
+ * Esta clase es utilizada para transformar un string en un objeto Action, y
  * debe ser implementada por el usuario.
  * Se utiliza el patrón Singleton.
  */
@@ -46,6 +46,7 @@ public class CalculusAccionFactory extends ActionFactory {
         } else if (stringAction.equals("pelear")) {
             return new Pelear();
         }
+        
         return null;
     }
 

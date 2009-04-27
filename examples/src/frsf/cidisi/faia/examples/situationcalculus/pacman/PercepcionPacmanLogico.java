@@ -112,7 +112,7 @@ public class PercepcionPacmanLogico extends SituationCalculusPerception {
     public void setEnergia(int energia) {
         this.energia = energia;
     }
-
+    
     private String convertirEstadoCelda(int estadoCelda) {
         String resultado = null;
 

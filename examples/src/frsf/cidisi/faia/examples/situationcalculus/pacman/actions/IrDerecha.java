@@ -16,6 +16,6 @@ public class IrDerecha extends SituationCalculusAction {
 
     @Override
     public String toString() {
-        return "Derecha";
+        return "derecha";
     }
 }

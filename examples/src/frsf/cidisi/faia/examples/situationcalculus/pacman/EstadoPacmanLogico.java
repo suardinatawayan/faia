@@ -54,16 +54,10 @@ public class EstadoPacmanLogico extends KnowledgeBase {
             str = str + "[ ";
             for (int col = 0; col < this.getTamanioMundo(); col++) {
 
-                if (this.getFila() == fil && this.getColumna() == col) {
+                if (this.getFila() == fil && this.getColumna() == col)
                     str = str + "P" + " ";
-                    continue;
-                }
-
-                if (this.getEstadoPosicion(fil, col) == PercepcionPacmanLogico.PERCEPCION_DESCONOCIDO) {
-                    str = str + "* ";
-                } else {
-                    str = str + this.getEstadoPosicion(fil, col) + " ";
-                }
+                else
+                	str = str + this.convertirCelda(this.getEstadoPosicion(fil, col));
             }
             str = str + " ]\n";
         }
@@ -96,39 +90,15 @@ public class EstadoPacmanLogico extends KnowledgeBase {
     public String getBestActionPredicate() {
         return "mejorAccion";
     }
-
+    
     /**
-     * Tiene el mismo objetivo que el método 'getBestActionPredicate'.
-     * 
-     * Este método debe devolver el string que se utiliza en el archivo
-     * prolog para representar la sentencia de que el objetivo se ha
-     * cumplido. En este proyecto, 'pacman_logico', se lo utiliza por
-     * ejemplo en esta línea:
-     * 
-     *   cumplioObjetivo(S):-tableroVacio(S).
-     * 
-     */
-//    @Override
-//    public String getGoalReachedPredicate() {
-//        return "cumplioObjetivo";
-//    }
-//    
-    /**
-     * Tiene el mismo objetivo que el método 'getBestActionPredicate'.
+     * Tiene un objetivo similar al método 'getBestActionPredicate'.
      */
     @Override
     public String getExecutedActionPredicate() {
         return "accionEjecutada";
     }
-//
-//    /**
-//     * Tiene el mismo objetivo que el método 'getBestActionPredicate'.
-//     */
-//    @Override
-//    public String getCurrentSituationPredicate() {
-//        return "situacionActual";
-//    }
-
+    
     /**
      * Aquí simplemente se agrega conocimiento inicial. En este caso,
      * que la situación actual es 0, que estoy en la posición 1,2, y
@@ -194,6 +164,21 @@ public class EstadoPacmanLogico extends KnowledgeBase {
 
     private int getTamanioMundo() {
         return 4;
+    }
+    
+    private String convertirCelda(int p) {
+    	String r = "";
+    	
+    	if (p == PercepcionPacmanLogico.PERCEPCION_COMIDA)
+    		r = "C";
+    	else if (p == PercepcionPacmanLogico.PERCEPCION_ENEMIGO)
+    		r = "E";
+    	else if (p == PercepcionPacmanLogico.PERCEPCION_VACIO)
+    		r = " ";
+    	else if (p == PercepcionPacmanLogico.PERCEPCION_DESCONOCIDO)
+    		r = "*";
+    	
+    	return r + " ";
     }
 
     private int getEstadoPosicion(int fila, int col) {
