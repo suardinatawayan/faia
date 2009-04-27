@@ -1,6 +1,7 @@
 package frsf.cidisi.faia.examples.situationcalculus.pacman;
 
 import frsf.cidisi.faia.agent.Perception;
+import frsf.cidisi.faia.agent.situationcalculus.SituationCalculusPerception;
 import frsf.cidisi.faia.exceptions.PrologConnectorException;
 import frsf.cidisi.faia.agent.ActionFactory;
 import frsf.cidisi.faia.agent.situationcalculus.KnowledgeBase;
@@ -34,7 +35,7 @@ public class EstadoPacmanLogico extends KnowledgeBase {
      */
     @Override
     public void updateState(Perception perception) {
-        this.tell(perception);
+        this.tell((SituationCalculusPerception)perception);
     }
     
     /**
