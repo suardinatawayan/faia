@@ -181,6 +181,32 @@ public class NTree implements Cloneable, Comparable<NTree> {
 
         return eo + ac;
     }
+    
+    public String toGraphviz(){
+    	String str = "";
+    	str = "nodo" + this.executionOrder+
+    	"[label=\"{EO: "+this.executionOrder+"|"+
+    	"cost: "+this.cost+"|"+
+    	"A: "+this.getAction();
+    	
+    	if (this.getParent() != null) {
+    		if (this.getParent().getParent() != null)
+    			str += "|"+this.getParent().getAgentState().toString()
+		    	.replace(",","")
+		    	.replace("[","")
+		    	.replace("]","")
+		    	.replace(" ", "\\n");
+    	}
+    	str += 	"}\"]";
+		str = str + "\n";
+        for (int i = 0; i < getSons().size(); i++) {
+            str = str + sons.elementAt(i).toGraphviz();
+            str += "nodo" + this.executionOrder +" -> "+
+            "nodo" +sons.elementAt(i).executionOrder +";\n";
+        }
+		str = str + "\n";
+    	return str;
+    }
 
     public String toXml() {
 
