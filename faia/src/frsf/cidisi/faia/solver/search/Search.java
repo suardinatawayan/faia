@@ -27,6 +27,7 @@ import frsf.cidisi.faia.state.AgentState;
 import frsf.cidisi.faia.agent.searchbased.GoalTest;
 import frsf.cidisi.faia.agent.searchbased.SearchAction;
 import frsf.cidisi.faia.agent.searchbased.SearchBasedAgentState;
+import frsf.cidisi.faia.util.GraphvizTree;
 import frsf.cidisi.faia.util.LatexOutput;
 import frsf.cidisi.faia.util.XmlTree;
 
@@ -36,6 +37,7 @@ public class Search extends Solve {
     public static final int XML_TREE = 1;
     public static final int PDF_TREE = 2;
     public static final int GRAPHICAL_TREE = 3;
+    public static final int GRAPHVIZ_TREE = 4;
     private NTree tree;
     private NTree goalNode;
     private Strategy searchStrategy;
@@ -197,6 +199,9 @@ public class Search extends Solve {
                 break;
             case Search.GRAPHICAL_TREE:
                 break;
+            case Search.GRAPHVIZ_TREE:
+            	GraphvizTree.printFile(tree);
+            	break;	
         }
     }
 
