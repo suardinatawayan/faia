@@ -1,0 +1,3 @@
+= Cosas para no olvidar al documentar sobre Matlab =
+
+ * En linux hay que instalar el paquete csh para que funcionen las librerías que usan en Engine de Matlab.
