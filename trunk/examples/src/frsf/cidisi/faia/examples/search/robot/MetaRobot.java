@@ -18,7 +18,7 @@
 
 package frsf.cidisi.faia.examples.search.robot;
 
-import frsf.cidisi.faia.agent.searchbased.GoalTest;
+import frsf.cidisi.faia.agent.search.GoalTest;
 import frsf.cidisi.faia.state.AgentState;
 
 public class MetaRobot extends GoalTest {

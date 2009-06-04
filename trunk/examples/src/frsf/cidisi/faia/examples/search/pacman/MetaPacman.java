@@ -18,7 +18,7 @@
 
 package frsf.cidisi.faia.examples.search.pacman;
 
-import frsf.cidisi.faia.agent.searchbased.GoalTest;
+import frsf.cidisi.faia.agent.search.GoalTest;
 import frsf.cidisi.faia.state.AgentState;
 
 /**

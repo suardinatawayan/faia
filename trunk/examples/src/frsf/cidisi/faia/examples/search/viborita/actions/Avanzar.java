@@ -21,8 +21,8 @@ package frsf.cidisi.faia.examples.search.viborita.actions;
 import frsf.cidisi.faia.examples.search.viborita.*;
 import java.awt.Point;
 
-import frsf.cidisi.faia.agent.searchbased.SearchAction;
-import frsf.cidisi.faia.agent.searchbased.SearchBasedAgentState;
+import frsf.cidisi.faia.agent.search.SearchAction;
+import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
 import frsf.cidisi.faia.state.AgentState;
 import frsf.cidisi.faia.state.EnvironmentState;
 

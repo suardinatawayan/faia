@@ -21,11 +21,11 @@ package frsf.cidisi.faia.examples.search.robot;
 import frsf.cidisi.faia.examples.search.robot.actions.*;
 import java.util.Vector;
 
-import frsf.cidisi.faia.agent.searchbased.SearchBasedAgent;
+import frsf.cidisi.faia.agent.search.Problem;
+import frsf.cidisi.faia.agent.search.SearchAction;
+import frsf.cidisi.faia.agent.search.SearchBasedAgent;
 import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.agent.Perception;
-import frsf.cidisi.faia.agent.searchbased.Problem;
-import frsf.cidisi.faia.agent.searchbased.SearchAction;
 import frsf.cidisi.faia.solver.search.BreathFirstSearch;
 import frsf.cidisi.faia.solver.search.Search;
 import java.util.logging.Level;

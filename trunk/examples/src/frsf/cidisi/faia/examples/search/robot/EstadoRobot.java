@@ -23,7 +23,7 @@ import java.util.Collection;
 import java.util.HashMap;
 
 import frsf.cidisi.faia.agent.Perception;
-import frsf.cidisi.faia.agent.searchbased.SearchBasedAgentState;
+import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
 
 public class EstadoRobot extends SearchBasedAgentState {
 
