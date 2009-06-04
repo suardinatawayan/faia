@@ -19,7 +19,7 @@
 package frsf.cidisi.faia.examples.search.pacman;
 
 import frsf.cidisi.faia.agent.Perception;
-import frsf.cidisi.faia.agent.searchbased.SearchBasedAgentState;
+import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
 
 /**
  * Representa el estado interno del Pacman, su visión del mundo.

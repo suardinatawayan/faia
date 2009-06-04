@@ -23,7 +23,7 @@ import java.util.Iterator;
 import java.util.Vector;
 
 import frsf.cidisi.faia.agent.Perception;
-import frsf.cidisi.faia.agent.searchbased.SearchBasedAgentState;
+import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
 import frsf.cidisi.faia.state.AgentState;
 
 public class EstadoSnake extends SearchBasedAgentState {

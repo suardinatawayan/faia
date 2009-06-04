@@ -21,8 +21,8 @@ package frsf.cidisi.faia.examples.search.robot.actions;
 import frsf.cidisi.faia.examples.search.robot.EstadoRobot;
 import java.util.ArrayList;
 
-import frsf.cidisi.faia.agent.searchbased.SearchAction;
-import frsf.cidisi.faia.agent.searchbased.SearchBasedAgentState;
+import frsf.cidisi.faia.agent.search.SearchAction;
+import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
 import frsf.cidisi.faia.state.AgentState;
 import frsf.cidisi.faia.state.EnvironmentState;
 
