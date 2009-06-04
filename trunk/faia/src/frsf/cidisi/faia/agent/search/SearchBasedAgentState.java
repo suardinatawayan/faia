@@ -16,19 +16,22 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package frsf.cidisi.faia.agent.searchbased;
+package frsf.cidisi.faia.agent.search;
 
-import frsf.cidisi.faia.agent.*;
+import frsf.cidisi.faia.state.AgentState;
 
-public abstract class SearchBasedAgent extends GoalBasedAgent {
+public abstract class SearchBasedAgentState extends AgentState {
 
-    private Problem problem;
+	/**
+     * We need this method to look for repeated nodes in the same search branch.
+     */
+    @Override
+    public abstract boolean equals(Object obj);
+	
+	/**
+     * We need to be able to clone an AgentState, because we'll use it
+     * in the search process, when we apply the operations on a node.
+     */
+    public abstract SearchBasedAgentState clone();
 
-    public Problem getProblem() {
-        return problem;
-    }
-
-    public void setProblem(Problem problem) {
-        this.problem = problem;
-    }
 }

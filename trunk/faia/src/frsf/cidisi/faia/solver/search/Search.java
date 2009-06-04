@@ -20,13 +20,13 @@ package frsf.cidisi.faia.solver.search;
 
 import java.util.Vector;
 
-import frsf.cidisi.faia.agent.searchbased.Problem;
+import frsf.cidisi.faia.agent.search.GoalTest;
+import frsf.cidisi.faia.agent.search.Problem;
+import frsf.cidisi.faia.agent.search.SearchAction;
+import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
 import frsf.cidisi.faia.simulator.SimulatorEventNotifier;
 import frsf.cidisi.faia.solver.Solve;
 import frsf.cidisi.faia.state.AgentState;
-import frsf.cidisi.faia.agent.searchbased.GoalTest;
-import frsf.cidisi.faia.agent.searchbased.SearchAction;
-import frsf.cidisi.faia.agent.searchbased.SearchBasedAgentState;
 import frsf.cidisi.faia.util.GraphvizTree;
 import frsf.cidisi.faia.util.LatexOutput;
 import frsf.cidisi.faia.util.XmlTree;
