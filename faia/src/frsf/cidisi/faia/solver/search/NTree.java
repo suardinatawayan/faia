@@ -20,8 +20,8 @@ package frsf.cidisi.faia.solver.search;
 
 import java.util.Vector;
 import frsf.cidisi.faia.agent.Action;
-import frsf.cidisi.faia.agent.searchbased.SearchAction;
-import frsf.cidisi.faia.agent.searchbased.SearchBasedAgentState;
+import frsf.cidisi.faia.agent.search.SearchAction;
+import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
 import frsf.cidisi.faia.state.AgentState;
 
 /**

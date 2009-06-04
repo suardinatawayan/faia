@@ -4,15 +4,12 @@ import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.agent.Agent;
 import frsf.cidisi.faia.agent.NoAction;
 import frsf.cidisi.faia.agent.Perception;
-import frsf.cidisi.faia.agent.searchbased.SearchAction;
-import frsf.cidisi.faia.agent.searchbased.SearchBasedAgent;
-import frsf.cidisi.faia.agent.situationcalculus.SituationCalculusAction;
-import frsf.cidisi.faia.agent.situationcalculus.SituationCalculusBasedAgent;
+import frsf.cidisi.faia.agent.search.SearchBasedAgent;
 import frsf.cidisi.faia.environment.Environment;
 
-public class SimpleSimulator extends GoalBasedAgentSimulator {
+public class ReactiveBasedAgentSimulator extends GoalBasedAgentSimulator {
 
-	public SimpleSimulator(Environment environment, Agent agent) {
+	public ReactiveBasedAgentSimulator(Environment environment, Agent agent) {
 		super(environment, agent);
 		// TODO Auto-generated constructor stub
 	}

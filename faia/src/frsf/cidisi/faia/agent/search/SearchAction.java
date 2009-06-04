@@ -16,22 +16,28 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package frsf.cidisi.faia.agent.searchbased;
+package frsf.cidisi.faia.agent.search;
 
+import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.state.AgentState;
 
-public abstract class SearchBasedAgentState extends AgentState {
+public abstract class SearchAction extends Action {
 
 	/**
-     * We need this method to look for repeated nodes in the same search branch.
-     */
-    @Override
-    public abstract boolean equals(Object obj);
-	
-	/**
-     * We need to be able to clone an AgentState, because we'll use it
-     * in the search process, when we apply the operations on a node.
-     */
-    public abstract SearchBasedAgentState clone();
+	 * This method is used internally by the framework when the "Search Process"
+	 * is being executed. It updates the node's state on every node of the
+	 * search tree. Therefore, it doesn't updates the real agent's state, it
+	 * just updates the state of the agent on every node of the search tree.
+	 * 
+	 * @param s
+	 *            This is the state of the agent to be updated on search tree's
+	 *            node.
+	 */
+	public abstract SearchBasedAgentState execute(SearchBasedAgentState s);
 
+	/**
+	 * Depending on the strategy used by the agent, this method can be overrode
+	 * by the agent's actions to return its cost.
+	 */
+	public abstract Double getCost();
 }
