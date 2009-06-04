@@ -2,7 +2,7 @@ package frsf.cidisi.faia.examples.matlab.tanquesimple;
 
 import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.agent.Perception;
-import frsf.cidisi.faia.agent.searchbased.SearchBasedAgent;
+import frsf.cidisi.faia.agent.search.SearchBasedAgent;
 import frsf.cidisi.faia.examples.matlab.tanquesimple.acciones.CambiarCaudal;
 
 // TODO: Ver si no conviene hacer a este agente reactivo simple

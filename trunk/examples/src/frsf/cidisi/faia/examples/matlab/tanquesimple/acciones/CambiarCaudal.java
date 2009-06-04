@@ -1,7 +1,7 @@
 package frsf.cidisi.faia.examples.matlab.tanquesimple.acciones;
 
-import frsf.cidisi.faia.agent.searchbased.SearchAction;
-import frsf.cidisi.faia.agent.searchbased.SearchBasedAgentState;
+import frsf.cidisi.faia.agent.search.SearchAction;
+import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
 import frsf.cidisi.faia.examples.matlab.tanquesimple.EstadoAgenteTanque;
 import frsf.cidisi.faia.examples.matlab.tanquesimple.EstadoAmbienteTanque;
 import frsf.cidisi.faia.state.AgentState;

@@ -1,7 +1,7 @@
 package frsf.cidisi.faia.examples.matlab.tanquesimple;
 
 import frsf.cidisi.faia.agent.Perception;
-import frsf.cidisi.faia.agent.searchbased.SearchBasedAgentState;
+import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
 
 public class EstadoAgenteTanque extends SearchBasedAgentState {
 	
