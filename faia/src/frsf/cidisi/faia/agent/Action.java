@@ -43,6 +43,5 @@ public abstract class Action {
      * cased, and it's supposed you are using this one in your prolog file
      * (.pl file).
      */
-    @Override
     public abstract String toString();
 }

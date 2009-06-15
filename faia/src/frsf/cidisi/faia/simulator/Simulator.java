@@ -36,21 +36,12 @@ public abstract class Simulator {
 
     public Simulator() {
     }
-
-    /**
-     * 
-     * @param environment
-     * @param agents    agents
-     */
+    
     public Simulator(Environment environment, Vector<Agent> agents) {
         this.environment = environment;
         this.agents = agents;
     }
-
-    /**
-     * 
-     * @param agent    agent
-     */
+    
     public void addAgent(Agent agent) {
         this.getAgents().addElement(agent);
     }
@@ -66,11 +57,7 @@ public abstract class Simulator {
     public Perception getPercept(Agent agent) {
         return this.getEnvironment().getPercept(agent);
     }
-
-    /**
-     * 
-     * @param evm    evm
-     */
+    
     public void setEnvironment(Environment evm) {
     }
 

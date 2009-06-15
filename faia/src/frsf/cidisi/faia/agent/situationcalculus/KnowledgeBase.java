@@ -21,6 +21,7 @@ package frsf.cidisi.faia.agent.situationcalculus;
 import java.util.Hashtable;
 
 import frsf.cidisi.faia.exceptions.PrologConnectorException;
+import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.agent.ActionFactory;
 import frsf.cidisi.faia.agent.PrologConnector;
 import frsf.cidisi.faia.state.AgentState;
@@ -55,15 +56,15 @@ public abstract class KnowledgeBase extends AgentState {
     }
     
     public void executeSuccessorStateAxioms() {
-        this.prologConnector.executeNonQuery("findall(X,est(" + this.getSituation() + "),L)");
+        this.prologConnector.executeNonQuery("findall(_,est(" + this.getSituation() + "),_)");
     }
     
     public void tell(SituationCalculusPerception perception) {
         this.addKnowledge(perception.toString());
     }
     
-    public void tell(SituationCalculusAction actionObject) {
-        String action = actionObject.getLogicName();
+    public void tell(Action actionObject) {
+        String action = actionObject.toString();
         
         if (action == null) {
             return;

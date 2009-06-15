@@ -18,6 +18,7 @@
 
 package frsf.cidisi.faia.simulator;
 
+import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.agent.Agent;
 import frsf.cidisi.faia.agent.GoalBasedAgent;
 import frsf.cidisi.faia.agent.Perception;
@@ -26,7 +27,12 @@ import frsf.cidisi.faia.agent.search.Problem;
 import frsf.cidisi.faia.agent.search.SearchAction;
 import frsf.cidisi.faia.agent.search.SearchBasedAgent;
 import frsf.cidisi.faia.environment.Environment;
+import frsf.cidisi.faia.simulator.events.EventHandler;
+import frsf.cidisi.faia.simulator.events.EventType;
+import frsf.cidisi.faia.simulator.events.SimulatorEventNotifier;
 import frsf.cidisi.faia.state.AgentState;
+
+import java.util.Arrays;
 import java.util.Vector;
 
 public class SearchBasedAgentSimulator extends GoalBasedAgentSimulator {
@@ -36,10 +42,11 @@ public class SearchBasedAgentSimulator extends GoalBasedAgentSimulator {
     }
 
     public SearchBasedAgentSimulator(Environment environment, Agent agent) {
-        super(environment, agent);
+        this(environment, new Vector<Agent>(Arrays.asList(agent)) );
     }
 
-    public boolean isComplete() {
+    @Override
+    public boolean isComplete(Action actionReturned) {
         //TODO: 
         // ACA HAY QUE HACER UN BUCLE PARA CUANDO HAY MAS DE UN AGENTE DEFINIDO
         // POR AHORA EL FRAMEWORK ES MONOAGENTE :)
@@ -50,57 +57,22 @@ public class SearchBasedAgentSimulator extends GoalBasedAgentSimulator {
 
         return gt.isGoalState(aSt);
     }
-
+    
     @Override
-    public void start() {
-        //TODO:
-        // ANTES DE EMPEZAR CON LA SIMULACION HAY QUE TESTEAR QUE EL AMBIENTE ESTE
-        // INICIALIZADO, ETC.
+	public String getSimulatorName() {
+		return "Search Based Simulator";
+	}
+    
+    void showSolution() {
+        GoalBasedAgent agent = (GoalBasedAgent) this.getAgents().firstElement();
 
-        Perception perception;
-        SearchAction action;
-        GoalBasedAgent agent;
-
-        //TODO: Aca hay que tener en cuenta que podr�a haber m�s de un agente
-        // por ahora el framework solo es monoagente :)
-        agent = (GoalBasedAgent) this.getAgents().firstElement();
-
-        while (!isComplete()) {
-            System.out.println("------------------------------------");
-            System.out.println("--- Search Based Agent Simulator ---");
-            System.out.println("------------------------------------");
-            perception = this.getPercept(agent);
-            agent.see(perception);
-
-            System.out.println("Agent State: " + agent.getAgentState());
-            System.out.println("Environment: " + environment);
-            System.out.println("------------------------------------");
-            System.out.println("------------------------------------");
-
-
-            action = (SearchAction) agent.selectAction();
-            
-            System.out.println("Action: " + action);
-            
-            if (action != null) {
-                this.updateState(action);
-            } else {
-                break;
-            }
-            showSolution();
-        }
-
-        // Check what happened, if agent has reached the goal or not.
-        if (this.isComplete()) {
-            System.out.println("Agent has reached the goal!");
-        } else {
-            System.out.println("ERROR: There is not solution for this problem. You should check the operators.");
-        }
-        
-        // Leave a blank line
-        System.out.println();
-        
-        // Launch simulationFinished event
-        SimulatorEventNotifier.simulationFinished();
+        agent.getSolver().showSolution();
     }
+
+	@Override
+	public void iterationFinished(Agent agent, Action action) {
+		this.updateState(action);
+		this.showSolution();
+	}
 }
+

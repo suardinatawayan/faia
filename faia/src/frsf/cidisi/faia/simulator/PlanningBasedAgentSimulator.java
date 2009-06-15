@@ -18,6 +18,7 @@
 
 package frsf.cidisi.faia.simulator;
 
+import java.util.Arrays;
 import java.util.Vector;
 
 import frsf.cidisi.faia.agent.Action;
@@ -35,7 +36,7 @@ public class PlanningBasedAgentSimulator extends GoalBasedAgentSimulator {
     }
 
     public PlanningBasedAgentSimulator(Environment environment, Agent agent) {
-        super(environment, agent);
+    	this(environment, new Vector<Agent>(Arrays.asList(agent)) );
     }
 	
 	@Override
@@ -88,6 +89,24 @@ public class PlanningBasedAgentSimulator extends GoalBasedAgentSimulator {
 
         // Leave a blank line
         System.out.println();
+	}
+
+	@Override
+	public String getSimulatorName() {
+		return "Planning Based Simulator";
+	}
+
+	@Override
+	public boolean isComplete(Action actionReturned) {
+		if (actionReturned instanceof NoAction)
+			return true;
+		
+		return false;
+	}
+
+	@Override
+	public void iterationFinished(Agent agent, Action action) {
+		this.updateState(action);
 	}
 
 }

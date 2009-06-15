@@ -24,7 +24,8 @@ import frsf.cidisi.faia.agent.search.GoalTest;
 import frsf.cidisi.faia.agent.search.Problem;
 import frsf.cidisi.faia.agent.search.SearchAction;
 import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
-import frsf.cidisi.faia.simulator.SimulatorEventNotifier;
+import frsf.cidisi.faia.simulator.events.EventType;
+import frsf.cidisi.faia.simulator.events.SimulatorEventNotifier;
 import frsf.cidisi.faia.solver.Solve;
 import frsf.cidisi.faia.state.AgentState;
 import frsf.cidisi.faia.util.GraphvizTree;
@@ -219,10 +220,11 @@ public class Search extends Solve {
 
     public void setVisibleTree(int visibleTree) {
         // Remove all objects subscribed to simulator events
-        SimulatorEventNotifier.CleanEventHandlers();
+//        SimulatorEventNotifier.CleanEventHandlers();
 
         if (visibleTree == Search.PDF_TREE) {
-            SimulatorEventNotifier.SubscribeEventHandler(LatexOutput.getInstance());
+            SimulatorEventNotifier.SubscribeEventHandler(EventType.SimulationFinished,
+            		LatexOutput.getInstance());
         }
         this.visibleTree = visibleTree;
     }

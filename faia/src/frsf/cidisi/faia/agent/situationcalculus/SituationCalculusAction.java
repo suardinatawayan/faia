@@ -22,7 +22,4 @@ import frsf.cidisi.faia.agent.Action;
 
 public abstract class SituationCalculusAction extends Action {
 
-    public String getLogicName() {
-        return this.toString().toLowerCase();
-    }
 }
