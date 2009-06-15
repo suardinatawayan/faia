@@ -23,7 +23,12 @@ import java.util.Vector;
 import frsf.cidisi.faia.agent.GoalBasedAgent;
 import frsf.cidisi.faia.agent.Agent;
 import frsf.cidisi.faia.agent.Action;
+import frsf.cidisi.faia.agent.NoAction;
+import frsf.cidisi.faia.agent.Perception;
+import frsf.cidisi.faia.agent.search.SearchAction;
 import frsf.cidisi.faia.environment.Environment;
+import frsf.cidisi.faia.simulator.events.EventType;
+import frsf.cidisi.faia.simulator.events.SimulatorEventNotifier;
 
 public abstract class GoalBasedAgentSimulator extends Simulator {
 
@@ -42,9 +47,58 @@ public abstract class GoalBasedAgentSimulator extends Simulator {
         this.environment = environment;
         this.agents = ags;
     }
-
+    
     @Override
-    public abstract void start();
+    public void start() {
+    	
+    	System.out.println("----------------------------------------------------");
+        System.out.println("--- " + this.getSimulatorName() + " ---");
+        System.out.println("----------------------------------------------------");
+        System.out.println();
+    	
+        Perception perception;
+        Action action;
+        GoalBasedAgent agent;
+        
+        agent = (GoalBasedAgent) this.getAgents().firstElement();
+
+        do {
+        	
+        	System.out.println("------------------------------------");
+        	
+        	System.out.println("Sending perception to agent...");
+            perception = this.getPercept(agent);
+            agent.see(perception);
+            
+            System.out.println("Agent State: " + agent.getAgentState());
+            System.out.println("Environment: " + environment);
+            
+            System.out.println("Asking the agent for an action...");
+            action = agent.selectAction();
+            
+            if (action == null)
+            	break;
+            
+            System.out.println("Action returned: " + action);
+            System.out.println();
+            
+            this.iterationFinished(agent, action);
+            
+        } while (!isComplete(action));
+
+        // Check what happened, if agent has reached the goal or not.
+        if (this.isComplete(action)) {
+            System.out.println("Agent has reached the goal!");
+        } else {
+            System.out.println("ERROR: The simulation has finished, but the agent has not reached his goal.");
+        }
+        
+        // Leave a blank line
+        System.out.println();
+        
+        // Launch simulationFinished event
+        SimulatorEventNotifier.runEventHandlers(EventType.SimulationFinished, null);
+    }
     
     /**
      * Here we update the state of the agent and the real state of the
@@ -54,10 +108,19 @@ public abstract class GoalBasedAgentSimulator extends Simulator {
     protected void updateState(Action action) {
         this.getEnvironment().updateState(((GoalBasedAgent) agents.elementAt(0)).getAgentState(), action);
     }
-
-    public void showSolution() {
-        GoalBasedAgent agent = (GoalBasedAgent) this.getAgents().firstElement();
-
-        agent.getSolver().showSolution();
-    }
+    
+//    private Action getAction(Action actionReturnedByAgent) {
+//    	Action action = actionReturnedByAgent;
+//    	
+//    	if (action == null)
+//    		action = NoAction.getInstance();
+//    	
+//    	return action;
+//    }
+    
+    public abstract boolean isComplete(Action actionReturned);
+    
+    public abstract void iterationFinished(Agent agent, Action action);
+    
+    public abstract String getSimulatorName();
 }

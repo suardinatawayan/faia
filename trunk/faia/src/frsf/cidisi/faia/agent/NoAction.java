@@ -42,7 +42,7 @@ public class NoAction extends Action {
 
     @Override
     public EnvironmentState execute(AgentState ast, EnvironmentState est) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return est;
     }
     
     @Override

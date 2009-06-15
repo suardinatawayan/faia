@@ -26,6 +26,7 @@ import frsf.cidisi.faia.agent.situationcalculus.SituationCalculusBasedAgent;
 import frsf.cidisi.faia.environment.Environment;
 import frsf.cidisi.faia.agent.NoAction;
 
+import java.util.Arrays;
 import java.util.Vector;
 
 public class SituationCalculusBasedAgentSimulator extends GoalBasedAgentSimulator {
@@ -35,60 +36,29 @@ public class SituationCalculusBasedAgentSimulator extends GoalBasedAgentSimulato
     }
 
     public SituationCalculusBasedAgentSimulator(Environment environment, Agent agent) {
-        super(environment, agent);
+    	this(environment, new Vector<Agent>(Arrays.asList(agent)) );
     }
 
-    @Override
-    public void start() {
+	@Override
+	public String getSimulatorName() {
+		return "Situation Calculus Based Simulator";
+	}
 
-        Perception perception;
-        Action action;
-        SituationCalculusBasedAgent agent;
+	@Override
+	public boolean isComplete(Action actionReturned) {
+		if (actionReturned instanceof NoAction)
+			return true;
+		
+		return false;
+	}
 
-        //TODO: Aca hay que tener en cuenta que podría haber más de un agente
-        // por ahora el framework solo es monoagente :)
-        agent = (SituationCalculusBasedAgent) this.getAgents().firstElement();
-
-        do {
-
-            System.out.println("------------------------------------------------");
-            System.out.println("--- Situation Calculus Based Agent Simulator ---");
-            System.out.println("------------------------------------------------");
-
-            // We make the perception and send it to the agent.
-            perception = this.getPercept(agent);
-            agent.see(perception);
-
-            System.out.println("Agent State: " + agent.getAgentState());
-            System.out.println("Environment: " + environment);
-            System.out.println("---------------------------------------");
-            System.out.println("---------------------------------------");
-
-            // Ask agent for an action
-            action = agent.selectAction();
-
-            System.out.println("Action: " + action);
-
-            /* Check if agent has reached the goal or not, or if we must
-             * go on */
-            if (action != null && ! (action instanceof NoAction)) {
-                /* If the action is not a NoAction instance, then we update
-                 * the real world on the simulator. Finally we tell the agent
-                 * the action chosen. */
-                this.updateState(action);
-                agent.tell((SituationCalculusAction)action);
-            }
-        } while (! (action instanceof NoAction || action == null));
-
-        if (action instanceof NoAction) {
-            // If there is no action, then the agent has reached the goal.
-            System.out.println("Agent has reached the goal!");
-        } else {
-            // If action is null, then there was an error.
-            System.out.println("ERROR: There is not solution for this problem. You should check the operators.");
-        }
-
-        // Leave a blank line
-        System.out.println();
-    }
+	@Override
+	public void iterationFinished(Agent agent, Action action) {
+		this.updateState(action);
+		
+		SituationCalculusBasedAgent scAgent =
+			(SituationCalculusBasedAgent)agent;
+		
+		scAgent.tell(action);
+	}
 }

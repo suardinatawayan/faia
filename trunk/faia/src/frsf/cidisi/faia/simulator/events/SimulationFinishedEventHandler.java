@@ -16,9 +16,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package frsf.cidisi.faia.simulator;
+package frsf.cidisi.faia.simulator.events;
 
-public interface SimulatorEventHandler {
+public interface SimulationFinishedEventHandler {
 
     public void simulationFinished();
+    
 }

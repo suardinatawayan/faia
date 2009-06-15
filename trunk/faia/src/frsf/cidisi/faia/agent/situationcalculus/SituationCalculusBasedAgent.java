@@ -31,5 +31,5 @@ public abstract class SituationCalculusBasedAgent extends GoalBasedAgent {
      * what action was executed in the current situation.
      * @param action
      */
-    public abstract void tell(SituationCalculusAction action);
+    public abstract void tell(Action action);
 }

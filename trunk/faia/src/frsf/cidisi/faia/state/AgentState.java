@@ -34,4 +34,6 @@ public abstract class AgentState extends State {
      */
     public abstract void updateState(Perception p);
     
+    public abstract String toString();
+    
 }

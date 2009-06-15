@@ -24,7 +24,8 @@ import java.io.IOException;
 import java.util.Vector;
 
 import frsf.cidisi.faia.exceptions.LatexOutputException;
-import frsf.cidisi.faia.simulator.SimulatorEventHandler;
+import frsf.cidisi.faia.simulator.events.EventHandler;
+import frsf.cidisi.faia.simulator.events.SimulationFinishedEventHandler;
 import frsf.cidisi.faia.solver.search.NTree;
 
 import java.io.BufferedReader;
@@ -35,7 +36,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 
-public class LatexOutput implements SimulatorEventHandler {
+public class LatexOutput implements EventHandler {
 
     private static LatexOutput instance;
     private static final String lineSeparator = System.getProperty("line.separator");
@@ -89,7 +90,7 @@ public class LatexOutput implements SimulatorEventHandler {
         Process p;
         String[] comando;
 
-        System.out.println("Compilando archivos Latex...");
+        System.out.println("Compiling Latex files...");
         
         // Por cada archivo .tex compilo a PDF
         for (File archivoTex : carpetaPdflatex.listFiles(new TexFilter())) {
@@ -132,7 +133,7 @@ public class LatexOutput implements SimulatorEventHandler {
         }
 
         System.out.println();
-        System.out.println("Compilación finalizada.");
+        System.out.println("Latex compilation finished.");
 
         // Ahora elimino los archivos temporales que creó pdflatex
         for (File archivoTemporal : carpetaPdflatex.listFiles(new TempFilesFilter())) {
@@ -141,7 +142,7 @@ public class LatexOutput implements SimulatorEventHandler {
         for (File archivoTex : carpetaPdflatex.listFiles(new TexFilter())) {
             archivoTex.delete();
         }
-        System.out.println("Archivos temporales eliminados.");
+        System.out.println("Temp files deleted.");
     }
 
     public void printFile(NTree tree) {
@@ -229,15 +230,15 @@ public class LatexOutput implements SimulatorEventHandler {
         }
     }
 
-    @Override
-    public void simulationFinished() {
-        try {
+	@Override
+	public void runEventHandler(Object[] params) {
+		try {
 			this.compileLatexFiles(true);
 		} catch (LatexOutputException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-    }
+	}
 }
 
 class PdfFilesFilter implements FilenameFilter {
