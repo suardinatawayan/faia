@@ -16,24 +16,24 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package frsf.cidisi.faia.examples.search.pacman;
+package frsf.cidisi.faia.examples.situationcalculus.pacman;
 
 import frsf.cidisi.faia.exceptions.PrologConnectorException;
-import frsf.cidisi.faia.simulator.SearchBasedAgentSimulator;
+import frsf.cidisi.faia.simulator.SituationCalculusBasedAgentSimulator;
 
 /**
  *
  * @author miltondp
  */
-public class PacmanMain {
+public class PacmanLogicoMain {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) throws PrologConnectorException {
-        AgentePacman agente = new AgentePacman();
-        AmbientePacman ambiente = new AmbientePacman();
-        SearchBasedAgentSimulator simu = new SearchBasedAgentSimulator(ambiente, agente);
+        AgentePacmanLogico agente = new AgentePacmanLogico();
+        AmbientePacmanLogico ambiente = new AmbientePacmanLogico();
+        SituationCalculusBasedAgentSimulator simu = new SituationCalculusBasedAgentSimulator(ambiente, agente);
         simu.start();
     }
 }
