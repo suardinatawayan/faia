@@ -1,6 +1,5 @@
 package frsf.cidisi.faia.examples.matlab.tanquesimple;
 
-import frsf.cidisi.faia.simulator.SearchBasedAgentSimulator;
 import frsf.cidisi.faia.simulator.ReactiveBasedAgentSimulator;
 
 public class TanqueMain {

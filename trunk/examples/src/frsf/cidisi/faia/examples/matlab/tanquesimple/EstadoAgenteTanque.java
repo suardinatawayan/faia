@@ -1,24 +1,17 @@
 package frsf.cidisi.faia.examples.matlab.tanquesimple;
 
 import frsf.cidisi.faia.agent.Perception;
-import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
+import frsf.cidisi.faia.agent.reactive.ReactiveBasedAgentState;
 
-public class EstadoAgenteTanque extends SearchBasedAgentState {
+public class EstadoAgenteTanque extends ReactiveBasedAgentState {
 	
 	private double alturaActual;
 	private double caudalActual;
+	private double caudalAnterior;
 	private double tiempoActual;
 	
-	@Override
-	public SearchBasedAgentState clone() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		// TODO Auto-generated method stub
-		return false;
+	public EstadoAgenteTanque() {
+		this.initState();
 	}
 
 	@Override
@@ -28,13 +21,15 @@ public class EstadoAgenteTanque extends SearchBasedAgentState {
 		
 		this.tiempoActual = percepcionTanque.getTiempoActual();
 		this.alturaActual = percepcionTanque.getAlturaTanque();
+		this.caudalAnterior = this.caudalActual;
 		this.caudalActual = percepcionTanque.getCaudalActual();
 	}
 
 	@Override
 	public void initState() {
-		// TODO Auto-generated method stub
-		
+		this.alturaActual = 5.0;
+		this.caudalActual = 0.0;
+		this.tiempoActual = 0.0;
 	}
 
 	@Override
@@ -52,16 +47,16 @@ public class EstadoAgenteTanque extends SearchBasedAgentState {
 		return alturaActual;
 	}
 
-	public void setUltimoCaudalElegido(double ultimoCaudalElegido) {
-		this.caudalActual = ultimoCaudalElegido;
-	}
-
-	public double getUltimoCaudalElegido() {
+	public double getCaudalActual() {
 		return caudalActual;
 	}
 
 	public double getTiempoActual() {
 		return tiempoActual;
+	}
+
+	public double getCaudalAnterior() {
+		return caudalAnterior;
 	}
 
 }

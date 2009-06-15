@@ -1,30 +1,17 @@
 package frsf.cidisi.faia.examples.matlab.tanquesimple.acciones;
 
-import frsf.cidisi.faia.agent.search.SearchAction;
-import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
+import frsf.cidisi.faia.agent.reactive.ReactiveAction;
 import frsf.cidisi.faia.examples.matlab.tanquesimple.EstadoAgenteTanque;
 import frsf.cidisi.faia.examples.matlab.tanquesimple.EstadoAmbienteTanque;
 import frsf.cidisi.faia.state.AgentState;
 import frsf.cidisi.faia.state.EnvironmentState;
 
-public class CambiarCaudal extends SearchAction {
+public class CambiarCaudal extends ReactiveAction {
 	
 	private double caudalElegido;
 	
 	public CambiarCaudal(double caudalElegido) {
 		this.caudalElegido = caudalElegido;
-	}
-	
-	@Override
-	public SearchBasedAgentState execute(SearchBasedAgentState s) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Double getCost() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override

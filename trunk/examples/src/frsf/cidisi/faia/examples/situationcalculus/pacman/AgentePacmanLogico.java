@@ -72,7 +72,7 @@ public class AgentePacmanLogico extends SituationCalculusBasedAgent {
      * llamando a otro método del mismo nombre.
      */
     @Override
-    public void tell(SituationCalculusAction action) {
+    public void tell(Action action) {
     	EstadoPacmanLogico kb = (EstadoPacmanLogico) this.getAgentState();
         kb.tell(action);
     }
