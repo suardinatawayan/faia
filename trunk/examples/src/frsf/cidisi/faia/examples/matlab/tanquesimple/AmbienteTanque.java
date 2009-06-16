@@ -1,15 +1,14 @@
 package frsf.cidisi.faia.examples.matlab.tanquesimple;
 
+import java.util.Hashtable;
+
 import jmatlink.JMatLink;
 import frsf.cidisi.faia.agent.Agent;
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.environment.Environment;
+import frsf.cidisi.faia.environment.MatlabEnvironment;
 
-public class AmbienteTanque extends Environment {
-	
-	// ---8<---
-	private JMatLink engine;
-	// ---8<---
+public class AmbienteTanque extends MatlabEnvironment {
 
 	private boolean primeraEjecucion;
 	
@@ -17,29 +16,11 @@ public class AmbienteTanque extends Environment {
 	private static final double RESTRICCION_DESCARGA = 0.5;
 
 	public AmbienteTanque() {
-		// ---8<--- Esto podría ir en una clase de FAIA
-		this.engine = new JMatLink();
-		this.engine.engOpen("matlab -nosplash -nojvm");
-		this.engine.engEvalString("cd '" + this.getMatlabProjectPath() + "'");
-		// ---8<---
+		super();
 		
 		this.environmentState = new EstadoAmbienteTanque();
 		this.primeraEjecucion = true;
 	}
-	
-	// ---8<---
-	protected void finalize() throws Throwable {
-		try {
-			this.engine.engClose();
-		}
-		catch (Exception ex) {
-			
-		}
-		finally {
-			super.finalize();
-		}
-	}
-	// ---8<---
 	
 	@Override
 	public EstadoAmbienteTanque getEnvironmentState() {
@@ -51,9 +32,22 @@ public class AmbienteTanque extends Environment {
 		AgenteTanque agente = (AgenteTanque) agent;
 		PercepcionTanque percepcion = new PercepcionTanque();
 		
+		Hashtable<String,double[][]> retorno;
+		
 		// Inicio la simulación
-		if (!this.primeraEjecucion)
-			this.iniciarSimulacion();
+		if (!this.primeraEjecucion) {
+			retorno = this.startSimulation();
+			
+			double[][] h = retorno.get("h");
+			
+			EstadoAmbienteTanque estadoAmbiente =
+				this.getEnvironmentState();
+			
+			estadoAmbiente.setAltura(h[h.length-1][0]);
+			estadoAmbiente.setTiempoInicial(estadoAmbiente.getTiempoFinal());
+			estadoAmbiente.setTiempoFinal(estadoAmbiente.getTiempoInicial() +
+					estadoAmbiente.getPaso());
+		}
 		else
 			this.primeraEjecucion  = false;
 		
@@ -64,29 +58,13 @@ public class AmbienteTanque extends Environment {
 		return percepcion;
 	}
 	
-	private void iniciarSimulacion() {
-		EstadoAmbienteTanque estadoAmbiente =
-			this.getEnvironmentState();
-		
-		// Ejecuto mi función
-		this.engine.engEvalString("[t,h] = TK_1_L(" +
-				 this.join(this.getMatlabFunctionParameters(), ",") + ");");
-		
-		double[][] t = this.engine.engGetArray("t");
-		double[][] h = this.engine.engGetArray("h");
-		
-		estadoAmbiente.setAltura(h[h.length-1][0]);
-		estadoAmbiente.setTiempoInicial(estadoAmbiente.getTiempoFinal());
-		estadoAmbiente.setTiempoFinal(estadoAmbiente.getTiempoInicial() +
-				estadoAmbiente.getPaso());
-	}
-	
 	public double getAlturaTanque() {
 		return this.getEnvironmentState().getAltura();
 	}
 	
+	@Override
 	public String getMatlabProjectPath() {
-		return "/home/miltondp/Facultad/becas/faia/trabajo_2009/jorge_vega/modelo_tanques2";
+		return "matlab_modelo_tanques";
 	}
 	
 	@Override
@@ -94,12 +72,12 @@ public class AmbienteTanque extends Environment {
 		return this.getEnvironmentState().toString();
 	}
 	
+	@Override
 	public Object[] getMatlabFunctionParameters() {
-		
 		EstadoAmbienteTanque estadoAmbiente =
 			this.getEnvironmentState();
 		
-		Object[] parametros = new Object[] {
+		return new Object[] {
 				AREA_TANQUE,
 				RESTRICCION_DESCARGA,
 				estadoAmbiente.getAltura(),
@@ -107,18 +85,18 @@ public class AmbienteTanque extends Environment {
 				estadoAmbiente.getTiempoInicial(),
 				estadoAmbiente.getTiempoFinal()
 		};
-		
-		return parametros;
 	}
-	
-	private String join(Object[] array, String separator) {
-		StringBuffer sb = new StringBuffer();
-		
-		sb.append(array[0].toString());
-		
-		for(int i=1; i<array.length; i++)
-			sb.append(separator + array[i].toString());
-		
-		return sb.toString();
+
+	@Override
+	protected String getMatlabFunctionName() {
+		return "TK_1_L";
+	}
+
+	@Override
+	protected Object[] getMatlabFunctionReturnVariables() {
+		return new Object[] {
+				"t",
+				"h"
+		};
 	}
 }
