@@ -1,11 +1,8 @@
 package frsf.cidisi.faia.examples.matlab.tanquesimple;
 
 import java.util.Hashtable;
-
-import jmatlink.JMatLink;
 import frsf.cidisi.faia.agent.Agent;
 import frsf.cidisi.faia.agent.Perception;
-import frsf.cidisi.faia.environment.Environment;
 import frsf.cidisi.faia.environment.MatlabEnvironment;
 
 public class AmbienteTanque extends MatlabEnvironment {

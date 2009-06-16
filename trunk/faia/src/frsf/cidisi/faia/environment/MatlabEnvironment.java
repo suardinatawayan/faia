@@ -1,5 +1,6 @@
 package frsf.cidisi.faia.environment;
 
+import java.io.File;
 import java.util.Hashtable;
 
 import jmatlink.JMatLink;
@@ -13,7 +14,19 @@ public abstract class MatlabEnvironment extends Environment {
 	public MatlabEnvironment() {
 		this.engine = new JMatLink();
 		this.engine.engOpen("matlab -nosplash -nojvm");
-		this.engine.engEvalString("cd '" + this.getMatlabProjectPath() + "'");
+		
+		// Change matlab current directory
+		// First, we get the path specified by the user
+		String userPath =
+				"cd '" +
+				System.getProperty("user.dir") + "/" +
+				this.getMatlabProjectPath() + "'";
+		
+		// Then we need to change that path to a system dependent one,
+		// changing the path separator accordingly
+		String systemPath = userPath.replace("\\/", File.pathSeparator);
+				
+		this.engine.engEvalString(systemPath);
 	}
 	
 	protected void finalize() throws Throwable {
