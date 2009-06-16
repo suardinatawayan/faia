@@ -1,11 +1,8 @@
-- Tema de la licencia: veo que en el sitio pusieron que faia es GPLv3. Explicar
-en qué consiste mas o menos y que habría que poner en todos los archivos el
-header de la licencia, con el copyright.
+- El método initState de State no se usa.
 
-- En la clase EstadoAmbiente, del ejemplo del Pacman, comenté el método clone,
-ya que en esta clase no es necesario. Quité de la clase State el método clone
-y lo puse en la clase AgentState, ya que sólo es necesario allí.
+- En los simuladores anteriores, el agente es el que dice cuándo termina la simulación,
+ya que él sabe cuándo llegó al objetivo. En este caso para Matlab, ¿sería el entorno
+el que sabe hasta cuándo continua la simulación? Ya que es por un tiempo determinado.
 
-- Algo similar a lo anterior con el método equals en State: lo moví a
-AgentState, ya que allí se utiliza únicamente.
+- Hay que revisar lo escrito en inglés.
 
