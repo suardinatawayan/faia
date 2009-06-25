@@ -21,7 +21,6 @@ package frsf.cidisi.faia.solver.situationcalculus;
 import frsf.cidisi.faia.agent.situationcalculus.KnowledgeBase;
 import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.exceptions.SituationCalculusException;
-import frsf.cidisi.faia.agent.PrologConnector;
 import frsf.cidisi.faia.solver.Solve;
 import java.util.Hashtable;
 
@@ -40,7 +39,7 @@ public class SituationCalculus extends Solve {
     	Hashtable[] results =
             kb.query(kb.getBestActionPredicate() + "(X," +
             kb.getSituation() + ")");
-
+    	
 	    // We look for the first result.
 	    if (results.length == 0) {
 	        throw new SituationCalculusException("No solutions returned. Maybe there is an error in the knowledge base.");

@@ -62,6 +62,12 @@ public abstract class GoalBasedAgentSimulator extends Simulator {
         
         agent = (GoalBasedAgent) this.getAgents().firstElement();
 
+        /*
+         * Simulation starts. The environment sends perceptions to the agent, and
+         * it returns actions. The loop condition evaluation is placed at the end.
+         * This works even when the agent starts with a goal state (see isComplete
+         * method in the SearchBasedAgentSimulator).
+         */
         do {
         	
         	System.out.println("------------------------------------");
@@ -82,7 +88,7 @@ public abstract class GoalBasedAgentSimulator extends Simulator {
             System.out.println("Action returned: " + action);
             System.out.println();
             
-            this.iterationFinished(agent, action);
+            this.actionReturned(agent, action);
             
         } while (!isComplete(action));
 
@@ -109,18 +115,18 @@ public abstract class GoalBasedAgentSimulator extends Simulator {
         this.getEnvironment().updateState(((GoalBasedAgent) agents.elementAt(0)).getAgentState(), action);
     }
     
-//    private Action getAction(Action actionReturnedByAgent) {
-//    	Action action = actionReturnedByAgent;
-//    	
-//    	if (action == null)
-//    		action = NoAction.getInstance();
-//    	
-//    	return action;
-//    }
-    
     public abstract boolean isComplete(Action actionReturned);
     
-    public abstract void iterationFinished(Agent agent, Action action);
+    /**
+     * This method is executed in the mail loop of the simulation when the
+     * agent returns an action.
+     * @param agent
+     * @param action
+     */
+    public abstract void actionReturned(Agent agent, Action action);
     
+    /**
+     * @return The name of the simulator, e.g. 'SearchBasedAgentSimulator'
+     */
     public abstract String getSimulatorName();
 }

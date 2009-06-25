@@ -33,7 +33,7 @@ public class ReactiveBasedAgentSimulator extends GoalBasedAgentSimulator {
 	}
 
 	@Override
-	public void iterationFinished(Agent agent, Action action) {
+	public void actionReturned(Agent agent, Action action) {
 		this.updateState(action);
 	}
 
