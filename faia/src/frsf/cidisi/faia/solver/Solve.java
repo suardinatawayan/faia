@@ -19,7 +19,6 @@
 package frsf.cidisi.faia.solver;
 
 import frsf.cidisi.faia.agent.Action;
-import frsf.cidisi.faia.exceptions.SituationCalculusException;
 
 /**
  * @author Jorge M. Roa
@@ -40,4 +39,5 @@ public abstract class Solve {
     /* Maybe it's not correct to leave this method here, due to it's probable
      * some AI techniques could not show the solution */
     public abstract void showSolution();
+    
 }
