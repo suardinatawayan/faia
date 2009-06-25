@@ -7,8 +7,6 @@ import frsf.cidisi.faia.environment.MatlabEnvironment;
 
 public class AmbienteTanque extends MatlabEnvironment {
 
-	private boolean primeraEjecucion;
-	
 	private static final double AREA_TANQUE = 40.0;
 	private static final double RESTRICCION_DESCARGA = 0.5;
 
@@ -16,7 +14,6 @@ public class AmbienteTanque extends MatlabEnvironment {
 		super();
 		
 		this.environmentState = new EstadoAmbienteTanque();
-		this.primeraEjecucion = true;
 	}
 	
 	@Override
@@ -26,27 +23,22 @@ public class AmbienteTanque extends MatlabEnvironment {
 	
 	@Override
 	public Perception getPercept(Agent agent) {
-		AgenteTanque agente = (AgenteTanque) agent;
 		PercepcionTanque percepcion = new PercepcionTanque();
 		
 		Hashtable<String,double[][]> retorno;
 		
 		// Inicio la simulación
-		if (!this.primeraEjecucion) {
-			retorno = this.startSimulation();
-			
-			double[][] h = retorno.get("h");
-			
-			EstadoAmbienteTanque estadoAmbiente =
-				this.getEnvironmentState();
-			
-			estadoAmbiente.setAltura(h[h.length-1][0]);
-			estadoAmbiente.setTiempoInicial(estadoAmbiente.getTiempoFinal());
-			estadoAmbiente.setTiempoFinal(estadoAmbiente.getTiempoInicial() +
-					estadoAmbiente.getPaso());
-		}
-		else
-			this.primeraEjecucion  = false;
+		retorno = this.startSimulation();
+		
+		double[][] h = retorno.get("h");
+		
+		EstadoAmbienteTanque estadoAmbiente =
+			this.getEnvironmentState();
+		
+		estadoAmbiente.setAltura(h[h.length-1][0]);
+		estadoAmbiente.setTiempoInicial(estadoAmbiente.getTiempoFinal());
+		estadoAmbiente.setTiempoFinal(estadoAmbiente.getTiempoInicial() +
+				estadoAmbiente.getPaso());
 		
 		percepcion.setAlturaTanque(this.getEnvironmentState().getAltura());
 		percepcion.setTiempoActual(this.getEnvironmentState().getTiempoInicial());

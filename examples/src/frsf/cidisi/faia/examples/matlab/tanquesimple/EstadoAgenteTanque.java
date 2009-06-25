@@ -13,7 +13,7 @@ public class EstadoAgenteTanque extends ReactiveBasedAgentState {
 	public EstadoAgenteTanque() {
 		this.initState();
 	}
-
+	
 	@Override
 	public void updateState(Perception p) {
 		PercepcionTanque percepcionTanque =
@@ -24,7 +24,7 @@ public class EstadoAgenteTanque extends ReactiveBasedAgentState {
 		this.caudalAnterior = this.caudalActual;
 		this.caudalActual = percepcionTanque.getCaudalActual();
 	}
-
+	
 	@Override
 	public void initState() {
 		this.alturaActual = 5.0;
