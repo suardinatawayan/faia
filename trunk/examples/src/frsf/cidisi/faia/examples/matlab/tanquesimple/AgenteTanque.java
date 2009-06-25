@@ -1,10 +1,14 @@
 package frsf.cidisi.faia.examples.matlab.tanquesimple;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.agent.NoAction;
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.agent.reactive.ReactiveBasedAgent;
 import frsf.cidisi.faia.examples.matlab.tanquesimple.acciones.CambiarCaudal;
+import frsf.cidisi.faia.examples.search.pacman.AgentePacman;
 
 // TODO: Ver si no conviene hacer a este agente reactivo simple
 
@@ -26,20 +30,20 @@ public class AgenteTanque extends ReactiveBasedAgent {
 
 	@Override
 	public Action selectAction() {
-		EstadoAgenteTanque estadoTanque =
-			this.getAgentState();
+		ReactiveSolver solver = new ReactiveSolver();
 		
-		double nuevoCaudal =
-			estadoTanque.getCaudalActual();
+		this.setSolver(solver);
 		
-		if (estadoTanque.getAlturaActual() > 30)
-			nuevoCaudal = 0.50 + nuevoCaudal * 0.90;
-		else if (estadoTanque.getAlturaActual() < 30)
-			nuevoCaudal = 0.50 + nuevoCaudal * 1.10;
-		
-		Action accion = new CambiarCaudal(nuevoCaudal);
-		
-		return accion;
+		// Se ejecuta el proceso de selección de la acción más adecuada.
+        Action selectedAction = null;
+        try {
+        	selectedAction =
+                    this.getSolver().solve(new Object[]{ this.getAgentState() });
+        } catch (Exception ex) {
+            Logger.getLogger(AgentePacman.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return selectedAction;
 	}
 
 }
