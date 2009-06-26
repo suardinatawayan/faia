@@ -4,18 +4,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import frsf.cidisi.faia.agent.Action;
-import frsf.cidisi.faia.agent.NoAction;
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.agent.reactive.ReactiveBasedAgent;
-import frsf.cidisi.faia.examples.matlab.simple_water_tank.actions.CambiarCaudal;
 import frsf.cidisi.faia.examples.search.pacman.AgentePacman;
 
-// TODO: Ver si no conviene hacer a este agente reactivo simple
-
-public class AgenteTanque extends ReactiveBasedAgent {
+public class SimpleWaterTankAgent extends ReactiveBasedAgent {
 	
-	public AgenteTanque() {
-		this.setAgentState(new EstadoAgenteTanque());
+	public SimpleWaterTankAgent() {
+		this.setAgentState(new SimpleWaterTankAgentState());
 	}
 	
 	@Override
@@ -24,8 +20,8 @@ public class AgenteTanque extends ReactiveBasedAgent {
 	}
 	
 	@Override
-	public EstadoAgenteTanque getAgentState() {
-		return (EstadoAgenteTanque) super.getAgentState();
+	public SimpleWaterTankAgentState getAgentState() {
+		return (SimpleWaterTankAgentState) super.getAgentState();
 	}
 
 	@Override
@@ -34,7 +30,7 @@ public class AgenteTanque extends ReactiveBasedAgent {
 		
 		this.setSolver(solver);
 		
-		// Se ejecuta el proceso de selección de la acción más adecuada.
+		// It gets the best action from the solver
         Action selectedAction = null;
         try {
         	selectedAction =
