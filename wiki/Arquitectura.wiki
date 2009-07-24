@@ -1,0 +1,13 @@
+Descripción de la arquitectura de FAIA.
+= FAIA ARCHITECTURE =
+The FAIA framework realizes an agent general abstraction. The basic concept that has been represented in the proposed framework is the fact that an _agent_ interacts with an _environment_ through two relations: _perception_, which the environment gives to the agent in order to show some of its aspects; and _action_, which the agent executes on the environment in order to change it. Then, as it is well known, an agent has an _internal state_ that typify its knowledge about the environment, a _decision engine_ that allows the agent to take an action in a given situation, and a _set of actions_ that represents the procedures that the agent can perform. The environment is a model of a real world, which has a _state_ that represents relevant information about the world and the _behavior_ that represents the environment simulator, which is able to interpret the agent actions. Based on these definitions, it has been proposed the FAIA architecture shown in figure above: 
+
+
+
+
+= Details =
+
+Add your content here.  Format your content with:
+  * Text in *bold* or _italic_
+  * Headings, paragraphs, and lists
+  * Automatic links to other wiki pages
