@@ -51,4 +51,12 @@ public abstract class Environment {
      * @return
      */
     public abstract Perception getPercept(Agent agent);
+
+    /**
+     * Subclasses of Environment can override this method to close any
+     * resource when simulation finished.
+     */
+    public void close() {
+
+    }
 }
