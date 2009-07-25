@@ -23,9 +23,7 @@ import java.util.Vector;
 import frsf.cidisi.faia.agent.GoalBasedAgent;
 import frsf.cidisi.faia.agent.Agent;
 import frsf.cidisi.faia.agent.Action;
-import frsf.cidisi.faia.agent.NoAction;
 import frsf.cidisi.faia.agent.Perception;
-import frsf.cidisi.faia.agent.search.SearchAction;
 import frsf.cidisi.faia.environment.Environment;
 import frsf.cidisi.faia.simulator.events.EventType;
 import frsf.cidisi.faia.simulator.events.SimulatorEventNotifier;
@@ -101,6 +99,9 @@ public abstract class GoalBasedAgentSimulator extends Simulator {
         
         // Leave a blank line
         System.out.println();
+
+        // FIXME: This call can be moved to the Simulator class
+        this.environment.close();
         
         // Launch simulationFinished event
         SimulatorEventNotifier.runEventHandlers(EventType.SimulationFinished, null);

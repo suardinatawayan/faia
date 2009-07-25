@@ -4,8 +4,7 @@ import java.io.File;
 import java.util.Hashtable;
 
 import jmatlink.JMatLink;
-import frsf.cidisi.faia.agent.Agent;
-import frsf.cidisi.faia.agent.Perception;
+import frsf.cidisi.faia.state.MatlabEnvironmentState;
 
 public abstract class MatlabEnvironment extends Environment {
 	
@@ -28,7 +27,18 @@ public abstract class MatlabEnvironment extends Environment {
 				
 		this.engine.engEvalString(systemPath);
 	}
+
+        @Override
+        public void close() {
+            try {
+                this.engine.engClose();
+            }
+            catch (Exception ex) {
+                
+            }
+        }
 	
+        @Override
 	protected void finalize() throws Throwable {
 		try {
 			this.engine.engClose();
@@ -39,6 +49,11 @@ public abstract class MatlabEnvironment extends Environment {
 		finally {
 			super.finalize();
 		}
+	}
+	
+	@Override
+	public MatlabEnvironmentState getEnvironmentState() {
+		return (MatlabEnvironmentState) this.environmentState;
 	}
 	
 	protected Hashtable<String,double[][]> startSimulation() {
