@@ -36,9 +36,8 @@ public class SimpleWaterTankEnvironment extends MatlabEnvironment {
 			this.getEnvironmentState();
 		
 		environmentState.setTankHeight(h[h.length-1][0]);
-		environmentState.setStartTime(environmentState.getEndTime());
-		environmentState.setEndTime(environmentState.getStartTime() +
-				environmentState.getStep());
+		// Change start and end time for the next simulation
+		environmentState.nextTime();
 		
 		perception.setTankHeight(this.getEnvironmentState().getTankHeight());
 		perception.setTime(this.getEnvironmentState().getStartTime());

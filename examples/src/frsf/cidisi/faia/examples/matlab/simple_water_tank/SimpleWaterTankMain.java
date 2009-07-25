@@ -10,8 +10,8 @@ public class SimpleWaterTankMain {
         SimpleWaterTankEnvironment environment =
         	new SimpleWaterTankEnvironment();
         
-        ReactiveBasedAgentSimulator simulator =
-        	new ReactiveBasedAgentSimulator(environment, agent);
+        TimeBasedSimulator simulator =
+        	new TimeBasedSimulator(environment, agent);
         
         simulator.start();
 	}
