@@ -1,5 +1,5 @@
 #labels Featured
-= ¿Qué es FAIA?  ¿What is FAIA?
+= ¿Qué es FAIA?  ¿What is FAIA? =
 FAIA es un framework para el desarrollo de aplicaciones de interés académico que utilizan técnicas de Inteligencia Artificial (IA). El objetivo del mismo es permitir que el alumno pueda enfocarse en modelar y resolver el problema desde el punto de vista de la IA facilitando el proceso de implementación de la aplicación. Para lograr esto FAIA dispone de un conjunto de clases y algoritmos que deben ser utilizados y/o extendidos por el alumno. Se puede encontrar información más detallada en el paper FAIA: Framework para la enseñanza de agentes en IA, que se encuentra en la [http://www.frsf.utn.edu.ar/matero/visitante/index.php?id_catedra=142 página de la cátedra] en la sección "Repositorio".
 
 
