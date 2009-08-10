@@ -1,15 +1,22 @@
 #labels Featured
-= ¿Qué es FAIA? =
+= ¿Qué es FAIA?  ¿What is FAIA?
 FAIA es un framework para el desarrollo de aplicaciones de interés académico que utilizan técnicas de Inteligencia Artificial (IA). El objetivo del mismo es permitir que el alumno pueda enfocarse en modelar y resolver el problema desde el punto de vista de la IA facilitando el proceso de implementación de la aplicación. Para lograr esto FAIA dispone de un conjunto de clases y algoritmos que deben ser utilizados y/o extendidos por el alumno. Se puede encontrar información más detallada en el paper FAIA: Framework para la enseñanza de agentes en IA, que se encuentra en la [http://www.frsf.utn.edu.ar/matero/visitante/index.php?id_catedra=142 página de la cátedra] en la sección "Repositorio".
 
 
-= ¿Cómo puedo obtener FAIA? =
+FAIA is a framework for academic application development using Artificial Intelligence (AI)technique. The aim is to enable the student can focus on modeling and solving the problem from the point of view of AI to facilitate the process of implementing the application. To accomplish this goal, FAIA has a set of classes and algorithms that must be used and / or extended by the student. You can find more detailed information in the paper FAIA: Framework for teaching agents in AI, which is in the [http://www.frsf.utn.edu.ar/matero/visitante/index.php?id_catedra=142] in the section "repositorio".
+
+
+= ¿Cómo puedo obtener FAIA?  How can I obtain FAIA?=
 La página principal del proyecto es esta: http://code.google.com/p/faia/
 En la sección de [http://code.google.com/p/faia/downloads/list Downloads] se pueden bajar las últimas versiones estables y el software relacionado. También se puede acceder a la versión en desarrollo en el [http://code.google.com/p/faia/source/checkout repositorio Subversion].
 
+The proyect URL is: http://code.google.com/p/faia/ in the downloads section you can download the last version and the related software. Also, you can access to the development version at [http://code.google.com/p/faia/source/checkout Subversion repository ]. 
 
-= ¿Cómo importar FAIA en Eclipse o !NetBeans? =
+= ¿Cómo importar FAIA en Eclipse o !NetBeans? How can I import FAIA in Eclipse or !NetBeans? =
 En la [http://code.google.com/p/faia/w/list wiki] se pueden encontrar documentos que explican como importar FAIA y utilizarlo, tanto para [http://code.google.com/p/faia/wiki/FaiaConEclipse Eclipse] como para [http://code.google.com/p/faia/wiki/FaiaConNetbeans Netbeans].
+
+In the [http://code.google.com/p/faia/w/list wiki] you can find documents that explain how to import FAIA from Eclipse [http://code.google.com/p/faia/wiki/FaiaConEclipse Eclipse] and from netBeans [http://code.google.com/p/faia/wiki/FaiaConNetbeans Netbeans]
+
 
 
 = ¿Hay algún ejemplo disponible que me permita ver cómo utilizar FAIA? =
