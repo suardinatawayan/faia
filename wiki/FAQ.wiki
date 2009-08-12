@@ -31,11 +31,11 @@ El ejemplo de '''Cálculo Situacional''' es el mismo problema que el "Pacman" me
 
 Yes. There are examples available in the Downloads page or in the Subversion repository. The examples use search and Situation Calculus strategies.
 
-The example that uses Search, is a more simple Pac-man version. The practical work that explain the problem is available in [http://www.frsf.utn.edu.ar/matero/visitante/index.php?id_catedra=142&ver=12 Inteligencia Artificial]. To execute the examples, follow the steps given in "instalation guide" in the wiki.  
+The example that uses Search, is a more simple Pac-man version. The practical work that explain the problem is available in [http://www.frsf.utn.edu.ar/matero/visitante/index.php?id_catedra=142&ver=12 Artificial Inteligence]. To execute the examples, follow the steps given in "instalation guide" in the wiki.  
 
+The example that uses situation calculus is the same problem as Pacman mentioned previusly. This example uses Prolog for solve the problem. 
 
-
-= ¿Qué contienen los ejemplos? =
+= ¿Qué contienen los ejemplos? What is the content of the examples? =
 El ejemplo de Búsqueda contiene la solución al problema del “Pacman”. Esta compuesta por:
 
  * Operadores: Comer.java, IrAbajo.java, IrArriba.java, IrDerecha.java, IrIzquierda.java, Pelear.java.
@@ -44,12 +44,13 @@ El ejemplo de Búsqueda contiene la solución al problema del “Pacman”. Esta
  * Meta: MetaPacman.java
  * Clase principal (Main): Pacman.java
 
-_TODO:_ Falta el ejemplo de Cálculo Situacional.
+The examples have the problem solution and contains Agent definition, operators, environment definition, goal, and the main method. 
 
 
-= ¿Cómo se ejecuta el ejemplo? =
+= ¿Cómo se ejecuta el ejemplo?  How can I execute the examples?=
 Las instrucciones están en la wiki, tanto para Eclipse como para Netbeans.
 
+Follow the instruction in the wiki page "instalation guide"
 
 = ¿Cómo debo configurar Eclipse o Netbeans para que mi proyecto utilice FAIA? =
 Las instrucciones están en la wiki, tanto para Eclipse como para Netbeans.
