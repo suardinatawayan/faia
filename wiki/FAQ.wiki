@@ -31,7 +31,7 @@ El ejemplo de '''Cálculo Situacional''' es el mismo problema que el "Pacman" me
 
 Yes. There are examples available in the Downloads page or in the Subversion repository. The examples use search and Situation Calculus strategies.
 
-The example that uses Search, is a more simple Pac-man version. The practical work that explain the problem is available in [http://www.frsf.utn.edu.ar/matero/visitante/index.php?id_catedra=142&ver=12 Artificial Inteligence]. To execute the examples, follow the steps given in "instalation guide" in the wiki.  
+The example that uses Search, is a more simple Pac-man version. The practical work that explain the problem is available in [http://www.frsf.utn.edu.ar/matero/visitante/index.php?id_catedra=142&ver=12 Artificial Inteligence]. To execute the examples, follow the instructions given in "instalation guide" in the wiki.  
 
 The example that uses situation calculus is the same problem as Pacman mentioned previusly. This example uses Prolog for solve the problem. 
 
@@ -44,17 +44,22 @@ El ejemplo de Búsqueda contiene la solución al problema del “Pacman”. Esta
  * Meta: MetaPacman.java
  * Clase principal (Main): Pacman.java
 
-The examples have the problem solution and contains Agent definition, operators, environment definition, goal, and the main method. 
-
+The examples include the problem solution and contains:
+ * Agent definition: AgentePacman.java, EstadoPacman.java
+ * operators: comer.java, IrAbajo.java, IrArriba.java, IrDerecha.java, IrIzquierda.java, Pelear.java
+ * Environment definition: AmbientePacman.java, EstadoAmbiente.java
+ * goal: MetaPacman.java
+ * main method: Pacman.java 
 
 = ¿Cómo se ejecuta el ejemplo?  How can I execute the examples?=
 Las instrucciones están en la wiki, tanto para Eclipse como para Netbeans.
 
 Follow the instruction in the wiki page "instalation guide"
 
-= ¿Cómo debo configurar Eclipse o Netbeans para que mi proyecto utilice FAIA? =
+= ¿Cómo debo configurar Eclipse o Netbeans para que mi proyecto utilice FAIA? How do I have to configure Eclipse or Netbeans in my proyecto in order to use FAIA? =
 Las instrucciones están en la wiki, tanto para Eclipse como para Netbeans.
 
+The instructions are in the wiki page: "configure FAIA with Eclipse" and "Configure FAIA with NetBeans" sections. 
 
 = ¿Cómo puedo exportar mi proyecto para utilizarlo en el Java Lab? =
 _TODO:_ Indicar las instrucciones tanto para Eclipse (ya están en la FAQ versión PDF) como para Netbeans.
