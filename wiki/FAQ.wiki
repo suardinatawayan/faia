@@ -59,7 +59,7 @@ Follow the instruction in the wiki page "instalation guide"
 = ¿Cómo debo configurar Eclipse o Netbeans para que mi proyecto utilice FAIA? How do I have to configure Eclipse or Netbeans in my proyecto in order to use FAIA? =
 Las instrucciones están en la wiki, tanto para Eclipse como para Netbeans.
 
-The instructions are in the wiki page: "configure FAIA with Eclipse" and "Configure FAIA with NetBeans" sections. 
+The instructions are in the wiki page: "FAIAconEclipse" and "FAIAconNetBeans" sections. 
 
 = ¿Cómo puedo exportar mi proyecto para utilizarlo en el Java Lab? =
 _TODO:_ Indicar las instrucciones tanto para Eclipse (ya están en la FAQ versión PDF) como para Netbeans.
