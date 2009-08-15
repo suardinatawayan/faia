@@ -131,7 +131,6 @@ public class EstadoPacmanLogico extends KnowledgeBase {
     
     // Estos métodos son internos de la clase EstadoPacman.
     public int[] getPosicion() {
-        // TODO: Aca habria que hacer una consulta Prolog
         String consultaPosicion = "posicion(X,Y," + this.getSituation() + ")";
 
         Hashtable[] resultado = this.query(consultaPosicion);
