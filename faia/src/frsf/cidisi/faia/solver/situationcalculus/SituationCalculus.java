@@ -41,9 +41,8 @@ public class SituationCalculus extends Solve {
             kb.getSituation() + ")");
     	
 	    // We look for the first result.
-	    if (results.length == 0) {
+	    if (results.length == 0)
 	        throw new SituationCalculusException("No solutions returned. Maybe there is an error in the knowledge base.");
-	    }
 	    
 	    String bestAction = results[0].get("X").toString();
 	
