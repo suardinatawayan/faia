@@ -15,22 +15,21 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package frsf.cidisi.faia.examples.search.pacman;
 
 import frsf.cidisi.faia.agent.search.GoalTest;
 import frsf.cidisi.faia.state.AgentState;
 
 /**
- * Esta clase se utiliza para definir una función que, recibido 
- * un objeto estado del agente, verifique si se ha llegado al objetivo o no.
- * Se utiliza en el proceso interno de búsqueda del agente y también en
- * el simulador, para saber cuándo detenerse.
+ * This class defines the 'isGoalState' method. It has the responsability of,
+ * given the agent state, verify if it is a goal state. It is used by the
+ * search process of the agent and by the simulator, to know when to stop.
  */
-public class MetaPacman extends GoalTest {
+public class PacmanGoal extends GoalTest {
 
     public boolean isGoalState(AgentState agentState) {
-        if (((EstadoPacman) agentState).noHayMasComida() & ((EstadoPacman) agentState).todoConocido()) {
+        if (((PacmanAgentState) agentState).isNoMoreFood() &&
+                ((PacmanAgentState) agentState).isAllWorldKnown()) {
             return true;
         }
         return false;

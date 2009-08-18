@@ -15,28 +15,25 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package frsf.cidisi.faia.examples.search.pacman;
 
 import frsf.cidisi.faia.solver.search.IEstimatedCostFunction;
 import frsf.cidisi.faia.solver.search.NTree;
 
 /**
- * Esta clase permite definir una función para ser utilizada en
- * alguna estrategia de búsqueda informada, como A Estrella y
- * Avara.
+ * This class allows to define a function to be used by any
+ * informed search strategy, like A Star or Greedy.
  */
-public class Heuristica implements IEstimatedCostFunction {
+public class Heuristic implements IEstimatedCostFunction {
 
-	/**
-	 * Esta función puede ser personalizada para calcular el costo
-	 * estimado de llegar al objetivo, desde el nodo que se recibe
-	 * como parámetro.
-	 */
+    /**
+     * It returns the estimated cost to reach the goal from a NTree node.
+     */
     @Override
     public double getEstimatedCost(NTree node) {
-        EstadoPacman estP = (EstadoPacman) node.getAgentState();
+        PacmanAgentState pacmanState = (PacmanAgentState) node.getAgentState();
 
-        return (estP.getCeldasDesconocidas() + estP.getComidaRestante());
+        return (pacmanState.getUnknownCellsCount() +
+                pacmanState.getRemainingFoodCount());
     }
 }

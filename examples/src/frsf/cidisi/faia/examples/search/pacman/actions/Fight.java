@@ -15,7 +15,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package frsf.cidisi.faia.examples.search.pacman.actions;
 
 import frsf.cidisi.faia.examples.search.pacman.*;
@@ -24,75 +23,69 @@ import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
 import frsf.cidisi.faia.state.AgentState;
 import frsf.cidisi.faia.state.EnvironmentState;
 
-public class IrArriba extends SearchAction {
-    
-	/**
-	 * Ver el comentario hecho en la clase Comer.
-	 */
+public class Fight extends SearchAction {
+
+    /**
+     * See comments in the Eat class.
+     */
     @Override
     public SearchBasedAgentState execute(SearchBasedAgentState s) {
-//		EstadoPacman estP = ((EstadoPacman)s.clone());
-        EstadoPacman estP = (EstadoPacman) s;
+        PacmanAgentState pacmanState = (PacmanAgentState) s;
 
-        estP.incCeldasVisitadas();
+        int row = pacmanState.getRowPosition();
+        int col = pacmanState.getColumnPosition();
 
-        int fil = estP.getFila();
-        int col = estP.getColumna();
+        if ((pacmanState.getWorld()[row][col] == 1) &&
+                (pacmanState.getEnergy() > 30)) {
 
-        if (fil == 0) {
-            fil = 3;
-        } else {
-            fil = fil - 1;
+            // There is no more enemy if we fight against it
+            pacmanState.setWorld(row, col, PacmanPerception.EMPTY_PERCEPTION);
+            
+            return pacmanState;
         }
-        estP.setFila(fil);
-        if (estP.getMundoConocido(fil, col) == 0) {
-            estP.setMundoConocido(fil, col, 1);
-            return estP;
-        }
-        //System.out.println(" Arriba@Pac - ");
 
         return null;
     }
-    
+
     /**
-	 * Ver el comentario hecho en la clase Comer.
-	 */
+     * See comments in the Eat class.
+     */
     @Override
     public EnvironmentState execute(AgentState ast, EnvironmentState est) {
-//		EstadoPacman estP = ((EstadoPacman)s.clone());
-        EstadoAmbiente estA = (EstadoAmbiente) est;
-        EstadoPacman estP = ((EstadoPacman) ast);
 
-        estP.incCeldasVisitadas();
+        PacmanEnvironmentState environmentState = (PacmanEnvironmentState) est;
+        PacmanAgentState pacmanState = ((PacmanAgentState) ast);
 
-        int fil = estP.getFila();
-        int col = estP.getColumna();
+        int row = pacmanState.getRowPosition();
+        int col = pacmanState.getColumnPosition();
 
-        if (fil == 0) {
-            fil = 3;
-        } else {
-            fil = fil - 1;
+        if ((environmentState.getWorld()[row][col] == 1) &&
+                (pacmanState.getEnergy() > 30)) {
+            // Update the real world state
+            environmentState.setWorld(row, col, PacmanPerception.EMPTY_PERCEPTION);
+
+            // Update the agent state
+            pacmanState.setWorld(row, col, PacmanPerception.EMPTY_PERCEPTION);
+            
+            return environmentState;
         }
-        estP.setFila(fil);
-        estP.setMundoConocido(fil, col, 1);
-        //estP.setMundo(fil, col, PercepcionPacman.PERCEPCION_VACIO);
-        //System.out.println(" Arriba@Amb - ");
-        return estA;
+
+        return null;
     }
 
     /**
-	 * Ver el comentario hecho en la clase Comer.
-	 */
+     * See comments in the Eat class.
+     */
     @Override
     public Double getCost() {
         return new Double(0);
     }
 
     /**
-	 * Ver el comentario hecho en la clase Comer.
-	 */
+     * See comments in the Eat class.
+     */
     @Override
     public String toString() {
-        return "Arriba";
+        return "Fight";
     }
 }
