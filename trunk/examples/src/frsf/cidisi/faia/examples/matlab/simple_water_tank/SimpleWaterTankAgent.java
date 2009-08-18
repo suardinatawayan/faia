@@ -6,7 +6,7 @@ import java.util.logging.Logger;
 import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.agent.reactive.ReactiveBasedAgent;
-import frsf.cidisi.faia.examples.search.pacman.AgentePacman;
+import frsf.cidisi.faia.examples.search.pacman.PacmanAgent;
 
 public class SimpleWaterTankAgent extends ReactiveBasedAgent {
 	
@@ -36,7 +36,7 @@ public class SimpleWaterTankAgent extends ReactiveBasedAgent {
         	selectedAction =
                     this.getSolver().solve(new Object[]{ this.getAgentState() });
         } catch (Exception ex) {
-            Logger.getLogger(AgentePacman.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SimpleWaterTankAgent.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         return selectedAction;

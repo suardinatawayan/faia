@@ -15,26 +15,22 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package frsf.cidisi.faia.examples.search.pacman;
 
 import frsf.cidisi.faia.solver.search.IStepCostFunction;
 import frsf.cidisi.faia.solver.search.NTree;
 
 /**
- * Esta clase se puede utilizar en alguna estrategia de búsqueda
- * como Costo Uniforme.
+ * This class can be used in any search strategy like
+ * Uniform Cost.
  */
-public class FuncionCosto implements IStepCostFunction {
+public class CostFunction implements IStepCostFunction {
 
-	/**
-	 * Este método calcula el costo de un determinado nodo que
-	 * se recibe como argumento. Esto puede ser personalizado y se
-	 * puede utilizar cualquier función de costo.
-	 */
+    /**
+     * This method calculates the cost of the given NTree node.
+     */
     @Override
     public double calculateCost(NTree node) {
-        // TODO Auto-generated method stub
-        return ((EstadoPacman) node.getAgentState()).getCeldasVisitadas();
+        return ((PacmanAgentState) node.getAgentState()).getVisitedCellsCount();
     }
 }
