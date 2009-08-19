@@ -56,26 +56,25 @@ Si nuestro proyecto ya ha sido creado, la forma de referenciar _faia_ es siguien
  # Hacer click en _OK_. // Click _Ok_.
 
 
+== Configurar un proyecto para utilizar _Búsqueda_ // Configuring a project to use _Search_ ==
 
-== Configurar un proyecto para utilizar _Búsqueda_ ==
-
-Ver UtilizarBusqueda.
+Ver UtilizarBusqueda // See [http://code.google.com/p/faia/wiki/UtilizarBusqueda using Search].
 
 
-== Configurar un proyecto para utilizar _Cálculo Situacional_ ==
+== Configurar un proyecto para utilizar _Cálculo Situacional_ // Configuring a project to use _Situation Calculus_==
 
-_NOTAS:_
- * Es necesario haber importado FAIA.
- * Es necesario tener instalado SWI-Prolog. En InstruccionesInstalacion se dan detalles de cómo hacerlo, ya que la instalación y configuración no es trivial.
+_NOTAS // NOTES:_
+ * Es necesario haber importado FAIA. // It is necessary to import FAIA before following these steps.
+ * Es necesario tener instalado SWI-Prolog. En InstruccionesInstalacion se dan detalles de cómo hacerlo, ya que la instalación y configuración no es trivial. // It is necessary to install SWI-Prolog. Instructions to do this are show [http://code.google.com/p/faia/wiki/InstruccionesInstalacion here].
 
-Si se ha instalado SWI-Prolog e importado FAIA correctamente, entonces nuestro proyecto que utiliza Cálculo Situacional ya debería funcionar en Windows. Es altamente recomendable ver el ejemplo "pacman_logico".
+Si se ha instalado SWI-Prolog e importado FAIA correctamente, entonces nuestro proyecto que utiliza Cálculo Situacional ya debería funcionar en Windows. Es altamente recomendable ver el ejemplo "pacman_logico". // If SWI-Prolog is correctly installed and FAIA is correctly imported, then our project that uses Situation Calculus should be working on Windows. We recommend to check the example “logic_pacman” .
 
-*En sistemas GNU/Linux*, es necesario realizar los siguientes pasos:
+*En sistemas GNU/Linux*, es necesario realizar los siguientes pasos // In GNU/Linux systems is necessary to follow next steps: 
 
- # Hacer click derecho en nuestro proyecto y elegir la opción _Run As -> Run Configurations_.
- # En la lista de la izquierda, hacer click derecho en _Java Application_, y elegir la opción _New_.
- # Se puede colocar algún nombre en el campo _Name_.
+ # Hacer click derecho en nuestro proyecto y elegir la opción _Run As -> Run Configurations_. // Right click in our project and select option _Run As -> Run Configurations_.
+ # En la lista de la izquierda, hacer click derecho en _Java Application_, y elegir la opción _New_. // On the left list, right click _Java Application_, and select _New_.
+ # Se puede colocar algún nombre en el campo _Name_. // Input a name in the field _Name_
  # Establecer correctamente la clase principal (Main class) haciendo click en el botón _Search_.
- # En la solapa _Arguments_, en la caja de texto _VM arguments_, colocar: _-Djava.library.path="/usr/lib/pl-5.6.57/lib/i386-linux"_. Es importante no olvidarse de colocar las comillas dobles para indicar la ruta del directorio, y así evitarse problemas.
- # Presionar el botón _Apply_.
- # Presionar el botón _Run_ para correr el proyecto.
+ # En la solapa _Arguments_, en la caja de texto _VM arguments_, colocar: _-Djava.library.path="/usr/lib/pl-5.6.57/lib/i386-linux"_. Es importante no olvidarse de colocar las comillas dobles para indicar la ruta del directorio, y así evitarse problemas. // In frame _Arguments_, in _VM arguments_ put: _-Djava.library.path="/usr/lib/pl-5.6.57/lib/i386-linux"_. Do not forget double quotation marks to indicate the path.
+ # Presionar el botón _Apply_. // Press _Apply_.
+ # Presionar el botón _Run_ para correr el proyecto. // Press _Run_ to run the project.
