@@ -15,14 +15,13 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package frsf.cidisi.faia.agent;
 
 public abstract class Agent {
 
     public Agent() {
     }
-    
+
     /**
      * This is a method executed by the simulator to ask the agent for an
      * action.

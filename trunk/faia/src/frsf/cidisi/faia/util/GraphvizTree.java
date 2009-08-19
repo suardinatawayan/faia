@@ -14,7 +14,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package frsf.cidisi.faia.util;
 
 import java.io.File;
@@ -24,10 +23,10 @@ import frsf.cidisi.faia.solver.search.NTree;
 public class GraphvizTree {
 
     private static int fileIdx = 0;
-	private static String enc = "digraph g {\n"+
-								"node [shape = Mrecord];\n" ;
-								//"graph [rankdir = \"LR\"];\n";
-	private static String pie ="\n}";
+    private static String enc = "digraph g {\n" +
+            "node [shape = Mrecord];\n";
+    //"graph [rankdir = \"LR\"];\n";
+    private static String pie = "\n}";
     private static final String searchTreesDir = "searchGVTrees/";
 
     public static void printFile(NTree tree) {
@@ -39,7 +38,7 @@ public class GraphvizTree {
             if (!f.exists()) {
                 f.mkdir();
             }
-            print = new PrintOut(searchTreesDir + fileIdx + ".dot",false);
+            print = new PrintOut(searchTreesDir + fileIdx + ".dot", false);
             fileIdx = fileIdx + 1;
             print.write(enc);
             print.write(tree.toGraphviz());

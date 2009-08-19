@@ -15,7 +15,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package frsf.cidisi.faia.solver.search;
 
 public class DummyEstimatedCostFunction implements IEstimatedCostFunction {

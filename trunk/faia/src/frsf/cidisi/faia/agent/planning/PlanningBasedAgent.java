@@ -15,15 +15,13 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package frsf.cidisi.faia.agent.planning;
 
 import frsf.cidisi.faia.agent.GoalBasedAgent;
 
 public abstract class PlanningBasedAgent extends GoalBasedAgent {
-	public PlanningBasedAgent() {
-		super();
-	}
-	
-	//public abstract void tell(PlanningAction action);
+
+    public PlanningBasedAgent() {
+        super();
+    }
 }

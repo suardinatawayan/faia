@@ -15,11 +15,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package frsf.cidisi.faia.exceptions;
 
 public class PlanningException extends Exception {
-	public PlanningException(String message) {
+
+    public PlanningException(String message) {
         super(message);
     }
 }

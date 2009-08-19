@@ -15,7 +15,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package frsf.cidisi.faia.agent;
 
 import frsf.cidisi.faia.state.AgentState;
@@ -25,7 +24,7 @@ public abstract class Action {
 
     public Action() {
     }
-    
+
     /**
      * This method updates the real state of the agent and the environment.
      * 

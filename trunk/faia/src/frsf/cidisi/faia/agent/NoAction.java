@@ -15,7 +15,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package frsf.cidisi.faia.agent;
 
 import frsf.cidisi.faia.state.AgentState;
@@ -26,17 +25,17 @@ import frsf.cidisi.faia.state.EnvironmentState;
  * no sense for a search based agent.
  */
 public class NoAction extends Action {
-    
+
     private static NoAction instance;
-    
+
     private NoAction() {
-    	
     }
-    
+
     public static NoAction getInstance() {
-        if (instance == null)
+        if (instance == null) {
             instance = new NoAction();
-        
+        }
+
         return instance;
     }
 
@@ -44,7 +43,7 @@ public class NoAction extends Action {
     public EnvironmentState execute(AgentState ast, EnvironmentState est) {
         return est;
     }
-    
+
     @Override
     public String toString() {
         return "NoAction";

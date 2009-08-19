@@ -15,7 +15,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package frsf.cidisi.faia.simulator;
 
 import java.util.Arrays;
@@ -24,24 +23,23 @@ import java.util.Vector;
 import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.agent.Agent;
 import frsf.cidisi.faia.agent.Perception;
-import frsf.cidisi.faia.agent.planning.PlanningAction;
 import frsf.cidisi.faia.agent.planning.PlanningBasedAgent;
 import frsf.cidisi.faia.environment.Environment;
 import frsf.cidisi.faia.agent.NoAction;
 
 public class PlanningBasedAgentSimulator extends GoalBasedAgentSimulator {
 
-	public PlanningBasedAgentSimulator(Environment environment, Vector<Agent> agents) {
+    public PlanningBasedAgentSimulator(Environment environment, Vector<Agent> agents) {
         super(environment, agents);
     }
 
     public PlanningBasedAgentSimulator(Environment environment, Agent agent) {
-    	this(environment, new Vector<Agent>(Arrays.asList(agent)) );
+        this(environment, new Vector<Agent>(Arrays.asList(agent)));
     }
-	
-	@Override
-	public void start() {
-		Perception perception;
+
+    @Override
+    public void start() {
+        Perception perception;
         Action action;
         PlanningBasedAgent agent;
 
@@ -72,12 +70,12 @@ public class PlanningBasedAgentSimulator extends GoalBasedAgentSimulator {
 
             /* Check if agent has reached the goal or not, or if we must
              * go on */
-            if (action != null && ! (action instanceof NoAction)) {
+            if (action != null && !(action instanceof NoAction)) {
                 /* If the action is not a NoAction instance, then we update
                  * the real world on the simulator. */
                 this.updateState(action);
             }
-        } while (! (action instanceof NoAction || action == null));
+        } while (!(action instanceof NoAction || action == null));
 
         if (action instanceof NoAction) {
             // If there is no action, then the agent has reached the goal.
@@ -89,24 +87,24 @@ public class PlanningBasedAgentSimulator extends GoalBasedAgentSimulator {
 
         // Leave a blank line
         System.out.println();
-	}
+    }
 
-	@Override
-	public String getSimulatorName() {
-		return "Planning Based Simulator";
-	}
+    @Override
+    public String getSimulatorName() {
+        return "Planning Based Simulator";
+    }
 
-	@Override
-	public boolean isComplete(Action actionReturned) {
-		if (actionReturned instanceof NoAction)
-			return true;
-		
-		return false;
-	}
+    @Override
+    public boolean isComplete(Action actionReturned) {
+        if (actionReturned instanceof NoAction) {
+            return true;
+        }
 
-	@Override
-	public void actionReturned(Agent agent, Action action) {
-		this.updateState(action);
-	}
+        return false;
+    }
 
+    @Override
+    public void actionReturned(Agent agent, Action action) {
+        this.updateState(action);
+    }
 }

@@ -15,29 +15,27 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package frsf.cidisi.faia.agent.search;
 
 import frsf.cidisi.faia.agent.Action;
-import frsf.cidisi.faia.state.AgentState;
 
 public abstract class SearchAction extends Action {
 
-	/**
-	 * This method is used internally by the framework when the "Search Process"
-	 * is being executed. It updates the node's state on every node of the
-	 * search tree. Therefore, it doesn't updates the real agent's state, it
-	 * just updates the state of the agent on every node of the search tree.
-	 * 
-	 * @param s
-	 *            This is the state of the agent to be updated on search tree's
-	 *            node.
-	 */
-	public abstract SearchBasedAgentState execute(SearchBasedAgentState s);
+    /**
+     * This method is used internally by the framework when the "Search Process"
+     * is being executed. It updates the node's state on every node of the
+     * search tree. Therefore, it doesn't updates the real agent's state, it
+     * just updates the state of the agent on every node of the search tree.
+     *
+     * @param s
+     *            This is the state of the agent to be updated on search tree's
+     *            node.
+     */
+    public abstract SearchBasedAgentState execute(SearchBasedAgentState s);
 
-	/**
-	 * Depending on the strategy used by the agent, this method can be overrode
-	 * by the agent's actions to return its cost.
-	 */
-	public abstract Double getCost();
+    /**
+     * Depending on the strategy used by the agent, this method can be overrode
+     * by the agent's actions to return its cost.
+     */
+    public abstract Double getCost();
 }

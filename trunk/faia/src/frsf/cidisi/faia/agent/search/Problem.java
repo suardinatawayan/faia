@@ -15,12 +15,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package frsf.cidisi.faia.agent.search;
 
 import java.util.Vector;
-
-import frsf.cidisi.faia.state.AgentState;
 
 public class Problem {
 

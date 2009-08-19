@@ -15,7 +15,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package frsf.cidisi.faia.agent.situationcalculus;
 
 import java.util.Hashtable;
@@ -28,22 +27,21 @@ import frsf.cidisi.faia.state.AgentState;
 
 public abstract class KnowledgeBase extends AgentState {
 
-	/**
+    /**
      * Current situation.
      */
     private int situation;
-    
     /**
      * Prolog connector
      */
     protected PrologConnector prologConnector;
-	
+
     public KnowledgeBase(String knowledgeBaseFile) throws PrologConnectorException {
-    	this.prologConnector = new PrologConnector(knowledgeBaseFile);
-    	this.situation = 0;
+        this.prologConnector = new PrologConnector(knowledgeBaseFile);
+        this.situation = 0;
     }
-    
-	/**
+
+    /**
      * Returns the actual situation of the Knowledge Base
      * @return
      */
@@ -54,48 +52,47 @@ public abstract class KnowledgeBase extends AgentState {
     public void advanceToNextSituation() {
         this.situation++;
     }
-    
+
     public void executeSuccessorStateAxioms() {
         this.prologConnector.executeNonQuery("findall(_,est(" + this.getSituation() + "),_)");
     }
-    
+
     public void tell(SituationCalculusPerception perception) {
         this.addKnowledge(perception.toString());
     }
-    
+
     public void tell(Action actionObject) {
         String action = actionObject.toString();
-        
+
         if (action == null) {
             return;
         }
-        
+
         this.addKnowledge(this.getExecutedActionPredicate() +
                 "(" + action + "," + this.getSituation() + ")");
-        
+
         // Advance to the next situation
         this.advanceToNextSituation();
-        
+
         // Execute successors state axioms
         this.executeSuccessorStateAxioms();
     }
-    
-    public void addKnowledge(String predicate) {
-    	this.prologConnector.addPredicate(predicate);
-    }
-    
-    public Hashtable[] query(String query) {
-    	return this.prologConnector.query(query);
-    }
-    
-    public boolean queryHasSolution(String query) {
-    	return this.prologConnector.queryHasSolution(query);
-    }
-	
-	public abstract ActionFactory getActionFactory();
-	
-    public abstract String getBestActionPredicate();
-    
-    public abstract String getExecutedActionPredicate();
 
+    public void addKnowledge(String predicate) {
+        this.prologConnector.addPredicate(predicate);
+    }
+
+    public Hashtable[] query(String query) {
+        return this.prologConnector.query(query);
+    }
+
+    public boolean queryHasSolution(String query) {
+        return this.prologConnector.queryHasSolution(query);
+    }
+
+    public abstract ActionFactory getActionFactory();
+
+    public abstract String getBestActionPredicate();
+
+    public abstract String getExecutedActionPredicate();
 }

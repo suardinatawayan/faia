@@ -15,7 +15,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package frsf.cidisi.faia.solver.situationcalculus;
 
 import frsf.cidisi.faia.agent.situationcalculus.KnowledgeBase;
@@ -34,19 +33,20 @@ public class SituationCalculus extends Solve {
     @Override
     public Action solve(Object[] params) throws SituationCalculusException {
         KnowledgeBase kb = (KnowledgeBase) params[0];
-    	
+
         // Query the knowledge base for the best action in the current situation.
-    	Hashtable[] results =
-            kb.query(kb.getBestActionPredicate() + "(X," +
-            kb.getSituation() + ")");
-    	
-	    // We look for the first result.
-	    if (results.length == 0)
-	        throw new SituationCalculusException("No solutions returned. Maybe there is an error in the knowledge base.");
-	    
-	    String bestAction = results[0].get("X").toString();
-	
-	    /* We convert the string 'bestAction' in an Action object */
-	    return kb.getActionFactory().makeActionFromString(bestAction);
+        Hashtable[] results =
+                kb.query(kb.getBestActionPredicate() + "(X," +
+                kb.getSituation() + ")");
+
+        // We look for the first result.
+        if (results.length == 0) {
+            throw new SituationCalculusException("No solutions returned. Maybe there is an error in the knowledge base.");
+        }
+
+        String bestAction = results[0].get("X").toString();
+
+        /* We convert the string 'bestAction' in an Action object */
+        return kb.getActionFactory().makeActionFromString(bestAction);
     }
 }
