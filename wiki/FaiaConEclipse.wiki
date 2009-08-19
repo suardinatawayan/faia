@@ -2,18 +2,18 @@
 #labels Featured
 
 *LEER ANTES DE CONTINUAR:* Antes de seguir estos pasos es necesario leer [http://code.google.com/p/faia/wiki/InstruccionesInstalacion las instrucciones de instalación].
+*READ BEFORE CONTINUE:* Read [http://code.google.com/p/faia/wiki/InstruccionesInstalacion installation instructions] before continue.
 
-*READ BEFORE CONTINUE:* Read [http://code.google.com/p/faia/wiki/InstruccionesInstalacion instalation instructions] before continue .
 
+== Importar FAIA / Importing FAIA ==
 
-== Importar FAIA ==
+_NOTAS / Notes:_
+ * Es importante, antes de continuar, haber leído la sección "Instalar FAIA" de la [http://code.google.com/p/faia/wiki/InstruccionesInstalacion página de instrucciones de instalación]. // Is important to read the [http://code.google.com/p/faia/wiki/InstruccionesInstalacion installation instructions] section before continue.
+ * Estas instrucciones de importación de FAIA se aplican también para los ejemplos, ya que los pasos son muy similares. // These installation instructions are also usefull for importing the examples. The steps to do this are similar.
+ * Se pone especial énfasis en configurar correctamente la codificación de caracteres de cada proyecto importado o creado, como se indica en uno de los pasos siguientes, ya que de otro modo surgirán errores. // It is necessary to put attention on the character codification of every imported project, as indicated on next steps. Otherwise, compilation errors can occur.
 
-_NOTAS:_
- * Es importante, antes de continuar, haber leído la sección "Instalar FAIA" de la [http://code.google.com/p/faia/wiki/InstruccionesInstalacion página de instrucciones de instalación].
- * Estas instrucciones de importación de FAIA se aplican también para los ejemplos, ya que los pasos son muy similares.
- * Se pone especial énfasis en configurar correctamente la codificación de caracteres de cada proyecto importado o creado, como se indica en uno de los pasos siguientes, ya que de otro modo surgirán errores.
+|| *1.* Ir al menú _File -> Import..._ // Go to menú _ File -> Import..._ ||
 
-|| *1.* Ir al menú _File -> Import..._ ||
 || http://faia.googlecode.com/svn/wiki/images/faiaConEclipse/importarFaia1.png ||
 || *2.* Elegir la opción _Existing Projects into Workspace_ ubicada dentro de _General_. Luego presionar _Next_. ||
 || http://faia.googlecode.com/svn/wiki/images/faiaConEclipse/importarFaia2.png ||
