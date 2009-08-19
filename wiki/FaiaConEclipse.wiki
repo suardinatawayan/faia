@@ -7,31 +7,31 @@
 
 == Importar FAIA / Importing FAIA ==
 
-_NOTAS / Notes:_
+_NOTAS // NOTES:_
  * Es importante, antes de continuar, haber leído la sección "Instalar FAIA" de la [http://code.google.com/p/faia/wiki/InstruccionesInstalacion página de instrucciones de instalación]. // Is important to read the [http://code.google.com/p/faia/wiki/InstruccionesInstalacion installation instructions] section before continue.
  * Estas instrucciones de importación de FAIA se aplican también para los ejemplos, ya que los pasos son muy similares. // These installation instructions are also usefull for importing the examples. The steps to do this are similar.
  * Se pone especial énfasis en configurar correctamente la codificación de caracteres de cada proyecto importado o creado, como se indica en uno de los pasos siguientes, ya que de otro modo surgirán errores. // It is necessary to put attention on the character codification of every imported project, as indicated on next steps. Otherwise, compilation errors can occur.
 
-|| *1.* Ir al menú _File -> Import..._ // Go to menú _ File -> Import..._ ||
-
+|| *1.* Ir al menú _File -> Import..._ // Go to menue _ File -> Import..._ ||
 || http://faia.googlecode.com/svn/wiki/images/faiaConEclipse/importarFaia1.png ||
-|| *2.* Elegir la opción _Existing Projects into Workspace_ ubicada dentro de _General_. Luego presionar _Next_. ||
+|| *2.* Elegir la opción _Existing Projects into Workspace_ ubicada dentro de _General_. Luego presionar _Next_. // Choose option _ Existing Projects into Workspace_ inside _General_. Then press _Next_.||
 || http://faia.googlecode.com/svn/wiki/images/faiaConEclipse/importarFaia2.png ||
-|| *3.* Elegir la opción _Select archive file_, y presionar el botón _Browse_.||
+|| *3.* Elegir la opción _Select archive file_, y presionar el botón _Browse_. // Choose option _Select archive file_, and then press _Browse_. ||
 || http://faia.googlecode.com/svn/wiki/images/faiaConEclipse/importarFaia3.png ||
-|| *4.* Navegar hacia la carpeta donde fue descargado FAIA y elegir el archivo. Presionar en _Abrir_. ||
+|| *4.* Navegar hacia la carpeta donde fue descargado FAIA y elegir el archivo. Presionar en _Abrir_. // Go to the foder where FAIA was downloaded and select the file. Press _Open_.||
 || http://faia.googlecode.com/svn/wiki/images/faiaConEclipse/importarFaia4.png ||
-|| *5.* Asegurarse que en la lista de abajo titulada _Projects_ se encuentra activado el proyecto _faia_, y presionar _Finish_. ||
+|| *5.* Asegurarse que en la lista de abajo titulada _Projects_ se encuentra activado el proyecto _faia_, y presionar _Finish_. // Make sure the project _faia_ is selected in the _Projects_  list.||
 || http://faia.googlecode.com/svn/wiki/images/faiaConEclipse/importarFaia5.png ||
-|| *6.* El proyecto ha sido importado. Ahora es necesario *cambiar la codificación de caracteres* de _faia_. Hacemos click derecho en el proyecto y elegimos _Properties_. ||
+|| *6.* El proyecto ha sido importado. Ahora es necesario *cambiar la codificación de caracteres* de _faia_. Hacemos click derecho en el proyecto y elegimos _Properties_. // The project has been imported. Now it is necessary *to change _faia’s_ character configuration*. Right click on project and select _Properties_. ||
 || http://faia.googlecode.com/svn/wiki/images/faiaConEclipse/importarFaia6.png ||
-|| *7.* En la sección _Resource_ dentro del marco _Text file encoding_ activamos la opción _Other_, y de la lista desplegable elegimos la opción _UTF-8_. Presionamos el botón _Apply_ y luego _OK_. ||
+|| *7.* En la sección _Resource_ dentro del marco _Text file encoding_ activamos la opción _Other_, y de la lista desplegable elegimos la opción _UTF-8_. Presionamos el botón _Apply_ y luego _OK_. // On section _Resource_, inside frame _Text file encoding_ it is necessary to check the option _Other_, and then select the option _UTF-8_. Push button _Apply_ and then _Ok_. ||
 || http://faia.googlecode.com/svn/wiki/images/faiaConEclipse/importarFaia7.png ||
 
 
-== Configurar un proyecto para que utilice FAIA ==
+== Configurar un proyecto para que utilice FAIA // Configuring a project that uses FAIA ==
 
-_NOTAS:_
+_NOTAS // NOTES:_
+
  * Antes de seguir estos pasos es necesario haber importado FAIA.
  * Estos son pasos básicos para agregar una referencia a nuestro proyecto para utilizar FAIA. Más abajo se dan pasos detallados para poder utilizar Búsqueda y Cálculo Situacional.
  * Recordar cambiar la codificación de caracteres de los proyectos recién creados a "UTF-8". Las instrucciones están en la sección para importar FAIA.
