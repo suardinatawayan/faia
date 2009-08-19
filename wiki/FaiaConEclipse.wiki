@@ -18,7 +18,7 @@ _NOTAS // NOTES:_
 || http://faia.googlecode.com/svn/wiki/images/faiaConEclipse/importarFaia2.png ||
 || *3.* Elegir la opción _Select archive file_, y presionar el botón _Browse_. // Choose option _Select archive file_, and then press _Browse_. ||
 || http://faia.googlecode.com/svn/wiki/images/faiaConEclipse/importarFaia3.png ||
-|| *4.* Navegar hacia la carpeta donde fue descargado FAIA y elegir el archivo. Presionar en _Abrir_. // Go to the foder where FAIA was downloaded and select the file. Press _Open_.||
+|| *4.* Navegar hacia la carpeta donde fue descargado FAIA y elegir el archivo. Presionar en _Abrir_. // Go to the folder where FAIA was downloaded and select the file. Press _Open_.||
 || http://faia.googlecode.com/svn/wiki/images/faiaConEclipse/importarFaia4.png ||
 || *5.* Asegurarse que en la lista de abajo titulada _Projects_ se encuentra activado el proyecto _faia_, y presionar _Finish_. // Make sure the project _faia_ is selected in the _Projects_  list.||
 || http://faia.googlecode.com/svn/wiki/images/faiaConEclipse/importarFaia5.png ||
@@ -31,30 +31,30 @@ _NOTAS // NOTES:_
 == Configurar un proyecto para que utilice FAIA // Configuring a project that uses FAIA ==
 
 _NOTAS // NOTES:_
+ * Antes de seguir estos pasos es necesario haber importado FAIA // It is necessary to import FAIA before following these steps.
+ * Estos son pasos básicos para agregar una referencia a nuestro proyecto para utilizar FAIA. Más abajo se dan pasos detallados para poder utilizar Búsqueda y Cálculo Situacional. // These are basic steps to add a reference to our project to use FAIA. Detailed steps to use Search and Situationa Calculus are shown bellow.
+ * Recordar cambiar la codificación de caracteres de los proyectos recién creados a "UTF-8". Las instrucciones están en la sección para importar FAIA. Remember to change carácter codification of projects to "UTF-8". Instructions are in importing FAIA_ section
 
- * Antes de seguir estos pasos es necesario haber importado FAIA.
- * Estos son pasos básicos para agregar una referencia a nuestro proyecto para utilizar FAIA. Más abajo se dan pasos detallados para poder utilizar Búsqueda y Cálculo Situacional.
- * Recordar cambiar la codificación de caracteres de los proyectos recién creados a "UTF-8". Las instrucciones están en la sección para importar FAIA.
-
-|| *1.* Creamos un nuevo proyecto yendo a _File -> New -> Java Project_. ||
+|| *1.* Creamos un nuevo proyecto yendo a _File -> New -> Java Project_. // To create a new project  go to _File -> New -> Java Project_. ||
 || http://faia.googlecode.com/svn/wiki/images/faiaConEclipse/configurarProyecto1.png ||
-|| *2.* Colocamos un nombre al mismo y presionamos _Next_. ||
+|| *2.* Colocamos un nombre al mismo y presionamos _Next_. // Input a name and press _Next_||
 || http://faia.googlecode.com/svn/wiki/images/faiaConEclipse/configurarProyecto2.png ||
-|| *3.* Hacer click en la solapa _Projects_ y presionar el botón _Add_. ||
+|| *3.* Hacer click en la solapa _Projects_ y presionar el botón _Add_. // Click on frame _Projects_ and press _Add_. ||
 || http://faia.googlecode.com/svn/wiki/images/faiaConEclipse/configurarProyecto3.png ||
-|| *4.* Elegir _faia_ y presionar el botón _OK_. ||
+|| *4.* Elegir _faia_ y presionar el botón _OK_. // Select _faia_ and press _OK_. ||
 || http://faia.googlecode.com/svn/wiki/images/faiaConEclipse/configurarProyecto4.png ||
-|| *5.* Ahora nuestro proyecto referencia a _faia_. Hacer click en el botón _Finish_. ||
+|| *5.* Ahora nuestro proyecto referencia a _faia_. Hacer click en el botón _Finish_.  // Click on finsh. ||
 || http://faia.googlecode.com/svn/wiki/images/faiaConEclipse/configurarProyecto5.png ||
-|| *6.* Finalmente ya podemos comenzar a utilizar FAIA en nuestro proyecto. ||
+|| *6.* Finalmente ya podemos comenzar a utilizar FAIA en nuestro proyecto. // Finally we can use FAIA. ||
 || http://faia.googlecode.com/svn/wiki/images/faiaConEclipse/configurarProyecto6.png ||
 
-Si nuestro proyecto ya ha sido creado, la forma de referenciar _faia_ es siguiendo estos pasos:
+Si nuestro proyecto ya ha sido creado, la forma de referenciar _faia_ es siguiendo estos pasos: // If our project has been created, we can make a reference to _faia_ by following these steps:
 
- # Hacer click derecho en nuestro proyecto, y elegir _Build Path -> Configure Build Path_.
- # En la solapa _Projects_ hacer click en el botón _Add_.
- # De la lista, elegir el proyecto _faia_ y hacer click en el botón _OK_.
- # Hacer click en _OK_.
+ # Hacer click derecho en nuestro proyecto, y elegir _Build Path -> Configure Build Path_. // Right click in our project. Select _Build Path -> Configure Build Path_.
+ # En la solapa _Projects_ hacer click en el botón _Add_. // Select the frame _Projects_ and click _Add_.
+ # De la lista, elegir el proyecto _faia_ y hacer click en el botón _OK_. // Select the project _faia_ in the list and click _Ok_.
+ # Hacer click en _OK_. // Click _Ok_.
+
 
 
 == Configurar un proyecto para utilizar _Búsqueda_ ==
