@@ -15,36 +15,35 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package frsf.cidisi.faia.examples.planning.cubes.actions;
 
 import frsf.cidisi.faia.agent.planning.PlanningAction;
-import frsf.cidisi.faia.examples.planning.cubes.EstadoAmbiente;
+import frsf.cidisi.faia.examples.planning.cubes.CubesEnvironmentState;
 import frsf.cidisi.faia.state.AgentState;
 import frsf.cidisi.faia.state.EnvironmentState;
 
-public class Apilar extends PlanningAction {
-	
-	private String cubo1;
-	private String cubo2;
-	
-	public Apilar(String[] parametros) {
-		this.cubo1 = parametros[0];
-		this.cubo2 = parametros[1];
-	}
+public class PutOn extends PlanningAction {
 
-	@Override
-	public EnvironmentState execute(AgentState ast, EnvironmentState est) {
-		EstadoAmbiente estadoAmbiente = (EstadoAmbiente)est;
-		
-		estadoAmbiente.sobre(this.cubo1, this.cubo2);
-		
-		return estadoAmbiente;
-	}
+    private String cube1;
+    private String cube2;
 
-	@Override
-	public String toString() {
-		return "apilar(" + this.cubo1 + "," + this.cubo2 + ")";
-	}
+    public PutOn(String[] parameters) {
+        this.cube1 = parameters[0];
+        this.cube2 = parameters[1];
+    }
 
+    @Override
+    public EnvironmentState execute(AgentState ast, EnvironmentState est) {
+        CubesEnvironmentState environmentState =
+                (CubesEnvironmentState) est;
+
+        environmentState.on(this.cube1, this.cube2);
+
+        return environmentState;
+    }
+
+    @Override
+    public String toString() {
+        return "putOn(" + this.cube1 + "," + this.cube2 + ")";
+    }
 }
