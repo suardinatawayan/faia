@@ -2,6 +2,7 @@
 #labels Featured
 
 *LEER ANTES DE CONTINUAR:* Antes de seguir estos pasos es necesario leer [http://code.google.com/p/faia/wiki/InstruccionesInstalacion las instrucciones de instalación].
+
 *READ BEFORE CONTINUE:* Read [http://code.google.com/p/faia/wiki/InstruccionesInstalacion installation instructions] before continue.
 
 
