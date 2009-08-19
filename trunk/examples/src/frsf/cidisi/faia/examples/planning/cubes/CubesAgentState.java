@@ -94,7 +94,7 @@ public class CubesAgentState extends PlanningBasedAgentState {
         StringBuffer sb = new StringBuffer();
 
         // Query for the cube over 'cube'
-        Hashtable[] result = this.query("sobre(X," + cube + ")");
+        Hashtable[] result = this.query("on(X," + cube + ")");
 
         if (result.length > 0) {
             String cubeOn = result[0].get("X").toString();
