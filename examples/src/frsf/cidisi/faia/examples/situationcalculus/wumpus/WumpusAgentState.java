@@ -123,10 +123,10 @@ public class WumpusAgentState extends KnowledgeBase {
         String str = "";
 
         str = str + "[ \n";
-        for (int row = 0; row < WumpusWorldState.WORLD_LENGTH; row++) {
+        for (int row = 0; row < WumpusEnvironmentState.WORLD_LENGTH; row++) {
             str = str + "[ ";
 
-            for (int col = 0; col < WumpusWorldState.WORLD_LENGTH; col++) {
+            for (int col = 0; col < WumpusEnvironmentState.WORLD_LENGTH; col++) {
                 str = str + this.getCellString(row, col) + " ";
             }
 

@@ -3,7 +3,7 @@ package frsf.cidisi.faia.examples.situationcalculus.wumpus;
 import frsf.cidisi.faia.state.EnvironmentState;
 import java.util.Vector;
 
-public class WumpusWorldState extends EnvironmentState {
+public class WumpusEnvironmentState extends EnvironmentState {
 
     public static final int WORLD_LENGTH = 4;
 
@@ -20,7 +20,7 @@ public class WumpusWorldState extends EnvironmentState {
     }
     private Vector<CellState>[][] world;
 
-    public WumpusWorldState() {
+    public WumpusEnvironmentState() {
         this.world = (Vector<CellState>[][]) new Vector[WORLD_LENGTH][WORLD_LENGTH];
 
         for (int i = 0; i < WORLD_LENGTH; i++) {
