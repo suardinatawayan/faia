@@ -12,7 +12,7 @@ public class WumpusMain {
     public static void main(String[] args) throws PrologConnectorException {
         
         WumpusAgent agent = new WumpusAgent();
-        WumpusWorldEnvironment wumpusWorld = new WumpusWorldEnvironment();
+        WumpusEnvironment wumpusWorld = new WumpusEnvironment();
 
         SituationCalculusBasedAgentSimulator simulator =
                 new SituationCalculusBasedAgentSimulator(wumpusWorld, agent);

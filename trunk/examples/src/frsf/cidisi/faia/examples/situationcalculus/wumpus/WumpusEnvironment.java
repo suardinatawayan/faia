@@ -3,17 +3,17 @@ package frsf.cidisi.faia.examples.situationcalculus.wumpus;
 import java.util.Vector;
 import frsf.cidisi.faia.agent.Agent;
 import frsf.cidisi.faia.environment.Environment;
-import frsf.cidisi.faia.examples.situationcalculus.wumpus.WumpusWorldState.CellState;
+import frsf.cidisi.faia.examples.situationcalculus.wumpus.WumpusEnvironmentState.CellState;
 
-public class WumpusWorldEnvironment extends Environment {
+public class WumpusEnvironment extends Environment {
 
-    public WumpusWorldEnvironment() {
-        this.environmentState = new WumpusWorldState();
+    public WumpusEnvironment() {
+        this.environmentState = new WumpusEnvironmentState();
     }
 
     @Override
-    public WumpusWorldState getEnvironmentState() {
-        return (WumpusWorldState) super.getEnvironmentState();
+    public WumpusEnvironmentState getEnvironmentState() {
+        return (WumpusEnvironmentState) super.getEnvironmentState();
     }
 
     @Override
