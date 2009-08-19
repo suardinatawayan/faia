@@ -15,7 +15,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package frsf.cidisi.faia.examples.planning.cubes;
 
 import java.util.logging.Level;
@@ -27,39 +26,38 @@ import frsf.cidisi.faia.agent.planning.PlanningBasedAgent;
 import frsf.cidisi.faia.exceptions.PrologConnectorException;
 import frsf.cidisi.faia.solver.planning.Planning;
 
-public class AgenteCubos extends PlanningBasedAgent {
+public class CubesAgent extends PlanningBasedAgent {
 
-	public AgenteCubos() throws PrologConnectorException {
-		EstadoCubos estadoCubos = new EstadoCubos();
-		this.setAgentState(estadoCubos);
-	}
-	
-	@Override
-	public void see(Perception p) {
-		this.getAgentState().updateState(p);
-	}
+    public CubesAgent() throws PrologConnectorException {
+        CubesAgentState cubesState = new CubesAgentState();
+        this.setAgentState(cubesState);
+    }
 
-	@Override
-	public Action selectAction() {
-		Planning planning = new Planning();
-        this.setSolver(planning);
-        
-        Action accionSeleccionada = null;
+    @Override
+    public void see(Perception perception) {
+        this.getAgentState().updateState(perception);
+    }
+
+    @Override
+    public Action selectAction() {
+        Planning planningSolver = new Planning();
+        this.setSolver(planningSolver);
+
+        Action selectedAction = null;
         try {
-            accionSeleccionada =
+            selectedAction =
                     this.getSolver().solve(new Object[]{this});
         } catch (Exception ex) {
-            Logger.getLogger(AgenteCubos.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CubesAgent.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        return accionSeleccionada;
-	}
-	
-	@Override
-	public EstadoCubos getAgentState() {
-		EstadoCubos estado = (EstadoCubos)super.getAgentState();
-		
-		return estado;
-	}
 
+        return selectedAction;
+    }
+
+    @Override
+    public CubesAgentState getAgentState() {
+        CubesAgentState cubesState = (CubesAgentState) super.getAgentState();
+
+        return cubesState;
+    }
 }

@@ -15,36 +15,33 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package frsf.cidisi.faia.examples.planning.cubes.actions;
 
 import frsf.cidisi.faia.agent.planning.PlanningAction;
-import frsf.cidisi.faia.examples.planning.cubes.EstadoAmbiente;
+import frsf.cidisi.faia.examples.planning.cubes.CubesEnvironmentState;
 import frsf.cidisi.faia.state.AgentState;
 import frsf.cidisi.faia.state.EnvironmentState;
 
-public class Desapilar extends PlanningAction {
-	
-	private String cubo1;
-	private String cubo2;
-	
-	public Desapilar(String[] parametros) {
-		this.cubo1 = parametros[0];
-		this.cubo2 = parametros[1];
-	}
-	
-	@Override
-	public EnvironmentState execute(AgentState ast, EnvironmentState est) {
-		EstadoAmbiente estadoAmbiente = (EstadoAmbiente)est;
-		
-		estadoAmbiente.quitarSobre(this.cubo1, this.cubo2);
-		
-		return estadoAmbiente;
-	}
+public class PutOnTable extends PlanningAction {
 
-	@Override
-	public String toString() {
-		return "desapilar(" + this.cubo1 + "," + this.cubo2 + ")";
-	}
+    private String cube;
 
+    public PutOnTable(String[] parameters) {
+        this.cube = parameters[0];
+    }
+
+    @Override
+    public EnvironmentState execute(AgentState ast, EnvironmentState est) {
+        CubesEnvironmentState environmentState =
+                (CubesEnvironmentState) est;
+
+        environmentState.onTable(this.cube);
+
+        return environmentState;
+    }
+
+    @Override
+    public String toString() {
+        return "putOnTable(" + this.cube + ")";
+    }
 }

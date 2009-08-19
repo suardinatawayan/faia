@@ -15,34 +15,33 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package frsf.cidisi.faia.examples.planning.cubes.actions;
 
 import frsf.cidisi.faia.agent.planning.PlanningAction;
-import frsf.cidisi.faia.examples.planning.cubes.EstadoAmbiente;
+import frsf.cidisi.faia.examples.planning.cubes.CubesEnvironmentState;
 import frsf.cidisi.faia.state.AgentState;
 import frsf.cidisi.faia.state.EnvironmentState;
 
-public class Depositar extends PlanningAction {
-	
-	private String cubo;
-	
-	public Depositar(String[] parametros) {
-		this.cubo = parametros[0];
-	}
-	
-	@Override
-	public EnvironmentState execute(AgentState ast, EnvironmentState est) {
-		EstadoAmbiente estadoAmbiente = (EstadoAmbiente)est;
-		
-		estadoAmbiente.sobreMesa(this.cubo);
-		
-		return estadoAmbiente;
-	}
+public class TakeFromTable extends PlanningAction {
 
-	@Override
-	public String toString() {
-		return "depositar(" + this.cubo + ")";
-	}
+    private String cube;
 
+    public TakeFromTable(String[] parameters) {
+        this.cube = parameters[0];
+    }
+
+    @Override
+    public EnvironmentState execute(AgentState ast, EnvironmentState est) {
+        CubesEnvironmentState environmentState =
+                (CubesEnvironmentState) est;
+
+        environmentState.takeFromTable(this.cube);
+
+        return environmentState;
+    }
+
+    @Override
+    public String toString() {
+        return "takeFromTable(" + this.cube + ")";
+    }
 }

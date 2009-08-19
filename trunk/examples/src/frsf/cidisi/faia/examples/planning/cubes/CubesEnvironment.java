@@ -15,27 +15,26 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package frsf.cidisi.faia.examples.planning.cubes;
 
 import frsf.cidisi.faia.agent.Agent;
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.environment.Environment;
 
-public class AmbienteCubos extends Environment {
-	
-	public AmbienteCubos() {
-		this.environmentState = new EstadoAmbiente();
-	}
-	
-	@Override
-	public Perception getPercept(Agent agent) {
-		return null;
-	}
-	
-	@Override
-	public String toString() {
-		return environmentState.toString();
-	}
+public class CubesEnvironment extends Environment {
 
+    public CubesEnvironment() {
+        this.environmentState = new CubesEnvironmentState();
+    }
+
+    @Override
+    public Perception getPercept(Agent agent) {
+        // Perceptions are no necessary here
+        return null;
+    }
+
+    @Override
+    public String toString() {
+        return environmentState.toString();
+    }
 }

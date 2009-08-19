@@ -15,34 +15,35 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package frsf.cidisi.faia.examples.planning.cubes.actions;
 
 import frsf.cidisi.faia.agent.planning.PlanningAction;
-import frsf.cidisi.faia.examples.planning.cubes.EstadoAmbiente;
+import frsf.cidisi.faia.examples.planning.cubes.CubesEnvironmentState;
 import frsf.cidisi.faia.state.AgentState;
 import frsf.cidisi.faia.state.EnvironmentState;
 
-public class Tomar extends PlanningAction {
-	
-	private String cubo;
-	
-	public Tomar(String[] parametros) {
-		this.cubo = parametros[0];
-	}
-	
-	@Override
-	public EnvironmentState execute(AgentState ast, EnvironmentState est) {
-		EstadoAmbiente estadoAmbiente = (EstadoAmbiente)est;
-		
-		estadoAmbiente.quitarSobreMesa(this.cubo);
-		
-		return estadoAmbiente;
-	}
+public class DropFrom extends PlanningAction {
 
-	@Override
-	public String toString() {
-		return "tomar(" + this.cubo + ")";
-	}
+    private String cube1;
+    private String cube2;
 
+    public DropFrom(String[] parameters) {
+        this.cube1 = parameters[0];
+        this.cube2 = parameters[1];
+    }
+
+    @Override
+    public EnvironmentState execute(AgentState ast, EnvironmentState est) {
+        CubesEnvironmentState environmentState =
+                (CubesEnvironmentState) est;
+
+        environmentState.dropFrom(this.cube1, this.cube2);
+
+        return environmentState;
+    }
+
+    @Override
+    public String toString() {
+        return "dropFrom(" + this.cube1 + "," + this.cube2 + ")";
+    }
 }

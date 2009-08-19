@@ -15,25 +15,18 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package frsf.cidisi.faia.examples.planning.cubes;
 
 import frsf.cidisi.faia.exceptions.PrologConnectorException;
 import frsf.cidisi.faia.simulator.PlanningBasedAgentSimulator;
 
-/**
- *
- * @author miltondp
- */
-public class CubosMain {
-
-    /**
-     * @param args the command line arguments
-     */
+public class CubesMain {
+    
     public static void main(String[] args) throws PrologConnectorException {
-        AgenteCubos agente = new AgenteCubos();
-        AmbienteCubos ambiente = new AmbienteCubos();
-        PlanningBasedAgentSimulator simu = new PlanningBasedAgentSimulator(ambiente, agente);
-        simu.start();
+        CubesAgent agent = new CubesAgent();
+        CubesEnvironment environment = new CubesEnvironment();
+        PlanningBasedAgentSimulator simulator =
+                new PlanningBasedAgentSimulator(environment, agent);
+        simulator.start();
     }
 }
