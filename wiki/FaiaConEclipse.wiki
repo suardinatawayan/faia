@@ -1,7 +1,8 @@
-#summary Instrucciones para utilizar FAIA con Eclipse.
+#summary Instrucciones para utilizar FAIA con Eclipse. Instructions to use FAIA with Eclipse.
 #labels Featured
 
 *LEER ANTES DE CONTINUAR:* Antes de seguir estos pasos es necesario leer [http://code.google.com/p/faia/wiki/InstruccionesInstalacion las instrucciones de instalación].
+*READ BEFORE CONTINUE:* Read [http://code.google.com/p/faia/wiki/InstruccionesInstalacion instalation instructions] before continue .
 
 
 == Importar FAIA ==
