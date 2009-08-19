@@ -15,7 +15,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package frsf.cidisi.faia.util;
 
 import java.io.File;
@@ -25,7 +24,6 @@ import java.util.Vector;
 
 import frsf.cidisi.faia.exceptions.LatexOutputException;
 import frsf.cidisi.faia.simulator.events.EventHandler;
-import frsf.cidisi.faia.simulator.events.SimulationFinishedEventHandler;
 import frsf.cidisi.faia.solver.search.NTree;
 
 import java.io.BufferedReader;
@@ -71,17 +69,15 @@ public class LatexOutput implements EventHandler {
                 // Probamos a buscar un niver mas arriba
                 this.copyFiles("../" + this.faiaPdflatexDir);
             } catch (IOException ex) {
-            	throw new LatexOutputException("LaTeX files not found: "
-                        + e1.getMessage());
+                throw new LatexOutputException("LaTeX files not found: " + e1.getMessage());
             }
         } catch (Exception e2) {
-        	throw new LatexOutputException("LaTeX files not found: "
-                    + e2.getMessage());
+            throw new LatexOutputException("LaTeX files not found: " + e2.getMessage());
         }
-        
+
         // Creo el objeto que representa la carpeta pdfLatex
         File carpetaPdflatex = new File(pdflatexDir);
-        
+
         // Elimino los archivos PDF que haya en el directorio pdfLatex
         for (File archivoPdf : carpetaPdflatex.listFiles(new PdfFilesFilter())) {
             archivoPdf.delete();
@@ -91,7 +87,7 @@ public class LatexOutput implements EventHandler {
         String[] comando;
 
         System.out.println("Compiling Latex files...");
-        
+
         // Por cada archivo .tex compilo a PDF
         for (File archivoTex : carpetaPdflatex.listFiles(new TexFilter())) {
 
@@ -110,20 +106,19 @@ public class LatexOutput implements EventHandler {
                 } else {
                     System.out.println(" -> There was an error. This is tandard output of the 'pdflatex' command:");
                     System.out.println();
-                    BufferedReader stdError = new BufferedReader(new
-                    		InputStreamReader(p.getErrorStream()));
-                    
+                    BufferedReader stdError = new BufferedReader(new InputStreamReader(p.getErrorStream()));
+
                     String s = null;
                     while ((s = stdError.readLine()) != null) {
-                    	System.out.println("\t" + s);
+                        System.out.println("\t" + s);
                     }
-                    
+
                     System.out.println();
-                    
+
                     throw new LatexOutputException("'pdflatex' execution failed.");
                 }
             } catch (IOException e) {
-            	throw new LatexOutputException("LaTeX/MiKTeX is not installed: " + e.getMessage());
+                throw new LatexOutputException("LaTeX/MiKTeX is not installed: " + e.getMessage());
             } catch (InterruptedException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
@@ -194,7 +189,7 @@ public class LatexOutput implements EventHandler {
                 str.append("\\end{figure}" + lineSeparator);
             }
 
-        //nivelesProcesados++;
+            //nivelesProcesados++;
 
 //			if (nivelesProcesados >= niveles)
 //				break;
@@ -214,12 +209,12 @@ public class LatexOutput implements EventHandler {
             if (!f.exists()) {
                 f.mkdir();
             }
-            
+
             Writer out = new BufferedWriter(
                     new OutputStreamWriter(
                     new FileOutputStream(pdflatexDir + fileIdx + ".tex"),
                     "UTF-8"));
-            
+
             out.write(str.toString());
             out.close();
 
@@ -230,15 +225,15 @@ public class LatexOutput implements EventHandler {
         }
     }
 
-	@Override
-	public void runEventHandler(Object[] params) {
-		try {
-			this.compileLatexFiles(true);
-		} catch (LatexOutputException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+    @Override
+    public void runEventHandler(Object[] params) {
+        try {
+            this.compileLatexFiles(true);
+        } catch (LatexOutputException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
 }
 
 class PdfFilesFilter implements FilenameFilter {

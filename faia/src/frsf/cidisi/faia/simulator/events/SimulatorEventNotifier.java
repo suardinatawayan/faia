@@ -15,48 +15,50 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package frsf.cidisi.faia.simulator.events;
 
 import java.util.Hashtable;
 import java.util.Vector;
 
-
 public class SimulatorEventNotifier {
-	
-	private static Hashtable<EventType, Vector<EventHandler>> eventHandlers =
-		new Hashtable<EventType, Vector<EventHandler>>();
-	
+
+    private static Hashtable<EventType, Vector<EventHandler>> eventHandlers =
+            new Hashtable<EventType, Vector<EventHandler>>();
+
     public static void runEventHandlers(EventType eventType, Object[] params) {
-    	
-    	if (!eventHandlers.contains(eventType))
-    		return;
-    	
-        for (EventHandler eventHandler : eventHandlers.get(eventType))
-        	eventHandler.runEventHandler(params);
+
+        if (!eventHandlers.contains(eventType)) {
+            return;
+        }
+
+        for (EventHandler eventHandler : eventHandlers.get(eventType)) {
+            eventHandler.runEventHandler(params);
+        }
     }
-    
+
     public static void SubscribeEventHandler(EventType eventType, EventHandler eventHandler) {
-    	if (!eventHandlers.contains(eventType))
-    		eventHandlers.put(eventType, new Vector<EventHandler>());
-    	
-    	Vector<EventHandler> eventHandlerList =
-    		eventHandlers.get(eventType);
-    	
-    	eventHandlerList.add(eventHandler);
+        if (!eventHandlers.contains(eventType)) {
+            eventHandlers.put(eventType, new Vector<EventHandler>());
+        }
+
+        Vector<EventHandler> eventHandlerList =
+                eventHandlers.get(eventType);
+
+        eventHandlerList.add(eventHandler);
     }
 
     public static void UnsubscribeEventHandler(EventType eventType, EventHandler eventHandler) {
-    	if (!eventHandlers.contains(eventType))
-    		return;
-    	
-    	Vector<EventHandler> eventHandlerList =
-    		eventHandlers.get(eventType);
-    	
-    	eventHandlerList.remove(eventHandler);
+        if (!eventHandlers.contains(eventType)) {
+            return;
+        }
+
+        Vector<EventHandler> eventHandlerList =
+                eventHandlers.get(eventType);
+
+        eventHandlerList.remove(eventHandler);
     }
 
     public static void ClearEventHandlers() {
-    	eventHandlers.clear();
+        eventHandlers.clear();
     }
 }

@@ -15,7 +15,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package frsf.cidisi.faia.solver.search;
 
 import java.util.Vector;
@@ -27,7 +26,6 @@ import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
 import frsf.cidisi.faia.simulator.events.EventType;
 import frsf.cidisi.faia.simulator.events.SimulatorEventNotifier;
 import frsf.cidisi.faia.solver.Solve;
-import frsf.cidisi.faia.state.AgentState;
 import frsf.cidisi.faia.util.GraphvizTree;
 import frsf.cidisi.faia.util.LatexOutput;
 import frsf.cidisi.faia.util.XmlTree;
@@ -77,8 +75,8 @@ public class Search extends Solve {
     @Override
     public SearchAction solve(Object[] params) {
 
-        Problem problem = (Problem)params[0];
-        
+        Problem problem = (Problem) params[0];
+
         Vector<SearchAction> actionList = problem.getActions();
         SearchBasedAgentState agentState = problem.getAgentState();//.clone();
         GoalTest goalTest = problem.getGoalState();
@@ -122,7 +120,7 @@ public class Search extends Solve {
                         if (!existsNode(n, n.getParent())) {
                             firstNode.addSon(n);
                             nodeIdx++;
-                        //System.out.println("Nodo nro: " + nodeIdx);
+                            //System.out.println("Nodo nro: " + nodeIdx);
                         }
                     }
                 }
@@ -159,8 +157,8 @@ public class Search extends Solve {
                 return true;
             }
             p = (NTree) p.getParent();
-        //if (p!=null)
-        //	p = (NTree)p.clone();
+            //if (p!=null)
+            //	p = (NTree)p.clone();
         }
 
         // At this point it's sure that the node does not exists in the branch of the Search Tree.-  
@@ -201,8 +199,8 @@ public class Search extends Solve {
             case Search.GRAPHICAL_TREE:
                 break;
             case Search.GRAPHVIZ_TREE:
-            	GraphvizTree.printFile(tree);
-            	break;	
+                GraphvizTree.printFile(tree);
+                break;
         }
     }
 
@@ -224,7 +222,7 @@ public class Search extends Solve {
 
         if (visibleTree == Search.PDF_TREE) {
             SimulatorEventNotifier.SubscribeEventHandler(EventType.SimulationFinished,
-            		LatexOutput.getInstance());
+                    LatexOutput.getInstance());
         }
         this.visibleTree = visibleTree;
     }

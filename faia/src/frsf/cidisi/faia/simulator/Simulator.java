@@ -15,7 +15,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package frsf.cidisi.faia.simulator;
 
 import java.util.Vector;
@@ -36,12 +35,12 @@ public abstract class Simulator {
 
     public Simulator() {
     }
-    
+
     public Simulator(Environment environment, Vector<Agent> agents) {
         this.environment = environment;
         this.agents = agents;
     }
-    
+
     public void addAgent(Agent agent) {
         this.getAgents().addElement(agent);
     }
@@ -57,7 +56,7 @@ public abstract class Simulator {
     public Perception getPercept(Agent agent) {
         return this.getEnvironment().getPercept(agent);
     }
-    
+
     public void setEnvironment(Environment evm) {
     }
 

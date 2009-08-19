@@ -15,13 +15,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package frsf.cidisi.faia.simulator;
 
 import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.agent.Agent;
-import frsf.cidisi.faia.agent.Perception;
-import frsf.cidisi.faia.agent.situationcalculus.SituationCalculusAction;
 import frsf.cidisi.faia.agent.situationcalculus.SituationCalculusBasedAgent;
 import frsf.cidisi.faia.environment.Environment;
 import frsf.cidisi.faia.agent.NoAction;
@@ -36,29 +33,30 @@ public class SituationCalculusBasedAgentSimulator extends GoalBasedAgentSimulato
     }
 
     public SituationCalculusBasedAgentSimulator(Environment environment, Agent agent) {
-    	this(environment, new Vector<Agent>(Arrays.asList(agent)) );
+        this(environment, new Vector<Agent>(Arrays.asList(agent)));
     }
 
-	@Override
-	public String getSimulatorName() {
-		return "Situation Calculus Based Simulator";
-	}
+    @Override
+    public String getSimulatorName() {
+        return "Situation Calculus Based Simulator";
+    }
 
-	@Override
-	public boolean isComplete(Action actionReturned) {
-		if (actionReturned instanceof NoAction)
-			return true;
-		
-		return false;
-	}
+    @Override
+    public boolean isComplete(Action actionReturned) {
+        if (actionReturned instanceof NoAction) {
+            return true;
+        }
 
-	@Override
-	public void actionReturned(Agent agent, Action action) {
-		this.updateState(action);
-		
-		SituationCalculusBasedAgent scAgent =
-			(SituationCalculusBasedAgent)agent;
-		
-		scAgent.tell(action);
-	}
+        return false;
+    }
+
+    @Override
+    public void actionReturned(Agent agent, Action action) {
+        this.updateState(action);
+
+        SituationCalculusBasedAgent scAgent =
+                (SituationCalculusBasedAgent) agent;
+
+        scAgent.tell(action);
+    }
 }

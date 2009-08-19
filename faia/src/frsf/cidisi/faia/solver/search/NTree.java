@@ -15,14 +15,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package frsf.cidisi.faia.solver.search;
 
 import java.util.Vector;
-import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.agent.search.SearchAction;
 import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
-import frsf.cidisi.faia.state.AgentState;
 
 /**
  * @author Jorge M. Roa
@@ -181,31 +178,28 @@ public class NTree implements Cloneable, Comparable<NTree> {
 
         return eo + ac;
     }
-    
-    public String toGraphviz(){
-    	String str = "";
-    	str = "nodo" + this.executionOrder+
-    	"[label=\"{EO: "+this.executionOrder+"|"+
-    	"cost: "+this.cost+"|"+
-    	"A: "+this.getAction();
-    	
-    	if (this.getParent() != null) {
-    		if (this.getParent().getParent() != null)
-    			str += "|"+this.getParent().getAgentState().toString()
-		    	.replace(",","")
-		    	.replace("[","")
-		    	.replace("]","")
-		    	.replace(" ", "\\n");
-    	}
-    	str += 	"}\"]";
-		str = str + "\n";
+
+    public String toGraphviz() {
+        String str = "";
+        str = "nodo" + this.executionOrder +
+                "[label=\"{EO: " + this.executionOrder + "|" +
+                "cost: " + this.cost + "|" +
+                "A: " + this.getAction();
+
+        if (this.getParent() != null) {
+            if (this.getParent().getParent() != null) {
+                str += "|" + this.getParent().getAgentState().toString().replace(",", "").replace("[", "").replace("]", "").replace(" ", "\\n");
+            }
+        }
+        str += "}\"]";
+        str = str + "\n";
         for (int i = 0; i < getSons().size(); i++) {
             str = str + sons.elementAt(i).toGraphviz();
-            str += "nodo" + this.executionOrder +" -> "+
-            "nodo" +sons.elementAt(i).executionOrder +";\n";
+            str += "nodo" + this.executionOrder + " -> " +
+                    "nodo" + sons.elementAt(i).executionOrder + ";\n";
         }
-		str = str + "\n";
-    	return str;
+        str = str + "\n";
+        return str;
     }
 
     public String toXml() {
@@ -246,6 +240,7 @@ public class NTree implements Cloneable, Comparable<NTree> {
 //	    str.append("\\begin{document}\n");
 //	    str.append("\\maketitle\n");
 //	}
+
     public String toQtree() {
 
         StringBuffer resultado = new StringBuffer();

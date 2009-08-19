@@ -15,7 +15,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package frsf.cidisi.faia.solver.search;
 
 /**
@@ -23,6 +22,6 @@ package frsf.cidisi.faia.solver.search;
  * to calculate some NTree's cost.
  */
 public interface IStepCostFunction {
-	
+
     public double calculateCost(NTree node);
 }

@@ -15,21 +15,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package frsf.cidisi.faia.agent.planning;
 
 import frsf.cidisi.faia.agent.Action;
-import frsf.cidisi.faia.state.AgentState;
-import frsf.cidisi.faia.state.EnvironmentState;
 
 public abstract class PlanningAction extends Action {
-//	protected String action;
-//	
-//	public PlanningAction(String action) {
-//		this.action = action;
-//	}
-//	
-//	public String getAction() {
-//		return this.action;
-//	}
+    
 }

@@ -15,7 +15,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package frsf.cidisi.faia.agent;
 
 import java.util.Hashtable;
@@ -31,34 +30,33 @@ import jpl.Query;
  */
 public class PrologConnector {
 
-	/**
-	 * The knowledge base file written by the user.
-	 */
+    /**
+     * The knowledge base file written by the user.
+     */
     private String prologFile;
-    
+
     public PrologConnector(String prologFile) throws PrologConnectorException {
 
         this.prologFile = prologFile;
-        
+
 
         /* Set some JPL options */
         try {
-	        JPL.setDefaultInitArgs(new String[]{
-	                    "pl",
-	                    "-G128m",
-	                    "-L128m",
-	                    "-T128m",
-	                    "--quiet",
-	                    "--nosignals"
-	                });
-	
-	        JPL.init();
+            JPL.setDefaultInitArgs(new String[]{
+                        "pl",
+                        "-G128m",
+                        "-L128m",
+                        "-T128m",
+                        "--quiet",
+                        "--nosignals"
+                    });
+
+            JPL.init();
+        } catch (UnsatisfiedLinkError ex) {
+            throw new PrologConnectorException("SWI-Prolog is not installed: " +
+                    ex.getMessage());
         }
-        catch(UnsatisfiedLinkError ex) {
-        	throw new PrologConnectorException("SWI-Prolog is not installed: " +
-        			ex.getMessage());
-        }
-        
+
 
         // Load the knowledge base
         Query prologQuery;
@@ -74,29 +72,30 @@ public class PrologConnector {
                     this.prologFile + "').");
         }
     }
-    
-    public void executeNonQuery(String query) {
-    	Query prologQuery = new Query(query);
-    	prologQuery.hasSolution();
-    }
-    
-    public void addPredicate(String predicate) {
-        
-        String procesedPredicate = predicate;
-        if (predicate.endsWith("."))
-            procesedPredicate = predicate.substring(0, predicate.length() - 1);
 
-    	Query query = new Query("asserta(" + procesedPredicate + ")");
-    	query.hasSolution();
+    public void executeNonQuery(String query) {
+        Query prologQuery = new Query(query);
+        prologQuery.hasSolution();
     }
-    
+
+    public void addPredicate(String predicate) {
+
+        String procesedPredicate = predicate;
+        if (predicate.endsWith(".")) {
+            procesedPredicate = predicate.substring(0, predicate.length() - 1);
+        }
+
+        Query query = new Query("asserta(" + procesedPredicate + ")");
+        query.hasSolution();
+    }
+
     public Hashtable[] query(String query) {
-    	Query prologQuery = new Query(query);
+        Query prologQuery = new Query(query);
         return prologQuery.allSolutions();
     }
-    
+
     public boolean queryHasSolution(String query) {
-    	Query prologQuery = new Query(query);
+        Query prologQuery = new Query(query);
         return prologQuery.hasSolution();
     }
 }

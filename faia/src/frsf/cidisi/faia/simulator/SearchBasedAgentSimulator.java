@@ -15,21 +15,15 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package frsf.cidisi.faia.simulator;
 
 import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.agent.Agent;
 import frsf.cidisi.faia.agent.GoalBasedAgent;
-import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.agent.search.GoalTest;
 import frsf.cidisi.faia.agent.search.Problem;
-import frsf.cidisi.faia.agent.search.SearchAction;
 import frsf.cidisi.faia.agent.search.SearchBasedAgent;
 import frsf.cidisi.faia.environment.Environment;
-import frsf.cidisi.faia.simulator.events.EventHandler;
-import frsf.cidisi.faia.simulator.events.EventType;
-import frsf.cidisi.faia.simulator.events.SimulatorEventNotifier;
 import frsf.cidisi.faia.state.AgentState;
 
 import java.util.Arrays;
@@ -42,7 +36,7 @@ public class SearchBasedAgentSimulator extends GoalBasedAgentSimulator {
     }
 
     public SearchBasedAgentSimulator(Environment environment, Agent agent) {
-        this(environment, new Vector<Agent>(Arrays.asList(agent)) );
+        this(environment, new Vector<Agent>(Arrays.asList(agent)));
     }
 
     @Override
@@ -57,22 +51,22 @@ public class SearchBasedAgentSimulator extends GoalBasedAgentSimulator {
 
         return gt.isGoalState(aSt);
     }
-    
+
     @Override
-	public String getSimulatorName() {
-		return "Search Based Simulator";
-	}
-    
+    public String getSimulatorName() {
+        return "Search Based Simulator";
+    }
+
     void showSolution() {
         GoalBasedAgent agent = (GoalBasedAgent) this.getAgents().firstElement();
 
         agent.getSolver().showSolution();
     }
 
-	@Override
-	public void actionReturned(Agent agent, Action action) {
-		this.updateState(action);
-		this.showSolution();
-	}
+    @Override
+    public void actionReturned(Agent agent, Action action) {
+        this.updateState(action);
+        this.showSolution();
+    }
 }
 

@@ -15,7 +15,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package frsf.cidisi.faia.simulator;
 
 import java.util.Vector;
@@ -45,19 +44,19 @@ public abstract class GoalBasedAgentSimulator extends Simulator {
         this.environment = environment;
         this.agents = ags;
     }
-    
+
     @Override
     public void start() {
-    	
-    	System.out.println("----------------------------------------------------");
+
+        System.out.println("----------------------------------------------------");
         System.out.println("--- " + this.getSimulatorName() + " ---");
         System.out.println("----------------------------------------------------");
         System.out.println();
-    	
+
         Perception perception;
         Action action;
         GoalBasedAgent agent;
-        
+
         agent = (GoalBasedAgent) this.getAgents().firstElement();
 
         /*
@@ -67,28 +66,29 @@ public abstract class GoalBasedAgentSimulator extends Simulator {
          * method in the SearchBasedAgentSimulator).
          */
         do {
-        	
-        	System.out.println("------------------------------------");
-        	
-        	System.out.println("Sending perception to agent...");
+
+            System.out.println("------------------------------------");
+
+            System.out.println("Sending perception to agent...");
             perception = this.getPercept(agent);
             agent.see(perception);
             System.out.println("Percepcion: " + perception);
-            
+
             System.out.println("Agent State: " + agent.getAgentState());
             System.out.println("Environment: " + environment);
-            
+
             System.out.println("Asking the agent for an action...");
             action = agent.selectAction();
-            
-            if (action == null)
-            	break;
-            
+
+            if (action == null) {
+                break;
+            }
+
             System.out.println("Action returned: " + action);
             System.out.println();
-            
+
             this.actionReturned(agent, action);
-            
+
         } while (!isComplete(action));
 
         // Check what happened, if agent has reached the goal or not.
@@ -97,17 +97,17 @@ public abstract class GoalBasedAgentSimulator extends Simulator {
         } else {
             System.out.println("ERROR: The simulation has finished, but the agent has not reached his goal.");
         }
-        
+
         // Leave a blank line
         System.out.println();
 
         // FIXME: This call can be moved to the Simulator class
         this.environment.close();
-        
+
         // Launch simulationFinished event
         SimulatorEventNotifier.runEventHandlers(EventType.SimulationFinished, null);
     }
-    
+
     /**
      * Here we update the state of the agent and the real state of the
      * simulator.
@@ -116,9 +116,9 @@ public abstract class GoalBasedAgentSimulator extends Simulator {
     protected void updateState(Action action) {
         this.getEnvironment().updateState(((GoalBasedAgent) agents.elementAt(0)).getAgentState(), action);
     }
-    
+
     public abstract boolean isComplete(Action actionReturned);
-    
+
     /**
      * This method is executed in the mail loop of the simulation when the
      * agent returns an action.
@@ -126,7 +126,7 @@ public abstract class GoalBasedAgentSimulator extends Simulator {
      * @param action
      */
     public abstract void actionReturned(Agent agent, Action action);
-    
+
     /**
      * @return The name of the simulator, e.g. 'SearchBasedAgentSimulator'
      */

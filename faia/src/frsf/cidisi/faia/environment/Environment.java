@@ -15,7 +15,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package frsf.cidisi.faia.environment;
 
 import frsf.cidisi.faia.agent.Perception;
@@ -57,6 +56,5 @@ public abstract class Environment {
      * resource when simulation finished.
      */
     public void close() {
-
     }
 }
