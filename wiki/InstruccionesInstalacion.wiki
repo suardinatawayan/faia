@@ -1,15 +1,18 @@
-﻿#summary Instrucciones para la instalación de FAIA tanto en Windows como en GNU/Linux.
+﻿#summary Instrucciones para la instalación de FAIA tanto en Windows como en GNU/Linux. // FAIA installation instructions for Windows and GNU/Linux
 #labels Featured
 
-_NOTAS_:
+_NOTAS // NOTES:_:
 
  * Las pruebas fueron realizadas en Windows XP SP 2 y Ubuntu Linux 8.04, así como en ciertas versiones de otros programas. Si se encuentran problemas al seguir la guía, por favor dejar un comentario en esta página.
+ * Tests have been performed in Windows XP SP2 and Ubuntu Linux 8.04, as well as on other software versions. Please, leave a comment on this page if any problems are found when following these instructions.
 
-= Software necesario =
+= Software necesario / Required Software =
 
 Es muy probable que se puedan utilizar versiones más actualizadas, aunque quizá la guía no contemple por ejemplo cambios en las interfaces gráficas. Además, con estas versiones se ha probado FAIA, por lo tanto si es posible, es mejor utilizar éstas.
 
- * [http://www.netbeans.org/ NetBeans] 6.1 (es necesario tener instalado el JDK 6. Se puede bajar un bundle con !NetBeans y JDK [http://java.sun.com/javase/downloads/netbeans.html aquí]).
+More updated versions are likely to be used, although changes on graphical interfaces may not be considered in this documentation. In addition, FAIA has been tested with these versions, so it is advisable to use them.
+
+ * [http://www.netbeans.org/ NetBeans] 6.1 (es necesario tener instalado el JDK 6. Se puede bajar un bundle con !NetBeans y JDK [http://java.sun.com/javase/downloads/netbeans.html aquí] // it is necessary to have JDK 6 installed. A bundle with NetBeans and JDK can be downloaded [http://java.sun.com/javase/downloads/netbeans.html here]).
  * [http://www.eclipse.org/ Eclipse 3.4]
  * [http://www.swi-prolog.org/ SWI-Prolog] 5.6.57.
 
