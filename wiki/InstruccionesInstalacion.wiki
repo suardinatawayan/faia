@@ -121,7 +121,7 @@ Brief instructions are given here to correctly organize the directory structure 
  # Descomprimir el contenido *exacto* de los archivos correspondientes a FAIA y a los ejemplos en esa misma carpeta. La estructura final debería ser similar a la imagen que se muestra abajo.
 
  # Create a folder to store FAIA and its examples.
- # Uncompress the precise content of the files corresponding to FAIA and its examples in the folder created the previous step. The final structure should be similar to the one that is shown in the image bellow.
+ # Decompress the precise content of the files corresponding to FAIA and its examples in the folder created the previous step. The final structure should be similar to the one that is shown in the image bellow.
 
 
 || Estructura de directorios  // Directory structure ||
