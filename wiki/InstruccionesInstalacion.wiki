@@ -16,17 +16,23 @@ More updated versions are likely to be used, although changes on graphical inter
  * [http://www.eclipse.org/ Eclipse 3.4]
  * [http://www.swi-prolog.org/ SWI-Prolog] 5.6.57.
 
-== Software opcional ==
+== Software opcional // Optional Software ==
 
  * LaTeX (Si se desea la generación de archivos PDF con los árboles de búsqueda):
    * En Windows: [http://miktex.org/ MiKTeX] 2.7 (Bajar la versión "Basic").
    * En GNU/Linux: el nombre del paquete a instalar depende de la distribución utilizada. Más abajo, en la sección de instalación de MiKTeX/LaTeX se darán detalles.
 
-== Instalación de SWI-Prolog ==
+ * LaTeX (To generate PDF files with search trees):
+   * In Windows: [http://miktex.org/ MiKTeX] 2.7 (Download the “basic” version).
+   * o	In GNU/Linux: the name of the package to be installed depends on the used distribution. Further details in the MiKTeX/LaTeX installation section will be given bellow.
 
-=== En Windows XP ==
+== Instalación de SWI-Prolog // SWI-Prolog Installation ==
+
+=== En Windows XP // In Windows XP ==
 
 La instalación de este software para ser utilizado por FAIA no es trivial. Luego de haber instalado SWI-Prolog con el instalador para Windows, hay que agregar a la variable de entorno PATH la ruta al directorio '_DirectorioInstalacionSWIProlog_\bin', como por ejemplo "C:\Archivos de programa\pl\bin".
+
+After installing SWI-Prolog with the Windows’ installer, the path to the directory 'SWIPrologInstallationDirectory\bin' (for instance C:\Program Files\p\bin) has to be added to the environment variable called PATH.
 
 Para esto:
 
@@ -37,6 +43,17 @@ Para esto:
  * Luego agregar el path correspondiente como se ha dicho, que puede variar dependiendo de dónde se haya instalado SWI-Prolog. Abajo se puede observar una imagen.
  * Presionar el botón "Aceptar" para guardar los cambios.
  * Es necesario reiniciar el IDE (tanto Eclipse como !NetBeans) para que tomen los cambios realizados.
+
+To do this:
+
+ * Right click on “My PC” and choose the option “Properties”.
+ * In the frame “Advanced options” press the button “Environment variables”. 
+ * In the section “System variables”, double click on the variable “Path” to edit it.
+ * Verify that the content of the field “Variable value” ends with a semicolon (;).
+ * After that, add the corresponding path, which can vary depending on where SWI-Prolog has been installed. An image is shown bellow.
+ * Press “Accept” to save changes.
+ * It is necessary to restart the IDE (Eclipse as well as NetBeans) so that the changes can be performed.
+
 
 http://faia.googlecode.com/svn/wiki/images/instalacion/variablePath.png
 
