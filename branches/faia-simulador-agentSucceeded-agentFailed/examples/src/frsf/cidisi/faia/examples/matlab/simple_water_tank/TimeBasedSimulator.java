@@ -27,7 +27,7 @@ public class TimeBasedSimulator extends ReactiveBasedAgentSimulator {
 	}
 	
 	@Override
-	public boolean isComplete(Action actionReturned) {
+	public boolean agentSucceeded(Action actionReturned) {
 		MatlabEnvironmentState environmentState =
 			this.getEnvironment().getEnvironmentState();
 		

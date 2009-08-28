@@ -15,10 +15,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package frsf.cidisi.faia.examples.search.robot.actions;
 
-import frsf.cidisi.faia.examples.search.robot.EstadoRobot;
+import frsf.cidisi.faia.examples.search.robot.RobotAgentState;
 import java.util.ArrayList;
 
 import frsf.cidisi.faia.agent.search.SearchAction;
@@ -26,25 +25,26 @@ import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
 import frsf.cidisi.faia.state.AgentState;
 import frsf.cidisi.faia.state.EnvironmentState;
 
-public class IrP extends SearchAction {
+public class GoQ extends SearchAction {
 
     /**
-     * 
-     * @param s: Es el estado del agente en un determinado nodo del �rbol de b�squeda.-
+     * This method updates a tree node state when the search process is running.
+     * It does not updates the real world state.
      */
     @Override
     public SearchBasedAgentState execute(SearchBasedAgentState s) {
-        EstadoRobot estR = (EstadoRobot) s;
+        RobotAgentState agentState = (RobotAgentState) s;
 
-        if (estR.getPosicionesVisitadas().contains(EstadoRobot.P)) {
+        if (agentState.getVisitedPositions().contains(RobotAgentState.Q)) {
             return null;
         }
-        ArrayList<String> sucesores = new ArrayList<String>(estR.getSucesores());
-        if (sucesores != null) {
-            int index = sucesores.indexOf(EstadoRobot.P);
+
+        ArrayList<String> successors = new ArrayList<String>(agentState.getSuccessors());
+        if (successors != null) {
+            int index = successors.indexOf(RobotAgentState.Q);
             if (index >= 0) {
-                estR.setPosicion(EstadoRobot.P);
-                return estR;
+                agentState.setPosition(RobotAgentState.Q);
+                return agentState;
             }
 
         }
@@ -53,14 +53,11 @@ public class IrP extends SearchAction {
     }
 
     /**
-     * Permite actualizar el estado real del agente y del ambiente.-
-     * 
-     * @param ast: Es el estado del agente a ser actualizado.-
-     * @param est: Es el estado del ambiente a ser actualizado.-
+     * This method updates the agent state and the real world state.
      */
     @Override
     public EnvironmentState execute(AgentState ast, EnvironmentState est) {
-        this.execute((SearchBasedAgentState)ast);
+        this.execute((SearchBasedAgentState) ast);
 
         return null;
     }
@@ -72,6 +69,6 @@ public class IrP extends SearchAction {
 
     @Override
     public String toString() {
-        return "IrP";
+        return "GoQ";
     }
 }

@@ -18,6 +18,7 @@
 
 package frsf.cidisi.faia.examples.situationcalculus.pacman;
 
+import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.agent.Agent;
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.environment.Environment;
@@ -92,5 +93,10 @@ public class AmbientePacmanLogico extends Environment {
 
     public int getAbajo(int fil, int col) {
         return ((EstadoAmbientePacmanLogico) this.environmentState).getAbajo(fil, col);
+    }
+
+    @Override
+    public boolean agentFailed(Agent agent, Action actionReturned) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

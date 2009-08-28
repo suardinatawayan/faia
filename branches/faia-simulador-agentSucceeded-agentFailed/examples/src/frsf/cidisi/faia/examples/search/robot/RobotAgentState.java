@@ -15,7 +15,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package frsf.cidisi.faia.examples.search.robot;
 
 import java.util.ArrayList;
@@ -25,7 +24,7 @@ import java.util.HashMap;
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
 
-public class EstadoRobot extends SearchBasedAgentState {
+public class RobotAgentState extends SearchBasedAgentState {
 
     public static final String A = "A";
     public static final String B = "B";
@@ -44,38 +43,41 @@ public class EstadoRobot extends SearchBasedAgentState {
     public static final String O = "O";
     public static final String P = "P";
     public static final String Q = "Q";
-    /**
-     * Posición actual del robot.-
-     */
-    String posicion;
-    /**
-     * Este 
-     * Este mapa tiene como clave a un punto del mundo (A, B, C, ...) y como valor una colección 
-     * que contiene a los sucesores del punto.-
-     */
-    private HashMap<String, Collection<String>> mapaConocido;
-    private ArrayList<String> posicionesVisitadas;
 
-    public EstadoRobot() {
+    /**
+     * Actual agent position
+     */
+    String position;
+
+    /**
+     * This map has a point of the world (A, B, C, ...) as key, and a collection
+     * of successors of that point.
+     */
+    private HashMap<String, Collection<String>> knownMap;
+    private ArrayList<String> visitedPositions;
+
+    public RobotAgentState() {
         this.initState();
     }
 
-    public EstadoRobot clone() {
-        EstadoRobot nuevoEstado = new EstadoRobot();
-        nuevoEstado.setPosicion(posicion);
-        ArrayList<String> posVis = (ArrayList<String>) posicionesVisitadas.clone();
-        nuevoEstado.setPosicionesVisitadas(posVis);
-        return nuevoEstado;
+    @Override
+    public RobotAgentState clone() {
+        RobotAgentState newState = new RobotAgentState();
+        newState.setPosition(position);
+        ArrayList<String> visitedPosition = (ArrayList<String>) visitedPositions.clone();
+        newState.setVisitedPositions(visitedPosition);
+        return newState;
     }
 
+    @Override
     public void initState() {
-        posicion = A;
+        position = A;
 
         /**
-         * En esta matriz el primer elemento de cada fila representa un posicion en el mapa
-         * y los siguientes elementos (del 1)
+         * In this matrix the first element of each row represents a position
+         * in the map and the seccessors of that position.
          */
-        String[][] posiciones = new String[][]{
+        String[][] positions = new String[][]{
             {A, C, G},
             {B, J, K, O},
             {C, D, G},
@@ -95,71 +97,59 @@ public class EstadoRobot extends SearchBasedAgentState {
             {Q, B, F, G, P}
         };
 
-        mapaConocido = new HashMap<String, Collection<String>>();
-        for (int i = 0; i < posiciones.length; i++) {
-            ArrayList<String> sucesores = new ArrayList<String>();
-            for (int j = 1; j < posiciones[i].length; j++) {
-                sucesores.add(posiciones[i][j]);
+        knownMap = new HashMap<String, Collection<String>>();
+        for (int i = 0; i < positions.length; i++) {
+            ArrayList<String> successors = new ArrayList<String>();
+            for (int j = 1; j < positions[i].length; j++) {
+                successors.add(positions[i][j]);
             }
-            mapaConocido.put(posiciones[i][0], sucesores);
+            knownMap.put(positions[i][0], successors);
 
         }
 
-        posicionesVisitadas = new ArrayList<String>();
+        visitedPositions = new ArrayList<String>();
 
     }
 
+    @Override
     public void updateState(Perception p) {
-        posicionesVisitadas.add(posicion);
+        visitedPositions.add(position);
     }
 
+    @Override
     public String toString() {
-        String str = "";
-
-//		str = str + "[ \n";
-//		for (String punto : mapaConocido.keySet()){
-//			str = str + "[ "+punto+" --> ";
-//			Collection<String> sucesores = mapaConocido.get(punto);
-//			if (sucesores!=null){
-//				for (String sucesor : sucesores){
-//					str = str + sucesor + " ";
-//				}
-//			}
-//			str = str + " ]\n";
-//		}
-//		str = str + " ]";
-
-        str = str + "Posicion: " + posicion;
+        String str = "Posicion: " + position;
 
         return str;
 
     }
 
+    @Override
     public boolean equals(Object obj) {
 
-        if (!(obj instanceof EstadoRobot)) {
+        if (!(obj instanceof RobotAgentState)) {
             return false;
         }
-        return posicion.equals(((EstadoRobot) obj).getPosicion());
+        return position.equals(((RobotAgentState) obj).getPosition());
     }
 
-    public String getPosicion() {
-        return posicion;
+    public String getPosition() {
+        return position;
     }
 
-    public void setPosicion(String posicion) {
-        this.posicion = posicion;
+    public void setPosition(String position) {
+        this.position = position;
     }
 
-    public Collection<String> getSucesores() {
-        return mapaConocido.get(posicion);
+    public Collection<String> getSuccessors() {
+        return knownMap.get(position);
     }
 
-    public ArrayList<String> getPosicionesVisitadas() {
-        return posicionesVisitadas;
+    public ArrayList<String> getVisitedPositions() {
+        return visitedPositions;
     }
 
-    public void setPosicionesVisitadas(ArrayList<String> posicionesVisitadas) {
-        this.posicionesVisitadas = posicionesVisitadas;
+    public void setVisitedPositions(ArrayList<String> visitedPositions) {
+        this.visitedPositions = visitedPositions;
     }
 }

@@ -19,6 +19,7 @@
 package frsf.cidisi.faia.examples.search.snake;
 
 import calculador.Calculador;
+import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.agent.Agent;
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.environment.Environment;
@@ -68,5 +69,10 @@ public class AmbienteSnake extends Environment {
 
     public String toString() {
         return environmentState.toString();
+    }
+
+    @Override
+    public boolean agentFailed(Agent agent, Action actionReturned) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }
