@@ -62,7 +62,7 @@ public abstract class GoalBasedAgentSimulator extends Simulator {
         /*
          * Simulation starts. The environment sends perceptions to the agent, and
          * it returns actions. The loop condition evaluation is placed at the end.
-         * This works even when the agent starts with a goal state (see isComplete
+         * This works even when the agent starts with a goal state (see agentSucceeded
          * method in the SearchBasedAgentSimulator).
          */
         do {
@@ -72,7 +72,7 @@ public abstract class GoalBasedAgentSimulator extends Simulator {
             System.out.println("Sending perception to agent...");
             perception = this.getPercept(agent);
             agent.see(perception);
-            System.out.println("Percepcion: " + perception);
+            System.out.println("Perception: " + perception);
 
             System.out.println("Agent State: " + agent.getAgentState());
             System.out.println("Environment: " + environment);
@@ -89,10 +89,10 @@ public abstract class GoalBasedAgentSimulator extends Simulator {
 
             this.actionReturned(agent, action);
 
-        } while (!isComplete(action));
+        } while (!this.agentSucceeded(action) || !this.agentFailed(agent, action));
 
         // Check what happened, if agent has reached the goal or not.
-        if (this.isComplete(action)) {
+        if (this.agentSucceeded(action)) {
             System.out.println("Agent has reached the goal!");
         } else {
             System.out.println("ERROR: The simulation has finished, but the agent has not reached his goal.");
@@ -117,7 +117,9 @@ public abstract class GoalBasedAgentSimulator extends Simulator {
         this.getEnvironment().updateState(((GoalBasedAgent) agents.elementAt(0)).getAgentState(), action);
     }
 
-    public abstract boolean isComplete(Action actionReturned);
+    public abstract boolean agentSucceeded(Action actionReturned);
+
+    public abstract boolean agentFailed(Agent agent, Action actionReturned);
 
     /**
      * This method is executed in the mail loop of the simulation when the
