@@ -17,6 +17,7 @@
  */
 package frsf.cidisi.faia.examples.search.pacman;
 
+import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.agent.Agent;
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.environment.Environment;
@@ -81,5 +82,10 @@ public class PacmanEnvironment extends Environment {
     public int getBottomCell(int row, int col) {
         return ((PacmanEnvironmentState) this.environmentState)
                 .getBottomCell(row, col);
+    }
+
+    @Override
+    public boolean agentFailed(Agent agent, Action actionReturned) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

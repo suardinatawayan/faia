@@ -1,5 +1,6 @@
 package frsf.cidisi.faia.examples.matlab.simple_water_tank;
 
+import frsf.cidisi.faia.agent.Action;
 import java.util.Hashtable;
 import frsf.cidisi.faia.agent.Agent;
 import frsf.cidisi.faia.agent.Perception;
@@ -87,4 +88,9 @@ public class SimpleWaterTankEnvironment extends MatlabEnvironment {
 				"h"
 		};
 	}
+
+    @Override
+    public boolean agentFailed(Agent agent, Action actionReturned) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }

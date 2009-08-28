@@ -17,6 +17,7 @@
  */
 package frsf.cidisi.faia.examples.planning.cubes;
 
+import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.agent.Agent;
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.environment.Environment;
@@ -36,5 +37,10 @@ public class CubesEnvironment extends Environment {
     @Override
     public String toString() {
         return environmentState.toString();
+    }
+
+    @Override
+    public boolean agentFailed(Agent agent, Action actionReturned) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }
