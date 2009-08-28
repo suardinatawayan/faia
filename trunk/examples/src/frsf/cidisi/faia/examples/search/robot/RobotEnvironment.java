@@ -15,28 +15,27 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package frsf.cidisi.faia.examples.search.robot;
 
 import frsf.cidisi.faia.agent.Agent;
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.environment.Environment;
 
-public class AmbienteRobot extends Environment {
+public class RobotEnvironment extends Environment {
 
-    public AmbienteRobot() {
-        // Se instancia el estado del ambiente.-
-        this.environmentState = new EstadoAmbiente();
+    public RobotEnvironment() {
+        // Create the environment state
+        this.environmentState = new RobotEnvironmentState();
     }
 
+    @Override
     public Perception getPercept(Agent agent) {
-        // Retorna la nueva percepción creada.-
+        // In this example the Environment does not return perceptions
         return null;
     }
 
+    @Override
     public String toString() {
-
-//		return environmentState.toString();
         return "";
     }
 }

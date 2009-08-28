@@ -15,25 +15,22 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package frsf.cidisi.faia.examples.search.robot;
 
 import frsf.cidisi.faia.exceptions.PrologConnectorException;
 import frsf.cidisi.faia.simulator.SearchBasedAgentSimulator;
 
-/**
- *
- * @author miltondp
- */
 public class RobotMain {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) throws PrologConnectorException {
-        AgenteRobot agente = new AgenteRobot();
-        AmbienteRobot ambiente = new AmbienteRobot();
-        SearchBasedAgentSimulator simu = new SearchBasedAgentSimulator(ambiente, agente);
-        simu.start();
+        RobotAgent agent = new RobotAgent();
+
+        RobotEnvironment environment = new RobotEnvironment();
+
+        SearchBasedAgentSimulator simulator =
+                new SearchBasedAgentSimulator(environment, agent);
+        
+        simulator.start();
     }
+
 }

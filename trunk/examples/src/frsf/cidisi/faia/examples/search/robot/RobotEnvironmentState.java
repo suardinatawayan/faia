@@ -15,7 +15,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package frsf.cidisi.faia.examples.search.robot;
 
 import java.util.ArrayList;
@@ -24,7 +23,7 @@ import java.util.HashMap;
 
 import frsf.cidisi.faia.state.EnvironmentState;
 
-public class EstadoAmbiente extends EnvironmentState {
+public class RobotEnvironmentState extends EnvironmentState {
 
     public static final String A = "A";
     public static final String B = "B";
@@ -43,12 +42,14 @@ public class EstadoAmbiente extends EnvironmentState {
     public static final String O = "O";
     public static final String P = "P";
     public static final String Q = "Q";
+
     /**
-     * Este mapa tiene como clave a un punto del mundo (A, B, C, ...) y como valor una colección 
-     * que contiene a los sucesores del punto.-
+     * This map has a point of the world (A, B, C, ...) as key, and a collection
+     * of successors of that point.
      */
-    private HashMap<String, Collection<String>> mapa;
-    public static final String[][] POSICIONES = new String[][]{
+    private HashMap<String, Collection<String>> map;
+
+    public static final String[][] POSITIONS = new String[][]{
         {A, C, G},
         {B, J, K, O},
         {C, D, G},
@@ -68,40 +69,44 @@ public class EstadoAmbiente extends EnvironmentState {
         {Q, B, F, G, P}
     };
 
-    EstadoAmbiente() {
-        mapa = new HashMap<String, Collection<String>>();
+    RobotEnvironmentState() {
+        map = new HashMap<String, Collection<String>>();
     }
 
+    @Override
     public Object clone() {
-        return mapa.clone();
+        return map.clone();
     }
 
+    @Override
     public void initState() {
         /**
-         * En esta matriz el primer elemento de cada fila representa un posicion en el mapa
-         * y los siguientes elementos (del 1)
+         * In this matrix the first element of each row represents a position
+         * in the map and the seccessors of that position.
          */
-        mapa = new HashMap<String, Collection<String>>();
-        for (int i = 0; i < POSICIONES.length; i++) {
-            ArrayList<String> sucesores = new ArrayList<String>();
-            for (int j = 1; j < POSICIONES[i].length; j++) {
-                sucesores.add(POSICIONES[i][j]);
+        map = new HashMap<String, Collection<String>>();
+        
+        for (int i = 0; i < POSITIONS.length; i++) {
+            ArrayList<String> successors = new ArrayList<String>();
+            for (int j = 1; j < POSITIONS[i].length; j++) {
+                successors.add(POSITIONS[i][j]);
             }
-            mapa.put(POSICIONES[i][0], sucesores);
+            map.put(POSITIONS[i][0], successors);
 
         }
     }
 
+    @Override
     public String toString() {
         String str = "";
 
         str = str + "[ \n";
-        for (String punto : mapa.keySet()) {
-            str = str + "[ " + punto + " --> ";
-            Collection<String> sucesores = mapa.get(punto);
-            if (sucesores != null) {
-                for (String sucesor : sucesores) {
-                    str = str + sucesor + " ";
+        for (String point : map.keySet()) {
+            str = str + "[ " + point + " --> ";
+            Collection<String> successors = map.get(point);
+            if (successors != null) {
+                for (String successor : successors) {
+                    str = str + successor + " ";
                 }
             }
             str = str + " ]\n";
@@ -111,8 +116,9 @@ public class EstadoAmbiente extends EnvironmentState {
         return str;
     }
 
+    @Override
     public boolean equals(Object obj) {
-        //TODO: Falta hacer este codigo, pero por ahora no es necesario porque no uso este metodo.-
+        // Returns always true. This method is not used.
         return true;
     }
 }
