@@ -52,6 +52,14 @@ public abstract class Environment {
     public abstract Perception getPercept(Agent agent);
 
     /**
+     * This method is called by the simulator to know if the agent has failed.
+     * If so, the simulation will finish.
+     * @param actionReturned
+     * @return
+     */
+    public abstract boolean agentFailed(Agent agent, Action actionReturned);
+
+    /**
      * Subclasses of Environment can override this method to close any
      * resource when simulation finished.
      */
