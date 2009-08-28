@@ -15,16 +15,17 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package frsf.cidisi.faia.examples.search.robot;
 
 import frsf.cidisi.faia.agent.search.GoalTest;
 import frsf.cidisi.faia.state.AgentState;
 
-public class MetaRobot extends GoalTest {
+public class RobotGoal extends GoalTest {
 
+    @Override
     public boolean isGoalState(AgentState agentState) {
-        if (((EstadoRobot) agentState).getPosicion().equals(EstadoRobot.B)) {
+        // Agent reach the goal if it is in B
+        if (((RobotAgentState) agentState).getPosition().equals(RobotAgentState.B)) {
             return true;
         }
         return false;
