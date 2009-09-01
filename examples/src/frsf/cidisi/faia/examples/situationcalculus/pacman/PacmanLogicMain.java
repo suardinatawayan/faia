@@ -15,22 +15,22 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+package frsf.cidisi.faia.examples.situationcalculus.pacman;
 
-package frsf.cidisi.faia.examples.situationcalculus.pacman.actions;
+import frsf.cidisi.faia.exceptions.PrologConnectorException;
+import frsf.cidisi.faia.simulator.SituationCalculusBasedAgentSimulator;
 
-import frsf.cidisi.faia.agent.situationcalculus.SituationCalculusAction;
-import frsf.cidisi.faia.state.AgentState;
-import frsf.cidisi.faia.state.EnvironmentState;
+public class PacmanLogicMain {
 
-public class IrArriba extends SituationCalculusAction {
-    
-    @Override
-    public EnvironmentState execute(AgentState ast, EnvironmentState est) {
-        return est;
+    public static void main(String[] args) throws PrologConnectorException {
+        PacmanLogicAgent agent = new PacmanLogicAgent();
+
+        PacmanLogicEnvironment environment = new PacmanLogicEnvironment();
+
+        SituationCalculusBasedAgentSimulator simulator =
+                new SituationCalculusBasedAgentSimulator(environment, agent);
+
+        simulator.start();
     }
 
-    @Override
-    public String toString() {
-        return "arriba";
-    }
 }

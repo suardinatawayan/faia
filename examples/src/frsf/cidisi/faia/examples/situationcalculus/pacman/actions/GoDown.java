@@ -15,18 +15,14 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package frsf.cidisi.faia.examples.situationcalculus.pacman.actions;
 
-import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.agent.situationcalculus.SituationCalculusAction;
 import frsf.cidisi.faia.state.AgentState;
 import frsf.cidisi.faia.state.EnvironmentState;
-import frsf.cidisi.faia.examples.situationcalculus.pacman.EstadoAmbientePacmanLogico;
-import frsf.cidisi.faia.examples.situationcalculus.pacman.EstadoPacmanLogico;
 
-public class IrDerecha extends SituationCalculusAction {
-    
+public class GoDown extends SituationCalculusAction {
+
     @Override
     public EnvironmentState execute(AgentState ast, EnvironmentState est) {
         return est;
@@ -34,6 +30,6 @@ public class IrDerecha extends SituationCalculusAction {
 
     @Override
     public String toString() {
-        return "derecha";
+        return "godown";
     }
 }
