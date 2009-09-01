@@ -15,32 +15,32 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package frsf.cidisi.faia.examples.situationcalculus.pacman.actions;
 
-import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.agent.situationcalculus.SituationCalculusAction;
 import frsf.cidisi.faia.state.AgentState;
 import frsf.cidisi.faia.state.EnvironmentState;
-import frsf.cidisi.faia.examples.situationcalculus.pacman.EstadoAmbientePacmanLogico;
-import frsf.cidisi.faia.examples.situationcalculus.pacman.EstadoPacmanLogico;
-import frsf.cidisi.faia.examples.situationcalculus.pacman.PercepcionPacmanLogico;
+import frsf.cidisi.faia.examples.situationcalculus.pacman.PacmanLogicEnvironmentState;
+import frsf.cidisi.faia.examples.situationcalculus.pacman.PacmanLogicAgentState;
+import frsf.cidisi.faia.examples.situationcalculus.pacman.PacmanLogicPerception;
 
-public class Pelear extends SituationCalculusAction {
+public class Fight extends SituationCalculusAction {
 
     @Override
     public EnvironmentState execute(AgentState ast, EnvironmentState est) {
-        EstadoAmbientePacmanLogico estA = (EstadoAmbientePacmanLogico) est;
-        EstadoPacmanLogico estP = ((EstadoPacmanLogico) ast);
+        PacmanLogicEnvironmentState environmentState =
+                (PacmanLogicEnvironmentState) est;
+        PacmanLogicAgentState agentState = ((PacmanLogicAgentState) ast);
 
-        int fil = estP.getFila();
-        int col = estP.getColumna();
+        int row = agentState.getRow();
+        int col = agentState.getColumn();
 
-        if ((estA.getMundo()[fil][col] == 1) & (estP.getEnergia() > 30)) {
-            estA.setMundo(fil, col, PercepcionPacmanLogico.PERCEPCION_VACIO);
-            //estP.setMundo(fil, col, PercepcionPacman.PERCEPCION_VACIO);
-            //System.out.println(" Pelear@Amb - ");
-            return estA;
+        if ((environmentState.getWorld()[row][col] == 1) &&
+                (agentState.getEnergy() > 30)) {
+            environmentState.setWorld(row, col, PacmanLogicPerception.EMPTY_PERCEPTION);
+            //estP.setWorld(fil, col, PercepcionPacman.EMPTY_PERCEPTION);
+            //System.out.println(" Fight@Amb - ");
+            return environmentState;
         }
 
         return null;
@@ -48,6 +48,6 @@ public class Pelear extends SituationCalculusAction {
 
     @Override
     public String toString() {
-        return "pelear";
+        return "fight";
     }
 }
