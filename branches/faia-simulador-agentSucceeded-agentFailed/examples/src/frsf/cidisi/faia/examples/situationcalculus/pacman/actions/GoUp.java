@@ -15,25 +15,21 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+package frsf.cidisi.faia.examples.situationcalculus.pacman.actions;
 
-package frsf.cidisi.faia.examples.situationcalculus.pacman;
+import frsf.cidisi.faia.agent.situationcalculus.SituationCalculusAction;
+import frsf.cidisi.faia.state.AgentState;
+import frsf.cidisi.faia.state.EnvironmentState;
 
-import frsf.cidisi.faia.exceptions.PrologConnectorException;
-import frsf.cidisi.faia.simulator.SituationCalculusBasedAgentSimulator;
+public class GoUp extends SituationCalculusAction {
 
-/**
- *
- * @author miltondp
- */
-public class PacmanLogicoMain {
+    @Override
+    public EnvironmentState execute(AgentState ast, EnvironmentState est) {
+        return est;
+    }
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) throws PrologConnectorException {
-        AgentePacmanLogico agente = new AgentePacmanLogico();
-        AmbientePacmanLogico ambiente = new AmbientePacmanLogico();
-        SituationCalculusBasedAgentSimulator simu = new SituationCalculusBasedAgentSimulator(ambiente, agente);
-        simu.start();
+    @Override
+    public String toString() {
+        return "goup";
     }
 }
