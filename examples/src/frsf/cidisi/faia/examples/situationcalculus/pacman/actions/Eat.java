@@ -15,22 +15,42 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package frsf.cidisi.faia.examples.situationcalculus.pacman.actions;
 
 import frsf.cidisi.faia.agent.situationcalculus.SituationCalculusAction;
 import frsf.cidisi.faia.state.AgentState;
 import frsf.cidisi.faia.state.EnvironmentState;
+import frsf.cidisi.faia.examples.situationcalculus.pacman.PacmanLogicEnvironmentState;
+import frsf.cidisi.faia.examples.situationcalculus.pacman.PacmanLogicAgentState;
+import frsf.cidisi.faia.examples.situationcalculus.pacman.PacmanLogicPerception;
 
-public class IrIzquierda extends SituationCalculusAction {
-    
+public class Eat extends SituationCalculusAction {
+
     @Override
     public EnvironmentState execute(AgentState ast, EnvironmentState est) {
-        return est;
+        PacmanLogicEnvironmentState environmentState =
+                (PacmanLogicEnvironmentState) est;
+        PacmanLogicAgentState agentState = ((PacmanLogicAgentState) ast);
+
+        int row = agentState.getRow();
+        int col = agentState.getColumn();
+
+        if (environmentState.getWorld()[row][col] == PacmanLogicPerception.FOOD_PERCEPTION) {
+            environmentState.setWorld(row, col, PacmanLogicPerception.EMPTY_PERCEPTION);
+
+            return environmentState;
+        }
+
+        return null;
     }
 
+    /**
+     * This method is not important when developing a Search based agent. But
+     * is essential in this example, a Situation Calculus based one.
+     * This method must return the name of the action used in the Prolog file.
+     */
     @Override
     public String toString() {
-        return "izquierda";
+        return "eat";
     }
 }
