@@ -21,6 +21,11 @@ public class WumpusAgentState extends KnowledgeBase {
     }
 
     @Override
+    public String getSituationPredicate() {
+        return "actualSituation";
+    }
+
+    @Override
     public String getBestActionPredicate() {
         return "bestAction";
     }
@@ -42,7 +47,7 @@ public class WumpusAgentState extends KnowledgeBase {
         this.addKnowledge("holding(arrow,0)");
     }
 
-    public String getOrientation() {
+    private String getOrientation() {
         String positionQuery = "orientation(O," + this.getSituation() + ")";
 
         Hashtable[] pos = this.query(positionQuery);
@@ -52,7 +57,7 @@ public class WumpusAgentState extends KnowledgeBase {
         return orientation;
     }
 
-    public int[] getPosition() {
+    private int[] getPosition() {
         String positionQuery = "position([X,Y]," + this.getSituation() + ")";
 
         Hashtable[] pos = this.query(positionQuery);
@@ -63,11 +68,11 @@ public class WumpusAgentState extends KnowledgeBase {
         return new int[]{x, y};
     }
 
-    public int getRow() {
+    private int getRow() {
         return this.getPosition()[0];
     }
 
-    public int getColumn() {
+    private int getColumn() {
         return this.getPosition()[1];
     }
 

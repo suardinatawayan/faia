@@ -23,7 +23,7 @@ public class WumpusEnvironment extends Environment {
         WumpusAgent wumpusAgent = (WumpusAgent) agent;
         WumpusAgentState wumpusAgentState = wumpusAgent.getAgentState();
 
-        
+        // TODO:
 
         return false;
     }
@@ -32,10 +32,7 @@ public class WumpusEnvironment extends Environment {
     public WumpusPerception getPercept(Agent agent) {
         WumpusPerception p = new WumpusPerception();
 
-        WumpusAgent wumpusAgent = (WumpusAgent) agent;
-        WumpusAgentState wumpusAgentState = wumpusAgent.getAgentState();
-
-        int[] agentPosition = wumpusAgentState.getPosition();
+        int[] agentPosition = this.getEnvironmentState().getAgentPosition();
 
         Vector<CellState> cellState = this.getEnvironmentState().getCellState(agentPosition[0], agentPosition[1]);
 
@@ -44,8 +41,6 @@ public class WumpusEnvironment extends Environment {
         p.setBump(cellState.contains(CellState.BUMP));
         p.setGlitter(cellState.contains(CellState.GLITTER));
         p.setWumpusScream(cellState.contains(CellState.WUMPUS_SCREAM));
-
-        p.setSituation(wumpusAgentState.getSituation());
 
         return p;
     }

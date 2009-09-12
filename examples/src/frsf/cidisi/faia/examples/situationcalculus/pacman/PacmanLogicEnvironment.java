@@ -17,6 +17,7 @@
  */
 package frsf.cidisi.faia.examples.situationcalculus.pacman;
 
+import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.agent.Agent;
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.environment.Environment;
@@ -67,6 +68,12 @@ public class PacmanLogicEnvironment extends Environment {
     @Override
     public String toString() {
         return environmentState.toString();
+    }
+
+    @Override
+    public boolean agentFailed(Agent agent, Action actionReturned) {
+        // TODO:
+        return false;
     }
     
     // These methods are internal

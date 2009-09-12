@@ -78,14 +78,26 @@ public class PrologConnector {
         prologQuery.hasSolution();
     }
 
-    public void addPredicate(String predicate) {
-
+    private String preparePredicate(String predicate) {
         String procesedPredicate = predicate;
         if (predicate.endsWith(".")) {
             procesedPredicate = predicate.substring(0, predicate.length() - 1);
         }
 
-        Query query = new Query("asserta(" + procesedPredicate + ")");
+        return procesedPredicate;
+    }
+
+    public void addPredicate(String predicate) {
+        String preparedPredicate = this.preparePredicate(predicate);
+
+        Query query = new Query("asserta(" + preparedPredicate + ")");
+        query.hasSolution();
+    }
+
+    public void removePredicate(String predicate) {
+        String preparedPredicate = this.preparePredicate(predicate);
+
+        Query query = new Query("retract(" + preparedPredicate + ")");
         query.hasSolution();
     }
 

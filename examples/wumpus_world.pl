@@ -1,4 +1,4 @@
-:- dynamic wumpusKilled/1, action/2, stench/2, breeze/2, perception/2, at/3, position/2, orientation/2, holding/2.
+:- dynamic actualSituation/1, bump/2, glitter/2, wumpusKilled/1, action/2, stench/2, breeze/2, perception/2, at/3, position/2, orientation/2, holding/2.
 
 maxCell(S) :- S is 3.
 
@@ -41,8 +41,8 @@ count(Template, Query, Count) :-
 count(Query, Count) :-
 	count(Query, Query, Count).
 
-
-% TODO: Ver si están bien catalogadas las reglas.
+% Situation must be initialized to 0.
+actualSituation(0).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Diagnostic rules                                %
@@ -51,25 +51,25 @@ count(Query, Count) :-
 %position([1,1],1) :- perception([_,_,_,_,_],1).
 
 stench(P,S) :-
-	perception([stench,_,_,_,_],S),
+	perception([stench,_,_,_,_]),
 	position(P,S).
 
 breeze(P,S) :-
-	perception([_,breeze,_,_,_],S),
+	perception([_,breeze,_,_,_]),
 	position(P,S).
 
 glitter(P,S) :-
-	perception([_,_,glitter,_,_],S),
+	perception([_,_,glitter,_,_]),
 	position(P,S).
 
 bump(S) :-
-	perception([_,_,_,bump,_],S).
+	perception([_,_,_,bump,_]).
 
 wumpusKilled(S) :-
-	perception([_,_,_,_,wumpusScream],S).
+	perception([_,_,_,_,wumpusScream]).
 
 at(nothing,P,S) :-
-	perception([nothing,nothing,nothing,nothing,nothing],S),
+	perception([nothing,nothing,nothing,nothing,nothing]),
 	position(P,S).
 
 
@@ -146,9 +146,6 @@ existUnknownCell(S) :-
 % When position doesn't change.
 est(S1):- S1 > 0,S is S1-1,action(A,S),A\=forward,position(P,S),asserta(position(P,S1)).
 est(S1):- S1 > 0,S is S1-1,action(forward,S),position(P,S),orientation(O,S),not(adjacent2(O,P,_)),asserta(position(P,S1)).
-%est(S1):- S1 > 0,S is S1-1,action(forward,S),position(P,S),orientation(O,S),adjacent2(O,P,[R,C]),C<0,asserta(position(P,S1)).
-%est(S1):- S1 > 0,S is S1-1,action(forward,S),position(P,S),orientation(O,S),adjacent2(O,P,[R,C]),R>3,asserta(position(P,S1)).
-%est(S1):- S1 > 0,S is S1-1,action(forward,S),position(P,S),orientation(O,S),adjacent2(O,P,[R,C]),C>3,asserta(position(P,S1)).
 
 % When orientation doesn't change.
 est(S1):- S1 > 0,S is S1-1,action(A,S),A\=turnright,A\=turnleft,orientation(O,S),asserta(orientation(O,S1)).
@@ -160,6 +157,8 @@ est(S1):- S1 > 0,S is S1-1,action(turnleft,S),orientation(O,S),moveLeft(O,O1),as
 
 est(S1):- S1 > 0,S is S1-1,stench(P,S),asserta(stench(P,S1)).
 est(S1):- S1 > 0,S is S1-1,breeze(P,S),asserta(breeze(P,S1)).
+est(S1):- S1 > 0,S is S1-1,glitter(P,S),asserta(glitter(P,S1)).
+est(S1):- S1 > 0,S is S1-1,bump(P,S),asserta(bump(P,S1)).
 est(S1):- S1 > 0,S is S1-1,wumpusKilled(S),asserta(wumpusKilled(S1)).
 est(S1):- S1 > 0,S is S1-1,at(nothing,P,S),asserta(at(nothing,P,S1)).
 
@@ -167,7 +166,6 @@ est(S1):- S1 > 0,S is S1-1,action(grab,S),asserta(holding(gold,S1)).
 est(S1):- S1 > 0,S is S1-1,action(A,S),holding(gold,S),A\=release,asserta(holding(gold,S1)).
 
 est(S1):- S1 > 0,S is S1-1,action(A,S),A\=shoot,asserta(holding(arrow,S1)).
-
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -181,28 +179,16 @@ veryGood(forward,S) :- orientation(O,S),position(P,S),adjacent2(O,P,Pa),safe(Pa,
 veryGood(turnright,S) :- orientation(O,S),position(P,S),moveRight(O,O1),adjacent2(O1,P,Pa),safe(Pa,S),unknown(Pa,S).
 veryGood(turnleft,S) :- orientation(O,S),position(P,S),moveLeft(O,O1),adjacent2(O1,P,Pa),safe(Pa,S),unknown(Pa,S).
 
-%notSoGood(forward,S) :- orientation(O,S),position(P,S),adjacent2(O,P,Pa),unknown(Pa,S),not(belief(wumpus,Pa,S)),not(belief(pit,Pa,S)).
-%notSoGood(turnright,S) :- orientation(O,S),position(P,S),moveRight(O,O1),adjacent2(O1,P,Pa),unknown(Pa,S),not(belief(wumpus,Pa,S)),not(belief(pit,Pa,S)).
-%notSoGood(turnleft,S) :- orientation(O,S),position(P,S),moveLeft(O,O1),adjacent2(O1,P,Pa),unknown(Pa,S),not(belief(wumpus,Pa,S)),not(belief(pit,Pa,S)).
-
 good(forward,S) :- orientation(O,S),position(P,S),adjacent2(O,P,Pa),safe(Pa,S),adjacent(Pa,Ps),unknown(Ps,S).
 good(turnright,S) :- position(P,S),adjacent(P,Pa),safe(Pa,S),adjacent(Pa,Ps),unknown(Ps,S).
 
 notSoGood(forward,S) :- orientation(O,S),position(P,S),adjacent2(O,P,Pa),unknown(Pa,S).
 notSoGood(turnright,S) :- position(P,S),adjacent(P,Pa),unknown(Pa,S).
-%notSoGood(turnright,S) :- orientation(O,S),position(P,S),moveRight(O,O1),adjacent2(O1,P,Pa),unknown(Pa,S).
-%notSoGood(turnleft,S) :- orientation(O,S),position(P,S),moveLeft(O,O1),adjacent2(O1,P,Pa),unknown(Pa,S).
 
 bad(forward,S) :- orientation(O,S),position(P,S),adjacent2(O,P,Pa),belief(wumpus,Pa,S).
 bad(forward,S) :- orientation(O,S),position(P,S),adjacent2(O,P,Pa),belief(pit,Pa,S).
 
-%notSoGood(forward,S) :- orientation(O,S),position(P,S),adjacent2(O,P,Pa),belief(wumpus,Pa).
-%notSoGood(forward,S) :- orientation(O,S),position(P,S),adjacent2(O,P,Pa),belief(pit,Pa).
-
-%veryBad(forward,S) :- orientation(O,S),position(P,S),adjacent2(O,P,Pa),at(wumpus,Pa).
-%veryBad(forward,S) :- orientation(O,S),position(P,S),adjacent2(O,P,Pa),at(pit,Pa).
-%veryBad(forward,S) :- orientation(O,S),position(P,S),adjacent2(O,P,Pa),at(wall,Pa).
-
+% bestAction:
 bestAction(noAction,S) :- holding(gold,S).
 bestAction(A,S) :- excelent(A,S).
 bestAction(A,S) :- veryGood(A,S).

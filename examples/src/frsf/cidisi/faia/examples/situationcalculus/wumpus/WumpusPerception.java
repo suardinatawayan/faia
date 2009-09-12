@@ -11,7 +11,6 @@ public class WumpusPerception extends SituationCalculusPerception {
     private boolean glitter;
     private boolean bump;
     private boolean wumpusScream;
-    private int situation;
 
     public WumpusPerception() {
         super();
@@ -21,8 +20,6 @@ public class WumpusPerception extends SituationCalculusPerception {
         this.glitter = false;
         this.bump = false;
         this.wumpusScream = false;
-
-        this.situation = -1;
     }
 
     @Override
@@ -43,10 +40,7 @@ public class WumpusPerception extends SituationCalculusPerception {
         perceptionString.append(this.bump ? "bump" : "nothing");
         perceptionString.append(",");
         perceptionString.append(this.wumpusScream ? "wumpusScream" : "nothing");
-        perceptionString.append("],");
-
-        // Situation
-        perceptionString.append(this.situation);
+        perceptionString.append("]");
 
         perceptionString.append(")");
 
@@ -91,13 +85,5 @@ public class WumpusPerception extends SituationCalculusPerception {
 
     public void setWumpusScream(boolean wumpusScream) {
         this.wumpusScream = wumpusScream;
-    }
-
-    public int getSituation() {
-        return situation;
-    }
-
-    public void setSituation(int situation) {
-        this.situation = situation;
     }
 }

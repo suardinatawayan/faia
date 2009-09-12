@@ -39,7 +39,7 @@ public abstract class GoalBasedAgent extends Agent {
         return solver;
     }
 
-    public void setSolver(Solve solver) {
+    protected void setSolver(Solve solver) {
         this.solver = solver;
     }
 
@@ -55,7 +55,7 @@ public abstract class GoalBasedAgent extends Agent {
         return state;
     }
 
-    public void setState(AgentState state) {
+    protected void setState(AgentState state) {
         this.state = state;
     }
 }
