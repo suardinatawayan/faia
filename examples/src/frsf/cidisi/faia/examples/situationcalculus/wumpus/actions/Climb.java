@@ -8,7 +8,7 @@ public class Climb extends SituationCalculusAction {
 
     @Override
     public EnvironmentState execute(AgentState ast, EnvironmentState est) {
-        // TODO Auto-generated method stub
+        // TODO
         return est;
     }
 

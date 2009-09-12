@@ -6,6 +6,10 @@ import java.util.Vector;
 public class WumpusEnvironmentState extends EnvironmentState {
 
     public static final int WORLD_LENGTH = 4;
+    private int[] agentPosition;
+    private String agentOrientation;
+    private boolean agentHoldingGold;
+    private boolean agentHoldingArrow;
 
     public enum CellState {
 
@@ -34,10 +38,47 @@ public class WumpusEnvironmentState extends EnvironmentState {
 
     @Override
     public void initState() {
+        this.agentPosition = new int[]{0, 0};
+        this.agentOrientation = "right";
+        this.agentHoldingGold = false;
+        this.setAgentHoldingArrow(false);
+
         this.addCellState(0, 3, CellState.WUMPUS);
         this.addCellState(2, 2, CellState.PIT);
-        this.addCellState(0, 3, CellState.PIT);
+        //this.addCellState(1, 0, CellState.PIT);
         this.addCellState(3, 3, CellState.GOLD);
+    }
+
+    public int[] getAgentPosition() {
+        return agentPosition;
+    }
+
+    public void setAgentPosition(int[] position) {
+        this.agentPosition = position;
+    }
+
+    public String getAgentOrientation() {
+        return agentOrientation;
+    }
+
+    public void setAgentOrientation(String orientation) {
+        this.agentOrientation = orientation;
+    }
+
+    public boolean getAgentHoldingGold() {
+        return agentHoldingGold;
+    }
+
+    public void setAgentHoldingGold(boolean agentHasGold) {
+        this.agentHoldingGold = agentHasGold;
+    }
+
+    public boolean getAgentHoldingArrow() {
+        return agentHoldingArrow;
+    }
+
+    public void setAgentHoldingArrow(boolean agentHoldingArrow) {
+        this.agentHoldingArrow = agentHoldingArrow;
     }
 
     public Vector<CellState> getCellState(int row, int col) {
@@ -50,7 +91,7 @@ public class WumpusEnvironmentState extends EnvironmentState {
         return this.world[row][col];
     }
 
-    private void addCellState(int row, int col, CellState cellState) {
+    public void addCellState(int row, int col, CellState cellState) {
 
         CellState stenchOrBreeze = null;
 
@@ -60,7 +101,7 @@ public class WumpusEnvironmentState extends EnvironmentState {
             this.world[row][col].add(CellState.GLITTER);
 
         } else if (cellState == CellState.WUMPUS || cellState == CellState.PIT) {
-            
+
             if (cellState == CellState.WUMPUS) {
                 stenchOrBreeze = CellState.STENCH;
             } else if (cellState == CellState.PIT) {
@@ -85,34 +126,37 @@ public class WumpusEnvironmentState extends EnvironmentState {
         }
     }
 
-//    private void removeCellState(int row, int col, CellState cellState) {
-//
-//        CellState stenchOrBreeze = null;
-//
-//        if (cellState == CellState.WUMPUS) {
-//            stenchOrBreeze = CellState.STENCH;
-//        } else if (cellState == CellState.PIT) {
-//            stenchOrBreeze = CellState.BREEZE;
-//        }
-//
-//        this.world[row][col].remove(cellState);
-//
-//        if (row - 1 >= 0) {
-//            this.world[row - 1][col].remove(stenchOrBreeze);
-//        }
-//
-//        if (row + 1 < WORLD_LENGTH) {
-//            this.world[row + 1][col].remove(stenchOrBreeze);
-//        }
-//
-//        if (col - 1 >= 0) {
-//            this.world[row][col - 1].remove(stenchOrBreeze);
-//        }
-//
-//        if (col + 1 < WORLD_LENGTH) {
-//            this.world[row][col + 1].remove(stenchOrBreeze);
-//        }
-//    }
+    public void removeCellState(int row, int col, CellState cellState) {
+        CellState stenchOrBreeze = null;
+
+        if (cellState == CellState.WUMPUS) {
+            stenchOrBreeze = CellState.STENCH;
+        } else if (cellState == CellState.PIT) {
+            stenchOrBreeze = CellState.BREEZE;
+        }
+
+        this.world[row][col].remove(cellState);
+
+        // If removing gold, remove glitter too
+        if (cellState == CellState.GOLD)
+            this.world[row][col].remove(CellState.GLITTER);
+
+        if (row - 1 >= 0) {
+            this.world[row - 1][col].remove(stenchOrBreeze);
+        }
+
+        if (row + 1 < WORLD_LENGTH) {
+            this.world[row + 1][col].remove(stenchOrBreeze);
+        }
+
+        if (col - 1 >= 0) {
+            this.world[row][col - 1].remove(stenchOrBreeze);
+        }
+
+        if (col + 1 < WORLD_LENGTH) {
+            this.world[row][col + 1].remove(stenchOrBreeze);
+        }
+    }
 
     @Override
     public String toString() {
@@ -143,7 +187,12 @@ public class WumpusEnvironmentState extends EnvironmentState {
             }
             str = str + " ]\n";
         }
-        str = str + " ]";
+        str = str + " ]\n";
+
+        str = str + "Agent position: (" + this.agentPosition[0] + "," +
+                this.agentPosition[1] + ")\n";
+        str = str + "Agent orientation: " + this.agentOrientation + "\n";
+        str = str + "Agent has gold: " + this.agentHoldingGold;
 
         return str;
     }
