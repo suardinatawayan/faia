@@ -118,6 +118,15 @@ public class PacmanLogicAgentState extends KnowledgeBase {
     }
 
     /**
+     * Similar to 'getBestActionPredicate'
+     * @return
+     */
+    @Override
+    public String getSituationPredicate() {
+        return "actualSituation";
+    }
+
+    /**
      * Here we setup the initial state of the agent.
      */
     @Override
