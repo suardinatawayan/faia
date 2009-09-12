@@ -41,6 +41,7 @@ public class CubesEnvironment extends Environment {
 
     @Override
     public boolean agentFailed(Agent agent, Action actionReturned) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        // TODO:
+        return false;
     }
 }

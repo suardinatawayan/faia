@@ -9,37 +9,36 @@ import frsf.cidisi.faia.agent.reactive.ReactiveBasedAgent;
 import frsf.cidisi.faia.examples.search.pacman.PacmanAgent;
 
 public class SimpleWaterTankAgent extends ReactiveBasedAgent {
-	
-	public SimpleWaterTankAgent() {
-		this.setAgentState(new SimpleWaterTankAgentState());
-	}
-	
-	@Override
-	public void see(Perception p) {
-		this.getAgentState().updateState(p);
-	}
-	
-	@Override
-	public SimpleWaterTankAgentState getAgentState() {
-		return (SimpleWaterTankAgentState) super.getAgentState();
-	}
 
-	@Override
-	public Action selectAction() {
-		ReactiveSolver solver = new ReactiveSolver();
-		
-		this.setSolver(solver);
-		
-		// It gets the best action from the solver
+    public SimpleWaterTankAgent() {
+        this.setAgentState(new SimpleWaterTankAgentState());
+    }
+
+    @Override
+    public void see(Perception p) {
+        this.getAgentState().updateState(p);
+    }
+
+    @Override
+    public SimpleWaterTankAgentState getAgentState() {
+        return (SimpleWaterTankAgentState) super.getAgentState();
+    }
+
+    @Override
+    public Action selectAction() {
+        ReactiveSolver solver = new ReactiveSolver();
+
+        this.setSolver(solver);
+
+        // It gets the best action from the solver
         Action selectedAction = null;
         try {
-        	selectedAction =
-                    this.getSolver().solve(new Object[]{ this.getAgentState() });
+            selectedAction =
+                    this.getSolver().solve(new Object[]{this.getAgentState()});
         } catch (Exception ex) {
             Logger.getLogger(SimpleWaterTankAgent.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        return selectedAction;
-	}
 
+        return selectedAction;
+    }
 }

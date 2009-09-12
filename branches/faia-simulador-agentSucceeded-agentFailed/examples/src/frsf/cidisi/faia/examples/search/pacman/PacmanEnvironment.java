@@ -62,6 +62,12 @@ public class PacmanEnvironment extends Environment {
         return environmentState.toString();
     }
 
+    @Override
+    public boolean agentFailed(Agent agent, Action actionReturned) {
+        // TODO:
+        return false;
+    }
+
     // The following methods are Pacman-specific:
     
     public int getTopCell(int row, int col) {
@@ -82,10 +88,5 @@ public class PacmanEnvironment extends Environment {
     public int getBottomCell(int row, int col) {
         return ((PacmanEnvironmentState) this.environmentState)
                 .getBottomCell(row, col);
-    }
-
-    @Override
-    public boolean agentFailed(Agent agent, Action actionReturned) {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 }
