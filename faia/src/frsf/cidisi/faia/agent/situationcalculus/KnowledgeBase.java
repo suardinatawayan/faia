@@ -28,17 +28,15 @@ import frsf.cidisi.faia.state.AgentState;
 public abstract class KnowledgeBase extends AgentState {
 
     /**
-     * Current situation.
-     */
-    private int situation;
-    /**
      * Prolog connector
      */
     protected PrologConnector prologConnector;
 
+    protected String lastPerception;
+
     public KnowledgeBase(String knowledgeBaseFile) throws PrologConnectorException {
         this.prologConnector = new PrologConnector(knowledgeBaseFile);
-        this.situation = 0;
+        this.lastPerception = "";
     }
 
     /**
@@ -46,11 +44,26 @@ public abstract class KnowledgeBase extends AgentState {
      * @return
      */
     public int getSituation() {
-        return this.situation;
+        String query = this.getSituationPredicate() + "(S)";
+
+        Hashtable[] pos = this.query(query);
+
+        int s = Integer.parseInt(pos[0].get("S").toString());
+
+        return s;
     }
 
     public void advanceToNextSituation() {
-        this.situation++;
+        int situation = this.getSituation();
+
+        // Remove current situation predicate
+        this.removeKnowledge(this.getSituationPredicate() +
+                "(" + situation + ")");
+
+        // Advance to next situation and add the new situation predicate
+        situation = situation + 1;
+        this.addKnowledge(this.getSituationPredicate() +
+                "(" + situation + ")");
     }
 
     public void executeSuccessorStateAxioms() {
@@ -58,7 +71,12 @@ public abstract class KnowledgeBase extends AgentState {
     }
 
     public void tell(SituationCalculusPerception perception) {
+        if (!this.lastPerception.equals(""))
+            this.prologConnector.executeNonQuery("retract(" +
+                    this.lastPerception + ")");
+
         this.addKnowledge(perception.toString());
+        this.lastPerception = perception.toString();
     }
 
     public void tell(Action actionObject) {
@@ -82,6 +100,10 @@ public abstract class KnowledgeBase extends AgentState {
         this.prologConnector.addPredicate(predicate);
     }
 
+    public void removeKnowledge(String predicate) {
+        this.prologConnector.removePredicate(predicate);
+    }
+
     public Hashtable[] query(String query) {
         return this.prologConnector.query(query);
     }
@@ -91,6 +113,8 @@ public abstract class KnowledgeBase extends AgentState {
     }
 
     public abstract ActionFactory getActionFactory();
+
+    public abstract String getSituationPredicate();
 
     public abstract String getBestActionPredicate();
 
