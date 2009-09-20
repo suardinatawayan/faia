@@ -36,9 +36,11 @@ public class Eat extends SearchAction {
         int row = pacmanState.getRowPosition();
         int col = pacmanState.getColumnPosition();
 
+        /* The 'Eat' action can be selected only if there is food in the current
+         * position. Otherwise return 'null'. */
         if (pacmanState.getWorld()[row][col] == PacmanPerception.FOOD_PERCEPTION) {
             // If the action is Eat, then the actual position has no more food.
-            pacmanState.setWorld(row, col, PacmanPerception.EMPTY_PERCEPTION);
+            pacmanState.setWorldPosition(row, col, PacmanPerception.EMPTY_PERCEPTION);
             return pacmanState;
         }
         
@@ -53,15 +55,15 @@ public class Eat extends SearchAction {
         PacmanEnvironmentState environmentState = (PacmanEnvironmentState) est;
         PacmanAgentState pacmanState = ((PacmanAgentState) ast);
 
-        int row = pacmanState.getRowPosition();
-        int col = pacmanState.getColumnPosition();
+        int row = environmentState.getAgentPosition()[0];
+        int col = environmentState.getAgentPosition()[1];
 
         if (environmentState.getWorld()[row][col] == PacmanPerception.FOOD_PERCEPTION) {
             // Update the real world
             environmentState.setWorld(row, col, PacmanPerception.EMPTY_PERCEPTION);
 
             // Update the pacman state
-            pacmanState.setWorld(row, col, PacmanPerception.EMPTY_PERCEPTION);
+            pacmanState.setWorldPosition(row, col, PacmanPerception.EMPTY_PERCEPTION);
             
             return environmentState;
         }

@@ -25,6 +25,8 @@ import frsf.cidisi.faia.state.EnvironmentState;
 public class PacmanEnvironmentState extends EnvironmentState {
 
     private int[][] world;
+    private int[] agentPosition;
+    private int agentEnergy;
 
     public PacmanEnvironmentState(int[][] m) {
         world = m;
@@ -55,6 +57,9 @@ public class PacmanEnvironmentState extends EnvironmentState {
         world[2][1] = PacmanPerception.FOOD_PERCEPTION;
         world[0][3] = PacmanPerception.ENEMY_PERCEPTION;
         world[1][2] = PacmanPerception.FOOD_PERCEPTION;
+
+        this.setAgentPosition(new int[]{1, 1});
+        this.setAgentEnergy(50);
     }
 
     /**
@@ -89,6 +94,22 @@ public class PacmanEnvironmentState extends EnvironmentState {
 
     public void setWorld(int row, int col, int value) {
         this.world[row][col] = value;
+    }
+
+    public int[] getAgentPosition() {
+        return agentPosition;
+    }
+
+    public void setAgentPosition(int[] agentPosition) {
+        this.agentPosition = agentPosition;
+    }
+
+    public int getAgentEnergy() {
+        return agentEnergy;
+    }
+
+    public void setAgentEnergy(int agentEnergy) {
+        this.agentEnergy = agentEnergy;
     }
 
     public int getTopCell(int row, int col) {
