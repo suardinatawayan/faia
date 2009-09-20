@@ -35,11 +35,13 @@ public class Fight extends SearchAction {
         int row = pacmanState.getRowPosition();
         int col = pacmanState.getColumnPosition();
 
+        /* The 'Fight' action can be selected only if there is an enemy in
+         * the current position. Otherwise return 'null'. */
         if ((pacmanState.getWorld()[row][col] == 1) &&
                 (pacmanState.getEnergy() > 30)) {
 
             // There is no more enemy if we fight against it
-            pacmanState.setWorld(row, col, PacmanPerception.EMPTY_PERCEPTION);
+            pacmanState.setWorldPosition(row, col, PacmanPerception.EMPTY_PERCEPTION);
             
             return pacmanState;
         }
@@ -56,16 +58,16 @@ public class Fight extends SearchAction {
         PacmanEnvironmentState environmentState = (PacmanEnvironmentState) est;
         PacmanAgentState pacmanState = ((PacmanAgentState) ast);
 
-        int row = pacmanState.getRowPosition();
-        int col = pacmanState.getColumnPosition();
+        int row = environmentState.getAgentPosition()[0];
+        int col = environmentState.getAgentPosition()[1];
 
         if ((environmentState.getWorld()[row][col] == 1) &&
-                (pacmanState.getEnergy() > 30)) {
+                (environmentState.getAgentEnergy() > 30)) {
             // Update the real world state
             environmentState.setWorld(row, col, PacmanPerception.EMPTY_PERCEPTION);
 
             // Update the agent state
-            pacmanState.setWorld(row, col, PacmanPerception.EMPTY_PERCEPTION);
+            pacmanState.setWorldPosition(row, col, PacmanPerception.EMPTY_PERCEPTION);
             
             return environmentState;
         }

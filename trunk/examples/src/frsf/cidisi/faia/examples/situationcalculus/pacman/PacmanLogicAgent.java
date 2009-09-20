@@ -30,7 +30,7 @@ public class PacmanLogicAgent extends SituationCalculusBasedAgent {
     public PacmanLogicAgent() throws PrologConnectorException {
         // Create the agent state (knowledge base) of the agent
         PacmanLogicAgentState agentState = new PacmanLogicAgentState();
-        this.setState(agentState);
+        this.setAgentState(agentState);
     }
 
     @Override

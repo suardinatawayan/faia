@@ -49,11 +49,11 @@ public class PacmanPerception extends Perception {
     public void initPerception(Agent agent, Environment environment) {
         PacmanAgent pacmanAgent = (PacmanAgent) agent;
         PacmanEnvironment pacmanEnvironment = (PacmanEnvironment) environment;
+        PacmanEnvironmentState environmentState =
+                pacmanEnvironment.getEnvironmentState();
 
-        int row = ((PacmanAgentState) pacmanAgent.getAgentState())
-                .getRowPosition();
-        int col = ((PacmanAgentState) pacmanAgent.getAgentState())
-                .getColumnPosition();
+        int row = environmentState.getAgentPosition()[0];
+        int col = environmentState.getAgentPosition()[1];
 
         this.setTopSensor(pacmanEnvironment.getTopCell(row, col));
         this.setLeftSensor(pacmanEnvironment.getLeftCell(row, col));
