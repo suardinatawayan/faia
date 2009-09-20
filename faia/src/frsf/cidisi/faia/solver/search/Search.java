@@ -130,13 +130,9 @@ public class Search extends Solve {
             }
         }
 
-        if (goal) {
+        if (goal && !getBestPath().isEmpty()) {
             // This variable store the branch's path where the node belongs.-
             Vector<NTree> path = getBestPath();
-
-            //System.out.println("Camino: " + path);
-
-            //this.printTree();
 
             // The first node of the branch has the action that must be executed by the agent.-
             return path.elementAt(0).getAction();
