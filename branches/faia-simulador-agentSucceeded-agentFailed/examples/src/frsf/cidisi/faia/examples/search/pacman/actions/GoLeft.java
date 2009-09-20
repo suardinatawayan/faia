@@ -46,9 +46,14 @@ public class GoLeft extends SearchAction {
         }
 
         pacmanState.setColumnPosition(col);
-        
-        if (pacmanState.getKnownWorld(row, col) == 0) {
-            pacmanState.setKnownWorld(row, col, 1);
+
+        /* The agent can only go left when the cell is not empty */
+        if (pacmanState.getWorldPosition(row, col) !=
+                PacmanPerception.EMPTY_PERCEPTION) {
+
+            pacmanState.setWorldPosition(row, col,
+                    PacmanPerception.EMPTY_PERCEPTION);
+
             return pacmanState;
         }
 
@@ -66,8 +71,8 @@ public class GoLeft extends SearchAction {
 
         pacmanState.increaseVisitedCellsCount();
 
-        int row = pacmanState.getRowPosition();
-        int col = pacmanState.getColumnPosition();
+        int row = environmentState.getAgentPosition()[0];
+        int col = environmentState.getAgentPosition()[1];
 
         // Check the limits of the world
         if (col == 0) {
@@ -77,7 +82,8 @@ public class GoLeft extends SearchAction {
         }
 
         pacmanState.setColumnPosition(col);
-        pacmanState.setKnownWorld(row, col, 1);
+
+        environmentState.setAgentPosition(new int[] {row, col});
         
         return environmentState;
     }

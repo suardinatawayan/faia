@@ -29,6 +29,11 @@ public class PacmanEnvironment extends Environment {
         this.environmentState = new PacmanEnvironmentState();
     }
 
+    @Override
+    public PacmanEnvironmentState getEnvironmentState() {
+        return (PacmanEnvironmentState) super.getEnvironmentState();
+    }
+
     /**
      * This method is called by the simulator. Given the Agent, it creates
      * a new perception reading, for example, the agent position.
@@ -39,13 +44,11 @@ public class PacmanEnvironment extends Environment {
     public Perception getPercept(Agent agent) {
         // Create a new perception to return
         PacmanPerception perception = new PacmanPerception();
-
-        PacmanAgent pacmanAgent = (PacmanAgent) agent;
-
+        
         // Get the actual position of the agent to be able to create the
         // perception
-        int row = ((PacmanAgentState) pacmanAgent.getAgentState()).getRowPosition();
-        int col = ((PacmanAgentState) pacmanAgent.getAgentState()).getColumnPosition();
+        int row = this.getEnvironmentState().getAgentPosition()[0];
+        int col = this.getEnvironmentState().getAgentPosition()[1];
 
         // Set the perception sensors
         perception.setTopSensor(this.getTopCell(row, col));

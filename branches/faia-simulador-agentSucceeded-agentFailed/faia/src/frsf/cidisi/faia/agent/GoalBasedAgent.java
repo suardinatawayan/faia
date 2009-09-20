@@ -47,15 +47,7 @@ public abstract class GoalBasedAgent extends Agent {
         return state;
     }
 
-    public void setAgentState(AgentState agentState) {
+    protected void setAgentState(AgentState agentState) {
         this.state = agentState;
-    }
-
-    public AgentState getState() {
-        return state;
-    }
-
-    protected void setState(AgentState state) {
-        this.state = state;
     }
 }

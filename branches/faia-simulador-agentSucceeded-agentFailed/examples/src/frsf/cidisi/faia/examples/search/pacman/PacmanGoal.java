@@ -27,6 +27,7 @@ import frsf.cidisi.faia.state.AgentState;
  */
 public class PacmanGoal extends GoalTest {
 
+    @Override
     public boolean isGoalState(AgentState agentState) {
         if (((PacmanAgentState) agentState).isNoMoreFood() &&
                 ((PacmanAgentState) agentState).isAllWorldKnown()) {
