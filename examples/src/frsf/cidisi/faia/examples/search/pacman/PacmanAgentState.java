@@ -26,36 +26,25 @@ import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
 public class PacmanAgentState extends SearchBasedAgentState {
 
     private int[][] world;
-    private int[][] knownWorld;
     private int[] position;
     private int[] initialPosition;
     private int energy;
     private int visitedCells;
 
-    PacmanAgentState(int[][] m, int row, int col, int e) {
+    public PacmanAgentState(int[][] m, int row, int col, int e) {
         world = m;
-        position = new int[2];
-        position[0] = row;
-        position[1] = col;
+        position = new int[] {row, col};
         initialPosition = new int[2];
         initialPosition[0] = row;
         initialPosition[1] = col;
         energy = e;
         visitedCells = 0;
-
-        knownWorld = new int[4][4];
-        for (int f = 0; f < knownWorld.length; f++) {
-            for (int c = 0; c < knownWorld.length; c++) {
-                knownWorld[f][c] = 0;
-            }
-        }
     }
 
-    PacmanAgentState() {
+    public PacmanAgentState() {
         world = new int[4][4];
         position = new int[2];
         energy = 0;
-        knownWorld = new int[4][4];
         this.initState();
     }
 
@@ -66,12 +55,10 @@ public class PacmanAgentState extends SearchBasedAgentState {
     @Override
     public SearchBasedAgentState clone() {
         int[][] newWorld = new int[4][4];
-        int[][] newKnownWorld = new int[4][4];
 
         for (int row = 0; row < world.length; row++) {
             for (int col = 0; col < world.length; col++) {
                 newWorld[row][col] = world[row][col];
-                newKnownWorld[row][col] = knownWorld[row][col];
             }
         }
 
@@ -80,8 +67,7 @@ public class PacmanAgentState extends SearchBasedAgentState {
         newPosition[1] = position[1];
 
         PacmanAgentState newState = new PacmanAgentState(newWorld,
-                this.getRowPosition(), this.getColumnPosition(), energy);
-        newState.setKnownWorld(newKnownWorld);
+                this.getRowPosition(), this.getColumnPosition(), this.energy);
 
         return newState;
     }
@@ -146,7 +132,6 @@ public class PacmanAgentState extends SearchBasedAgentState {
         for (int row = 0; row < world.length; row++) {
             for (int col = 0; col < world.length; col++) {
                 world[row][col] = PacmanPerception.UNKNOWN_PERCEPTION;
-                knownWorld[row][col] = 0;
             }
         }
         
@@ -189,6 +174,9 @@ public class PacmanAgentState extends SearchBasedAgentState {
      */
     @Override
     public boolean equals(Object obj) {
+        if (!(obj instanceof PacmanAgentState))
+            return false;
+
         int[][] worldObj = ((PacmanAgentState) obj).getWorld();
         int[] positionObj = ((PacmanAgentState) obj).getPosition();
 
@@ -200,7 +188,7 @@ public class PacmanAgentState extends SearchBasedAgentState {
             }
         }
 
-        if (position[0] != positionObj[0] | position[1] != positionObj[1]) {
+        if (position[0] != positionObj[0] || position[1] != positionObj[1]) {
             return false;
         }
         
@@ -213,20 +201,12 @@ public class PacmanAgentState extends SearchBasedAgentState {
         return world;
     }
 
-    public void setWorld(int row, int col, int value) {
+    public int getWorldPosition(int row, int col) {
+        return world[row][col];
+    }
+
+    public void setWorldPosition(int row, int col, int value) {
         this.world[row][col] = value;
-    }
-
-    public int getKnownWorld(int row, int col) {
-        return this.knownWorld[row][col];
-    }
-
-    public void setKnownWorld(int[][] knownWorld) {
-        this.knownWorld = knownWorld;
-    }
-
-    public void setKnownWorld(int row, int col, int value) {
-        this.knownWorld[row][col] = value;
     }
 
     public int[] getPosition() {
@@ -253,14 +233,14 @@ public class PacmanAgentState extends SearchBasedAgentState {
         return energy;
     }
 
-    public void setEnergy(int energy) {
+    private void setEnergy(int energy) {
         this.energy = energy;
     }
 
     public boolean isAllWorldKnown() {
-        for (int row = 0; row < knownWorld.length; row++) {
-            for (int col = 0; col < knownWorld.length; col++) {
-                if (knownWorld[row][col] == 0) {
+        for (int row = 0; row < world.length; row++) {
+            for (int col = 0; col < world.length; col++) {
+                if (world[row][col] == PacmanPerception.UNKNOWN_PERCEPTION) {
                     return false;
                 }
             }
@@ -272,9 +252,9 @@ public class PacmanAgentState extends SearchBasedAgentState {
     public int getUnknownCellsCount() {
         int result = 0;
 
-        for (int row = 0; row < knownWorld.length; row++) {
-            for (int col = 0; col < knownWorld.length; col++) {
-                if (knownWorld[row][col] == 0) {
+        for (int row = 0; row < world.length; row++) {
+            for (int col = 0; col < world.length; col++) {
+                if (world[row][col] == PacmanPerception.UNKNOWN_PERCEPTION) {
                     result++;
                 }
             }

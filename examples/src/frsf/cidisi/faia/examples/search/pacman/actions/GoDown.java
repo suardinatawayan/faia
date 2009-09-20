@@ -47,13 +47,16 @@ public class GoDown extends SearchAction {
         }
 
         pacmanState.setRowPosition(row);
-        
-        if (pacmanState.getKnownWorld(row, col) == 0) {
-            pacmanState.setKnownWorld(row, col, 1);
-            return pacmanState;
+
+        /* The agent can always go down */
+        if (pacmanState.getWorldPosition(row, col) ==
+                PacmanPerception.UNKNOWN_PERCEPTION) {
+
+            pacmanState.setWorldPosition(row, col,
+                    PacmanPerception.EMPTY_PERCEPTION);
         }
-        
-        return null;
+
+        return pacmanState;
     }
 
     /**
@@ -67,8 +70,8 @@ public class GoDown extends SearchAction {
 
         pacmanState.increaseVisitedCellsCount();
 
-        int row = pacmanState.getRowPosition();
-        int col = pacmanState.getColumnPosition();
+        int row = environmentState.getAgentPosition()[0];
+        int col = environmentState.getAgentPosition()[1];
 
         if (row == 3) {
             row = 0;
@@ -77,7 +80,8 @@ public class GoDown extends SearchAction {
         }
 
         pacmanState.setRowPosition(row);
-        pacmanState.setKnownWorld(row, col, 1);
+
+        environmentState.setAgentPosition(new int[] {row, col});
         
         return environmentState;
     }
