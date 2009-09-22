@@ -71,8 +71,8 @@ public class PacmanLogicEnvironment extends Environment {
     }
 
     @Override
-    public boolean agentFailed(Agent agent, Action actionReturned) {
-        // TODO:
+    public boolean agentFailed(Action actionReturned) {
+        // TODO: This method is not implemented yet
         return false;
     }
     

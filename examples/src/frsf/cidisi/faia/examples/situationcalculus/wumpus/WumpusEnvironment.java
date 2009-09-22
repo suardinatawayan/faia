@@ -18,12 +18,22 @@ public class WumpusEnvironment extends Environment {
     }
 
     @Override
-    public boolean agentFailed(Agent agent, Action action) {
+    public boolean agentFailed(Action action) {
 
-        WumpusAgent wumpusAgent = (WumpusAgent) agent;
-        WumpusAgentState wumpusAgentState = wumpusAgent.getAgentState();
+        WumpusEnvironmentState wumpusEnvironmentState =
+                this.getEnvironmentState();
 
-        // TODO:
+        // Get the agent position and the cell state
+        int[] agentPosition = wumpusEnvironmentState.getAgentPosition();
+
+        Vector<CellState> cellState =
+                wumpusEnvironmentState.getCellState(agentPosition[0],
+                    agentPosition[1]);
+
+        // If the Wumpus or a pit is there, the agent failed
+        if (cellState.contains(CellState.WUMPUS) ||
+                cellState.contains(CellState.PIT))
+            return true;
 
         return false;
     }

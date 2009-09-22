@@ -72,7 +72,8 @@ public class AmbienteSnake extends Environment {
     }
 
     @Override
-    public boolean agentFailed(Agent agent, Action actionReturned) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public boolean agentFailed(Action actionReturned) {
+        // TODO: This method is not implemented yet
+        return false;
     }
 }
