@@ -89,7 +89,7 @@ public abstract class GoalBasedAgentSimulator extends Simulator {
 
             this.actionReturned(agent, action);
 
-        } while (!this.agentSucceeded(action) && !this.agentFailed());
+        } while (!this.agentSucceeded(action) && !this.agentFailed(action));
 
         // Check what happened, if agent has reached the goal or not.
         if (this.agentSucceeded(action)) {
@@ -117,9 +117,9 @@ public abstract class GoalBasedAgentSimulator extends Simulator {
         this.getEnvironment().updateState(((GoalBasedAgent) agents.elementAt(0)).getAgentState(), action);
     }
 
-    public abstract boolean agentSucceeded();
+    public abstract boolean agentSucceeded(Action action);
 
-    public abstract boolean agentFailed();
+    public abstract boolean agentFailed(Action action);
 
     /**
      * This method is executed in the mail loop of the simulation when the
