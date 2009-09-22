@@ -62,8 +62,8 @@ public class SimpleWaterTankEnvironment extends MatlabEnvironment {
     }
 
     @Override
-    public boolean agentFailed(Agent agent, Action actionReturned) {
-        // TODO:
+    public boolean agentFailed(Action actionReturned) {
+        // TODO: This method is not implemented yet
         return false;
     }
 
