@@ -57,7 +57,7 @@ public abstract class Environment {
      * @param actionReturned
      * @return
      */
-    public abstract boolean agentFailed();
+    public abstract boolean agentFailed(Action actionReturned);
 
     /**
      * Subclasses of Environment can override this method to close any

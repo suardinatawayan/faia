@@ -50,8 +50,8 @@ public class PlanningBasedAgentSimulator extends GoalBasedAgentSimulator {
     }
 
     @Override
-    public boolean agentFailed(Agent agent, Action actionReturned) {
-        return this.environment.agentFailed(agent, actionReturned);
+    public boolean agentFailed(Action actionReturned) {
+        return this.environment.agentFailed(actionReturned);
     }
 
     @Override
