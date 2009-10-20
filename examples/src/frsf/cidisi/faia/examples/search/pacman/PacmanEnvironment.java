@@ -67,7 +67,17 @@ public class PacmanEnvironment extends Environment {
 
     @Override
     public boolean agentFailed(Action actionReturned) {
-        // TODO: This method is not implemented yet
+
+        PacmanEnvironmentState pacmanEnvironmentState =
+                this.getEnvironmentState();
+
+        int agentEnergy = pacmanEnvironmentState.getAgentEnergy();
+
+        // FIXME: The pacman agent always has the same energy
+        // If the agent has no energy, he failed
+        if (agentEnergy <= 0)
+            return true;
+
         return false;
     }
 
