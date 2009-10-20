@@ -39,10 +39,4 @@ public class RobotEnvironment extends Environment {
     public String toString() {
         return "";
     }
-
-    @Override
-    public boolean agentFailed(Action actionReturned) {
-        // TODO: This method is not implemented yet
-        return false;
-    }
 }

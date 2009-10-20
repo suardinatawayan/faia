@@ -62,12 +62,6 @@ public class SimpleWaterTankEnvironment extends MatlabEnvironment {
     }
 
     @Override
-    public boolean agentFailed(Action actionReturned) {
-        // TODO: This method is not implemented yet
-        return false;
-    }
-
-    @Override
     public Object[] getMatlabFunctionParameters() {
         SimpleWaterTankEnvironmentState environmentState =
                 this.getEnvironmentState();

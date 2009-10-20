@@ -69,12 +69,6 @@ public class PacmanLogicEnvironment extends Environment {
     public String toString() {
         return environmentState.toString();
     }
-
-    @Override
-    public boolean agentFailed(Action actionReturned) {
-        // TODO: This method is not implemented yet
-        return false;
-    }
     
     // These methods are internal
     
