@@ -53,15 +53,17 @@ public abstract class Environment {
 
     /**
      * This method is called by the simulator to know if the agent has failed.
-     * If so, the simulation will finish.
+     * If so, the simulation will finish. Users can override it.
      * @param actionReturned
      * @return
      */
-    public abstract boolean agentFailed(Action actionReturned);
+    public boolean agentFailed(Action actionReturned) {
+        return false;
+    }
 
     /**
      * Subclasses of Environment can override this method to close any
-     * resource when simulation finished.
+     * resource when the simulation finished.
      */
     public void close() {
     }
