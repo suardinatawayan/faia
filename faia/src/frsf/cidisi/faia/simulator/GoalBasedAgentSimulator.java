@@ -70,7 +70,7 @@ public abstract class GoalBasedAgentSimulator extends Simulator {
             System.out.println("------------------------------------");
 
             System.out.println("Sending perception to agent...");
-            perception = this.getPercept(agent);
+            perception = this.getPercept();
             agent.see(perception);
             System.out.println("Perception: " + perception);
 

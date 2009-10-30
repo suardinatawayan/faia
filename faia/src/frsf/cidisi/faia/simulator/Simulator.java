@@ -53,8 +53,8 @@ public abstract class Simulator {
         return this.environment;
     }
 
-    public Perception getPercept(Agent agent) {
-        return this.getEnvironment().getPercept(agent);
+    public Perception getPercept() {
+        return this.getEnvironment().getPercept();
     }
 
     public void setEnvironment(Environment evm) {
