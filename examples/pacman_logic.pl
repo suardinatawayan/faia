@@ -18,8 +18,10 @@
 
 % The code below is neccessary for the framework to modify this sentences.
 
-:- dynamic perception/5,executedAction/2,position/3,food/3,enemy/3,empty/3,
-energy/2.
+:- dynamic actualSituation/1,perceptionAtSituation/5,perception/5,
+executedAction/2,position/3,food/3,enemy/3,empty/3,energy/2.
+
+actualSituation(0).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -27,24 +29,26 @@ energy/2.
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-position(X,Y,1):-perception([_,_,_,_],X,Y,_,1),!.
+perceptionAtSituation(Pe,X,Y,E,S) :-
+	perception(Pe,X,Y,E),
+	actualSituation(S).
 
-enemy(X,Y,S):-perception([enemy,_,_,_],_,_,_,S),adjancent(X,Y,goleft,S).
-enemy(X,Y,S):-perception([_,enemy,_,_],_,_,_,S),adjancent(X,Y,goright,S).
-enemy(X,Y,S):-perception([_,_,enemy,_],_,_,_,S),adjancent(X,Y,goup,S).
-enemy(X,Y,S):-perception([_,_,_,enemy],_,_,_,S),adjancent(X,Y,godown,S).
+enemy(X,Y,S):-perceptionAtSituation([enemy,_,_,_],_,_,_,S),adjancent(X,Y,goleft,S).
+enemy(X,Y,S):-perceptionAtSituation([_,enemy,_,_],_,_,_,S),adjancent(X,Y,goright,S).
+enemy(X,Y,S):-perceptionAtSituation([_,_,enemy,_],_,_,_,S),adjancent(X,Y,goup,S).
+enemy(X,Y,S):-perceptionAtSituation([_,_,_,enemy],_,_,_,S),adjancent(X,Y,godown,S).
 
-food(X,Y,S):-perception([food,_,_,_],_,_,_,S),adjancent(X,Y,goleft,S).
-food(X,Y,S):-perception([_,food,_,_],_,_,_,S),adjancent(X,Y,goright,S).
-food(X,Y,S):-perception([_,_,food,_],_,_,_,S),adjancent(X,Y,goup,S).
-food(X,Y,S):-perception([_,_,_,food],_,_,_,S),adjancent(X,Y,godown,S).
+food(X,Y,S):-perceptionAtSituation([food,_,_,_],_,_,_,S),adjancent(X,Y,goleft,S).
+food(X,Y,S):-perceptionAtSituation([_,food,_,_],_,_,_,S),adjancent(X,Y,goright,S).
+food(X,Y,S):-perceptionAtSituation([_,_,food,_],_,_,_,S),adjancent(X,Y,goup,S).
+food(X,Y,S):-perceptionAtSituation([_,_,_,food],_,_,_,S),adjancent(X,Y,godown,S).
 
-empty(X,Y,S):-perception([empty,_,_,_],_,_,_,S),adjancent(X,Y,goleft,S).
-empty(X,Y,S):-perception([_,empty,_,_],_,_,_,S),adjancent(X,Y,goright,S).
-empty(X,Y,S):-perception([_,_,empty,_],_,_,_,S),adjancent(X,Y,goup,S).
-empty(X,Y,S):-perception([_,_,_,empty],_,_,_,S),adjancent(X,Y,godown,S).
+empty(X,Y,S):-perceptionAtSituation([empty,_,_,_],_,_,_,S),adjancent(X,Y,goleft,S).
+empty(X,Y,S):-perceptionAtSituation([_,empty,_,_],_,_,_,S),adjancent(X,Y,goright,S).
+empty(X,Y,S):-perceptionAtSituation([_,_,empty,_],_,_,_,S),adjancent(X,Y,goup,S).
+empty(X,Y,S):-perceptionAtSituation([_,_,_,empty],_,_,_,S),adjancent(X,Y,godown,S).
 
-energy(E,S):-perception([_,_,_,_],_,_,E,S).
+energy(E,S):- E is 50.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -71,22 +75,30 @@ moveAction(S):-executedAction(goleft,S).
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% Save the current perception as the perception at situation S
+est(S1) :- perception(Pe,X,Y,E), S is S1 - 1, asserta(perceptionAtSituation(Pe,X,Y,E,S)).
+
+% When the executed action doesn't change the actual position
 est(S1):- S1 > 0,S is S1-1,executedAction(eat,S),position(X,Y,S),asserta(position(X,Y,S1)).
 est(S1):- S1 > 0,S is S1-1,executedAction(fight,S),position(X,Y,S),asserta(position(X,Y,S1)).
 
+% When the executed action DOES change the actual position
 est(S1):- S1 > 0,S is S1-1,executedAction(goup,S),position(X,Y,S),addPosition(X,-1,X1),asserta(position(X1,Y,S1)).
 est(S1):- S1 > 0,S is S1-1,executedAction(godown,S),position(X,Y,S),addPosition(X,1,X1),asserta(position(X1,Y,S1)).
 est(S1):- S1 > 0,S is S1-1,executedAction(goright,S),position(X,Y,S),addPosition(Y,1,Y1),asserta(position(X,Y1,S1)).
 est(S1):- S1 > 0,S is S1-1,executedAction(goleft,S),position(X,Y,S),addPosition(Y,-1,Y1),asserta(position(X,Y1,S1)).
 
+% Empty cells
 est(S1):- S1 > 0,S is S1-1,empty(X,Y,S),not(empty(X,Y,S1)),asserta(empty(X,Y,S1)).
 est(S1):- S1 > 0,S is S1-1,position(X,Y,S),executedAction(eat,S),asserta(empty(X,Y,S1)).
 est(S1):- S1 > 0,S is S1-1,position(X,Y,S),executedAction(fight,S),asserta(empty(X,Y,S1)).
 
+% Food cells
 est(S1):-S1 > 0,S is S1-1,position(_,Y1,S),food(X,Y,S),Y=\=Y1,not(food(X,Y,S1)),asserta(food(X,Y,S1)).
 est(S1):-S1 > 0,S is S1-1,position(X1,_,S),food(X,Y,S),X=\=X1,not(food(X,Y,S1)),asserta(food(X,Y,S1)).
 est(S1):-S1 > 0,S is S1-1,position(X,Y,S),moveAction(S),food(X,Y,S),not(food(X,Y,S1)),asserta(food(X,Y,S1)).
 
+% Enemy cells
 est(S1):-S1 > 0,S is S1-1,position(_,Y1,S),enemy(X,Y,S),Y=\=Y1,not(enemy(X,Y,S1)),asserta(enemy(X,Y,S1)).
 est(S1):-S1 > 0,S is S1-1,position(X1,_,S),enemy(X,Y,S),X=\=X1,not(enemy(X,Y,S1)),asserta(enemy(X,Y,S1)).
 est(S1):-S1 > 0,S is S1-1,position(X,Y,S),moveAction(S),enemy(X,Y,S),not(enemy(X,Y,S1)),asserta(enemy(X,Y,S1)).

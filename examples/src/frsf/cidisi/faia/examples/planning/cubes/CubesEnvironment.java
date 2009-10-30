@@ -28,7 +28,7 @@ public class CubesEnvironment extends Environment {
     }
 
     @Override
-    public Perception getPercept(Agent agent) {
+    public Perception getPercept() {
         // Perceptions are no necessary here
         return null;
     }

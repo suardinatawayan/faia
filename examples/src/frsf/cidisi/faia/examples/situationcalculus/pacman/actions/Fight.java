@@ -32,14 +32,13 @@ public class Fight extends SituationCalculusAction {
                 (PacmanLogicEnvironmentState) est;
         PacmanLogicAgentState agentState = ((PacmanLogicAgentState) ast);
 
-        int row = agentState.getRow();
-        int col = agentState.getColumn();
+        int row = environmentState.getAgentPosition()[0];
+        int col = environmentState.getAgentPosition()[1];
 
         if ((environmentState.getWorld()[row][col] == 1) &&
-                (agentState.getEnergy() > 30)) {
+                (environmentState.getAgentEnergy() > 30)) {
             environmentState.setWorld(row, col, PacmanLogicPerception.EMPTY_PERCEPTION);
-            //estP.setWorld(fil, col, PercepcionPacman.EMPTY_PERCEPTION);
-            //System.out.println(" Fight@Amb - ");
+            
             return environmentState;
         }
 

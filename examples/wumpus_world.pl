@@ -48,8 +48,6 @@ actualSituation(0).
 % Diagnostic rules                                %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%position([1,1],1) :- perception([_,_,_,_,_],1).
-
 stench(P,S) :-
 	perception([stench,_,_,_,_]),
 	position(P,S).
