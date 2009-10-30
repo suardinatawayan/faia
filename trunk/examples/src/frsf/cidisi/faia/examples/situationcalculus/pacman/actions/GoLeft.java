@@ -18,6 +18,7 @@
 package frsf.cidisi.faia.examples.situationcalculus.pacman.actions;
 
 import frsf.cidisi.faia.agent.situationcalculus.SituationCalculusAction;
+import frsf.cidisi.faia.examples.situationcalculus.pacman.PacmanLogicEnvironmentState;
 import frsf.cidisi.faia.state.AgentState;
 import frsf.cidisi.faia.state.EnvironmentState;
 
@@ -25,6 +26,21 @@ public class GoLeft extends SituationCalculusAction {
 
     @Override
     public EnvironmentState execute(AgentState ast, EnvironmentState est) {
+        PacmanLogicEnvironmentState environmentState =
+                (PacmanLogicEnvironmentState) est;
+
+        // Get the actual agent position
+        int row = environmentState.getAgentPosition()[0];
+        int col = environmentState.getAgentPosition()[1];
+
+        // Modify the position according to the taken action
+        if (col == 0)
+            col = 3;
+        else
+            col--;
+
+        environmentState.setAgentPosition(new int[] {row, col});
+
         return est;
     }
 

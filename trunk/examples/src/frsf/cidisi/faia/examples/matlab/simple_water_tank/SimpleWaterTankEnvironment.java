@@ -22,7 +22,7 @@ public class SimpleWaterTankEnvironment extends MatlabEnvironment {
 	}
 	
 	@Override
-	public Perception getPercept(Agent agent) {
+	public Perception getPercept() {
 		WaterTankPerception perception = new WaterTankPerception();
 		
 		Hashtable<String,double[][]> simulationReturn;

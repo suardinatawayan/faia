@@ -21,7 +21,6 @@ import frsf.cidisi.faia.agent.situationcalculus.SituationCalculusAction;
 import frsf.cidisi.faia.state.AgentState;
 import frsf.cidisi.faia.state.EnvironmentState;
 import frsf.cidisi.faia.examples.situationcalculus.pacman.PacmanLogicEnvironmentState;
-import frsf.cidisi.faia.examples.situationcalculus.pacman.PacmanLogicAgentState;
 import frsf.cidisi.faia.examples.situationcalculus.pacman.PacmanLogicPerception;
 
 public class Eat extends SituationCalculusAction {
@@ -30,10 +29,9 @@ public class Eat extends SituationCalculusAction {
     public EnvironmentState execute(AgentState ast, EnvironmentState est) {
         PacmanLogicEnvironmentState environmentState =
                 (PacmanLogicEnvironmentState) est;
-        PacmanLogicAgentState agentState = ((PacmanLogicAgentState) ast);
 
-        int row = agentState.getRow();
-        int col = agentState.getColumn();
+        int row = environmentState.getAgentPosition()[0];
+        int col = environmentState.getAgentPosition()[1];
 
         if (environmentState.getWorld()[row][col] == PacmanLogicPerception.FOOD_PERCEPTION) {
             environmentState.setWorld(row, col, PacmanLogicPerception.EMPTY_PERCEPTION);

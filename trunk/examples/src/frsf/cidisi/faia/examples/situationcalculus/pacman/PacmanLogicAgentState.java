@@ -138,7 +138,7 @@ public class PacmanLogicAgentState extends KnowledgeBase {
 
     // These methods are internal:
 
-    public int[] getPosition() {
+    private int[] getPosition() {
         String positionQuery = "position(X,Y," + this.getSituation() + ")";
 
         Hashtable[] result = this.query(positionQuery);
@@ -149,15 +149,15 @@ public class PacmanLogicAgentState extends KnowledgeBase {
         return new int[]{x, y};
     }
 
-    public int getRow() {
+    private int getRow() {
         return this.getPosition()[0];
     }
 
-    public int getColumn() {
+    private int getColumn() {
         return this.getPosition()[1];
     }
 
-    public int getEnergy() {
+    private int getEnergy() {
         String energyQuery = "energy(E," + this.getSituation() + ")";
 
         Hashtable[] result = this.query(energyQuery);
