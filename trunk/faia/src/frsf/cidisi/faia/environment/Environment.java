@@ -49,7 +49,7 @@ public abstract class Environment {
      * @param agent
      * @return
      */
-    public abstract Perception getPercept(Agent agent);
+    public abstract Perception getPercept();
 
     /**
      * Subclasses of Environment can override this method to close any
