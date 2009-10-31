@@ -41,7 +41,7 @@ public class PacmanEnvironment extends Environment {
      * @return A perception that will be given to the agent by the simulator.
      */
     @Override
-    public Perception getPercept(Agent agent) {
+    public Perception getPercept() {
         // Create a new perception to return
         PacmanPerception perception = new PacmanPerception();
         

@@ -82,9 +82,8 @@ public abstract class KnowledgeBase extends AgentState {
     public void tell(Action actionObject) {
         String action = actionObject.toString();
 
-        if (action == null) {
+        if (action == null)
             return;
-        }
 
         this.addKnowledge(this.getExecutedActionPredicate() +
                 "(" + action + "," + this.getSituation() + ")");

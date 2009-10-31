@@ -35,7 +35,6 @@ public class PacmanLogicPerception extends SituationCalculusPerception {
     private int energy;
     private int row;
     private int column;
-    private int situation;
 
     public PacmanLogicPerception() {
         energy = 50;
@@ -47,23 +46,7 @@ public class PacmanLogicPerception extends SituationCalculusPerception {
 
     @Override
     public void initPerception(Agent agent, Environment environment) {
-        PacmanLogicAgent pacmanAgent = (PacmanLogicAgent) agent;
-        PacmanLogicAgentState agentState =
-                (PacmanLogicAgentState) pacmanAgent.getAgentState();
-        PacmanLogicEnvironment pacmanEnvironment =
-                (PacmanLogicEnvironment) environment;
-
-        this.setRow(agentState.getRow());
-        this.setColumn(agentState.getColumn());
-
-        this.setTopSensor(pacmanEnvironment
-                .getTopCell(this.getRow(), this.getColumn()));
-        this.setLeftSensor(pacmanEnvironment
-                .getLeftCell(this.getRow(), this.getColumn()));
-        this.setRightSensor(pacmanEnvironment
-                .getRightCell(this.getRow(), this.getColumn()));
-        this.setBottomSensor(pacmanEnvironment
-                .getBottomCell(this.getRow(), this.getColumn()));
+        
     }
 
     @Override
@@ -88,10 +71,6 @@ public class PacmanLogicPerception extends SituationCalculusPerception {
 
         // Agent energy
         result.append(this.getEnergy());
-        result.append(",");
-
-        // Situation
-        result.append(this.getSituation());
 
         result.append(")");
 
@@ -154,14 +133,6 @@ public class PacmanLogicPerception extends SituationCalculusPerception {
         }
 
         return result;
-    }
-
-    public int getSituation() {
-        return situation;
-    }
-
-    public void setSituation(int situation) {
-        this.situation = situation;
     }
 
     public int getRow() {

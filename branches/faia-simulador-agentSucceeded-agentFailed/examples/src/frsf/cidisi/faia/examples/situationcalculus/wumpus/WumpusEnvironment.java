@@ -39,7 +39,7 @@ public class WumpusEnvironment extends Environment {
     }
 
     @Override
-    public WumpusPerception getPercept(Agent agent) {
+    public WumpusPerception getPercept() {
         WumpusPerception p = new WumpusPerception();
 
         int[] agentPosition = this.getEnvironmentState().getAgentPosition();
