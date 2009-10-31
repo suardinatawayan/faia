@@ -6,37 +6,36 @@ import frsf.cidisi.faia.environment.Environment;
 
 public class WaterTankPerception extends Perception {
 
-	private double tankHeight;
-	private double time;
-	private double volumeFlow;
+    private double tankHeight;
+    private double time;
+    private double volumeFlow;
 
-	@Override
-	public void initPerception(Agent agent, Environment environment) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	public double getVolumeFlow() {
-		return volumeFlow;
-	}
+    @Override
+    public void initPerception(Agent agent, Environment environment) {
+        // TODO Auto-generated method stub
+    }
 
-	public void setVolumeFlow(double volumeFlow) {
-		this.volumeFlow = volumeFlow;
-	}
-	
-	public double getTankHeight() {
-		return tankHeight;
-	}
+    public double getVolumeFlow() {
+        return volumeFlow;
+    }
 
-	public void setTankHeight(double tankHeight) {
-		this.tankHeight = tankHeight;
-	}
+    public void setVolumeFlow(double volumeFlow) {
+        this.volumeFlow = volumeFlow;
+    }
 
-	public double getTime() {
-		return time;
-	}
+    public double getTankHeight() {
+        return tankHeight;
+    }
 
-	public void setTime(double time) {
-		this.time = time;
-	}
+    public void setTankHeight(double tankHeight) {
+        this.tankHeight = tankHeight;
+    }
+
+    public double getTime() {
+        return time;
+    }
+
+    public void setTime(double time) {
+        this.time = time;
+    }
 }
