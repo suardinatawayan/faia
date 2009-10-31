@@ -17,6 +17,7 @@
  */
 package frsf.cidisi.faia.examples.search.pacman;
 
+import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.agent.Agent;
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.environment.Environment;
@@ -62,6 +63,22 @@ public class PacmanEnvironment extends Environment {
     @Override
     public String toString() {
         return environmentState.toString();
+    }
+
+    @Override
+    public boolean agentFailed(Action actionReturned) {
+
+        PacmanEnvironmentState pacmanEnvironmentState =
+                this.getEnvironmentState();
+
+        int agentEnergy = pacmanEnvironmentState.getAgentEnergy();
+
+        // FIXME: The pacman agent always has the same energy
+        // If the agent has no energy, he failed
+        if (agentEnergy <= 0)
+            return true;
+
+        return false;
     }
 
     // The following methods are Pacman-specific:

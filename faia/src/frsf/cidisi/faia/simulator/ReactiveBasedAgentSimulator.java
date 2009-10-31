@@ -42,12 +42,17 @@ public class ReactiveBasedAgentSimulator extends GoalBasedAgentSimulator {
     }
 
     @Override
-    public boolean isComplete(Action actionReturned) {
+    public boolean agentSucceeded(Action actionReturned) {
         if (actionReturned instanceof NoAction) {
             return true;
         }
 
         return false;
+    }
+
+    @Override
+    public boolean agentFailed(Action actionReturned) {
+        return this.environment.agentFailed(actionReturned);
     }
 
     @Override

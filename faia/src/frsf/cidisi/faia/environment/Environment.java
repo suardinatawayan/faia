@@ -18,7 +18,6 @@
 package frsf.cidisi.faia.environment;
 
 import frsf.cidisi.faia.agent.Perception;
-import frsf.cidisi.faia.agent.Agent;
 import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.state.EnvironmentState;
 import frsf.cidisi.faia.state.AgentState;
@@ -52,9 +51,20 @@ public abstract class Environment {
     public abstract Perception getPercept();
 
     /**
+     * This method is called by the simulator to know if the agent has failed.
+     * If so, the simulation will finish. Users can override it.
+     * @param actionReturned
+     * @return
+     */
+    public boolean agentFailed(Action actionReturned) {
+        return false;
+    }
+
+    /**
      * Subclasses of Environment can override this method to close any
-     * resource when simulation finished.
+     * resource when the simulation finished.
      */
     public void close() {
     }
 }
+

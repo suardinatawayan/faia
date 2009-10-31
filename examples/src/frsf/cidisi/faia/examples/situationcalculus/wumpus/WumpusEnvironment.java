@@ -1,5 +1,6 @@
 package frsf.cidisi.faia.examples.situationcalculus.wumpus;
 
+import frsf.cidisi.faia.agent.Action;
 import java.util.Vector;
 import frsf.cidisi.faia.agent.Agent;
 import frsf.cidisi.faia.environment.Environment;
@@ -14,6 +15,27 @@ public class WumpusEnvironment extends Environment {
     @Override
     public WumpusEnvironmentState getEnvironmentState() {
         return (WumpusEnvironmentState) super.getEnvironmentState();
+    }
+
+    @Override
+    public boolean agentFailed(Action action) {
+
+        WumpusEnvironmentState wumpusEnvironmentState =
+                this.getEnvironmentState();
+
+        // Get the agent position and the cell state
+        int[] agentPosition = wumpusEnvironmentState.getAgentPosition();
+
+        Vector<CellState> cellState =
+                wumpusEnvironmentState.getCellState(agentPosition[0],
+                    agentPosition[1]);
+
+        // If the Wumpus or a pit is there, the agent failed
+        if (cellState.contains(CellState.WUMPUS) ||
+                cellState.contains(CellState.PIT))
+            return true;
+
+        return false;
     }
 
     @Override

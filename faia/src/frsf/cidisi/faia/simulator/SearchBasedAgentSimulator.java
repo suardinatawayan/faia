@@ -40,7 +40,7 @@ public class SearchBasedAgentSimulator extends GoalBasedAgentSimulator {
     }
 
     @Override
-    public boolean isComplete(Action actionReturned) {
+    public boolean agentSucceeded(Action actionReturned) {
         //TODO: 
         // ACA HAY QUE HACER UN BUCLE PARA CUANDO HAY MAS DE UN AGENTE DEFINIDO
         // POR AHORA EL FRAMEWORK ES MONOAGENTE :)
@@ -50,6 +50,11 @@ public class SearchBasedAgentSimulator extends GoalBasedAgentSimulator {
         AgentState aSt = p.getAgentState();
 
         return gt.isGoalState(aSt);
+    }
+
+    @Override
+    public boolean agentFailed(Action actionReturned) {
+        return this.environment.agentFailed(actionReturned);
     }
 
     @Override

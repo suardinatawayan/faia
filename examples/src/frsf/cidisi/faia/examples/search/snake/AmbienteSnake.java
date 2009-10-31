@@ -19,6 +19,7 @@
 package frsf.cidisi.faia.examples.search.snake;
 
 import calculador.Calculador;
+import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.agent.Agent;
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.environment.Environment;

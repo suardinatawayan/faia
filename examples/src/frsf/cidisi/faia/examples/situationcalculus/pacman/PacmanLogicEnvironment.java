@@ -17,6 +17,7 @@
  */
 package frsf.cidisi.faia.examples.situationcalculus.pacman;
 
+import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.agent.Agent;
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.environment.Environment;

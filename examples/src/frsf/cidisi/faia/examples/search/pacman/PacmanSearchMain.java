@@ -21,10 +21,7 @@ import frsf.cidisi.faia.exceptions.PrologConnectorException;
 import frsf.cidisi.faia.simulator.SearchBasedAgentSimulator;
 
 public class PacmanSearchMain {
-
-    /**
-     * @param args the command line arguments
-     */
+    
     public static void main(String[] args) throws PrologConnectorException {
         PacmanAgent pacmanAgent = new PacmanAgent();
         
@@ -32,6 +29,7 @@ public class PacmanSearchMain {
         
         SearchBasedAgentSimulator simulator =
                 new SearchBasedAgentSimulator(pacmanEnvironment, pacmanAgent);
+        
         simulator.start();
     }
 }
