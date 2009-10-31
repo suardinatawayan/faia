@@ -32,6 +32,11 @@ public class PacmanLogicEnvironment extends Environment {
         // Create the environment state
         this.environmentState = new PacmanLogicEnvironmentState();
     }
+
+    @Override
+    public PacmanLogicEnvironmentState getEnvironmentState() {
+        return (PacmanLogicEnvironmentState) super.getEnvironmentState();
+    }
     
     /**
      * This method is similar to the one explained in the Pacman (Search)
@@ -39,16 +44,12 @@ public class PacmanLogicEnvironment extends Environment {
      * state.
      */
     @Override
-    public Perception getPercept(Agent agent) {
+    public Perception getPercept() {
         PacmanLogicPerception perception = new PacmanLogicPerception();
 
-        // Get the agent and the agent state objects
-        PacmanLogicAgent pacmanAgent = (PacmanLogicAgent) agent;
-        PacmanLogicAgentState agentState = (PacmanLogicAgentState) pacmanAgent.getAgentState();
-
         // Get the actual position of the agent
-        int row = agentState.getRow();
-        int col = agentState.getColumn();
+        int row = this.getEnvironmentState().getAgentPosition()[0];
+        int col = this.getEnvironmentState().getAgentPosition()[1];
 
         // Set the sensors
         perception.setTopSensor(this.getTopCell(row, col));
@@ -58,8 +59,6 @@ public class PacmanLogicEnvironment extends Environment {
 
         perception.setRow(row);
         perception.setColumn(col);
-
-        perception.setSituation(agentState.getSituation());
         
         // Return the new perception
         return perception;

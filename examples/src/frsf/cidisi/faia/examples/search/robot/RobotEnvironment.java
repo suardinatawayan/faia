@@ -30,7 +30,7 @@ public class RobotEnvironment extends Environment {
     }
 
     @Override
-    public Perception getPercept(Agent agent) {
+    public Perception getPercept() {
         // In this example the Environment does not return perceptions
         return null;
     }

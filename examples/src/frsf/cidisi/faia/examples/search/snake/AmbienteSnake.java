@@ -34,7 +34,7 @@ public class AmbienteSnake extends Environment {
     }
 
     @Override
-    public Perception getPercept(Agent agent) {
+    public Perception getPercept() {
         //		 El ambiente crea una percepción que va a ser recibida por el Snake.- 
         PercepcionSnake p = new PercepcionSnake();
 

@@ -49,7 +49,7 @@ public abstract class Environment {
      * @param agent
      * @return
      */
-    public abstract Perception getPercept(Agent agent);
+    public abstract Perception getPercept();
 
     /**
      * This method is called by the simulator to know if the agent has failed.
@@ -68,3 +68,4 @@ public abstract class Environment {
     public void close() {
     }
 }
+
