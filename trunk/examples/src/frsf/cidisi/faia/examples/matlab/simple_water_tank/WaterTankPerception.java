@@ -38,4 +38,10 @@ public class WaterTankPerception extends Perception {
     public void setTime(double time) {
         this.time = time;
     }
+
+    @Override
+    public String toString() {
+        return "Time: " + this.time + "; Tank height: " + this.tankHeight +
+                "; Volume flow: " + this.volumeFlow;
+    }
 }

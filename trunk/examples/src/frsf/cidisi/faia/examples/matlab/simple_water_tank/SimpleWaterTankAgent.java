@@ -6,7 +6,6 @@ import java.util.logging.Logger;
 import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.agent.reactive.ReactiveBasedAgent;
-import frsf.cidisi.faia.examples.search.pacman.PacmanAgent;
 
 public class SimpleWaterTankAgent extends ReactiveBasedAgent {
 
@@ -26,9 +25,9 @@ public class SimpleWaterTankAgent extends ReactiveBasedAgent {
 
     @Override
     public Action selectAction() {
-        ReactiveSolver solver = new ReactiveSolver();
+        ReactiveSolver tankSolver = new ReactiveSolver();
 
-        this.setSolver(solver);
+        this.setSolver(tankSolver);
 
         // It gets the best action from the solver
         Action selectedAction = null;
