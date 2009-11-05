@@ -7,7 +7,7 @@ import frsf.cidisi.faia.environment.MatlabEnvironment;
 public class SimpleWaterTankEnvironment extends MatlabEnvironment {
 
     private static final double TANK_AREA = 40.0;
-    private static final double UNLOAD_RESTRICTION = 0.5;
+    private static final double OUTLET_FLOW_RESTRICTION = 0.5;
 
     public SimpleWaterTankEnvironment() {
         super();
@@ -66,7 +66,7 @@ public class SimpleWaterTankEnvironment extends MatlabEnvironment {
 
         return new Object[]{
                     TANK_AREA,
-                    UNLOAD_RESTRICTION,
+                    OUTLET_FLOW_RESTRICTION,
                     tankEnvironmentState.getTankHeight(),
                     tankEnvironmentState.getVolumeFlow(),
                     tankEnvironmentState.getStartTime(),
