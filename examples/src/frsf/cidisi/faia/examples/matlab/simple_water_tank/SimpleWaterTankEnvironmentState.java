@@ -1,6 +1,5 @@
 package frsf.cidisi.faia.examples.matlab.simple_water_tank;
 
-import frsf.cidisi.faia.state.EnvironmentState;
 import frsf.cidisi.faia.state.MatlabEnvironmentState;
 
 public class SimpleWaterTankEnvironmentState extends MatlabEnvironmentState {

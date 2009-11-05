@@ -13,17 +13,14 @@ public class ReactiveSolver extends Solve {
 
     @Override
     public Action solve(Object[] params) throws Exception {
-        SimpleWaterTankAgentState estadoTanque =
+        SimpleWaterTankAgentState tankState =
                 (SimpleWaterTankAgentState) params[0];
 
-        double newVolumeFlow =
-                estadoTanque.getVolumeFlow();
+        // Calculate the error
+        double error = 30 - tankState.getTankHeight();
 
-        if (estadoTanque.getTankHeight() > 30) {
-            newVolumeFlow = 0.50 + newVolumeFlow * 0.90;
-        } else if (estadoTanque.getTankHeight() < 30) {
-            newVolumeFlow = 0.50 + newVolumeFlow * 1.10;
-        }
+        // Calculate new volume flow
+        double newVolumeFlow = 2.00 * error + 59;
 
         Action action = new ChangeVolumeFlow(newVolumeFlow);
 

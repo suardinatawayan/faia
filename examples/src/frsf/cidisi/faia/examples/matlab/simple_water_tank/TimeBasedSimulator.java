@@ -6,7 +6,6 @@ import java.util.Vector;
 import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.agent.Agent;
 import frsf.cidisi.faia.agent.NoAction;
-import frsf.cidisi.faia.environment.Environment;
 import frsf.cidisi.faia.environment.MatlabEnvironment;
 import frsf.cidisi.faia.simulator.ReactiveBasedAgentSimulator;
 import frsf.cidisi.faia.state.MatlabEnvironmentState;

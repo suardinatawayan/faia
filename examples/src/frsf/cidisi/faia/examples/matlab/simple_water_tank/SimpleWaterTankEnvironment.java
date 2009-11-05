@@ -1,15 +1,13 @@
 package frsf.cidisi.faia.examples.matlab.simple_water_tank;
 
-import frsf.cidisi.faia.agent.Action;
 import java.util.Hashtable;
-import frsf.cidisi.faia.agent.Agent;
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.environment.MatlabEnvironment;
 
 public class SimpleWaterTankEnvironment extends MatlabEnvironment {
 
     private static final double TANK_AREA = 40.0;
-    private static final double UNLOAD_RESTRICTION = 0.5; // TODO: Quiza traducir "Restricción de descarga"
+    private static final double UNLOAD_RESTRICTION = 0.5;
 
     public SimpleWaterTankEnvironment() {
         super();
@@ -33,12 +31,12 @@ public class SimpleWaterTankEnvironment extends MatlabEnvironment {
 
         double[][] h = simulationReturn.get("h");
 
-        SimpleWaterTankEnvironmentState environmentState =
+        SimpleWaterTankEnvironmentState tankEnvironmentState =
                 this.getEnvironmentState();
 
-        environmentState.setTankHeight(h[h.length - 1][0]);
+        tankEnvironmentState.setTankHeight(h[h.length - 1][0]);
         // Change start and end time for the next simulation
-        environmentState.nextTime();
+        tankEnvironmentState.nextTime();
 
         perception.setTankHeight(this.getEnvironmentState().getTankHeight());
         perception.setTime(this.getEnvironmentState().getStartTime());
@@ -63,16 +61,16 @@ public class SimpleWaterTankEnvironment extends MatlabEnvironment {
 
     @Override
     public Object[] getMatlabFunctionParameters() {
-        SimpleWaterTankEnvironmentState environmentState =
+        SimpleWaterTankEnvironmentState tankEnvironmentState =
                 this.getEnvironmentState();
 
         return new Object[]{
                     TANK_AREA,
                     UNLOAD_RESTRICTION,
-                    environmentState.getTankHeight(),
-                    environmentState.getVolumeFlow(),
-                    environmentState.getStartTime(),
-                    environmentState.getEndTime()
+                    tankEnvironmentState.getTankHeight(),
+                    tankEnvironmentState.getVolumeFlow(),
+                    tankEnvironmentState.getStartTime(),
+                    tankEnvironmentState.getEndTime()
                 };
     }
 
