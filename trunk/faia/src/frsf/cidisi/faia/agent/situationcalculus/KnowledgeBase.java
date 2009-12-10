@@ -37,6 +37,9 @@ public abstract class KnowledgeBase extends AgentState {
     public KnowledgeBase(String knowledgeBaseFile) throws PrologConnectorException {
         this.prologConnector = new PrologConnector(knowledgeBaseFile);
         this.lastPerception = "";
+
+        // Start with situation 0
+        this.addKnowledge(this.getSituationPredicate() + "(0)");
     }
 
     /**
@@ -67,7 +70,8 @@ public abstract class KnowledgeBase extends AgentState {
     }
 
     public void executeSuccessorStateAxioms() {
-        this.prologConnector.executeNonQuery("findall(_,est(" + this.getSituation() + "),_)");
+        int nextSituation = this.getSituation() + 1;
+        this.prologConnector.executeNonQuery("findall(_,est(" + nextSituation + "),_)");
     }
 
     public void tell(SituationCalculusPerception perception) {
@@ -87,12 +91,12 @@ public abstract class KnowledgeBase extends AgentState {
 
         this.addKnowledge(this.getExecutedActionPredicate() +
                 "(" + action + "," + this.getSituation() + ")");
+        
+        // Execute successors state axioms
+        this.executeSuccessorStateAxioms();
 
         // Advance to the next situation
         this.advanceToNextSituation();
-
-        // Execute successors state axioms
-        this.executeSuccessorStateAxioms();
     }
 
     public void addKnowledge(String predicate) {
