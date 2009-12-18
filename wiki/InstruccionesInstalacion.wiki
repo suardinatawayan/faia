@@ -18,13 +18,17 @@ More updated versions are likely to be used, although changes on graphical inter
 
 == Software opcional // Optional Software ==
 
- * LaTeX (Si se desea la generación de archivos PDF con los árboles de búsqueda):
+ * LaTeX (Si se desea la generación de archivos PDF con los árboles de búsqueda. La opción con Graphviz es más simple que ésta, aunque los archivos generados con LaTeX son más aptos para imprimirse en el caso de árboles de búsqueda grandes):
    * En Windows: [http://miktex.org/ MiKTeX] 2.7 (Bajar la versión "Basic").
    * En GNU/Linux: el nombre del paquete a instalar depende de la distribución utilizada. Más abajo, en la sección de instalación de MiKTeX/LaTeX se darán detalles.
 
- * LaTeX (To generate PDF files with search trees):
+ * Graphviz (Para generar archivos DOT, que luego se pueden transformar a otros formatos como PDF o JPEG de una manera más sencilla). Los archivos de instalación se pueden bajar desde la página principal del software: [http://www.graphviz.org/] En Ubuntu Linux se lo puede obtener instalando el paquete 'graphviz'.
+
+ * LaTeX (To generate PDF files with search trees. Using Graphviz is simpler than this option, although files generated with LaTeX are more suitable for printing when search trees are too big):
    * In Windows: [http://miktex.org/ MiKTeX] 2.7 (Download the “basic” version).
    * o	In GNU/Linux: the name of the package to be installed depends on the used distribution. Further details in the MiKTeX/LaTeX installation section will be given bellow.
+
+ * Graphviz (To generate DOT files, which then can be transformed to other formats, like PDF or JPEG in an simpler way). Instalation files can be downloaded from the main page of this software: [http://www.graphviz.org/] In Ubuntu Linux it can be installed with the 'graphviz' package.
 
 == Instalación de SWI-Prolog // SWI-Prolog Installation ==
 
