@@ -72,6 +72,10 @@ Con estos pasos realizados, debería ser posible poder correr proyectos que util
 
 With these steps, it should be possible to run the projects that use Situation Calculus with NetBeans. It is strongly recommended to see  the example "logic_pacman".
 
+Esta guía es para comenzar un ejemplo de cero. Si se desea correr los ejemplos de FAIA (que se pueden bajar en la sección de Downloads), es necesario, en Windows, ir a las propiedades del proyecto 'examples' y en la sección _Run_ dejar en blanco el campo _VM Options_. De esta forma !NetBeans busca los binarios de SWI-Prolog siguiendo la variable de sistema PATH.
+
+This guide is intended to start a new Calculus project from scratch. If you want to run the FAIA examples (you can download them in the Downloads section), is necessary, on Windows, change the properties of the 'examples' project. Go to the _Run_ section and leave the _VM Options_ field blank. This way !NetBeans search for the SWI-Prolog binaries according to the PATH environment variable.
+
 *En sistemas GNU/Linux*, es necesario realizar, _además_, los siguientes pasos: // In GNU/Linux, it is also necessary to follow the next steps:
 
  # Hacer click derecho en el proyecto, y elegir la opción _Properties_. // Right click in the project and select the option _Properties_.
