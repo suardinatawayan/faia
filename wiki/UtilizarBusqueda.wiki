@@ -43,7 +43,7 @@ Luego podemos ver que el agente ha escogido los nodos: 5, 8, 11, 14, 17, 19, 22,
 
 == Generar archivos DOT ==
 
-Para generar archivos DOT es necesario utilizar la opción "GRAPHVIZ_TREE" en el método 'setVisibleTree' como se muestra a continuación:
+Esta es la manera recomendada de generar archivos gráficos desde los árboles de búsqueda. Para generar archivos DOT es necesario utilizar la opción "GRAPHVIZ_TREE" en el método 'setVisibleTree' como se muestra a continuación:
 
 {{{
 searchSolver.setVisibleTree(Search.GRAPHVIZ_TREE);
@@ -76,8 +76,8 @@ Si se requiere cambiar las etiquetas de los nodos en el árbol (por ejemplo, si 
 
 To begin using simple search strategies, some classes provided by the framework must be specialized. When there is a project that uses a search strategy from FAIA, you can tell the framework to create two kind of outputs, to observe the inner functioning of the agent, such as the search tree generated. FAIA provides two types of outputs:
 
-  * XML files that are stored in the directory "searchTrees" within the project folder.
-  * PDF files (this option is _deprecated_, see the next option which uses Graphviz), which show a graphical representation of the trees generated during the search process. They are stored in the "pdflatex" folder from the project folder. This option uses LaTeX. On the second page of instructions there is a guide for installation on Windows and GNU/Linux.
+ * XML files that are stored in the directory "searchTrees" within the project folder.
+ * PDF files (this option is _deprecated_, see the next option which uses Graphviz), which show a graphical representation of the trees generated during the search process. They are stored in the "pdflatex" folder from the project folder. This option uses LaTeX. On the second page of instructions there is a guide for installation on Windows and GNU/Linux.
  * *DOT* files: this is a simpler option than using LaTeX to generate PDF files. Here Graphviz is used to generate a tree's representation in the DOT language, which will be stored in the "searchGVTrees" folder. After the DOT files were generated, these can be transformed to other formats, like JPEG or PDF in an easy way. Although the LaTeX option generate more suitable PDF files for printing.
 
 To configure an agent and to get some of these output, you can use the method _setVisibleTree_ in the _Search_ class. In the Pacman example, this option is set on the _selectAction_ from the _AgentePacman_class:
@@ -114,7 +114,7 @@ After that, it can be seen that the agent has chosen the nodes 5, 8, 11, 14, 17,
 
 == Generate DOT files with Graphviz ==
 
-To generate DOT files is necessary to use the "GRAPHVIZ_TREE" option in the 'setVisibleTree' method as shown above:
+This is the recommended way to generate graphic files from the search trees. To generate DOT files is necessary to use the "GRAPHVIZ_TREE" option in the 'setVisibleTree' method as shown above:
 
 {{{
 searchSolver.setVisibleTree(Search.GRAPHVIZ_TREE);
