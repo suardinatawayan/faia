@@ -283,7 +283,15 @@ public class NTree implements Cloneable, Comparable<NTree> {
     @Override
     public int compareTo(NTree o) {
         if (this.cost == o.cost) {
-            return 0;
+        	// If both nodes have the same cost then it is necessary to check the order
+        	// in which those nodes have been created.-
+        	if (this.executionOrder == o.executionOrder) {
+        		return 0;
+            } else if (this.executionOrder < o.executionOrder) {
+                return -1;
+            } else {
+                return 1;
+            }
         } else if (this.cost < o.cost) {
             return -1;
         } else {
