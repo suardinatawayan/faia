@@ -17,6 +17,7 @@
  */
 package frsf.cidisi.faia.solver.search;
 
+import java.util.Arrays;
 import java.util.Vector;
 
 /**
