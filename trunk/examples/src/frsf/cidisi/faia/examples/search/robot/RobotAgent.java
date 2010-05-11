@@ -26,6 +26,7 @@ import frsf.cidisi.faia.agent.search.SearchBasedAgent;
 import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.solver.search.BreathFirstSearch;
+import frsf.cidisi.faia.solver.search.DepthFirstSearch;
 import frsf.cidisi.faia.solver.search.Search;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -69,11 +70,12 @@ public class RobotAgent extends SearchBasedAgent {
     public Action selectAction() {
         // Breath first strategy
         BreathFirstSearch searchStrategy = new BreathFirstSearch();
+//        DepthFirstSearch searchStrategy = new DepthFirstSearch();
 
         Search searchSolver = new Search(searchStrategy);
 
         // Set the search tree to be written in an XML file
-        searchSolver.setVisibleTree(Search.XML_TREE);
+        searchSolver.setVisibleTree(Search.GRAPHVIZ_TREE);
 
         // Set the search solver
         this.setSolver(searchSolver);
