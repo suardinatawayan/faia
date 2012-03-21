@@ -28,6 +28,7 @@ import frsf.cidisi.faia.simulator.events.SimulatorEventNotifier;
 import frsf.cidisi.faia.solver.Solve;
 import frsf.cidisi.faia.util.GraphvizTree;
 import frsf.cidisi.faia.util.LatexOutput;
+import frsf.cidisi.faia.util.TreeMLWriter;
 import frsf.cidisi.faia.util.XmlTree;
 
 public class Search extends Solve {
@@ -37,6 +38,7 @@ public class Search extends Solve {
     public static final int PDF_TREE = 2;
     public static final int GRAPHICAL_TREE = 3;
     public static final int GRAPHVIZ_TREE = 4;
+    public static final int EFAIA_TREE = 5;
     private NTree tree;
     private NTree goalNode;
     private Strategy searchStrategy;
@@ -196,6 +198,9 @@ public class Search extends Solve {
                 break;
             case Search.GRAPHVIZ_TREE:
                 GraphvizTree.printFile(tree);
+                break;
+            case Search.EFAIA_TREE:
+            	TreeMLWriter.printFile(tree);
                 break;
         }
     }

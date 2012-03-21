@@ -71,6 +71,7 @@ public class NTree implements Cloneable, Comparable<NTree> {
         node.setParent(parent);
         node.setAction(action);
         node.setAgentState(agSt);
+        node.setExecutionOrder(executionOrder);
 
         // TODO: Ac� hay que clonar a los hijos tambi�n!!???.-
 
@@ -80,7 +81,11 @@ public class NTree implements Cloneable, Comparable<NTree> {
         return node;
     }
 
-    public SearchAction getAction() {
+    public void setExecutionOrder(int executionOrder) {
+		this.executionOrder = executionOrder;
+	}
+
+	public SearchAction getAction() {
         return action;
     }
 
@@ -202,7 +207,11 @@ public class NTree implements Cloneable, Comparable<NTree> {
         return str;
     }
 
-    public String toXml() {
+    public int getExecutionOrder() {
+		return executionOrder;
+	}
+
+	public String toXml() {
 
         String str = "";
 
